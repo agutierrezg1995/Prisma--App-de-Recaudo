@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <link rel="preload" as="image" href="assets/logo.webp" />
+  <link rel="preload" as="image" href="assets/hero.webp" />
   <link rel="stylesheet" href="css/styles.css" />
   <script>document.documentElement.classList.add("js");</script>
 
@@ -45,6 +45,39 @@
     "operatingSystem": "Web, Android, iOS",
     "description": "Plataforma para registrar, monitorear y consultar la operación de recaudo.",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "COP" }
+  }
+  </script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué es Prisma$?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Es una plataforma de control de recaudo para registrar, monitorear y analizar tu operación desde un solo lugar." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué puedo controlar con Prisma$?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Puedes centralizar cobros, movimientos, clientes y reportes, con información en tiempo real de tu operación." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo registro mis cobros?",
+        "acceptedAnswer": { "@type": "Answer", "text": "El proceso es simple: visita a tus clientes, registra sus abonos, genera recibos, visualiza el movimiento y genera reportes." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Desde qué dispositivos puedo acceder?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Prisma$ está pensado para usarse desde tu smartphone, tablet o computador." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo solicito una demo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Puedes solicitar una demostración desde los botones de esta página para conocer la plataforma." }
+      }
+    ]
   }
   </script>
 </head>
@@ -75,6 +108,7 @@
           <li><a class="navbar__link" href="#como-funciona" data-spy>Cómo funciona</a></li>
           <li><a class="navbar__link" href="#seguridad" data-spy>Seguridad</a></li>
           <li><a class="navbar__link" href="#preguntas" data-spy>Preguntas</a></li>
+          <li class="navbar__mobile-cta"><a class="btn btn--primary" href="#demo">Solicitar demo</a></li>
         </ul>
       </nav>
 

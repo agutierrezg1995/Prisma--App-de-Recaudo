@@ -290,6 +290,10 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 - [x] Accesibilidad: skip-link, semántica, focus visible, `alt`, `aria`, `prefers-reduced-motion` (SPEC §23).
 - [x] SEO: title, meta, OG, Twitter, canonical, favicon, schema, H1 único (SPEC §25).
 - [x] Assets reales integrados; 19/19 referencias resueltas.
+- [x] Preload del hero (WebP) para mejorar LCP (SPEC §24).
+- [x] Schema `FAQPage` (SPEC §25): preguntas reales de la sección FAQ.
+- [x] CTA compacto "Solicitar demo" dentro del menú mobile (SPEC §4, §36).
+- [x] Subrayado animado en links del footer (SPEC §22).
 
 ### Hallazgos corregidos en esta auditoría
 
