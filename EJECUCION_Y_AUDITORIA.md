@@ -42,19 +42,20 @@ La landing debe responder en menos de 5 segundos: **"Esto es Prisma$ y me permit
 
 ---
 
-## 2. Decisiones de arquitectura (propuesta a confirmar)
+## 2. Decisiones de arquitectura (confirmadas)
 
-> `SPEC.md` define componentes y tokens, pero **no fija framework**. Se propone un stack alineado a los requisitos de performance, SEO y componentes.
+> `SPEC.md` define componentes y tokens, pero no fija framework. Se decidió un **sitio estático** por simplicidad de despliegue (GitHub Pages), performance y control total del diseño.
 
-| Área | Propuesta | Motivo |
+| Área | Decisión | Motivo |
 | --- | --- | --- |
-| Framework | **Next.js (App Router) + React + TypeScript** | SSR/SSG, SEO, componentes, preload del hero. |
-| Estilos | **Tailwind CSS + CSS variables** | Design tokens del spec como variables. |
-| Animación | **CSS + IntersectionObserver**, `framer-motion` si se justifica | Reveals y parallax sin sobrecargar. |
-| Iconos | **Lucide** (SPEC §28) | Lineales, un solo estilo. |
-| Imágenes | **`next/image`** o `<picture>` + WebP/AVIF | Responsive images, lazy, sin CLS. |
+| Base | **HTML5 semántico + CSS + JavaScript (vanilla)** | Sin build, deploy directo, carga rápida. |
+| Estilos | **CSS con variables (design tokens)** | Tokens del spec como `custom properties`. |
+| Iconos | **SVG lineales inline** | Un solo estilo (equivalente Lucide), sin dependencias. |
+| Animación | **CSS + IntersectionObserver + `requestAnimationFrame`** | Reveals, parallax, counters y slider eficientes. |
+| Imágenes | `<img>` con `loading="lazy"` + `aspect-ratio` | Responsive, sin CLS; assets originales. |
+| Tipografía | **Inter** vía Google Fonts (`display=swap`, preconnect) | Preferencia del spec. |
 
-**Regla de decisión:** si el entorno del cliente ya tiene un stack definido, se adapta el plan; el spec manda sobre la estética, no sobre el framework.
+**Regla:** la estética la manda el spec; el stack es la vía más simple y robusta para cumplirla.
 
 ---
 

@@ -1167,22 +1167,79 @@ No mezclar estilos de iconos.
 
 Priorizar las piezas gráficas ya generadas.
 
-Utilizar:
+Carpeta de assets:
+"Imagenes para landing/"
 
-1. Hero principal.
-2. Pieza "Monitorea cada movimiento".
-3. Pieza "Datos que generan decisiones".
-4. Pieza "Toda tu operación en un solo lugar".
-5. Pieza "Registrar tus cobros".
-6. Visuales de smartphone.
-7. Dashboard.
-8. Logo oficial Prisma$.
+INVENTARIO REAL DE ASSETS Y DESTINO
+
+Logo de marca
+- LOGO.png
+  → Navbar (§4), Footer (§18), Open Graph (§25).
+  → Asset de marca oficial. No redibujar, recolorear ni deformar (§30).
+
+Iconografía de aplicación
+- ICONO VENTANA.png
+  → Favicon y app icon (§25).
+
+Hero
+- PRISMAS PUBLICIDAD 1.png
+  → Composición visual del Hero (§5) como visual principal
+    y/o recurso de prismas.
+  → También puede reaparecer en el CTA principal (§17).
+
+Hero Slider (§7)
+- PROMOCION SLIDER.png
+  → Visual de apoyo del slider (carrusel premium).
+- TIEMPO REAL.png
+  → Slide 02 "Tu recaudo en tiempo real".
+  → Reutilizable en la sección Monitoreo en tiempo real (§11).
+- TODA LA OPERACION EN UN SOLO LUGAR.png
+  → Slide 04 "Toda tu operación en un solo lugar".
+  → Reutilizable en la sección Product Experience (§16).
+
+Narrativa de problema / solución (§8, §9)
+- CASO DE USO.jpg
+  → Apoyo visual de la sección El Problema / Solución.
+- CASO DE USO  2.jpg
+  → Apoyo visual de la sección Solución.
+
+Cómo funciona (§10)
+- REGISTRO COBROS ES MUY FACIL.png
+  → Visual de la sección "Registrar tus cobros es muy fácil".
+
+Datos, dashboard y control financiero (§12, §13)
+- dashboard.JPG
+  → DashboardPreview en las secciones Solución (§9),
+    Monitoreo en tiempo real (§11) y Dashboard/Reportes (§13).
+  → Cifras mostradas = datos demostrativos (§13, §35).
+
+Conversión y producto (§16, §17)
+- Compra Ahora.png
+  → CTA principal (§17) y/o Hero, según encaje de composición.
+- PLAYSTORE.png
+  → CTA / descarga de la app en la experiencia mobile (§36).
+
+Assets sin sección equivalente en este spec
+- PRECIOS.png
+  → No existe una sección de precios en el spec actual.
+  → Reservar para una sección futura de planes/precios.
+  → NO crear una sección de precios sin autorización.
+
+REGLAS DE USO
 
 Las imágenes deben integrarse en el diseño,
 NO simplemente pegarse como banners rectangulares.
 
 Utilizar máscaras, cards, recortes, overlays y composición
 para que pertenezcan al sistema visual.
+
+No repetir exactamente la misma pieza en todas las secciones.
+
+NOTA DE IMPLEMENTACIÓN
+
+El mapeo anterior se basa en el nombre de archivo de cada asset.
+Debe validarse visualmente contra el contenido real de cada imagen
+antes de cerrar cada sección.
 
 ==================================================
 30. REGLA IMPORTANTE DE BRANDING
