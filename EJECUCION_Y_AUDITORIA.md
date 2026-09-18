@@ -301,11 +301,12 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 
 ### Pendientes / decisiones abiertas
 
-- [ ] **WebP/AVIF** (SPEC §24): no hay conversor en el entorno (sin `cwebp`/ImageMagick). Recomendado: convertir los PNG/JPG y servir con `<picture>`.
-- [ ] **Validación visual del contenido de los assets**: el mapeo se hizo por nombre de archivo; falta confirmar que cada imagen encaja en su sección.
+- [x] **WebP/AVIF** (SPEC §24): implementado. Se añadió `scripts/optimize_images.py` (Pillow) que genera derivados WebP en `assets/` con nombres limpios, mejorando el peso de ~1.7 MB a ~30–160 KB por pieza. Se generaron además `logo.webp/png`, favicons (`icon-64/180/192/512.png`) y una imagen social `og-image.png` (1200×630).
+- [x] **Encuadre de imágenes**: los contenedores ahora respetan el `aspect-ratio` nativo de cada asset (sin recortes); marcos de slider y showcase usan `object-fit: contain` para piezas vehiculares.
+- [ ] **Validación visual del contenido de los assets**: el mapeo se hizo por nombre de archivo; falta confirmar visualmente que cada imagen encaja en su sección.
 - [ ] **CTA "Solicitar demo"**: hoy ancla a `#demo` (sección CTA). Falta definir destino real (formulario o email) sin inventar URL (SPEC §35).
 - [ ] **Dominio/canonical**: canonical y OG apuntan a la URL de GitHub Pages; ajustar al dominio final.
-- [ ] **Deploy**: habilitar GitHub Pages (rama `V.1` o merge a `main`) para publicación.
+- [ ] **Deploy**: habilitar GitHub Pages (rama `main`) para publicación.
 
 ## 11. Próximo paso
 

@@ -1241,6 +1241,17 @@ El mapeo anterior se basa en el nombre de archivo de cada asset.
 Debe validarse visualmente contra el contenido real de cada imagen
 antes de cerrar cada sección.
 
+OPTIMIZACIÓN Y SERVICIO
+
+La web sirve derivados WebP desde la carpeta "assets/" (generados por
+"scripts/optimize_images.py"): mismo contenido, peso reducido
+(~30–160 KB por pieza) y nombres limpios. Los originales permanecen
+en "Imagenes para landing/" como fuente de marca.
+
+Los contenedores respetan el aspect-ratio nativo de cada imagen
+(no recortar piezas con texto); en slider y showcase se usa
+object-fit: contain.
+
 ==================================================
 30. REGLA IMPORTANTE DE BRANDING
 ==================================================
