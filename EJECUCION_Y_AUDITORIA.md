@@ -316,3 +316,30 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 
 Merge `V.1` → `main`, habilitar GitHub Pages y continuar iteración sobre contenido/performance.
 
+## 12. Checklist de validación visual (v1)
+
+Revisar en **http://127.0.0.1:5500/** (desktop ≥1200 y mobile ≤767). Marcar cada sección.
+
+| Sección | Desktop | Mobile | Notas / problemas detectados |
+| --- | --- | --- | --- |
+| Navbar (sticky, scroll-spy, menú) | ☐ | ☐ | |
+| Hero (visual, tarjetas flotantes) | ☐ | ☐ | |
+| Slider (4 slides, autoplay, flechas) | ☐ | ☐ | |
+| Problema (3 cards, hover) | ☐ | ☐ | |
+| Solución (dashboard + badges) | ☐ | ☐ | |
+| Cómo funciona (timeline) | ☐ | ☐ | |
+| Monitoreo (notifs + gráfico) | ☐ | ☐ | |
+| Ingresos y egresos (imagen 1.09) | ☐ | ☐ | |
+| Dashboard / tabs / contadores | ☐ | ☐ | |
+| Beneficios (grid 3x2) | ☐ | ☐ | |
+| Seguridad (escudo) | ☐ | ☐ | |
+| Product experience (carousel) | ☐ | ☐ | |
+| CTA (#demo) | ☐ | ☐ | |
+| FAQ (details) | ☐ | ☐ | |
+| Footer | ☐ | ☐ | |
+
+Comportamiento esperado conocido:
+- Slider y showcase usan `object-fit: contain`: piezas muy anchas (2.12) o casi cuadradas (1.09) pueden mostrar bandas laterales del fondo navy; es intencional para NO recortar arte con texto.
+- Todas las cifras del dashboard son **demostrativas** y etiquetadas.
+- No hay formulario: todos los CTA anclan a `#demo` (decisión 2026-09-18).
+
