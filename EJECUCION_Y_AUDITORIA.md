@@ -272,6 +272,42 @@ Una sección se considera terminada cuando:
 
 ---
 
-## 10. Próximo paso
+## 10. Auditoría v1 — resultado
 
-Confirmar el stack (§2) y ejecutar **F0** para habilitar las fases siguientes.
+Fecha: 2026-09-18 · Rama: `V.1`
+Alcance: implementación completa de la landing (HTML/CSS/JS estático).
+
+### Implementado y verificado contra SPEC
+
+- [x] Identidad Prisma$, paleta y tipografía (SPEC §1–3).
+- [x] Navbar sticky + glass al scroll + scroll-spy + menú mobile (SPEC §4).
+- [x] Hero con copys, CTAs y composición visual (SPEC §5) + animaciones de entrada (SPEC §6).
+- [x] Hero Slider 4 slides con autoplay 6s, arrows, dots, swipe, teclado, pausa hover/focus, sin autoplay con reduced-motion (SPEC §7).
+- [x] Secciones Problema, Solución, Cómo funciona (timeline progresivo), Monitoreo, Ingresos/Egresos, Dashboard con tabs (SPEC §8–13).
+- [x] Beneficios (3x2), Seguridad dark, Product Experience, CTA, Footer (SPEC §14–18).
+- [x] Reveals, parallax de glows, charts con `stroke` animado, counters demostrativos (SPEC §19).
+- [x] Responsive 320 / 768 / 1200 / 1440, mobile first (SPEC §20).
+- [x] Accesibilidad: skip-link, semántica, focus visible, `alt`, `aria`, `prefers-reduced-motion` (SPEC §23).
+- [x] SEO: title, meta, OG, Twitter, canonical, favicon, schema, H1 único (SPEC §25).
+- [x] Assets reales integrados; 19/19 referencias resueltas.
+
+### Hallazgos corregidos en esta auditoría
+
+- [x] Faltaba `H2` en el slider (salto H1→H3): se añadió título `sr-only`.
+- [x] El slider dependía de JS para mostrarse: se protegió el ocultamiento tras `.js`.
+- [x] Íconos de "El problema" ahora inician neutros y pasan a cian en hover (SPEC §8).
+- [x] Animación de entrada del logo en navbar (SPEC §6).
+- [x] Ruta del asset `CASO DE USO  2.jpg` (doble espacio) corregida.
+
+### Pendientes / decisiones abiertas
+
+- [ ] **WebP/AVIF** (SPEC §24): no hay conversor en el entorno (sin `cwebp`/ImageMagick). Recomendado: convertir los PNG/JPG y servir con `<picture>`.
+- [ ] **Validación visual del contenido de los assets**: el mapeo se hizo por nombre de archivo; falta confirmar que cada imagen encaja en su sección.
+- [ ] **CTA "Solicitar demo"**: hoy ancla a `#demo` (sección CTA). Falta definir destino real (formulario o email) sin inventar URL (SPEC §35).
+- [ ] **Dominio/canonical**: canonical y OG apuntan a la URL de GitHub Pages; ajustar al dominio final.
+- [ ] **Deploy**: habilitar GitHub Pages (rama `V.1` o merge a `main`) para publicación.
+
+## 11. Próximo paso
+
+Merge `V.1` → `main`, habilitar GitHub Pages y continuar iteración sobre contenido/performance.
+

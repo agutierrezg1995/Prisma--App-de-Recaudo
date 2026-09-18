@@ -348,7 +348,11 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   gap: 24px;
   min-height: 74px;
 }
-.navbar__logo { height: 42px; width: auto; }
+.navbar__logo { height: 42px; width: auto; animation: navLogo 0.8s var(--ease) both; }
+@keyframes navLogo {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
 
 .navbar__list { display: flex; align-items: center; gap: 6px; }
 .navbar__link {
@@ -494,13 +498,15 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   background: var(--glass);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+}
+.js .slide {
   opacity: 0;
   transform: translateX(28px);
   pointer-events: none;
   transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
 }
-.slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
-.slide.is-prev { transform: translateX(-28px); }
+.js .slide.is-active { opacity: 1; transform: none; pointer-events: auto; }
+.js .slide.is-prev { transform: translateX(-28px); }
 .slide__title { font-size: clamp(26px, 2.6vw, 38px); margin-bottom: 16px; }
 .slide__text { color: var(--ink-soft); max-width: 420px; }
 .slide__media {
@@ -510,6 +516,16 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   box-shadow: 0 30px 70px -35px rgba(0, 80, 240, 0.75);
 }
 .slide__media img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .slider__arrow {
   position: absolute;
@@ -601,6 +617,9 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
 }
 .card:hover .card__icon { box-shadow: 0 0 26px -4px rgba(0, 216, 255, 0.7); }
+
+.card--problem .card__icon { color: var(--ink-muted); }
+.card--problem:hover .card__icon { color: var(--prisma-cyan-400); }
 .card__title { font-size: 1.25rem; margin-bottom: 10px; }
 .card__text { color: var(--ink-soft); font-size: 0.95rem; }
 .card__index {
