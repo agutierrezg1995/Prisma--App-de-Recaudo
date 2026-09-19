@@ -471,7 +471,12 @@ Comportamiento esperado conocido:
 | `ff48729` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `26ee475` | main | feat(percepcion): Fase C v1.2 (slider v2 + paneles + motion). |
 | `26ee475` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
-| *en curso* | main | feat(contacto): Fase D v1.2 estructura (footer contacto + WhatsApp fab + redes, datos `[REEMPLAZAR]`). |
+| `d1ccbd2` | main | feat(contacto): Fase D v1.2 estructura (footer contacto + WhatsApp fab + redes, §39.8). **WA real activado** (`573183366064`) en el mismo commit. |
+| `d1ccbd2` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `4d9f6a2` | main | deploy: trigger GH Pages rebuild → **producción al día con Fase C+D** (slider v2, paneles §39.7, contacto+fab). Push a main+V.1. |
+| `1300adc` | main | feat(contacto): Fase D **correo real activado** en `CONTACT` (`davidgrijalba8@gmail.com`, datos de contacto.md); redes sin data real siguen ocultas. |
+| `1300adc` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `1cb9c90` | main | deploy: trigger GH Pages rebuild (correo real en CONTACT); push a main+V.1. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
@@ -610,4 +615,13 @@ Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes)
 - [x] **Consistencia de footer**: columna "Empresa" de `index.html` alineada con las otras 4 (Contacto + Política + Términos). `sticky-cta` se mantiene **solo en index** por diseño (SPEC §36: CTA sticky de la landing).
 - [x] **Auditoría aplicada (subagente QA + verificación manual)**: 0 `href="#"`, todos los `<img>` con `alt`, 0 ids duplicados, 1 H1 por doc, 20 `data-icon` cubiertos por `ICONS` (0 faltantes), CSS balanceado (`{442 }442`), `node --check` OK, smoke local 5/5 HTML + JS + CSS → 200. Corregido en la pasada: faltaba regla `.footer__email` en CSS.
 - [ ] **Pendiente usuario (dato de negocio)**: completar `CONTACT` en `js/main.js` — `wa` (código de país, sin `+`), `email` y `social: [{icon,label,url}]` — y validación visual §12 del footer/fab una vez configurado.
+
+### Continuación 2026-09-19 — decimoquinta pasada (revisión E&A + deploy Fase C+D completo)
+
+- [x] **Revisión de estado**: `main` = `V.1` (0/0 tras FF); `DEUDA`/`EJECUCION`/`SPEC` revisados; el plan v1.2 (fases A–D) tiene todas las fases implementadas en código.
+- [x] **Gap de deploy detectado y cerrado**: la producción quedó en Fase A+B tras `e886b7c`; Fase C (`26ee475`) y D (`d1ccbd2`) no se habían publicado. Se pusheó `d1ccbd2` y se disparó rebuild (`4d9f6a2`) → **producción verifica Fase C+D**: slider contador `01/04` + tabla de progreso eased, tags de panel (`device__tag`: "Panel de control"/"Tiempo real"/"Cuadre general"), bloque de contacto + WhatsApp fab (`data-contact-block`/`data-wa-fab`) presentes.
+- [x] **Datos de negocio aplicados** (§39.8/DUDE-18): `WA_NUMBER = 573183366064` (WhatsApp principal, real) y `CONTACT.email = davidgrijalba8@gmail.com` (real). Ambos verificados en producción (`js/main.js` 200). Redes sociales (`social[]`) permanecen vacías/ocultas — no hay handles reales en `datos de contacto.md` (§35).
+- [x] **Auditoría de integridad re-ejecutada (5 docs)**: `node --check` OK; 0 refs locales rotas; 0 `href="#"`; 1 H1 por doc; 0 ids duplicados; 20 `data-icon` usados vs 25 definidos en `ICONS` (0 faltantes); verificados también en la pasada 14 (subagente QA).
+- [x] **Producción verificada (crawl)**: `index`, 3 páginas, `404.html`, `sitemap.xml`, `robots.txt` → 200; `main.js` sirve con WA + correo reales.
+- [ ] **Pendiente usuario**: ① validación visual §12/§12.3 (desktop/mobile, assets ⚠, slider v2, footer/fab con WA+correo), ② `datos de contacto.md`: entregar sociales (IG/FB/LinkedIn) para activar `CONTACT.social[]`, ③ contenido legal `[REEMPLAZAR]` (DUDE-01), ④ números de soporte 3166540824 / 3041034037 registrados como adicionales pero sin uso en página (decisión: solo WhatsApp principal en contacto; documentado).
 

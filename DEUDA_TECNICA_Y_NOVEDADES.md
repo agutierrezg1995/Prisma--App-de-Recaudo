@@ -28,9 +28,12 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `ff48729` | feat(content) | **Fase B v1.2**: FAQ 5→9 (JSON-LD 9/9 verificado) + `CardDetail` "por qué y para quién" en 9 cards (Problema+Beneficios). Showcase sin detalle (decisión documentada). |
 | `e886b7c` | deploy | Rebuild trigger: los pushes de Fase A/B no surfacieron al CDN; con este trigger **producción queda al día**: FAQ 9/9, details 9/9, `pages/solicitar-demo.html` 200. Causa probable: GitHub Actions desactivado o deploy no disparado en el batch V.1+main; se resolverá en Fase C/DUDE-09 al revisar la config de Pages. |
 | `26ee475` | feat(percepcion) | **Fase C v1.2**: slider v2 (contador 01/04, progreso eased, drift 1→1.03 no-preference), paneles con tratamiento único (§39.7 tags/bezel/ledger/window), shimmer CTA + elevación timeline (§39.4). Verificado local 8/8. |
-| *en curso* | feat(contacto) | **Fase D v1.2 (estructura)**: bloque de contacto del footer (`data-contact-block`), WhatsApp fab flotante (`wa-fab` + `data-wa-fab`) y redes (`data-social`) entregados con iconos SVG lineales nuevos (message-circle, phone, mail, instagram, linkedin, facebook). Todo oculto (`hidden`) hasta configurar datos reales; JS compone `wa.me`/`mailto` solo si el negocio entregó datos (§39.8, §35). Sin URLs inventadas; mayor consonancia §4. |
+| `d1ccbd2` | feat(contacto) | **Fase D v1.2 (estructura + WA real)**: bloque de contacto del footer (`data-contact-block`), WhatsApp fab flotante (`wa-fab` + `data-wa-fab`) y redes (`data-social`) entregados con iconos SVG lineales nuevos (message-circle, phone, mail, instagram, linkedin, facebook). **`WA_NUMBER` real activado: `573183366064`.** Correo `[REEMPLAZAR]` y `social[]` vacíos por entonces (§39.8, §35). |
+| `4d9f6a2` | deploy | **REBUILD → producción al día con Fase C+D**. Previo a esto, producción quedó detenida en Fase A+B (deploy `e886b7c`); gap detectado y cerrado: push `d1ccbd2` + trigger. Verificado en vivo: slider contador/progreso, tags de panel, contacto+fab presentes; `main.js` sirve WA real. |
+| `1300adc` | feat(contacto) | **Fase D — correo real activado** en `CONTACT`: `davidgrijalba8@gmail.com` (dato de `datos de contacto.md`, 2026-09-19). Empieza a renderizar el enlace mailto del footer. Redes `social[]` siguen vacías (sin handles reales). |
+| `1cb9c90` | deploy | REBUILD con correo real en `CONTACT`; verificado en producción (`davidgrijalba8@gmail.com` + `573183366064` en `js/main.js` 200). `main`=`V.1`=origin (0/0). |
 
-**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Restan: **validación visual humana** (§12, §12.3, §37) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
+**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción** (Fase C+D al día, 2026-09-19). WhatsApp y correo reales activos. Restan: **validación visual humana** (§12, §12.3, §37), handles de redes sociales (DUDE-18) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
 
 ---
 
@@ -44,9 +47,9 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Plan:** el titular del servicio completa y valida con asesor legal; luego se eliminan las notas.
 
 ### DUDE-02 · CTA `#demo` sin mecanismo de captura de lead — CERRADA (2026-09-19)
-- **Estado:** resuelta con la Fase A (v1.2): existe formulario de demo (SPEC §39.1) y los CTA primarios llevan a la página real `pages/solicitar-demo.html` (§39.9).
-- **Impacto:** el funnel de conversión ahora captura intención (composición WhatsApp).
-- **Plan:** sustituir `WA_NUMBER` `[REEMPLAZAR]` por el número del titular antes de lanzar a clientes.
+- **Estado:** resuelta con la Fase A (v1.2): existe formulario de demo (SPEC §39.1) y los CTA primarios llevan a la página real `pages/solicitar-demo.html` (§39.9). `WA_NUMBER` real activado (`573183366064`) → el funnel captura intención vía WhatsApp.
+- **Impacto:** el funnel de conversión captura intención (composición WhatsApp) con número real del titular.
+- **Plan:** QA manual de la ruta WhatsApp en móvil por el titular.
 
 ### DUDE-03 · Canonical/OG con URL provisional del repo GH — CERRADA (2026-09-19)
 - **Estado:** ~~provisional~~ → **confirmada como URL final de despliegue**: `https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/…` (repo `agutierrezg1995/Prisma--App-de-Recaudo`, default branch `main`, misma URL en canonical/OG/sitemap). Sin cambios de código al publicar.
@@ -93,10 +96,10 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 ### Bloque C · Retos de calidad UX (SPEC §39 adicional, 2026-09-19)
 > Los 9 retos del titular se documentan en `SPEC.md` §39.1–§39.9 con criterios de aceptación y guardas §19/§23/§27/§35. Cada uno baja a deuda con su plan:
 
-### DUDE-11 · Formulario de solicitud de demo — CERRADA (2026-09-19, parcial)
-- **Estado:** implementado en `#demo` (index) y `pages/solicitar-demo.html` (SPEC §39.1/§39.9): campos nombre/negocio/sector/mensaje, validación nativa + `:user-invalid`, `role=status`, y envío que compone mensaje de WhatsApp (wa.me) en el dispositivo. `WA_NUMBER` queda en `[REEMPLAZAR]` (js/main.js) con mensaje honesto si aún no está configurado.
-- **Impacto:** conversión funcional; sin backend.
-- **Plan:** el negocio reemplaza `WA_NUMBER` por el número real (con código de país) y QA manual de la ruta WhatsApp en móvil.
+### DUDE-11 · Formulario de solicitud de demo — CERRADA (2026-09-19, WA real activado)
+- **Estado:** implementado en `#demo` (index) y `pages/solicitar-demo.html` (SPEC §39.1/§39.9): campos nombre/negocio/sector/mensaje, validación nativa + `:user-invalid`, `role=status`, y envío que compone mensaje de WhatsApp (wa.me) en el dispositivo. **`WA_NUMBER` real configurado: `573183366064`** (commit `d1ccbd2`) → el envío abre WhatsApp del negocio, ya no el aviso provisional.
+- **Impacto:** conversión funcional de extremo a extremo; sin backend.
+- **Plan:** QA manual de la ruta WhatsApp en móvil por el titular (aprobación §12).
 
 ### DUDE-12 · Hero Slider v2 (profesionalización) — CERRADA (2026-09-19)
 - **Aplicado:** crossfade direccional (translateX+opacidad), contador visible `01/04` (`data-slider-count`, `padStart`), progreso con easing `cubic-bezier(.22,1,.36,1)`, temporizador reinicia en cada navegación (resetProgress), drift del arte 1→1.03 en 8s solo con `no-preference`; sin autoplay bajo reduced-motion (play() early-return). Copys §7 intactos.
@@ -118,9 +121,9 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Aplicado:** tratamiento único por sección — Slider (contenido redondeado + drift), Solución `device--dashboard` (barra de ventana + pips + tag "Panel de control"), Monitoreo `device--monitor` (bezel/muesca de app + tag "Tiempo real"), Financiero `device--hero` (líneas ledger + fade + tag "Cuadre general"), Showcase (fade inferior en cards). Confirma `finance.webp` como "cuadre" en §12 (DUDE-04).
 - **Vínculo:** entronca con DUDE-04 y DUDE-05.
 
-### DUDE-18 · Footer contactos + WhatsApp fab + redes — MEDIA (SPEC §39.8, estructura entregada; datos pendientes)
-- **Estado:** padre: estructura e iconos **entregada 2026-09-19** (pasada 14): bloque de contacto en footer (`data-contact-block`), fab WhatsApp (`wa-fab`/`data-wa-fab`), enlaces de correo (`data-wa-email`) y lista de redes (`data-social`) presentes en las 5 páginas, ocultos (`hidden`) mientras el dato sea `[REEMPLAZAR]`. Iconos SVG lineales nuevos en `ICONS` (message-circle, phone, mail, instagram, linkedin, facebook). JS compone `wa.me`/`mailto` y rellena redes solo si existen datos reales.
-- **Plan:** el negocio completa `CONTACT` (wa con código de país, email, `social: [{icon,label,url}]`) en `js/main.js`; al publicar el bloque y el fab aparecen automáticamente (JS remueve `hidden`). Nunca una URL inventada (§35). Mientras tanto, el funnel de contacto sigue siendo la página de demo (`pages/solicitar-demo.html`).
+### DUDE-18 · Footer contactos + WhatsApp fab + redes — MEDIA (parcial: WA + correo activos; sociales pendientes)
+- **Estado:** estructura e iconos **entregada 2026-09-19** (pasada 14): bloque de contacto en footer (`data-contact-block`), fab WhatsApp (`wa-fab`/`data-wa-fab`), enlace de correo (`data-wa-email` → `footer__email`) y lista de redes (`data-social`) presentes en las 5 páginas; iconos SVG lineales en `ICONS`. **Datos reales activados el 2026-09-19:** `WA_NUMBER = 573183366064` (`d1ccbd2`) y `email = davidgrijalba8@gmail.com` (`1300adc`) → el bloque y el fab ya se renderizan en producción (JS remueve `hidden`). Verificado en vivo.
+- **Plan:** el negocio completa `CONTACT.social` (`[{icon,label,url}]`) con handles reales de IG/FB/LinkedIn cuando existan — no están en `datos de contacto.md` (2026-09-19). Los números de soporte 3166540824 y 3041034037 quedan documentados como soporte adicional, sin uso en página (decisión: solo WhatsApp principal en el contacto público). Nunca una URL inventada (§35).
 
 ### DUDE-19 · Página/solicitar-demo real — CERRADA (2026-09-19)
 - **Plan:** `pages/solicitar-demo.html` creada con form (DUDE-11), marca, nav, footer, canonical/OG/Twitter, breadcrumb, skip-link, `<noscript>` honorable y sitemap con 4ª URL (priority 0.9). CTA primarios apuntan a ella. Sin paginación por diseño (one-page + páginas de soporte).
@@ -137,6 +140,7 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 6. Los 9 retos de calidad del titular se adoptan como **SPEC §39 adicional** y se ejecutan por fases A→D (2026-09-19).
 7. Formulario de demo **estático** (composición WhatsApp, sin backend) hasta que exista endpoint real (2026-09-19).
 8. WhatsApp fab y redes: solo con datos reales `[REEMPLAZAR]`; nunca una URL inventada (§35) (2026-09-19).
+9. **Datos de contacto reales aplicados** (2026-09-19): WhatsApp principal `573183366064` y correo `davidgrijalba8@gmail.com` (fuente `datos de contacto.md`). Redes sociales siguen vacías hasta recibir handles reales. Números de soporte (3166540824, 3041034037) registrados como adicionales, no publicados.
 
 ---
 
@@ -146,4 +150,4 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - Validación JS: `node --check js/main.js`
 - Verificar páginas: `curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5500/{index.html,pages/politica-de-privacidad.html}`
 - Dif entre ramas: `git rev-list --left-right --count main...V.1`
-- Datos de contacto (DUDE-18): editar `CONTACT` en `js/main.js` (`wa`, `email`, `social[]`).
+- Datos de contacto (DUDE-18): editar `CONTACT` en `js/main.js` (`wa`, `email`, `social[]`). Estado 2026-09-19: `wa` y `email` reales activos; `social[]` pendiente de handles reales.
