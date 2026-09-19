@@ -447,6 +447,8 @@ Comportamiento esperado conocido:
 | `74db568` | main | docs(audit): matriz §37 mapeada a evidencia (12/15 cerradas). |
 | `1f3f23a` | main | fix(a11y-css-seo): tokens inexistentes en `.legal`, skip-link legal, clearance navbar, robots.txt + sitemap (DUDE-09). |
 | `1f3f23a` (ff) | V.1 | DUDE-07: fast-forward de `V.1` a `main`; ramas idénticas. |
+| `1418ad7` | main | polish(a11y-seo): twitter cards legales, aria-label brand, cierre DUDE-03. |
+| `1418ad7` (ff) | V.1 | FF de `V.1` → `main` (0/0); push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
@@ -454,6 +456,14 @@ Comportamiento esperado conocido:
 - [x] **Deploy verificado**: GH Pages aún **404** (2026-09-19) → pendiente de activar por el usuario (Settings → Pages → Deploy from a branch → `main` → `/ (root)`). El repo remoto confirma default branch `main` y URL esperada = canonical actual → DUDE-03 cerrado.
 - [x] **Twitter Cards en páginas legales** (SPEC §25): `twitter:title/description/image` añadidos a `politica-de-privacidad.html` y `terminos.html` (ya tenían `og:locale`/`og:site_name`).
 - [x] **aria-label del brand con marca**: `Prisma$, inicio` en las 3 páginas (nombre accesible del logo, previo: "Prisma Control de Recaudo").
+
+### Continuación 2026-09-19 — cuarta pasada (integridad + SEO imágenes)
+
+- [x] **Integridad automatizada (Senior Dev)**: checker de refs sobre los 3 HTML → 0 errores reales (assets, `../index.html#…` y anclas internas resueltas). 27 ids/refs en `index.html` OK.
+- [x] **OG image dimensions** (SPEC §25): `og:image:width="1200"` / `og:image:height="630"` en los 3 documentos (medidas verificadas: 1200×630).
+- [x] **sitemap `lastmod`** (SPEC §25): `2026-09-19` en las 3 URLs.
+- [x] **Desviación registrada vs §20**: "Dashboard: horizontal scroll local" en mobile → se implementó *stacks* (stats 2/1 col + chart). Mejor UX que forzar scroll horizontal; se documenta como decisión, no como fallo (§20, §32).
+- [ ] **Gate restante**: activar GH Pages (usuario) + validación visual humana.
 
 **Queda para validación visual humana (no automatizable):**
 1. §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
