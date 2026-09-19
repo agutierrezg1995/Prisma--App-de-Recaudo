@@ -20,6 +20,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | *sin commit* | fix(a11y-css-seo) | Tokens inexistentes en `.legal` corregidos (`--text-muted`→`--ink-muted`, `--prisma-cyan-200`→`--prisma-cyan-300`); `.skip-link` añadido a las 2 páginas legales (WCAG 2.4.1); `.section--legal` despeja la navbar fija; `robots.txt` + `sitemap.xml` creados (DUDE-09). Verificado: 8/8 rutas 200, `node --check` OK. |
 | *en curso* | feat(404-seo) | `404.html` de marca (design system, `noindex`), limpieza de 10 assets WebP sin referencias, cierre DUDE-06 (patrón de CTA), integridad de refs 0 errores en 4 docs. |
 | *en curso* | style(a11y) | `bg-decor` añadido a las 2 páginas legales (consistencia §1/§31 con index/404); verify 200 local. |
+| *auditoría* | audit(qa) | Sin cambios: QA estático global (ids, H1, alt, nombres accesibles), contratos JS↔HTML (23 tokens) y JS↔CSS (7 estados), contraste AA 17/17 ≥4.5:1. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto y commiteado. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción).

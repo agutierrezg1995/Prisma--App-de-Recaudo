@@ -455,6 +455,8 @@ Comportamiento esperado conocido:
 | `aaf1e39` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `76347a4` | main | style(a11y): bg-decor en legales (consistencia §1/§31). |
 | `76347a4` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| *(séptima pasada)* | main | audit(qa): evidencia estática + contraste AA 17/17 — sin cambios de código. |
+| *(séptima pasada)* (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
@@ -482,6 +484,15 @@ Comportamiento esperado conocido:
 
 - [x] **`bg-decor` en páginas legales** (SPEC §1, §31): `politica-de-privacidad.html` y `terminos.html` ahora comparten glows + prismas como `index.html`/`404.html` (tratamiento calmo para lectura: sin grid-lines). Antes tenían fondo plano navy. Verificado: 200 local + 0 errores de refs.
 - [x] **Deploy re-verificado**: GH Pages sigue **404** (2026-09-19); el usuario está activándolo en paralelo.
+
+### Continuación 2026-09-19 — séptima pasada (QA estático + contraste AA)
+
+Evidencia automatizada con los tokens actuales (sin cambios de código requeridos):
+
+- [x] **Estructura a11y (4 docs)**: 0 duplicados de `id`, H1 único por página, `alt` en todos los `<img>`, todos los `<a>`/`<button>` con nombre accesible (texto, `aria-label` o `title`).
+- [x] **Contrato JS↔HTML**: los 23 tokens `data-*` que consume `js/main.js` existen en `index.html` (nav, slider, tabs, showcase, counters, timeline, spy, reveals, menu).
+- [x] **Contrato JS↔CSS**: las 7 clases de estado (`is-scrolled`, `is-visible`, `is-open`, `is-active`, `is-prev`, `is-lit`, `hero--ready`) están definidas en `styles.css`.
+- [x] **Contraste WCAG AA recalculado (2026-09-19)**: 17 pares texto/fondo ≥ 4.5:1. Los más bajos: `danger` #FF4D67 sobre navy **5.65:1**, CTA texto (blanco 88%) sobre `#0050F0` **5.55:1**, eyebrow light (blanco 92%) sobre azul **5.75:1** → cumplen AA incluso para texto normal.
 
 **Queda para validación visual humana (no automatizable):**
 1. §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
