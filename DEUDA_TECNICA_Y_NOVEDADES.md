@@ -24,7 +24,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `c0229b3` | deploy | **GO-LIVE**: GitHub Pages activado por el usuario; rebuild disparado con commit vacío; producción verificada: 200, crawl 86/86 objetivos OK, canonical/title/og-image/robots/sitemap/404/legales servidos. `main`=`V.1`=`origin/main` (0/0). |
 | *en curso* | audit(contracts) | Novena pasada, sin cambios: contrato iconos 19/19, variantes `-800w` y favicons 200 en prod, `<head>` 4 docs OK, robots→sitemap→3 `<loc>` en vivo. |
 | *en curso* | docs(ux-retos) | Adopción de los 9 retos del titular: SPEC §39 adicional (A1..A9) + DUDE-11..19 en deuda, fases A→D; análisis con evidencia (CTAs→`#demo`, paneles 19/13 refs). |
-| *esta pasada* | feat(demo-form) | **Fase A v1.2**: formulario WhatsApp (`#demo` + `pages/solicitar-demo.html`), todos los CTA demo→página real, footer Contacto→página, sitemap 4ª URL, verificado 0 errores / 200×5 local. Pendiente: `WA_NUMBER` `[REEMPLAZAR]`. |
+| `b91f217` | feat(demo-form) | **Fase A v1.2**: formulario WhatsApp (`#demo` + `pages/solicitar-demo.html`), todos los CTA demo→página real, footer Contacto→página, sitemap 4ª URL, verificado 0 errores / 200×5 local. Pendiente: `WA_NUMBER` `[REEMPLAZAR]`. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción) y las decisiones de negocio DUDE-01/02/09.

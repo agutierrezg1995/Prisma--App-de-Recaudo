@@ -465,6 +465,8 @@ Comportamiento esperado conocido:
 | `fd179df` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `53c053c` | main | docs(spec): retos de calidad UX → SPEC §39 + DUDE-11..19 + plan v1.2 (fases A–D). |
 | `53c053c` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `b91f217` | main | feat(demo-form): Fase A v1.2 (formulario WhatsApp + página dedicada + CTA reales). |
+| `b91f217` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
