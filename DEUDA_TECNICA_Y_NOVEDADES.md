@@ -28,6 +28,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `ff48729` | feat(content) | **Fase B v1.2**: FAQ 5→9 (JSON-LD 9/9 verificado) + `CardDetail` "por qué y para quién" en 9 cards (Problema+Beneficios). Showcase sin detalle (decisión documentada). |
 | `e886b7c` | deploy | Rebuild trigger: los pushes de Fase A/B no surfacieron al CDN; con este trigger **producción queda al día**: FAQ 9/9, details 9/9, `pages/solicitar-demo.html` 200. Causa probable: GitHub Actions desactivado o deploy no disparado en el batch V.1+main; se resolverá en Fase C/DUDE-09 al revisar la config de Pages. |
 | `26ee475` | feat(percepcion) | **Fase C v1.2**: slider v2 (contador 01/04, progreso eased, drift 1→1.03 no-preference), paneles con tratamiento único (§39.7 tags/bezel/ledger/window), shimmer CTA + elevación timeline (§39.4). Verificado local 8/8. |
+| *en curso* | feat(contacto) | **Fase D v1.2 (estructura)**: bloque de contacto del footer (`data-contact-block`), WhatsApp fab flotante (`wa-fab` + `data-wa-fab`) y redes (`data-social`) entregados con iconos SVG lineales nuevos (message-circle, phone, mail, instagram, linkedin, facebook). Todo oculto (`hidden`) hasta configurar datos reales; JS compone `wa.me`/`mailto` solo si el negocio entregó datos (§39.8, §35). Sin URLs inventadas; mayor consonancia §4. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Restan: **validación visual humana** (§12, §12.3, §37) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
 
@@ -117,8 +118,9 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Aplicado:** tratamiento único por sección — Slider (contenido redondeado + drift), Solución `device--dashboard` (barra de ventana + pips + tag "Panel de control"), Monitoreo `device--monitor` (bezel/muesca de app + tag "Tiempo real"), Financiero `device--hero` (líneas ledger + fade + tag "Cuadre general"), Showcase (fade inferior en cards). Confirma `finance.webp` como "cuadre" en §12 (DUDE-04).
 - **Vínculo:** entronca con DUDE-04 y DUDE-05.
 
-### DUDE-18 · Footer contactos + WhatsApp fab + redes — MEDIA (SPEC §39.8, bloqueado por datos)
-- **Plan:** estructura e iconos HOY; número y handles como `[REEMPLAZAR]`; fab con `aria-label`. Publicar solo cuando el negocio entregue datos (política del DUDE-01).
+### DUDE-18 · Footer contactos + WhatsApp fab + redes — MEDIA (SPEC §39.8, estructura entregada; datos pendientes)
+- **Estado:** padre: estructura e iconos **entregada 2026-09-19** (pasada 14): bloque de contacto en footer (`data-contact-block`), fab WhatsApp (`wa-fab`/`data-wa-fab`), enlaces de correo (`data-wa-email`) y lista de redes (`data-social`) presentes en las 5 páginas, ocultos (`hidden`) mientras el dato sea `[REEMPLAZAR]`. Iconos SVG lineales nuevos en `ICONS` (message-circle, phone, mail, instagram, linkedin, facebook). JS compone `wa.me`/`mailto` y rellena redes solo si existen datos reales.
+- **Plan:** el negocio completa `CONTACT` (wa con código de país, email, `social: [{icon,label,url}]`) en `js/main.js`; al publicar el bloque y el fab aparecen automáticamente (JS remueve `hidden`). Nunca una URL inventada (§35). Mientras tanto, el funnel de contacto sigue siendo la página de demo (`pages/solicitar-demo.html`).
 
 ### DUDE-19 · Página/solicitar-demo real — CERRADA (2026-09-19)
 - **Plan:** `pages/solicitar-demo.html` creada con form (DUDE-11), marca, nav, footer, canonical/OG/Twitter, breadcrumb, skip-link, `<noscript>` honorable y sitemap con 4ª URL (priority 0.9). CTA primarios apuntan a ella. Sin paginación por diseño (one-page + páginas de soporte).
@@ -144,3 +146,4 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - Validación JS: `node --check js/main.js`
 - Verificar páginas: `curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5500/{index.html,pages/politica-de-privacidad.html}`
 - Dif entre ramas: `git rev-list --left-right --count main...V.1`
+- Datos de contacto (DUDE-18): editar `CONTACT` en `js/main.js` (`wa`, `email`, `social[]`).

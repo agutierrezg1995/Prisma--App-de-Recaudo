@@ -26,7 +26,13 @@
     smartphone: '<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',
     shield: '<path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/>',
     lock: '<rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
-    eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>'
+    eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+    "message-circle": '<path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5h-5l-4 3 1.4-4.2A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/>',
+    phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/>',
+    mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+    instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',
+    linkedin: '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v2h.01a6 6 0 0 1 2-2Z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+    facebook: '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/>'
   };
 
   function iconSVG(name) {
@@ -419,7 +425,7 @@
   }
 
   /* ---------- DEMO FORM (SPEC 39.1: compone mensaje de WhatsApp) ---------- */
-  var WA_NUMBER = "[REEMPLAZAR]"; /* TODO negocio: número del titular con código de país y sin "+" ni espacios (ej. 573001234567) */
+  var WA_NUMBER = "573183366064"; /* WhatsApp principal del negocio (código de país + número, sin "+" ni espacios) */
 
   document.querySelectorAll("[data-demo-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
@@ -449,4 +455,66 @@
       }
     });
   });
+
+  /* ---------- FOOTER CONTACTO + WHATSAPP FAB (SPEC 39.8 / DUDE-18) ----------
+     Estructura e iconos entregados hoy. Los datos reales (número, correo,
+     handles) los aporta el negocio antes de publicar: MISMA política §35
+     que DUDE-01. Mientras `[REEMPLAZAR]` no se sustituya, el fab contactable
+     queda oculto para no mostrar una URL inventada. */
+  var CONTACT = {
+    wa: WA_NUMBER,
+    waMessage: "Hola, quiero más información sobre Prisma$ Control de Recaudo.",
+    email: "[REEMPLAZAR]",
+    social: [] /* TODO negocio: [{ icon:"instagram", label:"Instagram", url:"https://.../[HANDLE]" }, …] */
+  };
+
+  function contactReady() {
+    return CONTACT.wa.indexOf("REEMPLAZAR") === -1;
+  }
+  function emailReady() {
+    return CONTACT.email.indexOf("REEMPLAZAR") === -1;
+  }
+  function contactBlockReady() {
+    return contactReady() || emailReady() || CONTACT.social.length > 0;
+  }
+
+  /* El bloque de contacto del footer solo se muestra con al menos un canal real */
+  var contactBlock = document.querySelector("[data-contact-block]");
+  if (contactBlock && contactBlockReady()) contactBlock.removeAttribute("hidden");
+
+  /* WhatsApp fab y enlaces de WhatsApp del footer */
+  document.querySelectorAll("[data-wa-fab]").forEach(function (el) {
+    if (!contactReady()) return;
+    var msg = (el.getAttribute("data-wa-message") || CONTACT.waMessage).trim();
+    el.setAttribute("href", "https://wa.me/" + CONTACT.wa + "?text=" + encodeURIComponent(msg));
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+    el.removeAttribute("hidden");
+  });
+
+  /* Enlaces de correo del footer */
+  document.querySelectorAll("[data-wa-email]").forEach(function (el) {
+    if (emailReady()) {
+      el.setAttribute("href", "mailto:" + CONTACT.email);
+      el.textContent = CONTACT.email;
+      el.removeAttribute("hidden");
+    }
+  });
+
+  /* Redes sociales del footer (solo si el negocio entregó datos) */
+  var socialWrap = document.querySelector("[data-social]");
+  if (socialWrap && CONTACT.social.length) {
+    socialWrap.removeAttribute("hidden");
+    CONTACT.social.forEach(function (s) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.setAttribute("href", s.url);
+      a.setAttribute("target", "_blank");
+      a.setAttribute("rel", "noopener noreferrer");
+      a.setAttribute("aria-label", "Síguenos en " + s.label);
+      a.innerHTML = iconSVG(s.icon);
+      li.appendChild(a);
+      socialWrap.appendChild(li);
+    });
+  }
 })();

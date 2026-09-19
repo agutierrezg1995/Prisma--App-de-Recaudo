@@ -283,6 +283,7 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   white-space: nowrap;
 }
 .btn:active { transform: scale(0.98); }
+.btn[hidden] { display: none; }
 
 .btn--primary {
   background: var(--grad-cyan);
@@ -1255,6 +1256,104 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
 .sticky-cta.is-visible { transform: translate(-50%, 0); }
 
 /* =========================================================
+   FOOTER CONTACTO + WHATSAPP FAB (SPEC 39.8 / DUDE-18)
+   ========================================================= */
+.footer__contact {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+.footer__contact-title {
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 14px;
+}
+.footer__contact .btn { width: fit-content; }
+.footer__wa { display: inline-flex; }
+
+.footer__email {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease);
+  width: fit-content;
+}
+.footer__email[hidden] { display: none; }
+.footer__email:hover { color: var(--prisma-cyan-300); }
+.footer__email:focus-visible {
+  outline: 2px solid var(--prisma-cyan-300);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.footer__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+.footer__social[hidden] { display: none; }
+.footer__social li { margin: 0; list-style: none; }
+.footer__social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  color: var(--ink-soft);
+  background: var(--glass);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease),
+              background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.footer__social a:hover {
+  color: var(--prisma-cyan-300);
+  border-color: var(--prisma-cyan-400);
+  background: var(--glass-2);
+  transform: translateY(-2px);
+}
+.footer__social a:focus-visible {
+  outline: 2px solid var(--prisma-cyan-300);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+.footer__social a svg { width: 20px; height: 20px; }
+
+/* WhatsApp fab: se muestra solo cuando hay canal real (JS remueve [hidden]) */
+.wa-fab {
+  position: fixed;
+  right: calc(20px + env(safe-area-inset-right, 0px));
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  color: var(--prisma-navy-950);
+  background: var(--grad-cyan);
+  box-shadow: 0 14px 36px -10px rgba(0, 216, 255, 0.85);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.wa-fab[hidden] { display: none; }
+.wa-fab svg { width: 28px; height: 28px; }
+.wa-fab:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 44px -10px rgba(0, 216, 255, 0.95);
+}
+.wa-fab:active { transform: scale(0.97); }
+.wa-fab:focus-visible {
+  outline: 2px solid var(--prisma-cyan-300);
+  outline-offset: 4px;
+}
+
+/* =========================================================
    LEGAL PAGES (politica/términos)
    ========================================================= */
 .legal {
@@ -1491,6 +1590,9 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   .footer__cols { grid-template-columns: repeat(2, 1fr); }
   .hero__actions .btn, .cta__actions .btn { width: 100%; }
   .btn--sticky-hidden { display: none; }
+
+  /* El fab no debe superponerse al sticky CTA en mobile (§36) */
+  .wa-fab { bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
 }
 
 @media (max-width: 420px) {

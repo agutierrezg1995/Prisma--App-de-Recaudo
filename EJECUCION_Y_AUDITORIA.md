@@ -471,6 +471,7 @@ Comportamiento esperado conocido:
 | `ff48729` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `26ee475` | main | feat(percepcion): Fase C v1.2 (slider v2 + paneles + motion). |
 | `26ee475` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| *en curso* | main | feat(contacto): Fase D v1.2 estructura (footer contacto + WhatsApp fab + redes, datos `[REEMPLAZAR]`). |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
@@ -575,7 +576,6 @@ Documentado: `SPEC.md` §39.1–§39.9 · `DEUDA` DUDE-11..19 + decisiones 6-8 �
 | **B · Contenido** | FAQ ampliada + CardDetail | §39.5 · §39.6 (DUDE-15, 16) | Ojo humano para copy fino |
 | **C · Percepción** | Redundancia visual, slider v2, motion pulido | §39.7 · §39.2 · §39.4 (DUDE-17, 12, 14) | Validación visual §12/§12.3 |
 | **D · Contacto** | Footer contactos + WhatsApp fab + redes | §39.8 (DUDE-18) | Datos reales del negocio (emails/redes/número) |
-
 Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes), §35 (cero datos inventados), §23 (todo accesible), §24 (performance ≤800 ms / GPU).
 
 ### Continuación 2026-09-19 — undécima pasada (FASE A v1.2 implementada)
@@ -600,4 +600,14 @@ Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes)
 - [x] **§39.4 Motion pulido**: shimmer CTA primario (1 pasada, 0.7 s, `no-preference`, GPU), elevación hover en timeline (y ya existía en cards/beneficios/showcase), contadores con easeOutCubic (verificado en `main.js`). Todo ≤800 ms o ambient, transform/opacity, guardado bajo reduced-motion.
 - [x] Verificación: `node --check` OK, CSS balanceado, integridad 0 errores en 5 docs, smoke local 8/8 → 200.
 - [ ] **Pendiente usuario**: validación visual §12/§12.3 (percepción: paneles ahora diferenciados; revisar slider v2). Fase D (§39.8) requiere datos reales de contacto/redes.
+
+### Continuación 2026-09-19 — decimocuarta pasada (FASE D v1.2 — contacto, estructura)
+
+- [x] **§39.8 Bloque de contacto del footer**: `data-contact-block` en las 5 páginas (título "Contacto" + CTA WhatsApp + enlace de correo + lista de redes). Se entrega la **estructura e iconos**; permanece `hidden` mientras no existan datos reales (política §35 / DUDE-01).
+- [x] **§39.8 WhatsApp fab**: `<a class="wa-fab" data-wa-fab hidden>` en las 5 páginas, `aria-label="Escríbenos por WhatsApp"` y `data-wa-message` con mensaje breve prefabricado. Posición baja-derecha con `safe-area-inset`; en mobile se eleva a 92 px para no tapar el sticky CTA (§36); `focus-visible` y `:active` definidos.
+- [x] **§39.8 Redes sociales**: `data-social` (lista) + 6 iconos SVG lineales nuevos en `ICONS` (`message-circle`, `phone`, `mail`, `instagram`, `linkedin`, `facebook`), un solo estilo (§28). JS rellena la lista solo si `CONTACT.social` tiene entradas.
+- [x] **Honestidad (§35, §39.3)**: `CONTACT = { wa, waMessage, email, social[] }` en `js/main.js` con placeholders `[REEMPLAZAR]`. Mientras no haya datos: no se renderiza ninguna URL; el bloque y el fab quedan ocultos y el funnel real sigue siendo `pages/solicitar-demo.html`. Al sustituir los datos, aparecen automáticamente (JS remueve `hidden`). Cero `href="#"`.
+- [x] **Consistencia de footer**: columna "Empresa" de `index.html` alineada con las otras 4 (Contacto + Política + Términos). `sticky-cta` se mantiene **solo en index** por diseño (SPEC §36: CTA sticky de la landing).
+- [x] **Auditoría aplicada (subagente QA + verificación manual)**: 0 `href="#"`, todos los `<img>` con `alt`, 0 ids duplicados, 1 H1 por doc, 20 `data-icon` cubiertos por `ICONS` (0 faltantes), CSS balanceado (`{442 }442`), `node --check` OK, smoke local 5/5 HTML + JS + CSS → 200. Corregido en la pasada: faltaba regla `.footer__email` en CSS.
+- [ ] **Pendiente usuario (dato de negocio)**: completar `CONTACT` en `js/main.js` — `wa` (código de país, sin `+`), `email` y `social: [{icon,label,url}]` — y validación visual §12 del footer/fab una vez configurado.
 
