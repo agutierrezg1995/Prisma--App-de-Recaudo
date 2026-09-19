@@ -78,6 +78,26 @@
         "@type": "Question",
         "name": "¿Cómo solicito una demo?",
         "acceptedAnswer": { "@type": "Answer", "text": "Puedes solicitar una demostración desde los botones de esta página para conocer la plataforma." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Para quién es Prisma$?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Está pensado para negocios que manejan cobros, abonos o rutas de recaudo y quieren ver su operación desde un solo lugar." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué información encuentro en los reportes?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Puedes revisar resumen, movimientos, clientes e ingresos y egresos, y generar el cuadre general de tu recaudo." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Necesito experiencia contable para usarlo?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. La idea es que registres los abonos de tus clientes, revises el movimiento y generes tus reportes con pasos sencillos." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo cuido el acceso a mi cuenta?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Usa una contraseña personal y no la compartas. Si crees que alguien más tuvo acceso a tu cuenta, avísanos de inmediato." }
       }
     ]
   }
@@ -256,18 +276,39 @@
             <span class="card__icon" data-icon="layers" aria-hidden="true"></span>
             <h3 class="card__title">Información dispersa</h3>
             <p class="card__text">Tus cobros y movimientos quedan repartidos entre distintas fuentes.</p>
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> cuando los cobros viven en varias fuentes, el cuadre se complica y se pierde la vista real del recaudo.</p>
+                <p><strong>Para quién:</strong> negocios que registran cobros en papel, notas o varios canales y necesitan una sola fuente de verdad.</p>
+              </div>
+            </details>
           </article>
           <article class="card card--problem reveal" data-reveal data-delay="80">
             <span class="card__index">02</span>
             <span class="card__icon" data-icon="eye-off" aria-hidden="true"></span>
             <h3 class="card__title">Poca visibilidad</h3>
             <p class="card__text">Difícil saber qué pasó con cada movimiento en el momento en que ocurre.</p>
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> sin una vista oportuna de cada movimiento, las decisiones del día a día se toman con retraso.</p>
+                <p><strong>Para quién:</strong> quien quiere saber al momento qué abonos entraron y qué queda pendiente.</p>
+              </div>
+            </details>
           </article>
           <article class="card card--problem reveal" data-reveal data-delay="160">
             <span class="card__index">03</span>
             <span class="card__icon" data-icon="clock" aria-hidden="true"></span>
             <h3 class="card__title">Seguimiento manual</h3>
             <p class="card__text">Demasiado tiempo dedicado a revisar y cuadrar registros a mano.</p>
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> cuadrar a mano consume tiempo que se invierte mejor en atender clientes y vender.</p>
+                <p><strong>Para quién:</strong> equipo y personas que hoy pasan horas revisando registros al cierre del día.</p>
+              </div>
+            </details>
           </article>
         </div>
       </div>
@@ -511,32 +552,80 @@
             <span class="card__icon" data-icon="activity" aria-hidden="true"></span>
             <h3 class="card__title">Monitoreo en tiempo real</h3>
             <p class="card__text">Consulta el estado de tu operación cuando lo necesites.</p>
-          </article>
+          
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> ver el estado de la operación al momento reduce sorpresas y permite actuar rápido.</p>
+                <p><strong>Para quién:</strong> negocios que necesitan saber qué pasa mientras el día avanza.</p>
+              </div>
+            </details>
+</article>
           <article class="card card--benefit reveal" data-reveal data-delay="60">
             <span class="card__icon" data-icon="receipt" aria-hidden="true"></span>
             <h3 class="card__title">Registro de cobros</h3>
             <p class="card__text">Guarda cada abono de forma ordenada.</p>
-          </article>
+          
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> cada abono guardado con orden evita duplicados y facilita el cuadre.</p>
+                <p><strong>Para quién:</strong> rutas de cobro o ventas a plazos con muchos abonos diarios.</p>
+              </div>
+            </details>
+</article>
           <article class="card card--benefit reveal" data-reveal data-delay="120">
             <span class="card__icon" data-icon="bar-chart" aria-hidden="true"></span>
             <h3 class="card__title">Reportes</h3>
             <p class="card__text">Transforma movimientos en información útil.</p>
-          </article>
+          
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> la información ordenada se convierte en decisiones y reemplaza el conteo manual.</p>
+                <p><strong>Para quién:</strong> quien debe resumir la operación sin hacer cálculos a mano.</p>
+              </div>
+            </details>
+</article>
           <article class="card card--benefit reveal" data-reveal>
             <span class="card__icon" data-icon="check" aria-hidden="true"></span>
             <h3 class="card__title">Control de movimientos</h3>
             <p class="card__text">Ten claridad sobre ingresos y egresos.</p>
-          </article>
+          
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> ver ingresos y egresos juntos da claridad para cuadrar la operación.</p>
+                <p><strong>Para quién:</strong> quienes cierran el día y quieren saber si todo cuadra.</p>
+              </div>
+            </details>
+</article>
           <article class="card card--benefit reveal" data-reveal data-delay="60">
             <span class="card__icon" data-icon="layers" aria-hidden="true"></span>
             <h3 class="card__title">Información centralizada</h3>
             <p class="card__text">Todo tu recaudo en un solo lugar.</p>
-          </article>
+          
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> un solo lugar para cobros, clientes y movimientos elimina la dispersión que complica el control.</p>
+                <p><strong>Para quién:</strong> negocios con operación repartida en varias personas o puntos.</p>
+              </div>
+            </details>
+</article>
           <article class="card card--benefit reveal" data-reveal data-delay="120">
             <span class="card__icon" data-icon="smartphone" aria-hidden="true"></span>
             <h3 class="card__title">Acceso desde cualquier dispositivo</h3>
             <p class="card__text">Lleva el control contigo, donde estés.</p>
-          </article>
+          
+            <details class="card__detail">
+              <summary>Por qué y para quién</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> el control viaja con la operación y se puede consultar desde smartphone, tablet o computador.</p>
+                <p><strong>Para quién:</strong> dueños y equipos que atienden fuera del local y necesitan estar al día.</p>
+              </div>
+            </details>
+</article>
         </div>
       </div>
     </section>
@@ -678,6 +767,22 @@
           <details class="faq__item reveal" data-reveal>
             <summary>¿Cómo solicito una demo?</summary>
             <p>Puedes solicitar una demostración desde los botones de esta página para conocer la plataforma.</p>
+          </details>
+          <details class="faq__item reveal" data-reveal>
+            <summary>¿Para quién es Prisma$?</summary>
+            <p>Está pensado para negocios que manejan cobros, abonos o rutas de recaudo y quieren ver su operación desde un solo lugar.</p>
+          </details>
+          <details class="faq__item reveal" data-reveal>
+            <summary>¿Qué información encuentro en los reportes?</summary>
+            <p>Puedes revisar resumen, movimientos, clientes e ingresos y egresos, y generar el cuadre general de tu recaudo.</p>
+          </details>
+          <details class="faq__item reveal" data-reveal>
+            <summary>¿Necesito experiencia contable para usarlo?</summary>
+            <p>No. La idea es que registres los abonos de tus clientes, revises el movimiento y generes tus reportes con pasos sencillos.</p>
+          </details>
+          <details class="faq__item reveal" data-reveal>
+            <summary>¿Cómo cuido el acceso a mi cuenta?</summary>
+            <p>Usa una contraseña personal y no la compartas. Si crees que alguien más tuvo acceso a tu cuenta, avísanos de inmediato.</p>
           </details>
         </div>
       </div>

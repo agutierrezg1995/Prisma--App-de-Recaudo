@@ -582,3 +582,10 @@ Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes)
 - [x] **Verificación**: `node --check` OK · integridad de refs/anclas/H1/ids duplicados 0 errores en 5 docs · smoke local 5/5 → 200.
 - [ ] **Pendiente usuario**: reemplazar `WA_NUMBER` `[REEMPLAZAR]` y validación visual §12 de la nueva sección/página.
 
+### Continuación 2026-09-19 — duodécima pasada (FASE B v1.2 — contenido)
+
+- [x] **§39.5 FAQ ampliada 5→9**: nuevas preguntas solo derivadas de info del spec (para quién, reportes, experiencia contable, acceso/cuenta). Respuestas ≤60 palabras, tono §34, sin precios ni promesas inventadas. **JSON-LD `FAQPage` sincronizado: 9/9 idénticas** (verificado programáticamente).
+- [x] **§39.6 `CardDetail` "por qué y para quién"**: componente `<details>` accesible (teclado nativo, `focus-visible`, `+`→`✕` giro 45°, glass) en las **9 cards** (3 Problema + 6 Beneficios). Textos derivados del spec, sin datos ficticios (§35).
+- [x] **Decisión registrada**: Showcase (carousel §16) NO recibe CardDetail — sus cards ya son descriptivas y el patrón hincharía el carousel; se documenta, no se descarta.
+- [x] Verificación: 5/5 docs 200, integridad 0 errores, FAQ 9/9.
+

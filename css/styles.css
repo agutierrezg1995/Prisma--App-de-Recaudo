@@ -1265,6 +1265,31 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
 .form__hint { font-size: 0.82rem; color: var(--ink-muted); margin: 0; max-width: 320px; line-height: 1.5; }
 .form__status { font-size: 0.9rem; color: var(--prisma-cyan-300); min-height: 1.2em; margin: 0; }
 
+/* Detalle por card "por qué y para quién" (SPEC 39.6) */
+.card__detail {
+  margin-top: 14px;
+  border-top: 1px dashed var(--line);
+  padding-top: 12px;
+}
+.card__detail summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--prisma-cyan-300);
+  letter-spacing: 0.01em;
+}
+.card__detail summary::-webkit-details-marker { display: none; }
+.card__detail summary::before { content: "+"; color: var(--ink-muted); font-weight: 700; transition: transform 0.2s ease; }
+.card__detail[open] summary::before { transform: rotate(45deg); }
+.card__detail summary:focus-visible { outline: 2px solid var(--prisma-cyan-300); outline-offset: 4px; border-radius: 4px; }
+.card__detail-body { margin-top: 10px; color: var(--ink-soft); font-size: 0.85rem; line-height: 1.6; }
+.card__detail-body p + p { margin-top: 6px; }
+.card__detail-body strong { color: var(--prisma-cyan-400); font-weight: 600; }
+
 /* =========================================================
    REVEALS
    ========================================================= */

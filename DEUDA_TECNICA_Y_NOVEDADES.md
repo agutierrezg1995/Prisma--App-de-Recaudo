@@ -25,9 +25,9 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | *en curso* | audit(contracts) | Novena pasada, sin cambios: contrato iconos 19/19, variantes `-800w` y favicons 200 en prod, `<head>` 4 docs OK, robots→sitemap→3 `<loc>` en vivo. |
 | *en curso* | docs(ux-retos) | Adopción de los 9 retos del titular: SPEC §39 adicional (A1..A9) + DUDE-11..19 en deuda, fases A→D; análisis con evidencia (CTAs→`#demo`, paneles 19/13 refs). |
 | `b91f217` | feat(demo-form) | **Fase A v1.2**: formulario WhatsApp (`#demo` + `pages/solicitar-demo.html`), todos los CTA demo→página real, footer Contacto→página, sitemap 4ª URL, verificado 0 errores / 200×5 local. Pendiente: `WA_NUMBER` `[REEMPLAZAR]`. |
+| *esta pasada* | feat(content) | **Fase B v1.2**: FAQ 5→9 (JSON-LD 9/9 verificado) + `CardDetail` "por qué y para quién" en 9 cards (Problema+Beneficios). Showcase sin detalle (decisión documentada). |
 
-**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Solo resta la
-**validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción) y las decisiones de negocio DUDE-01/02/09.
+**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Restan: **validación visual humana** (§12, §12.3, §37) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
 
 ---
 
@@ -104,11 +104,11 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 ### DUDE-14 · Motion "profesional que enganche" — MEDIA (SPEC §39.4)
 - **Plan:** coreografía de entrada por sección, stagger, contadores con easing, shimmer en CTA, elevación en hover; todo ≤800 ms, transform/opacity, reducido si `prefers-reduced-motion`. Guardas §19: nada de casino/hijack.
 
-### DUDE-15 · FAQ ampliada (~10 preguntas) — BAJA (SPEC §39.5)
-- **Plan:** +3–5 preguntas derivadas solo de info del spec; sincronizar JSON-LD FAQPage; respuestas ≤60 palabras, tono §34. Sin precios ni promesas inventadas.
+### DUDE-15 · FAQ ampliada — CERRADA (2026-09-19)
+- **Plan:** 5→9 preguntas (para quién, reportes, experiencia contable, acceso); JSON-LD sincronizado 9/9 (verificado); respuestas ≤60 palabras, tono §34, sin precios ni promesas inventadas.
 
-### DUDE-16 · CardDetail "por qué / para quién" — MEDIA (SPEC §39.6)
-- **Plan:** componente accesible (`<details>`/panel) en Problema, Solución y Beneficios; 2 bloques (problema que resuelve · público); Escape/teclado/foco gestionados; texto del spec, sin inventar.
+### DUDE-16 · CardDetail "por qué / para quién" — CERRADA (2026-09-19)
+- **Plan:** `<details>` accesible en 9 cards (Problema + Beneficios) con `focus-visible`; textos del spec. Decisión: Showcase sin CardDetail (carousel ya descriptivo; se evitaría hinchar).
 
 ### DUDE-17 · Redundancia visual de paneles — MEDIA (SPEC §39.7)
 - **Estado:** `dashboard.webp` (19 refs) y `monitor.webp` (13 refs) se repiten; el titular ve "2 paneles de monitoreo".
