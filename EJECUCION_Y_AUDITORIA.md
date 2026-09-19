@@ -469,6 +469,8 @@ Comportamiento esperado conocido:
 | `b91f217` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `ff48729` | main | feat(content): Fase B v1.2 (FAQ 9 + CardDetail 9 cards). |
 | `ff48729` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `26ee475` | main | feat(percepcion): Fase C v1.2 (slider v2 + paneles + motion). |
+| `26ee475` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 

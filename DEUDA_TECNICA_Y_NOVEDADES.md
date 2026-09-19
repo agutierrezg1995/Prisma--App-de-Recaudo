@@ -27,7 +27,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `b91f217` | feat(demo-form) | **Fase A v1.2**: formulario WhatsApp (`#demo` + `pages/solicitar-demo.html`), todos los CTA demo→página real, footer Contacto→página, sitemap 4ª URL, verificado 0 errores / 200×5 local. Pendiente: `WA_NUMBER` `[REEMPLAZAR]`. |
 | `ff48729` | feat(content) | **Fase B v1.2**: FAQ 5→9 (JSON-LD 9/9 verificado) + `CardDetail` "por qué y para quién" en 9 cards (Problema+Beneficios). Showcase sin detalle (decisión documentada). |
 | `e886b7c` | deploy | Rebuild trigger: los pushes de Fase A/B no surfacieron al CDN; con este trigger **producción queda al día**: FAQ 9/9, details 9/9, `pages/solicitar-demo.html` 200. Causa probable: GitHub Actions desactivado o deploy no disparado en el batch V.1+main; se resolverá en Fase C/DUDE-09 al revisar la config de Pages. |
-| *esta pasada* | feat(percepcion) | **Fase C v1.2**: slider v2 (contador 01/04, progreso eased, drift 1→1.03 no-preference), paneles con tratamiento único (§39.7 tags/bezel/ledger/window), shimmer CTA + elevación timeline (§39.4). Verificado local 8/8. |
+| `26ee475` | feat(percepcion) | **Fase C v1.2**: slider v2 (contador 01/04, progreso eased, drift 1→1.03 no-preference), paneles con tratamiento único (§39.7 tags/bezel/ledger/window), shimmer CTA + elevación timeline (§39.4). Verificado local 8/8. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Restan: **validación visual humana** (§12, §12.3, §37) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
 
