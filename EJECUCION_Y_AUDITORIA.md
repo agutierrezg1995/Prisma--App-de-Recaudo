@@ -207,6 +207,7 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 - [x] Meta description exacta del spec (133 caracteres).
 - [x] Open Graph + Twitter Cards.
 - [x] `canonical`.
+- [x] `sitemap.xml` (3 URLs reales, dominio provisional DUDE-03) + `robots.txt` (DUDE-09 · cerrado) — creados 2026-09-19.
 - [x] Favicon (usar `ICONO VENTANA.png` → `icon-64/180/192/512.png`).
 - [x] Schema apropiado sin datos inventados: JSON-LD validado `SoftwareApplication` + `Offer` + `FAQPage` (5 preguntas/respuestas reales).
 - [x] Un solo H1 y jerarquía H1→H2→H3 (1 H1, 12 H2 en orden §8→§18 + H2 sr-only del slider).
@@ -445,6 +446,21 @@ Comportamiento esperado conocido:
 | `bc5f6a8` | main | docs(audit): §26 componentes, §27 botones, §34 copys, §4 navbar, §36 sticky. |
 | `74db568` | main | docs(audit): matriz §37 mapeada a evidencia (12/15 cerradas). |
 | `e519a27` | main | feat(multipage): páginas legales con design system; footer real. |
+
+### Continuación 2026-09-19 — segunda pasada (ejecución efectuada)
+
+Hallazgos que pasaron la primera auditoría y se corrigieron en esta pasada:
+
+- [x] **Tokens inexistentes en `.legal`** (`--text-muted` ×3, `--prisma-cyan-200` ×1): color muteado, meta y nota legal caían a blanco heredado. Corregidos a `--ink-muted` / `--prisma-cyan-300` (SPEC §2, §34).
+- [x] **A11y legal (§23)**: las páginas legales no tenían `.skip-link` (Bypass Blocks, WCAG 2.4.1). Añadido en `politica-de-privacidad.html` y `terminos.html`.
+- [x] **Clearance de la navbar fija**: el contenido legal arrancaba bajo la navbar (padding 72px < alto 74px). Nueva clase `.section--legal` con `padding-top: clamp(104px,12vw,150px)`.
+- [x] **DUDE-09**: creados `robots.txt` y `sitemap.xml` (3 URLs reales) bajo el dominio provisional del canonical (DUDE-03). Verificado: 8/8 rutas locales responden 200.
+- [x] JS validado: `node --check js/main.js` → sin errores.
+
+**Queda para validación visual humana (no automatizable):**
+1. §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
+2. §12.3 assets ⚠: `security.webp`, `finance.webp`, `usecase.webp` (la herramienta bot no soporta lectura de imágenes → no se puede confirmar contenido).
+3. §37 criterios de percepción: 1, 4, 6, 7, 14, 15.
 
 **Desviaciones con deuda técnica:** ver `DEUDA_TECNICA_Y_NOVEDADES.md` (10 ítems: DUDE-01..DUDE-10) con severidad, impacto y plan de cierre. Corte de deuda: 2026-09-19.
 

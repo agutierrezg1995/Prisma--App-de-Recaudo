@@ -17,6 +17,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `bc5f6a8` | docs(audit) | Verificación §26 componentes/design system, §27 botones, §34 copys, §4 navbar, §36 sticky CTA. |
 | `74db568` | docs(audit) | Matriz de aceptación §37 mapeada a evidencia (12/15 cerradas desde código). |
 | `e519a27` | feat(multipage) | Páginas legales `pages/politica-de-privacidad.html` + `pages/terminos.html` con design system; footer index.html enlaza páginas reales (antes `href="#"`). |
+| *sin commit* | fix(a11y-css-seo) | Tokens inexistentes en `.legal` corregidos (`--text-muted`→`--ink-muted`, `--prisma-cyan-200`→`--prisma-cyan-300`); `.skip-link` añadido a las 2 páginas legales (WCAG 2.4.1); `.section--legal` despeja la navbar fija; `robots.txt` + `sitemap.xml` creados (DUDE-09). Verificado: 8/8 rutas 200, `node --check` OK. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto y commiteado. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción).
@@ -69,10 +70,10 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Plan:** solo si crece el número de páginas → introducir un SSG liviano (11ty) o plantillas server-side (PHP).
   Descartado el include por JS/fetch por a11y y no-JS (SPEC §23).
 
-### DUDE-09 · Sin analytics ni verificación de consola de buscadores — BAJA (opcional)
-- **Estado:** no hay etiqueta de analytics ni sitemap.xml/robots.txt técnico más allá de `.nojekyll`.
-- **Impacto:** no se puede medir conversión ni indexación.
-- **Plan:** crear `sitemap.xml` y `robots.txt`, añadir GA/Desde Analytics cuando el negocio lo pida.
+### DUDE-09 · Analytics y verificación de consola de buscadores — BAJA (opcional)
+- **Estado:** `sitemap.xml` (3 URLs, dominio provisional) y `robots.txt` **creados** (2026-09-19, cierre del plan SEO). Falta solo la etiqueta de analytics/Desde-consola cuando el negocio lo pida.
+- **Impacto:** no se puede medir conversión ni ver indexación hasta añadir analytics.
+- **Plan:** añadir GA/Desde Analytics cuando el negocio lo pida; confirmar dominio final en sitemap (DUDE-03).
 
 ### DUDE-10 · Soporte retro de CSS moderno sin polyfills — BAJA
 - **Estado:** se usa `backdrop-filter`, `env(safe-area-inset-bottom)`, `aspect-ratio`, `contain`/`intrinsic`.

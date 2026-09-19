@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/sitemap.xml
