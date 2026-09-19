@@ -467,6 +467,8 @@ Comportamiento esperado conocido:
 | `53c053c` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `b91f217` | main | feat(demo-form): Fase A v1.2 (formulario WhatsApp + página dedicada + CTA reales). |
 | `b91f217` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `ff48729` | main | feat(content): Fase B v1.2 (FAQ 9 + CardDetail 9 cards). |
+| `ff48729` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
