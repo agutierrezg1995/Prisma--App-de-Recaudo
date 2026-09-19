@@ -461,6 +461,8 @@ Comportamiento esperado conocido:
 | `c0229b3` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `22866fd` | main | docs(golive): octava pasada + DUDE-03/decisión #2 al día. |
 | `22866fd` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `fd179df` | main | docs(audit): novena pasada (contratos íconos + assets/SEO en prod). |
+| `fd179df` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
