@@ -410,3 +410,27 @@ Comportamiento esperado conocido:
 - Todas las cifras del dashboard son **demostrativas** y etiquetadas.
 - No hay formulario: todos los CTA anclan a `#demo` (decisión 2026-09-18).
 
+---
+
+## 13. Milestone v1.1 — Multipágina legal (2026-09-19)
+
+**Motivo:** el footer enlazaba "Política de privacidad" y "Términos" a `href="#"` (enlaces muertos). Se crea la estructura multipágina reutilizando el design system (§26) sin build tooling.
+
+**Estructura:**
+- `pages/politica-de-privacidad.html` — 12 secciones legales (prosa con tokens del design system).
+- `pages/terminos.html` — 10 secciones de términos del servicio.
+- Ambos reutilizan: navbar + footer + menú mobile (focus trap incluido), `css/styles.css` (clase `.legal`) y `js/main.js` (seguro en páginas sin slider/tabs/contadores, todos los bloques con guards).
+
+**Reglas del milestone:**
+- Rutas relativas (`../css/`, `../assets/`, `../js/`) para servirse desde cualquier subdirectorio (GitHub Pages project site).
+- Canonical/OG por página con URL absoluta del dominio final.
+- CTA y nav apuntan a `index.html#…`.
+- **Contenido legal = plantilla preliminar:** cada apartado con campos `[REEMPLAZAR]` y nota final explícita de que debe validar un asesor legal → cumple §35 (no presentar datos ficticios como reales).
+
+**Pendiente (usuario):** completar los `[REEMPLAZAR]` con la información legal real del titular del servicio antes de publicar.
+
+**Roadmap futuro multipágina (sin fecha):**
+- Blog/product updates (requiere contenido real del cliente).
+- Docs de ayuda ("Cómo funciona" extendido).
+- Solo cuando el usuario active el deploy (GitHub Pages omitido por ahora).
+
