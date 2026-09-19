@@ -464,7 +464,7 @@
   var CONTACT = {
     wa: WA_NUMBER,
     waMessage: "Hola, quiero más información sobre Prisma$ Control de Recaudo.",
-    email: "[REEMPLAZAR]",
+    email: "davidgrijalba8@gmail.com", /* Correo del negocio (datos de contacto.md, 2026-09-19) */
     social: [] /* TODO negocio: [{ icon:"instagram", label:"Instagram", url:"https://.../[HANDLE]" }, …] */
   };
 
