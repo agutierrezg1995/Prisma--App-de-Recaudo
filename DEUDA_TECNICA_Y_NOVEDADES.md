@@ -18,6 +18,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `74db568` | docs(audit) | Matriz de aceptación §37 mapeada a evidencia (12/15 cerradas desde código). |
 | `e519a27` | feat(multipage) | Páginas legales `pages/politica-de-privacidad.html` + `pages/terminos.html` con design system; footer index.html enlaza páginas reales (antes `href="#"`). |
 | *sin commit* | fix(a11y-css-seo) | Tokens inexistentes en `.legal` corregidos (`--text-muted`→`--ink-muted`, `--prisma-cyan-200`→`--prisma-cyan-300`); `.skip-link` añadido a las 2 páginas legales (WCAG 2.4.1); `.section--legal` despeja la navbar fija; `robots.txt` + `sitemap.xml` creados (DUDE-09). Verificado: 8/8 rutas 200, `node --check` OK. |
+| *en curso* | feat(404-seo) | `404.html` de marca (design system, `noindex`), limpieza de 10 assets WebP sin referencias, cierre DUDE-06 (patrón de CTA), integridad de refs 0 errores en 4 docs. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto y commiteado. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción).
@@ -54,10 +55,10 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** estético intencional (no recortar arte con texto), pero puede verse "vacío" en ciertas piezas.
 - **Plan:** opcional derivar variantes recortadas 16:9 sin texto crítico en bordes.
 
-### DUDE-06 · Brand/copy: "Solicitar demo" vs "Solicitar una demo" — BAJA
-- **Estado:** nav y sticky usan el corto (§4/§36 lo permiten); hero/CTA el largo (§27).
-- **Impacto:** consistencia de marca ↓ mínima.
-- **Plan:** decidir un solo patrón (recomendado: mantener corto en zonas compactas, largo en hero/CTA).
+### DUDE-06 · Brand/copy: "Solicitar demo" vs "Solicitar una demo" — CERRADA (2026-09-19)
+- **Estado:** resuelta. Se adopta el patrón recomendado: **corto** "Solicitar demo" en zonas compactas (nav desktop, sticky mobile ≤767, menú mobile) y **largo** "Solicitar una demo" en hero/CTA principales (§4/§27/§36).
+- **Impacto:** consistencia de marca resuelta sin duplicar patrones de CTA.
+- **Plan:** aplicar el mismo criterio en cualquier CTA futuro (forms, WhatsApp, etc.).
 
 ### DUDE-07 · Rama `V.1` desactualizada — CERRADA (2026-09-19)
 - **Estado:** ~~`main` adelante vs `V.1`~~ → **resuelto**: `V.1` fast-forward a `main` (`1f3f23a`), ambas ramas idénticas (`0 → 0`). Sin divergencia.

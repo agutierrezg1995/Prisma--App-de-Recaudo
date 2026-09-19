@@ -1194,6 +1194,25 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   background: rgba(0, 216, 255, 0.04);
 }
 
+/* 404 */
+.notfound { text-align: center; }
+.notfound__icon { font-size: 4rem; margin-bottom: 8px; }
+.notfound .eyebrow { margin-bottom: 12px; }
+.notfound h1 { margin-bottom: 1rem; }
+.notfound__text {
+  color: var(--ink-soft);
+  max-width: 520px;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+.notfound__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 32px;
+}
+
 /* =========================================================
    REVEALS
    ========================================================= */

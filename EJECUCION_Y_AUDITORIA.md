@@ -467,6 +467,13 @@ Comportamiento esperado conocido:
 - [x] **Desviación registrada vs §20**: "Dashboard: horizontal scroll local" en mobile → se implementó *stacks* (stats 2/1 col + chart). Mejor UX que forzar scroll horizontal; se documenta como decisión, no como fallo (§20, §32).
 - [ ] **Gate restante**: activar GH Pages (usuario) + validación visual humana.
 
+### Continuación 2026-09-19 — quinta pasada (404 + limpieza de assets)
+
+- [x] **`404.html` de marca** (nuevo): sirve en cualquier 404 de GH Pages; reutiliza navbar/footer/design system (§26), `.section--legal` + `.notfound`, skip-link, copy breve (§34), sin datos inventados (§35), `robots: noindex, follow`. Verificado: 200 local + 0 errores de refs.
+- [x] **Limpieza de assets**: eliminados 10 derivados WebP sin referencias en HTML/CSS (`icono`, `promo`, `compra`, `playstore`, `precios` + sus `-800`). Los originales permanecen en `Imagenes para landing/` y son re-derivables con `scripts/optimize_images.py` (SPEC §29). Sin impacto en requests del usuario.
+- [x] **DUDE-06 cerrada**: se adopta el patrón recomendado — corto "Solicitar demo" en zonas compactas (nav/sticky ≤767), largo "Solicitar una demo" en hero/CTA (§4, §27, §36).
+- [ ] **DUDE-05 se mantiene** (BAJA): variantes recortadas 16:9 requieren inspección visual del borde del arte → bloqueada por validación humana §12.3.
+
 **Queda para validación visual humana (no automatizable):**
 1. §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
 2. §12.3 assets ⚠: `security.webp`, `finance.webp`, `usecase.webp`.
