@@ -154,21 +154,21 @@ La landing debe responder en menos de 5 segundos: **"Esto es Prisma$ y me permit
 
 | # | Criterio | Método de verificación | Estado |
 | --- | --- | --- | --- |
-| 1 | Identidad Prisma$ reconocible | Revisión visual contra assets y paleta | ☐ |
-| 2 | Logo correctamente utilizado | Comparar con `LOGO.png` (sin deformar/recolorear) | ☐ |
-| 3 | Paleta consistente | Inspección de tokens vs SPEC §2 | ☐ |
-| 4 | Hero visualmente dominante | Test de 5 segundos | ☐ |
-| 5 | Slider funcional | Arrows, dots, swipe, teclado, autoplay, pausa | ☐ |
-| 6 | Responsive completo | 320 / 767 / 768 / 1199 / 1200 / 1440 | ☐ |
-| 7 | Animaciones suaves | Sin jank; respeta reduced-motion | ☐ |
-| 8 | Navegación sticky | Scroll-spy correcto | ☐ |
-| 9 | CTAs claros | Primario/secundario consistentes (SPEC §27) | ☐ |
-| 10 | Accesibilidad | Checklist 6.3 | ☐ |
-| 11 | SEO básico | Checklist 6.4 | ☐ |
-| 12 | Performance | Checklist 6.5 | ☐ |
-| 13 | Sin contenido ficticio real | Revisión de copys y mockups | ☐ |
-| 14 | No repetición de personajes | Revisión visual | ☐ |
-| 15 | Coherencia de producto | Todas las secciones del mismo sistema | ☐ |
+| 1 | Identidad Prisma$ reconocible | Revisión visual contra assets y paleta | ☐ visual (test 5 s) |
+| 2 | Logo correctamente utilizado | Comparar con `LOGO.png` (sin deformar/recolorear) | ✓ código: `logo.webp` fuente, `width:auto` sin deformación | 
+| 3 | Paleta consistente | Inspección de tokens vs SPEC §2 | ✓ código: tokens §2 auditados |
+| 4 | Hero visualmente dominante | Test de 5 segundos | ☐ visual |
+| 5 | Slider funcional | Arrows, dots, swipe, teclado, autoplay, pausa | ✓ código: §7 auditado |
+| 6 | Responsive completo | 320 / 767 / 768 / 1199 / 1200 / 1440 | ☐ visual (probar cada breakpoint) |
+| 7 | Animaciones suaves | Sin jank; respeta reduced-motion | ✓ código: reduced-motion + motion < 800 ms; suavidad final ☐ visual |
+| 8 | Navegación sticky | Scroll-spy correcto | ✓ código: §4 auditado |
+| 9 | CTAs claros | Primario/secundario consistentes (SPEC §27) | ✓ código: §27 auditado |
+| 10 | Accesibilidad | Checklist 6.3 | ✓ código (queda `alt` en confirmación visual) |
+| 11 | SEO básico | Checklist 6.4 | ✓ código: 7/7 |
+| 12 | Performance | Checklist 6.5 | ✓ código |
+| 13 | Sin contenido ficticio real | Revisión de copys y mockups | ✓ código: §35 auditado |
+| 14 | No repetición de personajes | Revisión visual | ✓ distribución: monitor 3×, dashboard 3×, proceso 2×, resto ≤2 (ninguna pieza domina); ☐ confirmación visual |
+| 15 | Coherencia de producto | Todas las secciones del mismo sistema | ☐ visual (impresión global) |
 
 ### 6.2 Auditoría por sección
 
