@@ -1506,3 +1506,115 @@ orientado a conversión.
 
 Implementar la experiencia completa,
 no solamente una página visual estática.
+
+==================================================
+39. ADICIONAL 2026-09-19 — RETOS DE CALIDAD UX
+    (recomendaciones del titular del servicio)
+==================================================
+
+Orientación: 9 recomendaciones nacidas de la primera revisión del titular
+sobre la v1 publicada. Se suman al alcance y SIEMPRE respetan las reglas ya
+fijadas: dirección de arte (§1–§2), assets compuestos no pegados (§29), cero
+datos ficticios presentados como reales (§35), motion discreto y accesible
+(§19), CTA consistentes (§27) y mecánica demo sin inventar contactos (§36).
+
+39.1 FORMULARIO DE SOLICITUD DE DEMO (sustituye la ancla vacía)
+- Contexto: hoy todos los CTA "Solicitar demo" anclan a `#demo`, sección sin
+  mecanismo de captura (decisión 2026-09-18).
+- Evidencia: 4 de 7 CTAs apuntan a `#demo`; el clic no da respuesta de
+  conversión → percepción de "botón muerto" (ver 39.3).
+- Decisión: `#demo` pasa a ser una sección con formulario real ("Solicitar una
+  demo"). En GitHub Pages (estático) el envío compone un mensaje de WhatsApp
+  (wa.me con texto pre-llenado) y abre el canal del titular. El número es dato
+  del negocio `[REEMPLAZAR]`; NO se inventa.
+- Aceptación: al enviar se abre WhatsApp con mensaje estructurado (nombre,
+  empresa, tipo de negocio, dudas); campos con estado visual claro (§23); sin
+  backend. Si el negocio entrega endpoint real, se sustituye el envío.
+
+39.2 HERO SLIDER MÁS PROFESIONAL
+- Contexto: el titular percibe margen de mejora en el slider.
+- Decisión: slider v2 = crossfade direccional + escala sutil del arte
+  (1 → 1.03), contador visible (01/04), progreso con rebote suave, pausa en
+  hover/focus/touch (ya existe), hit-areas ≥44 px (ya), foco visible, y
+  reinicio de temporizador tras interacción manual. Copys exactos del §7.
+- Aceptación: sin jank en mobile; `prefers-reduced-motion` → sin autoplay ni
+  escala (§23); prueba §12 desktop/mobile.
+- Guarda: prohibido slide-morphing, parallax excesivo o "efecto PowerPoint" (§19).
+
+39.3 BOTONES FUNCIONALES DE EXTREMO A EXTREMO
+- Contexto: se perciben botones no funcionales porque su destino no cierra la
+  promesa de la etiqueta (el primario → `#demo` vacío).
+- Decisión: auditoría CTA por CTA (§27): cada botón debe resolver su promesa en
+  el destino. Primario → formulario (39.1). Secundarios → anclas con sección
+  que responde (ya correctas: "Conocer la plataforma" → #solucion,
+  "Ver cómo funciona" → #como-funciona). Cero `<a href="#">`.
+- Aceptación: el recorrido de los 7 botones da respuesta visible y coherente;
+  estados hover/focus/active consistentes. Se elimina la falsa sensación de
+  no-funcionalidad.
+
+39.4 MOTION PROFESIONAL QUE ENGANCHE (con guardas §19)
+- Contexto: se pide más impacto emocional en la interacción.
+- Decisión: pasada de pulido de motion: coreografía de entrada por sección,
+  stagger de reveals, contadores con easing, shimmer sutil en CTA primario,
+  parallax SUTIL de prismas/glows (ya), trazado de charts (ya) y elevación en
+  hover de cards/beneficios.
+- Aceptación: todo ≤800 ms, solo transform/opacity (GPU), y
+  `prefers-reduced-motion` → versión estática (ya).
+- Guarda: prohibido scroll-hijack, rotaciones, rebotes, destellos repetidos o
+  efectos casino (§19). "Envolver" nunca = ruido.
+
+39.5 AMPLIACIÓN DE PREGUNTAS FRECUENTES
+- Contexto: la FAQ actual tiene 5 preguntas (las del JSON-LD §25).
+- Decisión: ampliar a ~8–10 preguntas derivadas ÚNICAMENTE de la información
+  existente en el spec/copys (qué es, cómo registrar, quién lo usa, en qué
+  dispositivo, reportes, seguridad del acceso, cómo pedir la demo). Sin inventar
+  afirmaciones; SIN precios (no hay sección de precios).
+- Aceptación: n preguntas nuevas; JSON-LD `FAQPage` sincronizado al mismo número;
+  cada respuesta ≤60 palabras, tono §34.
+
+39.6 VENTANA DE DETALLE POR CARD ("por qué resuelve y para quién")
+- Contexto: las cards muestran título + breve descripción; se quiere profundizar
+  sin salir de la página.
+- Decisión: componente `CardDetail` accesible: en Prisma, "Por qué y para quién"
+  abre un panel/`<details>` con 2 bloques (problema que resuelve · público
+  objetivo). Aplica a Problema (§8), Solución badges y Beneficios (§14).
+  Textos derivados del spec (sin datos ficticios).
+- Aceptación: apertura/cierre con click + teclado, Escape cierra, foco
+  gestionado, no bloquea scroll, glass del sistema (§26), `aria-expanded`.
+
+39.7 REVISIÓN DE REDUNDANCIA VISUAL DE PANELES
+- Contexto: se perciben "2 paneles de monitoreo". Evidencia: `dashboard.webp` y
+  `monitor.webp` se repiten (19 y 13 refs) entre slider, solución, monitoreo,
+  dashboard y showcase.
+- Decisión: mapa de composición por sección para dar tratamiento visual único a
+  cada panel: máscaras/recortes distintos (§29), overlays de badges, escalas y
+  cards superpuestas; en §12 confirmar que `finance.webp` lee como cuadre (DUDE-04).
+- Aceptación: en el recorrido desktop/mobile no se ven dos bloques "iguales";
+  validación visual §12.
+- Guarda: no reutilizar el MISMO panel a la misma escala en secciones contiguas
+  sin diferenciación visual.
+
+39.8 FOOTER CON CONTACTOS + WHATSAPP + REDES SOCIALES
+- Contexto: el footer solo enlaza páginas internas (§18). No hay contactos ni
+  redes porque §35 prohíbe URLs inventadas.
+- Decisión: footer v2 con bloque de contacto y botón flotante de WhatsApp (fab)
+  con número `[REEMPLAZAR]` y handles (IG/Facebook/LinkedIn) también
+  `[REEMPLAZAR]`. Se entrega HOY la estructura e iconos (set SVG §26); los datos
+  reales los aporta el negocio antes de publicar (misma política que DUDE-01).
+  WhatsApp fab con `aria-label` y mensaje breve prefabricado.
+- Aceptación: cero URLs inventadas; fab no tapa contenido en scroll; visible en
+  mobile; foco visible.
+
+39.9 NAVEGACIÓN REAL / DESTINOS (reemplaza cualquier "paginación" de MVP)
+- Contexto: la landing no tiene paginación; sus destinos internos ya son páginas
+  reales (legales + 404). El CTA primario debe tener destino real, no solo ancla.
+- Decisión: crear `pages/solicitar-demo.html` (página dedicada con el formulario
+  39.1, marca, nav y footer) y apuntar los CTA primarios a esa página (§27). Los
+  links de nav se mantienen como anclas (UX one-page); se documenta que NO hay
+  paginación por diseño (landing + páginas de soporte).
+- Aceptación: CTA primario lleva a URL real con form; skip-link, orden de foco,
+  canonical y breadcrumb propios; validación §12.
+
+Orden de ejecución propuesto (ver EJECUCION §15): Fase A conversión (39.1→39.3→39.9),
+Fase B contenido (39.5→39.6), Fase C percepción (39.7→39.2→39.4), Fase D contacto
+(39.8, requiere datos reales del negocio).

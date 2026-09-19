@@ -23,6 +23,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | *auditoría* | audit(qa) | Sin cambios: QA estático global (ids, H1, alt, nombres accesibles), contratos JS↔HTML (23 tokens) y JS↔CSS (7 estados), contraste AA 17/17 ≥4.5:1. |
 | `c0229b3` | deploy | **GO-LIVE**: GitHub Pages activado por el usuario; rebuild disparado con commit vacío; producción verificada: 200, crawl 86/86 objetivos OK, canonical/title/og-image/robots/sitemap/404/legales servidos. `main`=`V.1`=`origin/main` (0/0). |
 | *en curso* | audit(contracts) | Novena pasada, sin cambios: contrato iconos 19/19, variantes `-800w` y favicons 200 en prod, `<head>` 4 docs OK, robots→sitemap→3 `<loc>` en vivo. |
+| *en curso* | docs(ux-retos) | Adopción de los 9 retos del titular: SPEC §39 adicional (A1..A9) + DUDE-11..19 en deuda, fases A→D; análisis con evidencia (CTAs→`#demo`, paneles 19/13 refs). |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción) y las decisiones de negocio DUDE-01/02/09.
@@ -38,10 +39,10 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** no debe publicarse como política/condiciones definitivas.
 - **Plan:** el titular del servicio completa y valida con asesor legal; luego se eliminan las notas.
 
-### DUDE-02 · CTA `#demo` sin mecanismo de captura de lead — MEDIA
-- **Estado:** todos los CTA anclan a la sección `#demo` (decisión registrada 2026-09-18). No hay formulario.
+### DUDE-02 · CTA `#demo` sin mecanismo de captura de lead — MEDIA → EN IMPLEMENTACIÓN (SPEC §39.1, DUDE-11)
+- **Estado:** los CTA anclan a `#demo`; aún no hay formulario.
 - **Impacto:** el único funnel de conversión no captura datos.
-- **Plan:** definir canal (formulario/WhatsApp/email) como siguiente feature; requiere decisión del negocio.
+- **Plan:** sustituido por DUDE-11 (formulario de demo vía WhatsApp estático). El negocio define canal definitivo.
 
 ### DUDE-03 · Canonical/OG con URL provisional del repo GH — CERRADA (2026-09-19)
 - **Estado:** ~~provisional~~ → **confirmada como URL final de despliegue**: `https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/…` (repo `agutierrezg1995/Prisma--App-de-Recaudo`, default branch `main`, misma URL en canonical/OG/sitemap). Sin cambios de código al publicar.
@@ -85,6 +86,40 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** en navegadores antiguos degrada con gracia (fondo sin blur, sin spacer inset); no rompe layout funcional.
 - **Plan:** documentado; no requiere acción salvo exigencia puntual de navegadores legados.
 
+### Bloque C · Retos de calidad UX (SPEC §39 adicional, 2026-09-19)
+> Los 9 retos del titular se documentan en `SPEC.md` §39.1–§39.9 con criterios de aceptación y guardas §19/§23/§27/§35. Cada uno baja a deuda con su plan:
+
+### DUDE-11 · Formulario de solicitud de demo — MEDIA (SPEC §39.1)
+- **Estado:** sin empezar; `#demo` es una sección vacía sin captura.
+- **Impacto:** conversión cero → "botón muerto" (percepción del titular).
+- **Plan:** formulario estático cuyo envío compone mensaje de WhatsApp (wa.me, texto prellenado); número `[REEMPLAZAR]` del negocio; sin backend; campos con estado claro (§23).
+
+### DUDE-12 · Hero Slider v2 (profesionalización) — MEDIA (SPEC §39.2)
+- **Plan:** crossfade direccional + escala sutil (1→1.03), contador visible, progreso con rebote, temporizador que reinicia tras navegación manual, sin autoplay con reduced-motion. Copys §7 intactos.
+
+### DUDE-13 · CTA end-to-end (respuesta visible) — MEDIA (SPEC §39.3)
+- **Plan:** auditoría de los 7 botones: cada destino debe cerrar la promesa de su etiqueta; cero `href="#"`; estados hover/focus/active consistentes. Estrategia: el primario va al formulario (DUDE-11/DUDE-19).
+
+### DUDE-14 · Motion "profesional que enganche" — MEDIA (SPEC §39.4)
+- **Plan:** coreografía de entrada por sección, stagger, contadores con easing, shimmer en CTA, elevación en hover; todo ≤800 ms, transform/opacity, reducido si `prefers-reduced-motion`. Guardas §19: nada de casino/hijack.
+
+### DUDE-15 · FAQ ampliada (~10 preguntas) — BAJA (SPEC §39.5)
+- **Plan:** +3–5 preguntas derivadas solo de info del spec; sincronizar JSON-LD FAQPage; respuestas ≤60 palabras, tono §34. Sin precios ni promesas inventadas.
+
+### DUDE-16 · CardDetail "por qué / para quién" — MEDIA (SPEC §39.6)
+- **Plan:** componente accesible (`<details>`/panel) en Problema, Solución y Beneficios; 2 bloques (problema que resuelve · público); Escape/teclado/foco gestionados; texto del spec, sin inventar.
+
+### DUDE-17 · Redundancia visual de paneles — MEDIA (SPEC §39.7)
+- **Estado:** `dashboard.webp` (19 refs) y `monitor.webp` (13 refs) se repiten; el titular ve "2 paneles de monitoreo".
+- **Plan:** mapa de composición por sección (máscaras/recortes/overlays distintos por §29); confirmar `finance.webp` en §12 (DUDE-04). Requiere ojo humano (§12).
+- **Vínculo:** entronca con DUDE-04 y DUDE-05.
+
+### DUDE-18 · Footer contactos + WhatsApp fab + redes — MEDIA (SPEC §39.8, bloqueado por datos)
+- **Plan:** estructura e iconos HOY; número y handles como `[REEMPLAZAR]`; fab con `aria-label`. Publicar solo cuando el negocio entregue datos (política del DUDE-01).
+
+### DUDE-19 · Página/solicitar-demo real — MEDIA (SPEC §39.9)
+- **Plan:** `pages/solicitar-demo.html` con el formulario (DUDE-11), marca, nav, footer, canonical y `skip-link`; CTA primarios apuntan a ella en lugar de solo ancla. Sin paginación por diseño (one-page + soporte).
+
 ---
 
 ## 3. Decisiones registradas (para no reinterpretar dos veces)
@@ -94,6 +129,9 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 3. Slider con `object-fit: contain` (no recortar arte) (2026-09-19).
 4. Contenido legal como plantilla explícita, nunca como versión final (2026-09-19).
 5. Estructura multipágina sin build tooling; rutas relativas (2026-09-19).
+6. Los 9 retos de calidad del titular se adoptan como **SPEC §39 adicional** y se ejecutan por fases A→D (2026-09-19).
+7. Formulario de demo **estático** (composición WhatsApp, sin backend) hasta que exista endpoint real (2026-09-19).
+8. WhatsApp fab y redes: solo con datos reales `[REEMPLAZAR]`; nunca una URL inventada (§35) (2026-09-19).
 
 ---
 

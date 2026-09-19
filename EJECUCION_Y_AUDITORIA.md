@@ -546,3 +546,27 @@ Hallazgos que pasaron la primera auditoría y se corrigieron en esta pasada:
 - [x] **Conformidad de `<head>`** (4 docs): `<!doctype html>`, `lang="es"`, `charset=UTF-8`, `viewport` → OK.
 - [x] **Cadena SEO íntegra en vivo**: `robots.txt` → `sitemap.xml` (URL absoluta del dominio final) → 3 `<loc>` reales → 200.
 
+### Continuación 2026-09-19 — décima pasada (adopción de retos de calidad UX)
+
+El titular documentó 9 recomendaciones tras la primera revisión de la v1 publicada. Se adoptan como **SPEC §39** (adicional) con criterios de aceptación y guardas. Análisis con evidencia:
+
+- **Conversión (prg 1/3/9):** 4 de 7 CTAs van a `#demo`, que hoy es una sección sin formulario → por eso los botones se perciben "no funcionales" (no es fallo de JS: es destino sin cierre). Corrección: formulario de demo estático (WhatsApp) + auditoría CTA + página `solicitar-demo.html` real.
+- **Percepción (prg 2/4/7):** el slider y el motion tienen margen; la redundancia se confirma en código (`dashboard.webp` 19 refs, `monitor.webp` 13) → se resuelve con composiciones §29 distintas por sección y requiere ojo humano §12.3.
+- **Contenido (prg 5/6):** FAQ 5→~10 preguntas (solo info del spec) y `CardDetail` accesible por card.
+- **Contacto (prg 8):** footer v2 + WhatsApp fab con datos `[REEMPLAZAR]` (política §35 igual que DUDE-01).
+
+Documentado: `SPEC.md` §39.1–§39.9 · `DEUDA` DUDE-11..19 + decisiones 6-8 · este plan §15.
+
+## 15. Milestone v1.2 — Retos de calidad UX (fases)
+
+> Orden recomendado. Cada ítem referencia SPEC §39.x y su DUDE. La validación final de percepción (b, c, d) sigue la checklist §12.
+
+| Fase | Alcance | Items | Dependencias |
+| --- | --- | --- | --- |
+| **A · Conversión** | Formulario de demo en `#demo`, auditoría CTA, página `pages/solicitar-demo.html` | §39.1 · §39.3 · §39.9 (DUDE-11, 13, 19) | Número WhatsApp del negocio `[REEMPLAZAR]` |
+| **B · Contenido** | FAQ ampliada + CardDetail | §39.5 · §39.6 (DUDE-15, 16) | Ojo humano para copy fino |
+| **C · Percepción** | Redundancia visual, slider v2, motion pulido | §39.7 · §39.2 · §39.4 (DUDE-17, 12, 14) | Validación visual §12/§12.3 |
+| **D · Contacto** | Footer contactos + WhatsApp fab + redes | §39.8 (DUDE-18) | Datos reales del negocio (emails/redes/número) |
+
+Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes), §35 (cero datos inventados), §23 (todo accesible), §24 (performance ≤800 ms / GPU).
+
