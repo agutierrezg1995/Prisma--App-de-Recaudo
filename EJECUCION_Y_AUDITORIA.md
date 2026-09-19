@@ -449,6 +449,8 @@ Comportamiento esperado conocido:
 | `1f3f23a` (ff) | V.1 | DUDE-07: fast-forward de `V.1` a `main`; ramas idénticas. |
 | `1418ad7` | main | polish(a11y-seo): twitter cards legales, aria-label brand, cierre DUDE-03. |
 | `1418ad7` (ff) | V.1 | FF de `V.1` → `main` (0/0); push de ambas. |
+| `a7fc280` | main | polish(seo): og:image dimensions, sitemap lastmod, integridad 0 errores, nota §20. |
+| `a7fc280` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
