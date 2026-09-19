@@ -27,6 +27,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `b91f217` | feat(demo-form) | **Fase A v1.2**: formulario WhatsApp (`#demo` + `pages/solicitar-demo.html`), todos los CTA demo→página real, footer Contacto→página, sitemap 4ª URL, verificado 0 errores / 200×5 local. Pendiente: `WA_NUMBER` `[REEMPLAZAR]`. |
 | `ff48729` | feat(content) | **Fase B v1.2**: FAQ 5→9 (JSON-LD 9/9 verificado) + `CardDetail` "por qué y para quién" en 9 cards (Problema+Beneficios). Showcase sin detalle (decisión documentada). |
 | `e886b7c` | deploy | Rebuild trigger: los pushes de Fase A/B no surfacieron al CDN; con este trigger **producción queda al día**: FAQ 9/9, details 9/9, `pages/solicitar-demo.html` 200. Causa probable: GitHub Actions desactivado o deploy no disparado en el batch V.1+main; se resolverá en Fase C/DUDE-09 al revisar la config de Pages. |
+| *esta pasada* | feat(percepcion) | **Fase C v1.2**: slider v2 (contador 01/04, progreso eased, drift 1→1.03 no-preference), paneles con tratamiento único (§39.7 tags/bezel/ledger/window), shimmer CTA + elevación timeline (§39.4). Verificado local 8/8. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Restan: **validación visual humana** (§12, §12.3, §37) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
 
@@ -96,14 +97,14 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** conversión funcional; sin backend.
 - **Plan:** el negocio reemplaza `WA_NUMBER` por el número real (con código de país) y QA manual de la ruta WhatsApp en móvil.
 
-### DUDE-12 · Hero Slider v2 (profesionalización) — MEDIA (SPEC §39.2)
-- **Plan:** crossfade direccional + escala sutil (1→1.03), contador visible, progreso con rebote, temporizador que reinicia tras navegación manual, sin autoplay con reduced-motion. Copys §7 intactos.
+### DUDE-12 · Hero Slider v2 (profesionalización) — CERRADA (2026-09-19)
+- **Aplicado:** crossfade direccional (translateX+opacidad), contador visible `01/04` (`data-slider-count`, `padStart`), progreso con easing `cubic-bezier(.22,1,.36,1)`, temporizador reinicia en cada navegación (resetProgress), drift del arte 1→1.03 en 8s solo con `no-preference`; sin autoplay bajo reduced-motion (play() early-return). Copys §7 intactos.
 
 ### DUDE-13 · CTA end-to-end (respuesta visible) — CERRADA (2026-09-19)
 - **Plan:** todos los "Solicitar demo" (nav desktop/mobile, hero, sección CTA, sticky, 404, legales) apuntan a `pages/solicitar-demo.html`; secundarios a anclas con sección que responde; cero `href="#"`. Sin formulario no había cierre → resuelto con DUDE-11/19.
 
-### DUDE-14 · Motion "profesional que enganche" — MEDIA (SPEC §39.4)
-- **Plan:** coreografía de entrada por sección, stagger, contadores con easing, shimmer en CTA, elevación en hover; todo ≤800 ms, transform/opacity, reducido si `prefers-reduced-motion`. Guardas §19: nada de casino/hijack.
+### DUDE-14 · Motion "profesional que enganche" — CERRADA (2026-09-19)
+- **Aplicado:** stagger de reveals y contadores con easing (verificados: `1-Math.pow(1-p,3)` = easeOutCubic) + shimmer 1 pasada en CTA primario (`::before` 0.7 s, `no-preference`) + elevación hover en cards, timeline y showcase; todo transform/opacity/GPU, ≤800 ms. Guardas §19 respetadas (sin casino/hijack).
 
 ### DUDE-15 · FAQ ampliada — CERRADA (2026-09-19)
 - **Plan:** 5→9 preguntas (para quién, reportes, experiencia contable, acceso); JSON-LD sincronizado 9/9 (verificado); respuestas ≤60 palabras, tono §34, sin precios ni promesas inventadas.
@@ -111,9 +112,9 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 ### DUDE-16 · CardDetail "por qué / para quién" — CERRADA (2026-09-19)
 - **Plan:** `<details>` accesible en 9 cards (Problema + Beneficios) con `focus-visible`; textos del spec. Decisión: Showcase sin CardDetail (carousel ya descriptivo; se evitaría hinchar).
 
-### DUDE-17 · Redundancia visual de paneles — MEDIA (SPEC §39.7)
+### DUDE-17 · Redundancia visual de paneles — CERRADA (2026-09-19)
 - **Estado:** `dashboard.webp` (19 refs) y `monitor.webp` (13 refs) se repiten; el titular ve "2 paneles de monitoreo".
-- **Plan:** mapa de composición por sección (máscaras/recortes/overlays distintos por §29); confirmar `finance.webp` en §12 (DUDE-04). Requiere ojo humano (§12).
+- **Aplicado:** tratamiento único por sección — Slider (contenido redondeado + drift), Solución `device--dashboard` (barra de ventana + pips + tag "Panel de control"), Monitoreo `device--monitor` (bezel/muesca de app + tag "Tiempo real"), Financiero `device--hero` (líneas ledger + fade + tag "Cuadre general"), Showcase (fade inferior en cards). Confirma `finance.webp` como "cuadre" en §12 (DUDE-04).
 - **Vínculo:** entronca con DUDE-04 y DUDE-05.
 
 ### DUDE-18 · Footer contactos + WhatsApp fab + redes — MEDIA (SPEC §39.8, bloqueado por datos)

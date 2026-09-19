@@ -276,6 +276,8 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   border: 1px solid transparent;
   border-radius: var(--r-sm);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
   transition: transform 0.25s var(--ease), box-shadow 0.3s var(--ease),
               background 0.3s var(--ease), border-color 0.3s var(--ease);
   white-space: nowrap;
@@ -286,6 +288,15 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   background: var(--grad-cyan);
   color: var(--prisma-navy-950);
   box-shadow: 0 10px 30px -12px rgba(0, 216, 255, 0.7);
+}
+.btn--primary::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: -60%;
+  width: 45%;
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.45) 50%, transparent 80%);
+  transform: translateX(-20%) skewX(-18deg);
+  pointer-events: none;
 }
 .btn--primary:hover {
   box-shadow: 0 16px 40px -12px rgba(0, 216, 255, 0.95);
@@ -572,6 +583,18 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   transition: background 0.3s var(--ease);
 }
 .slider__dots button.is-active { background: var(--grad-cyan); }
+.slider__counter {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--prisma-cyan-300);
+  white-space: nowrap;
+}
+.slider__counter span { font-size: 0.95rem; }
+.slider__counter-total { color: var(--ink-muted); font-size: 0.85rem; font-weight: 600; }
 .slider__progress {
   flex: 1;
   height: 3px;
@@ -585,7 +608,7 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   height: 100%;
   width: 0;
   background: var(--grad-cyan);
-  transition: width 0.1s linear;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* =========================================================
@@ -658,6 +681,7 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
 }
 
 .device {
+  position: relative;
   border-radius: var(--r-xl);
   overflow: hidden;
   border: 1px solid var(--line-strong);
@@ -671,6 +695,85 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
 .device--monitor { width: min(620px, 100%); margin-inline: auto; }
 .device--monitor img { aspect-ratio: 1671 / 941; }
 .finance__inner .device--hero { max-width: 580px; margin-inline: auto; }
+
+.device__tag {
+  position: absolute;
+  z-index: 2;
+  top: 16px; left: 16px;
+  display: inline-block;
+  padding: 7px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--prisma-navy-950);
+  background: var(--grad-cyan);
+  border-radius: 999px;
+  box-shadow: 0 10px 24px -10px rgba(0, 216, 255, 0.8);
+}
+.device--monitor .device__tag { top: auto; bottom: 18px; left: 50%; transform: translateX(-50%); }
+.device--hero .device__tag { top: auto; bottom: 16px; right: 16px; left: auto; }
+
+/* Ventana de aplicación (dashboard → solución) */
+.device--dashboard::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.device--dashboard::after {
+  content: "";
+  position: absolute;
+  top: 9px; left: 14px;
+  width: 48px; height: 9px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(90deg, rgba(0, 216, 255, 0.55) 0 6px, transparent 6px 10px);
+}
+
+/* Marco de dispositivo (monitoreo → app móvil) */
+.device--monitor::before,
+.device--monitor::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 18, 60, 0.92);
+  z-index: 2;
+}
+.device--monitor::before {
+  top: 0;
+  width: 132px; height: 22px;
+  border-radius: 0 0 14px 14px;
+  border: 1px solid var(--line-strong);
+  border-top: 0;
+}
+.device--monitor::after {
+  bottom: 0;
+  width: 120px; height: 2px;
+  border-radius: 999px;
+  opacity: 0.7;
+}
+
+/* Ledger (cuadre → financiero) */
+.device--hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(0, 216, 255, 0.05) 0 1px, transparent 1px 44px);
+  z-index: 2;
+  pointer-events: none;
+}
+.device--hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 34%;
+  background: linear-gradient(180deg, transparent, rgba(0, 18, 60, 0.55));
+  z-index: 2;
+  pointer-events: none;
+}
 
 /* =========================================================
    PROCESS / TIMELINE
@@ -702,7 +805,8 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   box-shadow: 0 0 16px rgba(0, 216, 255, 0.8);
   transition: width 0.3s linear;
 }
-.timeline__step { position: relative; padding-top: 26px; }
+.timeline__step { position: relative; padding-top: 26px; transition: transform 0.35s var(--ease); }
+.timeline__step:hover { transform: translateY(-4px); }
 .timeline__step::before {
   content: "";
   position: absolute;
@@ -982,8 +1086,15 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   transition: transform 0.35s var(--ease), border-color 0.35s var(--ease);
 }
 .showcase__card:hover { transform: translateY(-6px); border-color: rgba(0, 216, 255, 0.4); }
-.showcase__card figure { margin: 0; overflow: hidden; aspect-ratio: 16 / 10; display: grid; place-items: center; background: rgba(0, 18, 60, 0.35); }
+.showcase__card figure { margin: 0; overflow: hidden; aspect-ratio: 16 / 10; display: grid; place-items: center; background: rgba(0, 18, 60, 0.35); position: relative; }
 .showcase__card img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s var(--ease); }
+.showcase__card figure::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 18, 60, 0.06), rgba(0, 18, 60, 0.34));
+  pointer-events: none;
+}
 .showcase__card:hover img { transform: scale(1.03); }
 .showcase__card h3 { padding: 20px 22px 6px; font-size: 1.08rem; }
 .showcase__card p { padding: 0 22px 24px; color: var(--ink-soft); font-size: 0.9rem; }
@@ -1390,6 +1501,15 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
 /* =========================================================
    REDUCED MOTION
    ========================================================= */
+@media (prefers-reduced-motion: no-preference) {
+  /* §39.2 drift sutil del arte del slider (1 → 1.03, puede repetir) */
+  .js .slide.is-active .slide__media { animation: prismSlideBreathe 8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  @keyframes prismSlideBreathe { to { transform: scale(1.03); } }
+  /* §39.4 shimmer discreto en CTA primario, una pasada por hover */
+  .btn--primary:hover::before { animation: prismBtnSheen 0.7s var(--ease) forwards; }
+  @keyframes prismBtnSheen { to { transform: translateX(340%) skewX(-18deg); } }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

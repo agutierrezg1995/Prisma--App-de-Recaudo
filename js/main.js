@@ -175,6 +175,7 @@
     var slides = Array.prototype.slice.call(track.querySelectorAll(".slide"));
     var dotsWrap = slider.querySelector("[data-slider-dots]");
     var progressBar = slider.querySelector("[data-slider-progress]");
+    var counterEl = slider.querySelector("[data-slider-count]");
     var DURATION = 6000;
     var index = 0;
     var running = false;
@@ -202,6 +203,7 @@
         d.classList.toggle("is-active", i === index);
         d.setAttribute("aria-current", i === index ? "true" : "false");
       });
+      if (counterEl) counterEl.textContent = String(index + 1).padStart(2, "0");
     }
 
     function resetProgress() {

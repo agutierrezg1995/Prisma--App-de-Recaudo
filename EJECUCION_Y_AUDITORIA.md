@@ -591,3 +591,11 @@ Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes)
 - [x] **Decisión registrada**: Showcase (carousel §16) NO recibe CardDetail — sus cards ya son descriptivas y el patrón hincharía el carousel; se documenta, no se descarta.
 - [x] Verificación: 5/5 docs 200, integridad 0 errores, FAQ 9/9.
 
+### Continuación 2026-09-19 — decimotercera pasada (FASE C v1.2 — percepción)
+
+- [x] **§39.2 Slider v2**: contador visible `01/04` (aria-hidden; estado por dots/labels), progreso con easing `cubic-bezier(.22,1,.36,1)` ("rebote suave"), drift del arte 1→1.03 (8 s ambient) solo con `prefers-reduced-motion: no-preference`; temporizador reinicia en cada navegación (`resetProgress`); sin autoplay bajo reduced-motion (`play()` early-return). Copys §7 intactos.
+- [x] **§39.7 Redundancia visual resuelta en código**: tratamiento único por sección — Solución (`device--dashboard`: ventana con barra + pips, tag "Panel de control"), Monitoreo (`device--monitor`: bezel/muesca de app móvil, tag "Tiempo real"), Financiero (`device--hero`: líneas ledger + fade, tag "Cuadre general"), Showcase (fade inferior en cards), Slider (contenido contened + drift). Composición §29 sin pegado; tags `aria-hidden`. Queda confirmación final por ojo humano §12 (DUDE-04/§12.3).
+- [x] **§39.4 Motion pulido**: shimmer CTA primario (1 pasada, 0.7 s, `no-preference`, GPU), elevación hover en timeline (y ya existía en cards/beneficios/showcase), contadores con easeOutCubic (verificado en `main.js`). Todo ≤800 ms o ambient, transform/opacity, guardado bajo reduced-motion.
+- [x] Verificación: `node --check` OK, CSS balanceado, integridad 0 errores en 5 docs, smoke local 8/8 → 200.
+- [ ] **Pendiente usuario**: validación visual §12/§12.3 (percepción: paneles ahora diferenciados; revisar slider v2). Fase D (§39.8) requiere datos reales de contacto/redes.
+
