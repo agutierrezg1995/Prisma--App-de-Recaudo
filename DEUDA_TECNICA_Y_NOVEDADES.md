@@ -19,6 +19,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `e519a27` | feat(multipage) | Páginas legales `pages/politica-de-privacidad.html` + `pages/terminos.html` con design system; footer index.html enlaza páginas reales (antes `href="#"`). |
 | *sin commit* | fix(a11y-css-seo) | Tokens inexistentes en `.legal` corregidos (`--text-muted`→`--ink-muted`, `--prisma-cyan-200`→`--prisma-cyan-300`); `.skip-link` añadido a las 2 páginas legales (WCAG 2.4.1); `.section--legal` despeja la navbar fija; `robots.txt` + `sitemap.xml` creados (DUDE-09). Verificado: 8/8 rutas 200, `node --check` OK. |
 | *en curso* | feat(404-seo) | `404.html` de marca (design system, `noindex`), limpieza de 10 assets WebP sin referencias, cierre DUDE-06 (patrón de CTA), integridad de refs 0 errores en 4 docs. |
+| *en curso* | style(a11y) | `bg-decor` añadido a las 2 páginas legales (consistencia §1/§31 con index/404); verify 200 local. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto y commiteado. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción).

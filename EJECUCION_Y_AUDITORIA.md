@@ -476,6 +476,11 @@ Comportamiento esperado conocido:
 - [x] **DUDE-06 cerrada**: se adopta el patrón recomendado — corto "Solicitar demo" en zonas compactas (nav/sticky ≤767), largo "Solicitar una demo" en hero/CTA (§4, §27, §36).
 - [ ] **DUDE-05 se mantiene** (BAJA): variantes recortadas 16:9 requieren inspección visual del borde del arte → bloqueada por validación humana §12.3.
 
+### Continuación 2026-09-19 — sexta pasada (consistencia de fondo)
+
+- [x] **`bg-decor` en páginas legales** (SPEC §1, §31): `politica-de-privacidad.html` y `terminos.html` ahora comparten glows + prismas como `index.html`/`404.html` (tratamiento calmo para lectura: sin grid-lines). Antes tenían fondo plano navy. Verificado: 200 local + 0 errores de refs.
+- [x] **Deploy re-verificado**: GH Pages sigue **404** (2026-09-19); el usuario está activándolo en paralelo.
+
 **Queda para validación visual humana (no automatizable):**
 1. §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
 2. §12.3 assets ⚠: `security.webp`, `finance.webp`, `usecase.webp`.
