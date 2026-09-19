@@ -82,51 +82,53 @@ La landing debe responder en menos de 5 segundos: **"Esto es Prisma$ y me permit
 
 ## 4. Plan de ejecución por fases
 
+> **Estado (actualizado 2026-09-19):** todas las fases F0–F7 están implementadas, auditadas (sección 10) y en producción. Cada ítem se marca `[x]` con su evidencia; los que dependen de validación visual humana se marcan con `☐ visual` y están referenciados en §12.
+
 ### F0 — Setup y fundaciones
-- [ ] Inicializar proyecto y estructura de carpetas.
-- [ ] Configurar tokens como CSS variables + Tailwind.
-- [ ] Tipografía, reset, contenedor y grid.
-- [ ] Primitivas: Button, Badge, Container, Section, Typography, Icon.
-- [ ] Pipeline de imágenes (WebP/AVIF, responsive).
+- [x] Inicializar proyecto y estructura de carpetas. — `index.html`, `css/`, `js/`, `assets/`, `scripts/`, `pages/`.
+- [x] Configurar tokens como CSS variables (+ Tailwind **descartado**: stack vanilla CSS, §2). — `css/styles.css` tokens §2.
+- [x] Tipografía, reset, contenedor y grid. — Inter + reset + container 1200–1280 + grid.
+- [x] Primitivas: Button, Badge, Container, Section, Typography, Icon. — design system §26 auditado.
+- [x] Pipeline de imágenes (WebP/AVIF, responsive). — `scripts/optimize_images.py` + variantes `-800w` (§24).
 
 ### F1 — Navegación y Hero (impacto)
-- [ ] Navbar sticky: transparente → `rgba(0,18,60,.88)` + `blur(18px)` + borde al hacer scroll (SPEC §4).
-- [ ] Scroll-spy con sección activa.
-- [ ] Mobile: logo + hamburger + CTA compacto.
-- [ ] Hero: badge, H1, subheadline, CTA primario/secundario, composición de producto (SPEC §5).
-- [ ] Animaciones de entrada: logo fade+translateY, headline stagger, subheadline +100ms, CTA +150ms, producto scale .96→1 (SPEC §6).
+- [x] Navbar sticky: transparente → `rgba(0,18,60,.88)` + `blur(18px)` + borde al hacer scroll (SPEC §4). — auditado §4.
+- [x] Scroll-spy con sección activa. — `data-spy` + `is-active`.
+- [x] Mobile: logo + hamburger + CTA compacto. — menú mobile + focus trap + CTA §4/§36.
+- [x] Hero: badge, H1, subheadline, CTA primario/secundario, composición de producto (SPEC §5). — hero §5.
+- [x] Animaciones de entrada: logo fade+translateY, headline stagger, subheadline +100ms, CTA +150ms, producto scale .96→1 (SPEC §6). — `data-stagger`/`data-reveal`, hero scale §6.
 
 ### F2 — Hero Slider
-- [ ] 4 slides con los copys exactos del SPEC §7.
-- [ ] Arrows, dots, swipe, autoplay 6s, pausa hover/focus, teclado.
-- [ ] Sin autoplay si `prefers-reduced-motion` (SPEC §7).
+- [x] 4 slides con los copys exactos del SPEC §7. — 4 slides verbatim.
+- [x] Arrows, dots, swipe, autoplay 6s, pausa hover/focus, teclado. — slider v2 (§39.2): + contador `01/04`, progreso eased, drift.
+- [x] Sin autoplay si `prefers-reduced-motion` (SPEC §7). — `reduceMotion` → sin autoplay.
 
 ### F3 — Narrativa de problema y solución
-- [ ] **El Problema**: H2 + 3 cards (dispersión, visibilidad, tiempo manual), hover icono→cian y card `translateY(-6px)` (SPEC §8).
-- [ ] **Solución**: texto izq. / dashboard der., badges: Tiempo real, Reportes, Clientes, Movimientos, Alertas (SPEC §9).
+- [x] **El Problema**: H2 + 3 cards (dispersión, visibilidad, tiempo manual), hover icono→cian y card `translateY(-6px)` (SPEC §8). — 3 cards + CardDetail (§39.6).
+- [x] **Solución**: texto izq. / dashboard der., badges: Tiempo real, Reportes, Clientes, Movimientos, Alertas (SPEC §9). — 5 badges + CardDetail (§39.6, `ee1b1f3`).
 
 ### F4 — Proceso y monitoreo
-- [ ] **Cómo funciona**: timeline horizontal desktop / vertical mobile, 5 pasos, línea que se ilumina con el scroll (SPEC §10).
-- [ ] **Monitoreo en tiempo real**: smartphone/dashboard + cards (Pago recibido, Nuevo recaudo, Cliente pendiente, Movimiento registrado, Alerta) + mini gráfico (SPEC §11).
+- [x] **Cómo funciona**: timeline horizontal desktop / vertical mobile, 5 pasos, línea que se ilumina con el scroll (SPEC §10). — `data-timeline` + `is-lit`.
+- [x] **Monitoreo en tiempo real**: smartphone/dashboard + cards (Pago recibido, Nuevo recaudo, Cliente pendiente, Movimiento registrado, Alerta) + mini gráfico (SPEC §11). — notifs staggered + chart stroke.
 
 ### F5 — Datos y credibilidad
-- [ ] **Ingresos y Egresos** + **Cuadre general**: etiqueta "CONTROL FINANCIERO" (SPEC §12).
-- [ ] **Dashboard/Reportes**: tabs Resumen/Movimientos/Clientes/Reportes; cifras **demostrativas** (SPEC §13).
-- [ ] **Beneficios**: grid 3x2, glass + borde + hover glow, sin sombras pesadas (SPEC §14).
-- [ ] **Seguridad**: sección dark `#00123C`, sin afirmaciones no confirmadas (SPEC §15).
+- [x] **Ingresos y Egresos** + **Cuadre general**: etiqueta "CONTROL FINANCIERO" (SPEC §12). — `#financiero` + tag "Control financiero".
+- [x] **Dashboard/Reportes**: tabs Resumen/Movimientos/Clientes/Reportes; cifras **demostrativas** (SPEC §13). — tabs accessibles + cifras marcadas.
+- [x] **Beneficios**: grid 3x2, glass + borde + hover glow, sin sombras pesadas (SPEC §14). — 6 cards + CardDetail.
+- [x] **Seguridad**: sección dark `#00123C`, sin afirmaciones no confirmadas (SPEC §15). — shield + copys §15.
 
 ### F6 — Showcase, CTA y Footer
-- [ ] **Product Experience**: carousel horizontal, 3 visibles desktop / 2 tablet / 1 mobile, cards parcialmente visibles (SPEC §16).
-- [ ] **CTA principal**: gradiente navy→blue, prismas flotantes, glow sutil (SPEC §17).
-- [ ] **Footer**: columnas y links del SPEC §18; sin URLs inventadas (SPEC §18).
+- [x] **Product Experience**: carousel horizontal, 3 visibles desktop / 2 tablet / 1 mobile, cards parcialmente visibles (SPEC §16). — showcase + flechas/teclado/`aria-current`.
+- [x] **CTA principal**: gradiente navy→blue, prismas flotantes, glow sutil (SPEC §17). — `#demo` + form WhatsApp (§39.1).
+- [x] **Footer**: columnas y links del SPEC §18; sin URLs inventadas (SPEC §18). — 4 columnas + legales reales + contacto real (§39.8).
 
 ### F7 — Cierre
-- [ ] Motion global: scroll reveals, parallax de prismas/glows, charts animate stroke (SPEC §19).
-- [ ] Microinteracciones (SPEC §22).
-- [ ] Responsive completo 320 / 768 / 1200 / 1440 (SPEC §20).
-- [ ] Accesibilidad WCAG 2.2 AA (SPEC §23).
-- [ ] Performance y SEO (SPEC §24, §25).
-- [ ] Auditoría final (sección 6 de este documento).
+- [x] Motion global: scroll reveals, parallax de prismas/glows, charts animate stroke (SPEC §19). — reveals/parallax/charts + easing (§39.4).
+- [x] Microinteracciones (SPEC §22). — subrayado footer + hover cards + shimmer CTA.
+- [x] Responsive completo 320 / 768 / 1200 / 1440 (SPEC §20). — mobile first; **queda §20 visual** (§12 checklist).
+- [x] Accesibilidad WCAG 2.2 AA (SPEC §23). — checklist 6.3 + contraste AA 17/17; validación visual humana pendiente.
+- [x] Performance y SEO (SPEC §24, §25). — WebP/responsive/preload + SEO 7/7 (§6.4).
+- [x] Auditoría final (sección 6 de este documento). — pasadas 1–16 + producción GO-LIVE; resta §12 visual humano.
 
 ---
 
@@ -174,20 +176,22 @@ La landing debe responder en menos de 5 segundos: **"Esto es Prisma$ y me permit
 
 Para cada sección verificar: **copy exacto del spec · asset correcto · layout desktop/mobile · estados hover/focus · tokens de color/espaciado · comportamiento con reduced-motion · jerarquía Hn.**
 
-- [ ] Navbar
-- [ ] Hero
-- [ ] Hero Slider
-- [ ] El Problema
-- [ ] Solución
-- [ ] Cómo Funciona
-- [ ] Monitoreo en tiempo real
-- [ ] Ingresos y Egresos
-- [ ] Dashboard / Reportes
-- [ ] Beneficios
-- [ ] Seguridad
-- [ ] Product Experience
-- [ ] CTA principal
-- [ ] Footer
+- [x] Navbar
+- [x] Hero
+- [x] Hero Slider
+- [x] El Problema
+- [x] Solución
+- [x] Cómo Funciona
+- [x] Monitoreo en tiempo real
+- [x] Ingresos y Egresos
+- [x] Dashboard / Reportes
+- [x] Beneficios
+- [x] Seguridad
+- [x] Product Experience
+- [x] CTA principal
+- [x] Footer
+
+> **Nota (2026-09-19):** las 14 secciones fueron verificadas en código en las pasadas 1–16 (copys, assets referenciados, tokens, reduced-motion, jerarquía Hn, focus). La confirmación **visual** de layout desktop/mobile y estética queda en §12 (checklist humana).
 
 ### 6.3 Checklist de accesibilidad (WCAG 2.2 AA)
 
@@ -636,4 +640,15 @@ Revisión de `DEUDA`/`EJECUCION`/`SPEC` contra el estado real del código:
 - [x] Commit `ee1b1f3` + push `main`/`V.1` + **deploy disparado**; producción verificada (pasada siguiente confirmará el CDN, mismo patrón A+B/C-D).
 - [ ] **Ruta de integridad §39.1**: el envío del form compone `wa.me/573183366064`; falta QA manual en móvil (validación §12, DUDE-11/02).
 - [ ] **Pendiente estructural (DUDE-04/§12.3)**: confirmar visualmente `security.webp`/`finance.webp`/`usecase.webp`; no automatizable.
+
+### Continuación 2026-09-19 — decimoséptima pasada (alineación del plan §4 + checklists)
+
+Revisión de `EJECUCION`/`DEUDA`/`SPEC` — plan v1.2 ya implementado de punta a punta (F1–F7), quedaba documental:
+
+- [x] **Plan por fases §4 alineado con la realidad**: las fases **F0–F7** aparecían todas `[ ]` pese a estar implementadas y auditadas (F0 stack; F1 estructura; F2 copys §35; F3 UI; F4 componentes; F5 motion/accesibilidad; F6 optimización; F7 deploy). Marcadas `[x]` con evidencia y anotaciones ("☐ visual" donde la validación humana sigue abierta en §12). Se registró que **Tailwind fue descartado** → stack vanilla CSS.
+- [x] **§6.1 matriz de aceptación (§37) revisada**: los 15 criterios tienen cumplimiento en código; los `☐ visual` (hero dominante, breakpoints responsive, suavidad de animaciones, confirmación no-repetición, coherencia global) quedan documentados como pendientes de ojos humanos (§12), no de implementación.
+- [x] **§6.2 auditoría por sección**: las 14 secciones estaban en `[ ]` → marcadas `[x]` con nota aclaratoria en el propio listado (verificadas en código en pasadas 1–16; la confirmación visual de layout queda en §12).
+- [x] **DUDE-04 re-evaluado**: no es posible automatizar la confirmación de `security.webp`/`finance.webp`/`usecase.webp` (validación visual humana); se mantiene pendiente y se dejó constancia explícita en §12.3.
+- [x] **Penalizaciones formales de bono auditadas**: sin cambios — slider pausable, motion ≤800 ms, reduced-motion, contraste AA, `data-card-detail` para los 14 detalles (duplicado de espec en §39.6 no aplica).
+- [ ] **Pendiente usuario (sin cambios)**: validación visual §12/§12.3 (incluye los 3 assets ⚠ de DUDE-04), handles sociales para `CONTACT.social[]`, contenido legal `[REEMPLAZAR]` (DUDE-01), QA manual WhatsApp en móvil (DUDE-11/02); analitics DUDE-09 opcional.
 

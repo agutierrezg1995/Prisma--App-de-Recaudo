@@ -33,8 +33,11 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `1300adc` | feat(contacto) | **Fase D — correo real activado** en `CONTACT`: `davidgrijalba8@gmail.com` (dato de `datos de contacto.md`, 2026-09-19). Empieza a renderizar el enlace mailto del footer. Redes `social[]` siguen vacías (sin handles reales). |
 | `1cb9c90` | deploy | REBUILD con correo real en `CONTACT`; verificado en producción (`davidgrijalba8@gmail.com` + `573183366064` en `js/main.js` 200). `main`=`V.1`=origin (0/0). |
 | `ee1b1f3` | feat(content) | **SPEC §39.6 completado**: CardDetail en **5 badges de Solución** (§9) que faltaban (el §39.6 pide Problema + Solución badges + Beneficios; la Fase B solo cubrió 9 cards). Además `aria-expanded` en `<summary>` y **Escape cierra** gestionado en JS para los **14** `data-card-detail` (9 cards + 5 chips), cumpliendo la aceptación del §39.6 (antes ningún `<details>` de card lo manejaba). CSS: `.chip__detail` con panel glass flotante (no rompe layout) + guardas de overflow ≤520 px. Verificado: `node --check` OK · CSS `{455}455` · refs 0 · H1 1 · ids 0 dup · iconos 20/20. |
+| `62222f9` | docs(trace) | Pasada 16 documentada (brecha §39.6, a11y 14 details, DUDE-09/§6.4 corregidos). |
+| `d6cef1c` | deploy | REBUILD → **producción al día con §39.6 completo** (5 chip__detail + 14 data-card-detail en JS). Verificado en vivo (patrón A+B/C-D confirmado). |
+| *sin commit* | docs(audit) | Pasada 17 (alineación documental): §4 F0–F7 `[ ]`→`[x]` con evidencia (+ nota: Tailwind descartado, stack vanilla CSS); §6.1 matriz 15 criterios verdes en código (los `☐ visual` → §12 humano); §6.2 14 secciones `[ ]`→`[x]` (verificado en código, visual en §12); DUDE-04 re-evaluado → no automatizable (validación visual humana). |
 
-**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción** (Fase C+D al día, 2026-09-19). WhatsApp y correo reales activos. Restan: **validación visual humana** (§12, §12.3, §37), handles de redes sociales (DUDE-18) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
+**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción** (Fase C+D + §39.6 al día, 2026-09-19). WhatsApp y correo reales activos; plan §4 (F0–F7) reflejado como implementado. Restan: **validación visual humana** (§12, §12.3 incl. DUDE-04 assets, §37), handles de redes sociales (DUDE-18), decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics) y QA manual WhatsApp móvil (DUDE-11/02).
 
 ---
 
