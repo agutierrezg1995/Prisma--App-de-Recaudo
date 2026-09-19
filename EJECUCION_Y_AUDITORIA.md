@@ -328,7 +328,7 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 - [ ] **Validación visual del contenido de los assets**: el mapeo se hizo por nombre de archivo; falta confirmar visualmente que cada imagen encaja en su sección.
 - [x] **CTA "Solicitar demo"**: decisión (2026-09-18): mantener ancla a `#demo` por el momento (sin form/URLs inventadas). Abierto a futuro: form/WhatsApp cuando exista dato real de contacto.
 - [x] **Dominio/canonical**: DUDE-03 cerrado (2026-09-19). La URL del repo es el target de GH Pages; canonical/OG/sitemap ya la usan. Sin cambios de código.
-- [ ] **Deploy**: habilitar GitHub Pages (Settings → Pages → Deploy from a branch → `main` → `/ (root)`). El sitio responde 404 hasta activarse (2026-09-19).
+- [x] **Deploy**: activado y **verificado en producción** (2026-09-19, octava pasada): https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/ responde 200; 404 custom, robots.txt, sitemap.xml y legales OK.
 
 ## 11. Próximo paso
 
@@ -433,7 +433,7 @@ Comportamiento esperado conocido:
 **Roadmap futuro multipágina (sin fecha):**
 - Blog/product updates (requiere contenido real del cliente).
 - Docs de ayuda ("Cómo funciona" extendido).
-- Solo cuando el usuario active el deploy (GitHub Pages omitido por ahora).
+- Solo cuando el usuario active el deploy (GitHub Pages omitido por ahora) → **operativo desde 2026-09-19** (octava pasada); el roadmap queda abierto a contenido real del cliente.
 
 ---
 
@@ -457,6 +457,8 @@ Comportamiento esperado conocido:
 | `76347a4` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `707253e` | main | docs(audit): QA estático global + contraste AA 17/17 — sin cambios de código. |
 | `707253e` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `c0229b3` | main | deploy: trigger GH Pages rebuild (commit vacío solicitado). |
+| `c0229b3` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
@@ -522,4 +524,13 @@ Hallazgos que pasaron la primera auditoría y se corrigieron en esta pasada:
 1. Checklist §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
 2. §12.3 assets ⚠: `security.webp`, `finance.webp`, `usecase.webp`.
 3. §37 criterios de percepción: 1, 4, 6, 7, 14, 15.
+
+### Continuación 2026-09-19 — octava pasada (GO-LIVE producción)
+
+- [x] **GitHub Pages activado por el usuario** (Settings → Pages → Deploy from a branch → `main` → `/ (root)`). Con el push `c0229b3` (trigger) el sitio quedó publicado.
+- [x] **Verificación de producción (crawl completo)**: 86 objetivos internos (refs relativas de las 3 páginas) → **0 issues**; assets CSS/JS/logo/og-image 200; `robots.txt`/`sitemap.xml` 200; `404.html` custom sirve en URLs inexistentes; legales 200.
+- [x] **Metas vivas validadas**: `<title>` "Prisma$ | Control de Recaudo", `canonical` = URL de Pages, `og:locale` `es_ES`, og-image 1200×630 sirviéndose.
+- [x] **Ramas**: `main` = `V.1` = `origin/main` (`c0229b3`, 0/0). Deploy desde `main`.
+
+**Resultado:** milestone v1 en producción. Resta exclusivamente **validación visual humana** (§12, §12.3, §37 percepción) y las decisiones de negocio DUDE-01/02/09.
 

@@ -1,6 +1,6 @@
 # Novedades y deuda técnica — Prisma$ Landing Page
 
-Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.0.1:5500/`
+Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.0.1:5500/` · **Producción: https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/** (GO-LIVE)
 
 > Documento de acompañamiento de `EJECUCION_Y_AUDITORIA.md`. Registra lo entregado en la sesión y las
 > **desviaciones detectadas que generan deuda técnica** (cosas diferidas, pendientes de decisión o de validación
@@ -21,9 +21,10 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | *en curso* | feat(404-seo) | `404.html` de marca (design system, `noindex`), limpieza de 10 assets WebP sin referencias, cierre DUDE-06 (patrón de CTA), integridad de refs 0 errores en 4 docs. |
 | *en curso* | style(a11y) | `bg-decor` añadido a las 2 páginas legales (consistencia §1/§31 con index/404); verify 200 local. |
 | *auditoría* | audit(qa) | Sin cambios: QA estático global (ids, H1, alt, nombres accesibles), contratos JS↔HTML (23 tokens) y JS↔CSS (7 estados), contraste AA 17/17 ≥4.5:1. |
+| `c0229b3` | deploy | **GO-LIVE**: GitHub Pages activado por el usuario; rebuild disparado con commit vacío; producción verificada: 200, crawl 86/86 objetivos OK, canonical/title/og-image/robots/sitemap/404/legales servidos. `main`=`V.1`=`origin/main` (0/0). |
 
-**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto y commiteado. Solo resta la
-**validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción).
+**Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Solo resta la
+**validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción) y las decisiones de negocio DUDE-01/02/09.
 
 ---
 
@@ -45,7 +46,7 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Estado:** ~~provisional~~ → **confirmada como URL final de despliegue**: `https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/…` (repo `agutierrezg1995/Prisma--App-de-Recaudo`, default branch `main`, misma URL en canonical/OG/sitemap). Sin cambios de código al publicar.
 - **Impacto:** nulo en el target actual.
 - **Plan:** solo si más adelante se usa un dominio personalizado, reemplazar la URL base en los 3 documentos (index + 2 legales) y el sitemap.
-- **Nota:** verificación del deploy el 2026-09-19 → el sitio respondía **404** (Pages aún sin activar por el usuario; no problema de código).
+- **Nota:** verificación del deploy el 2026-09-19 → responde **404** hasta que el usuario activó Pages; desde la **octava pasada** el sitio está **GO-LIVE**: `https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/` 200 + crawl 86/86.
 
 ### DUDE-04 · Asignación de 3 assets fuera del encaje §29 — MEDIA (pendiente visual)
 - **Estado:** `security.webp` (slider 01), `finance.webp` (Ingresos/Egresos), `usecase.webp` (Showcase Clientes).
@@ -88,7 +89,7 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 ## 3. Decisiones registradas (para no reinterpretar dos veces)
 
 1. CTA sin formulario → ancla `#demo` (2026-09-18).
-2. GitHub Pages **omitido** por ahora (2026-09-18); canonical/OG provisionales apuntan al repo.
+2. GitHub Pages **omitido** por ahora (2026-09-18); canonical/OG provisionales apuntan al repo → **GO-LIVE 2026-09-19** (octava pasada).
 3. Slider con `object-fit: contain` (no recortar arte) (2026-09-19).
 4. Contenido legal como plantilla explícita, nunca como versión final (2026-09-19).
 5. Estructura multipágina sin build tooling; rutas relativas (2026-09-19).
