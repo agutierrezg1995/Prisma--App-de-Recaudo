@@ -327,8 +327,8 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 - [x] **Encuadre de imágenes**: los contenedores ahora respetan el `aspect-ratio` nativo de cada asset (sin recortes); marcos de slider y showcase usan `object-fit: contain` para piezas vehiculares.
 - [ ] **Validación visual del contenido de los assets**: el mapeo se hizo por nombre de archivo; falta confirmar visualmente que cada imagen encaja en su sección.
 - [x] **CTA "Solicitar demo"**: decisión (2026-09-18): mantener ancla a `#demo` por el momento (sin form/URLs inventadas). Abierto a futuro: form/WhatsApp cuando exista dato real de contacto.
-- [ ] **Dominio/canonical**: canonical y OG apuntan a la URL de GitHub Pages; ajustar al dominio final.
-- [ ] **Deploy**: habilitar GitHub Pages (rama `main`) para publicación.
+- [x] **Dominio/canonical**: DUDE-03 cerrado (2026-09-19). La URL del repo es el target de GH Pages; canonical/OG/sitemap ya la usan. Sin cambios de código.
+- [ ] **Deploy**: habilitar GitHub Pages (Settings → Pages → Deploy from a branch → `main` → `/ (root)`). El sitio responde 404 hasta activarse (2026-09-19).
 
 ## 11. Próximo paso
 
@@ -447,6 +447,18 @@ Comportamiento esperado conocido:
 | `74db568` | main | docs(audit): matriz §37 mapeada a evidencia (12/15 cerradas). |
 | `1f3f23a` | main | fix(a11y-css-seo): tokens inexistentes en `.legal`, skip-link legal, clearance navbar, robots.txt + sitemap (DUDE-09). |
 | `1f3f23a` (ff) | V.1 | DUDE-07: fast-forward de `V.1` a `main`; ramas idénticas. |
+
+### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
+
+- [x] **Push publicado**: `main` y `V.1` → `origin` (`b1f54f5`).
+- [x] **Deploy verificado**: GH Pages aún **404** (2026-09-19) → pendiente de activar por el usuario (Settings → Pages → Deploy from a branch → `main` → `/ (root)`). El repo remoto confirma default branch `main` y URL esperada = canonical actual → DUDE-03 cerrado.
+- [x] **Twitter Cards en páginas legales** (SPEC §25): `twitter:title/description/image` añadidos a `politica-de-privacidad.html` y `terminos.html` (ya tenían `og:locale`/`og:site_name`).
+- [x] **aria-label del brand con marca**: `Prisma$, inicio` en las 3 páginas (nombre accesible del logo, previo: "Prisma Control de Recaudo").
+
+**Queda para validación visual humana (no automatizable):**
+1. §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
+2. §12.3 assets ⚠: `security.webp`, `finance.webp`, `usecase.webp`.
+3. §37 criterios de percepción: 1, 4, 6, 7, 14, 15.
 
 ### Continuación 2026-09-19 — segunda pasada (ejecución efectuada)
 

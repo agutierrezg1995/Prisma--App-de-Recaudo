@@ -38,11 +38,11 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** el único funnel de conversión no captura datos.
 - **Plan:** definir canal (formulario/WhatsApp/email) como siguiente feature; requiere decisión del negocio.
 
-### DUDE-03 · Canonical/OG con URL provisional del repo GH — ALTA (solo al desplegar)
-- **Estado:** `index.html` y páginas legales usan `https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/…`.
-- **Impacto:** si se despliega en otro dominio, canonical/OG quedan apuntando al repo.
-- **Plan:** al activar deploy (omitido por decisión 2026-09-18) reemplazar en los 3 documentos.
-- **Nota:** las rutas internas son relativas (`pages/…`, `../…`) y funcionan en cualquier subpath.
+### DUDE-03 · Canonical/OG con URL provisional del repo GH — CERRADA (2026-09-19)
+- **Estado:** ~~provisional~~ → **confirmada como URL final de despliegue**: `https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/…` (repo `agutierrezg1995/Prisma--App-de-Recaudo`, default branch `main`, misma URL en canonical/OG/sitemap). Sin cambios de código al publicar.
+- **Impacto:** nulo en el target actual.
+- **Plan:** solo si más adelante se usa un dominio personalizado, reemplazar la URL base en los 3 documentos (index + 2 legales) y el sitemap.
+- **Nota:** verificación del deploy el 2026-09-19 → el sitio respondía **404** (Pages aún sin activar por el usuario; no problema de código).
 
 ### DUDE-04 · Asignación de 3 assets fuera del encaje §29 — MEDIA (pendiente visual)
 - **Estado:** `security.webp` (slider 01), `finance.webp` (Ingresos/Egresos), `usecase.webp` (Showcase Clientes).
