@@ -463,6 +463,8 @@ Comportamiento esperado conocido:
 | `22866fd` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `fd179df` | main | docs(audit): novena pasada (contratos íconos + assets/SEO en prod). |
 | `fd179df` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `53c053c` | main | docs(spec): retos de calidad UX → SPEC §39 + DUDE-11..19 + plan v1.2 (fases A–D). |
+| `53c053c` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
