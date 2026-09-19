@@ -24,6 +24,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `c0229b3` | deploy | **GO-LIVE**: GitHub Pages activado por el usuario; rebuild disparado con commit vacío; producción verificada: 200, crawl 86/86 objetivos OK, canonical/title/og-image/robots/sitemap/404/legales servidos. `main`=`V.1`=`origin/main` (0/0). |
 | *en curso* | audit(contracts) | Novena pasada, sin cambios: contrato iconos 19/19, variantes `-800w` y favicons 200 en prod, `<head>` 4 docs OK, robots→sitemap→3 `<loc>` en vivo. |
 | *en curso* | docs(ux-retos) | Adopción de los 9 retos del titular: SPEC §39 adicional (A1..A9) + DUDE-11..19 en deuda, fases A→D; análisis con evidencia (CTAs→`#demo`, paneles 19/13 refs). |
+| *esta pasada* | feat(demo-form) | **Fase A v1.2**: formulario WhatsApp (`#demo` + `pages/solicitar-demo.html`), todos los CTA demo→página real, footer Contacto→página, sitemap 4ª URL, verificado 0 errores / 200×5 local. Pendiente: `WA_NUMBER` `[REEMPLAZAR]`. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción) y las decisiones de negocio DUDE-01/02/09.
@@ -39,10 +40,10 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** no debe publicarse como política/condiciones definitivas.
 - **Plan:** el titular del servicio completa y valida con asesor legal; luego se eliminan las notas.
 
-### DUDE-02 · CTA `#demo` sin mecanismo de captura de lead — MEDIA → EN IMPLEMENTACIÓN (SPEC §39.1, DUDE-11)
-- **Estado:** los CTA anclan a `#demo`; aún no hay formulario.
-- **Impacto:** el único funnel de conversión no captura datos.
-- **Plan:** sustituido por DUDE-11 (formulario de demo vía WhatsApp estático). El negocio define canal definitivo.
+### DUDE-02 · CTA `#demo` sin mecanismo de captura de lead — CERRADA (2026-09-19)
+- **Estado:** resuelta con la Fase A (v1.2): existe formulario de demo (SPEC §39.1) y los CTA primarios llevan a la página real `pages/solicitar-demo.html` (§39.9).
+- **Impacto:** el funnel de conversión ahora captura intención (composición WhatsApp).
+- **Plan:** sustituir `WA_NUMBER` `[REEMPLAZAR]` por el número del titular antes de lanzar a clientes.
 
 ### DUDE-03 · Canonical/OG con URL provisional del repo GH — CERRADA (2026-09-19)
 - **Estado:** ~~provisional~~ → **confirmada como URL final de despliegue**: `https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/…` (repo `agutierrezg1995/Prisma--App-de-Recaudo`, default branch `main`, misma URL en canonical/OG/sitemap). Sin cambios de código al publicar.
@@ -89,16 +90,16 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 ### Bloque C · Retos de calidad UX (SPEC §39 adicional, 2026-09-19)
 > Los 9 retos del titular se documentan en `SPEC.md` §39.1–§39.9 con criterios de aceptación y guardas §19/§23/§27/§35. Cada uno baja a deuda con su plan:
 
-### DUDE-11 · Formulario de solicitud de demo — MEDIA (SPEC §39.1)
-- **Estado:** sin empezar; `#demo` es una sección vacía sin captura.
-- **Impacto:** conversión cero → "botón muerto" (percepción del titular).
-- **Plan:** formulario estático cuyo envío compone mensaje de WhatsApp (wa.me, texto prellenado); número `[REEMPLAZAR]` del negocio; sin backend; campos con estado claro (§23).
+### DUDE-11 · Formulario de solicitud de demo — CERRADA (2026-09-19, parcial)
+- **Estado:** implementado en `#demo` (index) y `pages/solicitar-demo.html` (SPEC §39.1/§39.9): campos nombre/negocio/sector/mensaje, validación nativa + `:user-invalid`, `role=status`, y envío que compone mensaje de WhatsApp (wa.me) en el dispositivo. `WA_NUMBER` queda en `[REEMPLAZAR]` (js/main.js) con mensaje honesto si aún no está configurado.
+- **Impacto:** conversión funcional; sin backend.
+- **Plan:** el negocio reemplaza `WA_NUMBER` por el número real (con código de país) y QA manual de la ruta WhatsApp en móvil.
 
 ### DUDE-12 · Hero Slider v2 (profesionalización) — MEDIA (SPEC §39.2)
 - **Plan:** crossfade direccional + escala sutil (1→1.03), contador visible, progreso con rebote, temporizador que reinicia tras navegación manual, sin autoplay con reduced-motion. Copys §7 intactos.
 
-### DUDE-13 · CTA end-to-end (respuesta visible) — MEDIA (SPEC §39.3)
-- **Plan:** auditoría de los 7 botones: cada destino debe cerrar la promesa de su etiqueta; cero `href="#"`; estados hover/focus/active consistentes. Estrategia: el primario va al formulario (DUDE-11/DUDE-19).
+### DUDE-13 · CTA end-to-end (respuesta visible) — CERRADA (2026-09-19)
+- **Plan:** todos los "Solicitar demo" (nav desktop/mobile, hero, sección CTA, sticky, 404, legales) apuntan a `pages/solicitar-demo.html`; secundarios a anclas con sección que responde; cero `href="#"`. Sin formulario no había cierre → resuelto con DUDE-11/19.
 
 ### DUDE-14 · Motion "profesional que enganche" — MEDIA (SPEC §39.4)
 - **Plan:** coreografía de entrada por sección, stagger, contadores con easing, shimmer en CTA, elevación en hover; todo ≤800 ms, transform/opacity, reducido si `prefers-reduced-motion`. Guardas §19: nada de casino/hijack.
@@ -117,8 +118,8 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 ### DUDE-18 · Footer contactos + WhatsApp fab + redes — MEDIA (SPEC §39.8, bloqueado por datos)
 - **Plan:** estructura e iconos HOY; número y handles como `[REEMPLAZAR]`; fab con `aria-label`. Publicar solo cuando el negocio entregue datos (política del DUDE-01).
 
-### DUDE-19 · Página/solicitar-demo real — MEDIA (SPEC §39.9)
-- **Plan:** `pages/solicitar-demo.html` con el formulario (DUDE-11), marca, nav, footer, canonical y `skip-link`; CTA primarios apuntan a ella en lugar de solo ancla. Sin paginación por diseño (one-page + soporte).
+### DUDE-19 · Página/solicitar-demo real — CERRADA (2026-09-19)
+- **Plan:** `pages/solicitar-demo.html` creada con form (DUDE-11), marca, nav, footer, canonical/OG/Twitter, breadcrumb, skip-link, `<noscript>` honorable y sitemap con 4ª URL (priority 0.9). CTA primarios apuntan a ella. Sin paginación por diseño (one-page + páginas de soporte).
 
 ---
 

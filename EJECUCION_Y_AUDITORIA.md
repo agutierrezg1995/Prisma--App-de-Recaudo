@@ -572,3 +572,11 @@ Documentado: `SPEC.md` §39.1–§39.9 · `DEUDA` DUDE-11..19 + decisiones 6-8 �
 
 Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes), §35 (cero datos inventados), §23 (todo accesible), §24 (performance ≤800 ms / GPU).
 
+### Continuación 2026-09-19 — undécima pasada (FASE A v1.2 implementada)
+
+- [x] **§39.1 Formulario de demo (WhatsApp estático)**: sección `#demo` del index + página dedicada. Campos nombre (required), negocio, tipo de operación (select), necesidad; validación nativa + `:user-invalid` (danger), `role=status`/`aria-live`, `color-scheme: dark` en el select, placeholder honesto. El envío compone el mensaje y abre `wa.me/<WA_NUMBER>` con `noopener`. `WA_NUMBER` = `[REEMPLAZAR]` (pendiente del negocio); sin número configurado se muestra un aviso honesto al usuario (no se inventa contacto).
+- [x] **§39.3 CTA end-to-end**: los 7 CTA "Solicitar demo/una demo" (nav desktop/mobile, hero, sección CTA, sticky, 404, legales) → `pages/solicitar-demo.html`; secundarios → #solucion / #como-funciona; cero `href="#"`. Footer "Contacto" → página real en las 5 páginas.
+- [x] **§39.9 Destino real**: `pages/solicitar-demo.html` con marca/nav/footer/menú (guide intact), skip-link, breadcrumb, canonical/OG/Twitter, `<noscript>` y layout `.section--legal`. Sitemap → 4 URLs (nueva priority 0.9).
+- [x] **Verificación**: `node --check` OK · integridad de refs/anclas/H1/ids duplicados 0 errores en 5 docs · smoke local 5/5 → 200.
+- [ ] **Pendiente usuario**: reemplazar `WA_NUMBER` `[REEMPLAZAR]` y validación visual §12 de la nueva sección/página.
+

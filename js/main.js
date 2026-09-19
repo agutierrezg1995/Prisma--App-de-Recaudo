@@ -415,4 +415,36 @@
     window.addEventListener("scroll", updateTimeline, { passive: true });
     window.addEventListener("resize", updateTimeline);
   }
+
+  /* ---------- DEMO FORM (SPEC 39.1: compone mensaje de WhatsApp) ---------- */
+  var WA_NUMBER = "[REEMPLAZAR]"; /* TODO negocio: número del titular con código de país y sin "+" ni espacios (ej. 573001234567) */
+
+  document.querySelectorAll("[data-demo-form]").forEach(function (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (typeof form.checkValidity !== "function" || form.checkValidity()) {
+        var data = {};
+        Array.prototype.forEach.call(form.elements, function (el) {
+          if (el.name && !el.disabled && el.type !== "submit") data[el.name] = el.value.trim();
+        });
+        var lines = [
+          "Hola, me interesa una demo de Prisma$.",
+          "Nombre: " + (data.nombre || "-"),
+          "Negocio: " + (data.empresa || "-"),
+          "Tipo de operación: " + (data.sector || "-")
+        ];
+        if (data.mensaje) lines.push("Necesidad: " + data.mensaje);
+        var url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
+        var status = form.querySelector("[data-demo-status]");
+        if (status) status.textContent = "Abriendo WhatsApp con tu solicitud…";
+        if (WA_NUMBER.indexOf("REEMPLAZAR") === -1) {
+          window.open(url, "_blank", "noopener");
+        } else if (status) {
+          status.textContent = "Aún configuramos nuestro WhatsApp. Puedes volver a intentarlo en unos días o escribir por otro medio.";
+        }
+      } else {
+        form.reportValidity();
+      }
+    });
+  });
 })();

@@ -110,12 +110,12 @@
           <li><a class="navbar__link" href="#como-funciona" data-spy>Cómo funciona</a></li>
           <li><a class="navbar__link" href="#seguridad" data-spy>Seguridad</a></li>
           <li><a class="navbar__link" href="#preguntas" data-spy>Preguntas</a></li>
-          <li class="navbar__mobile-cta"><a class="btn btn--primary" href="#demo">Solicitar demo</a></li>
+          <li class="navbar__mobile-cta"><a class="btn btn--primary" href="pages/solicitar-demo.html">Solicitar demo</a></li>
         </ul>
       </nav>
 
       <div class="navbar__actions">
-        <a class="btn btn--primary btn--sm navbar__cta" href="#demo">Solicitar demo</a>
+        <a class="btn btn--primary btn--sm navbar__cta" href="pages/solicitar-demo.html">Solicitar demo</a>
         <button class="navbar__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" data-menu-toggle>
           <span></span><span></span><span></span>
         </button>
@@ -137,7 +137,7 @@
             Centraliza tus cobros, movimientos, clientes y reportes en una sola plataforma.
           </p>
           <div class="hero__actions reveal" data-reveal data-delay="150">
-            <a class="btn btn--primary btn--lg" href="#demo">Solicitar una demo</a>
+            <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html">Solicitar una demo</a>
             <a class="btn btn--secondary btn--lg" href="#solucion">Conocer la plataforma</a>
           </div>
           <ul class="hero__meta reveal" data-reveal data-delay="220">
@@ -610,9 +610,43 @@
         <h2 class="cta__title">Lleva tu recaudo<br />al siguiente nivel.</h2>
         <p class="cta__text">Conoce Prisma$ y descubre una forma más clara de controlar tu operación.</p>
         <div class="cta__actions">
-          <a class="btn btn--primary btn--lg" href="#demo">Solicitar una demo</a>
+          <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html">Solicitar una demo</a>
           <a class="btn btn--secondary btn--lg" href="#solucion">Conocer más</a>
         </div>
+
+        <form class="demo-form" data-demo-form novalidate>
+          <h3 class="demo-form__title">Solicita una demo</h3>
+          <p class="demo-form__lead">Cuéntanos sobre tu operación y coordinamos una demostración sin compromiso.</p>
+          <div class="demo-form__grid">
+            <div class="form__field">
+              <label class="form__label" for="demo-nombre">Nombre</label>
+              <input class="form__input" id="demo-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Tu nombre" />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-empresa">Negocio o empresa</label>
+              <input class="form__input" id="demo-empresa" name="empresa" type="text" autocomplete="organization" maxlength="80" placeholder="Tu negocio" />
+            </div>
+            <div class="form__field form__field--full">
+              <label class="form__label" for="demo-sector">Tipo de operación</label>
+              <select class="form__select" id="demo-sector" name="sector">
+                <option value="Tienda o comercio">Tienda o comercio</option>
+                <option value="Restaurante o servicio">Restaurante o servicio</option>
+                <option value="Venta por catálogo">Venta por catálogo</option>
+                <option value="Empresa en crecimiento">Empresa en crecimiento</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="form__field form__field--full">
+              <label class="form__label" for="demo-mensaje">Tu necesidad (opcional)</label>
+              <textarea class="form__textarea" id="demo-mensaje" name="mensaje" maxlength="500" placeholder="Ej.: quiero controlar los abonos de mis clientes en varias rutas."></textarea>
+            </div>
+            <div class="form__actions form__field--full">
+              <button class="btn btn--primary btn--lg" type="submit">Solicitar una demo</button>
+              <p class="form__hint">Al enviar se abrirá WhatsApp con tu solicitud lista para enviar.</p>
+            </div>
+            <p class="form__status form__field--full" role="status" aria-live="polite" data-demo-status></p>
+          </div>
+        </form>
       </div>
     </section>
 
@@ -686,7 +720,7 @@
         <div class="footer__col">
           <h3>Empresa</h3>
           <ul>
-            <li><a href="#demo">Contacto</a></li>
+            <li><a href="pages/solicitar-demo.html">Contacto</a></li>
             <li><a href="#inicio">Inicio</a></li>
           </ul>
         </div>
@@ -698,12 +732,12 @@
       <ul>
         <li><a href="pages/politica-de-privacidad.html">Política de privacidad</a></li>
         <li><a href="pages/terminos.html">Términos</a></li>
-        <li><a href="#demo">Contacto</a></li>
+        <li><a href="pages/solicitar-demo.html">Contacto</a></li>
       </ul>
     </div>
   </footer>
 
-  <a class="sticky-cta" href="#demo" data-sticky-cta>Solicitar demo</a>
+  <a class="sticky-cta" href="pages/solicitar-demo.html" data-sticky-cta>Solicitar demo</a>
 
   <script src="js/main.js" defer></script>
 </body>
