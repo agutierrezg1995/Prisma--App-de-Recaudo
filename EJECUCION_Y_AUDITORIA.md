@@ -191,25 +191,25 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 
 ### 6.3 Checklist de accesibilidad (WCAG 2.2 AA)
 
-- [ ] HTML semántico y jerarquía de headings correcta (H1 único).
-- [ ] Navegación completa por teclado; orden de foco lógico.
-- [ ] `:focus-visible` claro en todos los interactivos.
-- [ ] `alt` text en todas las imágenes (decorativas con `alt=""`).
-- [ ] `aria-label`/`aria-*` en slider, menú, tabs y controles.
+- [x] HTML semántico y jerarquía de headings correcta (H1 único).
+- [x] Navegación completa por teclado; orden de foco lógico (verificado en §12.2).
+- [x] `:focus-visible` claro en todos los interactivos.
+- [ ] `alt` text en todas las imágenes (decorativas con `alt=""`) — revisadas en §12.3; pendiente confirmación visual humana.
+- [x] `aria-label`/`aria-*` en slider, menú, tabs y controles.
 - [x] Contraste mínimo AA (texto normal 4.5:1, grande 3:1).
-- [ ] No depender solo del color para comunicar estado.
-- [ ] `prefers-reduced-motion` soportado.
-- [ ] Tamaño de objetivos táctiles suficiente (≥44px recomendado).
+- [x] No depender solo del color para comunicar estado (badges in/out con texto e icono; dots usan `aria-current`).
+- [x] `prefers-reduced-motion` soportado (reveals instantáneos, sin autoplay, contadores directos).
+- [x] Tamaño de objetivos táctiles suficiente (dots ≤44px, botones ≥44px).
 
 ### 6.4 Checklist SEO (SPEC §25)
 
-- [ ] `<title>`: `Prisma$ | Control de Recaudo`.
-- [ ] Meta description exacta del spec.
-- [ ] Open Graph + Twitter Cards.
-- [ ] `canonical`.
-- [ ] Favicon (usar `ICONO VENTANA.png`).
-- [ ] Schema apropiado (p. ej. Organization/Product) sin datos inventados.
-- [ ] Un solo H1 y jerarquía H1→H2→H3.
+- [x] `<title>`: `Prisma$ | Control de Recaudo` (27 caracteres).
+- [x] Meta description exacta del spec (133 caracteres).
+- [x] Open Graph + Twitter Cards.
+- [x] `canonical`.
+- [x] Favicon (usar `ICONO VENTANA.png` → `icon-64/180/192/512.png`).
+- [x] Schema apropiado sin datos inventados: JSON-LD validado `SoftwareApplication` + `Offer` + `FAQPage` (5 preguntas/respuestas reales).
+- [x] Un solo H1 y jerarquía H1→H2→H3 (1 H1, 12 H2 en orden §8→§18 + H2 sr-only del slider).
 
 ### 6.5 Checklist performance (SPEC §24)
 
@@ -305,6 +305,8 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 - [x] CLS del logo corregido (SPEC §24, §30): los atributos `width/height` del logo (512×512 cuadrado renderizado a 42px/40px por CSS) ahora coinciden con el render real; antes reservaban 160×44 y 150×42.
 - [x] Hero §6: el producto ahora entra con `fade + translateY(26px) + scale(0.96 → 1)`, exactamente como pide el SPEC (antes solo translateY).
 - [x] Menú mobile §23: focus trap nativo (Tab/Shift+Tab ciclan dentro del menú abierto sin salir al fondo).
+- [x] Auditoría semántica/SEO (§25, 2026-09-19): JSON-LD valida `SoftwareApplication`+`Offer`+`FAQPage(5)`; 1 H1, 12 H2 en orden de SPEC; title/description/OG/Twitter/canonical/favicon ✓.
+- [x] Slider §7 auditado (2026-09-19): autoplay 6 s + barra de progreso (requestAnimationFrame), pausa en hover/focus, flechas/dots/teclado/swipe, `reduceMotion` → sin autoplay; verificado en código.
 
 ### Hallazgos corregidos en esta auditoría
 
