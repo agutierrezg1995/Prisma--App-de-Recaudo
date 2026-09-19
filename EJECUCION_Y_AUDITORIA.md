@@ -434,3 +434,24 @@ Comportamiento esperado conocido:
 - Docs de ayuda ("Cómo funciona" extendido).
 - Solo cuando el usuario active el deploy (GitHub Pages omitido por ahora).
 
+---
+
+## 14. Trazabilidad de avance (historial de la sesión)
+
+| Commit | Rama | Descripción |
+| --- | --- | --- |
+| `431d5ff` | main | feat(perf-a11y): responsive images, focus trap, contraste AA, carousel polish (§24/§6/§23/§16). |
+| `7e730db` | main | docs(audit): cierre §6.3/§6.4 (semántica, SEO, slider §7). |
+| `bc5f6a8` | main | docs(audit): §26 componentes, §27 botones, §34 copys, §4 navbar, §36 sticky. |
+| `74db568` | main | docs(audit): matriz §37 mapeada a evidencia (12/15 cerradas). |
+| `e519a27` | main | feat(multipage): páginas legales con design system; footer real. |
+
+**Desviaciones con deuda técnica:** ver `DEUDA_TECNICA_Y_NOVEDADES.md` (10 ítems: DUDE-01..DUDE-10) con severidad, impacto y plan de cierre. Corte de deuda: 2026-09-19.
+
+**Estado de la rama `V.1`:** `main` quedó 5 commits adelante (`5 → 0`). Decidir fast-forward o eliminar la rama (DUDE-07).
+
+**Pendientes (solo validación visual humana):**
+1. Checklist §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
+2. §12.3 assets ⚠: `security.webp`, `finance.webp`, `usecase.webp`.
+3. §37 criterios de percepción: 1, 4, 6, 7, 14, 15.
+
