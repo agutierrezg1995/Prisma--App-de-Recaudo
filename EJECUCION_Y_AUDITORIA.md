@@ -196,7 +196,7 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 - [ ] `:focus-visible` claro en todos los interactivos.
 - [ ] `alt` text en todas las imágenes (decorativas con `alt=""`).
 - [ ] `aria-label`/`aria-*` en slider, menú, tabs y controles.
-- [ ] Contraste mínimo AA (texto normal 4.5:1, grande 3:1).
+- [x] Contraste mínimo AA (texto normal 4.5:1, grande 3:1).
 - [ ] No depender solo del color para comunicar estado.
 - [ ] `prefers-reduced-motion` soportado.
 - [ ] Tamaño de objetivos táctiles suficiente (≥44px recomendado).
@@ -213,28 +213,29 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 
 ### 6.5 Checklist performance (SPEC §24)
 
-- [ ] WebP/AVIF + responsive images.
-- [ ] `lazy loading` en imágenes fuera del hero.
-- [ ] Preload solo del hero.
-- [ ] Sin videos pesados.
-- [ ] Blur controlado (evitar múltiples simultáneos costosos).
-- [ ] Sin CLS (reservar dimensiones).
-- [ ] Primera pantalla rápida (LCP objetivo).
+- [x] WebP/AVIF + responsive images (`srcset`/`sizes` con variantes `-800w`).
+- [x] `lazy loading` en imágenes fuera del hero.
+- [x] Preload solo del hero (con `imagesrcset` para que mobile descargue la variante 800w).
+- [ ] Sin videos pesados (no hay videos en la página → N/A).
+- [x] Blur controlado (evitar múltiples simultáneos costosos).
+- [x] Sin CLS (reservar dimensiones).
+- [x] Primera pantalla rápida (LCP objetivo: hero ~45 KB en mobile vía variante 800w).
 
 ### 6.6 Auditoría de contenido (anti-datos ficticios, SPEC §35)
 
-- [ ] Sin testimonios, clientes, partners, certificaciones ni integraciones inventadas.
-- [ ] Cifras de mockups etiquetadas como **demostrativas**.
-- [ ] Sin afirmaciones de seguridad no respaldadas ("100% seguro", "impenetrable", "seguridad bancaria").
-- [ ] Sin URLs ni redes sociales inventadas en el footer.
+- [x] Sin testimonios, clientes, partners, certificaciones ni integraciones inventadas.
+- [x] Cifras de mockups etiquetadas como **demostrativas** (stats, movimientos, mini-gráfico, lead del dashboard).
+- [x] Sin afirmaciones de seguridad no respaldadas ("100% seguro", "impenetrable", "seguridad bancaria").
+- [x] Sin URLs ni redes sociales inventadas en el footer (solo anclas internas; canonical = repo GH).
 
 ### 6.7 Auditoría UX (mini-heurística)
 
-- [ ] Cada sección responde una sola pregunta (§1).
-- [ ] CTA visible sin hacer scroll excesivo en mobile.
-- [ ] Botón sticky "Solicitar demo" solo tras avanzar en la página (SPEC §36).
-- [ ] Sin scroll hijacking ni sobrecarga cognitiva.
-- [ ] Espacio negativo suficiente (SPEC §32).
+- [x] Cada sección responde una sola pregunta (§1) — narrativa documentada en §1.
+- [x] CTA visible sin hacer scroll excesivo en mobile (primario en el hero + sticky tras avanzar).
+- [x] Botón sticky "Solicitar demo" solo tras avanzar en la página (SPEC §36).
+- [x] Sin scroll hijacking ni sobrecarga cognitiva (sin manipulación de scroll, motion < 800ms).
+- [x] Espacio negativo suficiente (SPEC §32).
+- [ ] Inputs con estado visual claro: no hay formulario → N/A (decisión CTA `#demo`).
 
 ---
 
@@ -294,6 +295,16 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 - [x] Schema `FAQPage` (SPEC §25): preguntas reales de la sección FAQ.
 - [x] CTA compacto "Solicitar demo" dentro del menú mobile (SPEC §4, §36).
 - [x] Subrayado animado en links del footer (SPEC §22).
+- [x] Showcase (§16): flechas prev/next (ocultas en mobile), scroll por teclado ←/→ y `aria-roledescription="carrusel"` + `aria-current` en los dots del slider (§22, §23).
+- [x] Menú mobile devuelve el foco al toggle al cerrar con `Escape` (SPEC §23).
+- [x] Sticky CTA respeta `safe-area-inset-bottom` en dispositivos con notch (SPEC §36).
+- [x] Notificaciones de Monitoreo aparecen progresivamente (stagger) al entrar en viewport (SPEC §11, §19).
+- [x] Objetivo táctil de los dots del slider ≥44px vía padding con `background-clip: content-box` (SPEC §23).
+- [x] Contraste AA auditado por cálculo (2026-09-19): `ink-soft` 12.9:1, `ink-muted` 7.5:1, cian 10.6:1, `text-muted` 4.7:1. Se corrigió el CTA: `cta__text` al 88% (5.1:1 sobre la zona azul) y `.cta .eyebrow--light` a blanco translúcido 92% (el cian daba 3.63:1 sobre el degradado azul) (SPEC §23).
+- [x] Responsive images (SPEC §24): `scripts/optimize_images.py` genera variantes `-800.webp`; 14 `<img>` de contenido usan `srcset`/`sizes` y el preload del hero usa `imagesrcset` (mobile descarga ~45 KB en lugar de 105 KB).
+- [x] CLS del logo corregido (SPEC §24, §30): los atributos `width/height` del logo (512×512 cuadrado renderizado a 42px/40px por CSS) ahora coinciden con el render real; antes reservaban 160×44 y 150×42.
+- [x] Hero §6: el producto ahora entra con `fade + translateY(26px) + scale(0.96 → 1)`, exactamente como pide el SPEC (antes solo translateY).
+- [x] Menú mobile §23: focus trap nativo (Tab/Shift+Tab ciclan dentro del menú abierto sin salir al fondo).
 
 ### Hallazgos corregidos en esta auditoría
 
@@ -337,6 +348,56 @@ Revisar en **http://127.0.0.1:5500/** (desktop ≥1200 y mobile ≤767). Marcar 
 | CTA (#demo) | ☐ | ☐ | |
 | FAQ (details) | ☐ | ☐ | |
 | Footer | ☐ | ☐ | |
+
+### 12.1 Guía rápida por sección (qué revisar contra el SPEC)
+
+- **Navbar** (§4): logo Prisma$ íntegro (sin recorte/deformación), sticky, fondo transparente → `rgba(0,18,60,.88)` + blur al scroll, scroll-spy marca sección activa, CTA "Solicitar demo" destacado, hamburguesa abre/cierra con Escape, links con subrayado animado, focus visible.
+- **Hero** (§5–6): badge "CONTROL DE RECAUDO", H1 exacto en ≤3 líneas, subheadline y CTAs exactos (#demo / #solucion), composición con `hero.webp` sin pegarse como banner, 3 tarjetas flotantes (Pago recibido / + Tiempo real / Alerta), entrada animada suave, parallax de prismas/glows **sutil** (nada estilo PowerPoint).
+- **Slider** (§7): 4 slides con copys exactos, autoplay 6 s con barra de progreso, pausa en hover, pausa en focus, arrows, dots, teclado ←/→, swipe en mobile, sin autoplay con reduced-motion, **slide 01 = pieza que se lea como seguridad** (usar §12.3).
+- **Problema** (§8): H2 "Cuando el recaudo crece, también crece la complejidad.", 3 cards numeradas (01/02/03) con iconos lineales, hover → icono cian y card `translateY(-6px)`, sin estadísticas inventadas.
+- **Solución** (§9): H2 "Prisma$ pone el control en tus manos.", texto izq / dashboard der., 5 badges (Tiempo real, Reportes, Clientes, Movimientos, Alertas).
+- **Cómo funciona** (§10): H2 "Registrar tus cobros es muy fácil.", timeline horizontal desktop / vertical mobile, 5 pasos en orden exacto, línea que se ilumina al hacer scroll.
+- **Monitoreo** (§11): H2 "Monitorea cada movimiento en tiempo real.", notificaciones (Pago recibido, Nuevo recaudo, Cliente pendiente, Movimiento registrado, Alerta) **apareciendo una a una** al entrar en viewport, mini gráfico de crecimiento, hover en cada notificación.
+- **Ingresos y egresos** (§12): etiqueta "CONTROL FINANCIERO", H2 "Una visión más clara de tus movimientos.", interfaz con buen tamaño de viewport.
+- **Dashboard / Reportes** (§13): H2 "Convierte tus datos en información útil.", tabs Resumen/Movimientos/Clientes/Reportes funcionando (click + teclado), todas las cifras **etiquetadas como demostrativas**, contadores y gráfico animado.
+- **Beneficios** (§14): H2 "Todo bajo control.", grid 3×2 (6 cards), glass + borde + hover glow, sin sombras pesadas.
+- **Seguridad** (§15): sección dark `#00123C`, escudo, copys "Información protegida / Visualización clara / Seguimiento de movimientos", sin afirmaciones no respaldadas.
+- **Product experience** (§16): H2 "Todo lo que necesitas, desde una sola plataforma.", carousel con 5 cards (Monitoreo/Dashboard/Movimientos/Clientes/Reportes), 3 visibles desktop / 2 tablet / 1 mobile, siguiente card parcialmente visible, flechas prev/next (ocultas en mobile) y scroll con teclado ←/→.
+- **CTA** (§17): gradiente navy→blue, prismas flotantes, H2 "Lleva tu recaudo al siguiente nivel.", glow sutil, 2 CTAs (#demo / #solucion).
+- **FAQ**: 5 `details/summary` abriendo/cerrando bien.
+- **Footer** (§18): logo, 4 columnas, bottom con copyright (año dinámico) + Politica/Términos/Contacto, sin URLs inventadas.
+- **Sticky CTA mobile** (§36): aparece solo tras scroll > 700 y vista ≤ 767 px, no molesta.
+
+### 12.2 Controles interactivos a probar (una sola pasada)
+
+- Teclado completa: Tab recorre navbar → hero → slider → tabs → FAQ → footer con focus visible.
+- Slider: flechas, dots, ←/→ , autoplay se pausa al hacer hover/focus.
+- Tabs: click + flechas Home/End; `aria-selected` sincronizado.
+- Escapa del menú mobile con `Escape` y vuelve el foco al toggle.
+- `prefers-reduced-motion: reduce` → reveals visibles de inmediato, sin autoplay ni contadores animados.
+
+### 12.3 Mapeo real de assets vs SPEC §29 (auditado 2026-09-19)
+
+| Asset servido | Original | Usado en | Encaje §29 | Estado |
+| --- | --- | --- | --- | --- |
+| `hero.webp` | PRISMAS PUBLICIDAD 1 | Hero, CTA (§5, §17) | ✓ Hero | ✓ |
+| `dashboard.webp` | dashboard.JPG | Slider 03, Solución, Showcase (§7, §9, §13, §16) | ✓ | ✓ |
+| `process.webp` | REGISTRO COBROS ES MUY FACIL | Cómo funciona + Showcase "Reportes" (§10) | ✓ §10; §16 sin asignación (razonable) | ✓ |
+| `monitor.webp` | TIEMPO REAL | Slider 02, Monitoreo, Showcase (§7, §11, §16) | ✓ | ✓ |
+| `finance.webp` | TODA LA OPERACION EN UN SOLO LUGAR | Slider 04, Ingresos/Egresos, Showcase (§7, §12, §16) | ✓ §7/§16; §12 **verificar** que lea como "Ingresos y Egresos / Cuadre general" | ⚠ |
+| `security.webp` | CASO DE USO.jpg | Slider 01 (§7) | ⚠ §29 lo destina a Problema/Solución, no al slider | ⚠ |
+| `usecase.webp` | CASO DE USO 2.jpg | Showcase "Clientes" (§16) | ⚠ §29 lo destina a Solución, no al showcase | ⚠ |
+| `logo.webp` / `logo.png` | LOGO.png | Navbar, Footer, OG | ✓ | ✓ |
+| `icon-64/180/192/512.png` | ICONO VENTANA.png | Favicon / app icon | ✓ | ✓ |
+| `promo.webp` | PROMOCION SLIDER | — | Apoyo de slider §7 (opcional) | Reservado |
+| `compra.webp` | Compra Ahora.png | — | CTA/Hero §17 (opcional) | Reservado |
+| `playstore.webp` | PLAYSTORE.png | — | CTA app §36 (opcional) | Reservado |
+| `precios.webp` | PRECIOS.png | — | Sin sección de precios en spec (permitido NO usarlo) | Reservado |
+
+**⚠ Pendiente de confirmación visual** (cambiar asset de sección solo tras ver la pieza):
+1. `security.webp` (CASO DE USO.jpg) en el **slide 01**: ¿se lee como "pieza de seguridad"? Si no, reemplazar por `hero.webp` o una variante de escudo/seguridad.
+2. `finance.webp` en **Ingresos y Egresos** (§12): ¿muestra realmente "Ingresos/Egresos + Cuadre general"? Si muestra otra operación, evaluar swap con `dashboard.webp`.
+3. `usecase.webp` (CASO DE USO 2.jpg) en **Showcase "Clientes"**: ¿se lee como panel de clientes/seguimiento? Si encaja mejor en Solución (§9), reubicar.
 
 Comportamiento esperado conocido:
 - Slider y showcase usan `object-fit: contain`: piezas muy anchas (2.12) o casi cuadradas (1.09) pueden mostrar bandas laterales del fondo navy; es intencional para NO recortar arte con texto.

@@ -102,6 +102,10 @@ def main():
         p, size = to_webp(img, slug, cap)
         made.append((p, size, os.path.getsize(p)))
         print(f"{slug:10} {size[0]}x{size[1]:<6} -> {os.path.getsize(p)//1024} KB")
+        if slug != "logo" and size[0] > 820:
+            p2, size2 = to_webp(img, slug + "-800", 800)
+            made.append((p2, size2, os.path.getsize(p2)))
+            print(f"{slug + '-800':10} {size2[0]}x{size2[1]:<6} -> {os.path.getsize(p2)//1024} KB")
 
     logo = load("LOGO.png")
     solid_png(logo, "logo", 512)

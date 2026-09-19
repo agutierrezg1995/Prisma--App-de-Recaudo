@@ -60,19 +60,20 @@
   var menuToggle = document.querySelector("[data-menu-toggle]");
   var navMenu = document.getElementById("nav-menu");
 
-  function closeMenu() {
+  function closeMenu(restoreFocus) {
     if (!menuToggle || !navMenu) return;
     menuToggle.setAttribute("aria-expanded", "false");
     menuToggle.setAttribute("aria-label", "Abrir menú");
     navMenu.classList.remove("is-open");
     document.body.classList.remove("no-scroll");
+    if (restoreFocus) menuToggle.focus();
   }
 
   if (menuToggle && navMenu) {
     menuToggle.addEventListener("click", function () {
       var open = menuToggle.getAttribute("aria-expanded") === "true";
       if (open) {
-        closeMenu();
+        closeMenu(false);
       } else {
         menuToggle.setAttribute("aria-expanded", "true");
         menuToggle.setAttribute("aria-label", "Cerrar menú");
@@ -81,10 +82,24 @@
       }
     });
     navMenu.querySelectorAll("a").forEach(function (a) {
-      a.addEventListener("click", closeMenu);
+      a.addEventListener("click", function () { closeMenu(false); });
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMenu();
+      if (e.key === "Escape") closeMenu(true);
+    });
+    navMenu.addEventListener("keydown", function (e) {
+      if (e.key !== "Tab") return;
+      if (menuToggle.getAttribute("aria-expanded") !== "true") return;
+      var items = navMenu.querySelectorAll("a[href]");
+      if (!items.length) return;
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
   }
 
@@ -171,7 +186,6 @@
     slides.forEach(function (_, i) {
       var dot = document.createElement("button");
       dot.type = "button";
-      dot.setAttribute("role", "tab");
       dot.setAttribute("aria-label", "Ir al slide " + (i + 1));
       dot.addEventListener("click", function () { goTo(i); });
       dotsWrap.appendChild(dot);
@@ -186,7 +200,7 @@
       });
       dots.forEach(function (d, i) {
         d.classList.toggle("is-active", i === index);
-        d.setAttribute("aria-selected", i === index ? "true" : "false");
+        d.setAttribute("aria-current", i === index ? "true" : "false");
       });
     }
 
@@ -302,6 +316,49 @@
         if (next) { e.preventDefault(); next.focus(); activateTab(next); }
       });
     });
+  }
+
+  /* ---------- PRODUCT SHOWCASE (carousel) ---------- */
+  var showcase = document.querySelector("[data-showcase]");
+  if (showcase) {
+    var sTrack = showcase.querySelector("[data-showcase-track]");
+    var sPrev = showcase.querySelector("[data-showcase-prev]");
+    var sNext = showcase.querySelector("[data-showcase-next]");
+    var sRaf = null;
+
+    function sCardWidth() {
+      var card = sTrack.querySelector(".showcase__card");
+      if (!card) return 320;
+      var gap = parseFloat(window.getComputedStyle(sTrack).columnGap) || 24;
+      return card.getBoundingClientRect().width + gap;
+    }
+    function sStep(dir) {
+      if (!sTrack) return;
+      var max = sTrack.scrollWidth - sTrack.clientWidth;
+      if ((dir < 0 && sTrack.scrollLeft <= 1) || (dir > 0 && sTrack.scrollLeft >= max - 1)) return;
+      sTrack.scrollBy({ left: dir * sCardWidth(), behavior: reduceMotion ? "auto" : "smooth" });
+    }
+    function sUpdate() {
+      if (!sTrack) return;
+      var max = sTrack.scrollWidth - sTrack.clientWidth;
+      if (sPrev) sPrev.setAttribute("aria-disabled", sTrack.scrollLeft <= 1 ? "true" : "false");
+      if (sNext) sNext.setAttribute("aria-disabled", sTrack.scrollLeft >= max - 1 ? "true" : "false");
+    }
+    function sSchedule() {
+      if (sRaf) return;
+      sRaf = requestAnimationFrame(function () { sUpdate(); sRaf = null; });
+    }
+    if (sPrev) sPrev.addEventListener("click", function () { sStep(-1); });
+    if (sNext) sNext.addEventListener("click", function () { sStep(1); });
+    if (sTrack) {
+      sTrack.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") { e.preventDefault(); sStep(-1); }
+        if (e.key === "ArrowRight") { e.preventDefault(); sStep(1); }
+      });
+      sTrack.addEventListener("scroll", sSchedule, { passive: true });
+      window.addEventListener("resize", sSchedule);
+    }
+    sUpdate();
   }
 
   /* ---------- COUNTERS (demostrativos) ---------- */

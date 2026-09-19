@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <link rel="preload" as="image" href="assets/hero.webp" />
+  <link rel="preload" as="image" href="assets/hero.webp" imagesrcset="assets/hero-800.webp 800w, assets/hero.webp 1536w" imagesizes="(min-width: 1024px) 600px, 92vw" />
   <link rel="stylesheet" href="css/styles.css" />
   <script>document.documentElement.classList.add("js");</script>
 
@@ -97,7 +97,7 @@
   <header class="navbar" id="navbar" data-navbar>
     <div class="container navbar__inner">
       <a class="navbar__brand" href="#inicio" aria-label="Prisma Control de Recaudo, inicio">
-        <img src="assets/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="navbar__logo" width="160" height="44" />
+        <img src="assets/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="navbar__logo" width="42" height="42" />
       </a>
 
       <nav class="navbar__nav" id="nav-menu" aria-label="Navegación principal">
@@ -147,8 +147,7 @@
 
         <div class="hero__visual" data-reveal data-delay="120">
           <div class="hero__media">
-            <img src="assets/hero.webp"
-                 alt="Prisma$ mostrando el control de recaudo en un dashboard" class="hero__img" width="900" height="700" fetchpriority="high" />
+            <img src="assets/hero.webp" srcset="assets/hero-800.webp 800w, assets/hero.webp 1536w" sizes="(min-width: 1024px) 600px, 92vw" alt="Prisma$ mostrando el control de recaudo en un dashboard" class="hero__img" width="900" height="700" fetchpriority="high" />
             <span class="hero__media-overlay" aria-hidden="true"></span>
           </div>
 
@@ -192,7 +191,7 @@
                 <p class="slide__text">Controla cada movimiento y obtén una visión más clara de tu operación.</p>
               </div>
               <div class="slide__media">
-                <img src="assets/security.webp" alt="Pieza de seguridad de Prisma$" loading="lazy" width="900" height="560" />
+                <img src="assets/security.webp" srcset="assets/security-800.webp 800w, assets/security.webp 1494w" sizes="(min-width: 1024px) 640px, 92vw" alt="Pieza de seguridad de Prisma$" loading="lazy" width="900" height="560" />
               </div>
             </article>
 
@@ -203,7 +202,7 @@
                 <p class="slide__text">Consulta movimientos, pagos y estados desde cualquier lugar.</p>
               </div>
               <div class="slide__media">
-                <img src="assets/monitor.webp" alt="Pieza de monitoreo en tiempo real de Prisma$" loading="lazy" width="900" height="560" />
+                <img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1024px) 640px, 92vw" alt="Pieza de monitoreo en tiempo real de Prisma$" loading="lazy" width="900" height="560" />
               </div>
             </article>
 
@@ -214,7 +213,7 @@
                 <p class="slide__text">Transforma tus movimientos en información útil para tu operación.</p>
               </div>
               <div class="slide__media">
-                <img src="assets/dashboard.webp" alt="Dashboard y analítica de Prisma$" loading="lazy" width="900" height="560" />
+                <img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1024px) 640px, 92vw" alt="Dashboard y analítica de Prisma$" loading="lazy" width="900" height="560" />
               </div>
             </article>
 
@@ -225,7 +224,7 @@
                 <p class="slide__text">Registra, consulta y controla tus movimientos de forma sencilla.</p>
               </div>
               <div class="slide__media">
-                <img src="assets/finance.webp" alt="Ingresos y egresos de la operación de recaudo" loading="lazy" width="900" height="560" />
+                <img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1024px) 640px, 92vw" alt="Ingresos y egresos de la operación de recaudo" loading="lazy" width="900" height="560" />
               </div>
             </article>
           </div>
@@ -234,7 +233,7 @@
           <button class="slider__arrow slider__arrow--next" type="button" aria-label="Slide siguiente" data-slider-next></button>
 
           <div class="slider__footer">
-            <div class="slider__dots" role="tablist" aria-label="Seleccionar slide" data-slider-dots></div>
+            <div class="slider__dots" aria-label="Seleccionar slide" data-slider-dots></div>
             <div class="slider__progress" aria-hidden="true"><span data-slider-progress></span></div>
           </div>
         </div>
@@ -293,7 +292,7 @@
 
         <div class="solution__visual reveal" data-reveal data-delay="120">
           <figure class="device device--dashboard">
-            <img src="assets/dashboard.webp" alt="Panel de control de recaudo en Prisma$" loading="lazy" width="900" height="620" />
+            <img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1024px) 540px, 92vw" alt="Panel de control de recaudo en Prisma$" loading="lazy" width="900" height="620" />
           </figure>
           <span class="solution__glow" aria-hidden="true"></span>
         </div>
@@ -311,7 +310,7 @@
 
         <div class="process__visual reveal" data-reveal>
           <figure class="device device--wide">
-            <img src="assets/process.webp" alt="Registro de cobros en Prisma$" loading="lazy" width="1200" height="620" />
+            <img src="assets/process.webp" srcset="assets/process-800.webp 800w, assets/process.webp 1536w" sizes="(min-width: 1024px) 1160px, 92vw" alt="Registro de cobros en Prisma$" loading="lazy" width="1200" height="620" />
           </figure>
         </div>
 
@@ -384,7 +383,7 @@
 
         <div class="monitor__visual reveal" data-reveal data-delay="120">
           <figure class="device device--monitor">
-            <img src="assets/monitor.webp" alt="Aplicación Prisma$ monitoreando movimientos en tiempo real" loading="lazy" width="720" height="405" />
+            <img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1024px) 540px, 92vw" alt="Aplicación Prisma$ monitoreando movimientos en tiempo real" loading="lazy" width="720" height="405" />
           </figure>
           <div class="mini-chart" aria-hidden="true">
             <svg viewBox="0 0 240 80" preserveAspectRatio="none">
@@ -413,7 +412,7 @@
 
         <div class="finance__inner">
           <figure class="device device--hero reveal" data-reveal>
-            <img src="assets/finance.webp" alt="Vista de ingresos, egresos y cuadre general" loading="lazy" width="1200" height="720" />
+            <img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1024px) 1160px, 92vw" alt="Vista de ingresos, egresos y cuadre general" loading="lazy" width="1200" height="720" />
           </figure>
 
           <ul class="finance__features reveal" data-reveal data-delay="120">
@@ -570,29 +569,31 @@
         </header>
       </div>
 
-      <div class="showcase__carousel reveal" data-reveal>
-        <div class="showcase__track" data-showcase>
+      <div class="showcase__carousel reveal" data-reveal data-showcase aria-roledescription="carrusel" aria-label="Explora la plataforma">
+        <button class="showcase__arrow showcase__arrow--prev" type="button" aria-label="Anterior" aria-controls="showcase-track" data-showcase-prev></button>
+        <div class="showcase__track" id="showcase-track" data-showcase-track tabindex="0" aria-label="Desliza para ver las vistas de la plataforma">
           <article class="showcase__card">
-            <figure><img src="assets/monitor.webp" alt="Monitoreo en tiempo real en Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <figure><img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Monitoreo en tiempo real en Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Monitoreo</h3><p>Tu operación, actualizada al instante.</p>
           </article>
           <article class="showcase__card">
-            <figure><img src="assets/dashboard.webp" alt="Dashboard de escritorio de Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <figure><img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Dashboard de escritorio de Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Dashboard</h3><p>Una vista completa de tu operación.</p>
           </article>
           <article class="showcase__card">
-            <figure><img src="assets/finance.webp" alt="Reportes y movimientos" loading="lazy" width="640" height="400" /></figure>
+            <figure><img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Reportes y movimientos" loading="lazy" width="640" height="400" /></figure>
             <h3>Movimientos</h3><p>Ingresos y egresos claros.</p>
           </article>
           <article class="showcase__card">
-            <figure><img src="assets/usecase.webp" alt="Clientes y seguimiento en Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <figure><img src="assets/usecase.webp" srcset="assets/usecase-800.webp 800w, assets/usecase.webp 1024w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Clientes y seguimiento en Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Clientes</h3><p>Seguimiento ordenado de cada cliente.</p>
           </article>
           <article class="showcase__card">
-            <figure><img src="assets/process.webp" alt="Registro de cobros en Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <figure><img src="assets/process.webp" srcset="assets/process-800.webp 800w, assets/process.webp 1536w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Registro de cobros en Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Reportes</h3><p>Información lista para decidir.</p>
           </article>
         </div>
+        <button class="showcase__arrow showcase__arrow--next" type="button" aria-label="Siguiente" aria-controls="showcase-track" data-showcase-next></button>
       </div>
     </section>
 
@@ -651,7 +652,7 @@
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <img src="assets/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="footer__logo" width="150" height="42" loading="lazy" />
+        <img src="assets/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="footer__logo" width="40" height="40" loading="lazy" />
         <p>Registra. Monitorea. Decide.</p>
       </div>
 
