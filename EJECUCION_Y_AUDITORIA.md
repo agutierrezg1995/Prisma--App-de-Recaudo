@@ -455,8 +455,8 @@ Comportamiento esperado conocido:
 | `aaf1e39` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `76347a4` | main | style(a11y): bg-decor en legales (consistencia §1/§31). |
 | `76347a4` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
-| *(séptima pasada)* | main | audit(qa): evidencia estática + contraste AA 17/17 — sin cambios de código. |
-| *(séptima pasada)* (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `707253e` | main | docs(audit): QA estático global + contraste AA 17/17 — sin cambios de código. |
+| `707253e` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
