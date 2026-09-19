@@ -22,6 +22,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | *en curso* | style(a11y) | `bg-decor` añadido a las 2 páginas legales (consistencia §1/§31 con index/404); verify 200 local. |
 | *auditoría* | audit(qa) | Sin cambios: QA estático global (ids, H1, alt, nombres accesibles), contratos JS↔HTML (23 tokens) y JS↔CSS (7 estados), contraste AA 17/17 ≥4.5:1. |
 | `c0229b3` | deploy | **GO-LIVE**: GitHub Pages activado por el usuario; rebuild disparado con commit vacío; producción verificada: 200, crawl 86/86 objetivos OK, canonical/title/og-image/robots/sitemap/404/legales servidos. `main`=`V.1`=`origin/main` (0/0). |
+| *en curso* | audit(contracts) | Novena pasada, sin cambios: contrato iconos 19/19, variantes `-800w` y favicons 200 en prod, `<head>` 4 docs OK, robots→sitemap→3 `<loc>` en vivo. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción**. Solo resta la
 **validación visual humana** (§12 pantalla a pantalla, §12.3 assets ⚠, §37 percepción) y las decisiones de negocio DUDE-01/02/09.

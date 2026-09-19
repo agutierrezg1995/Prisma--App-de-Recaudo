@@ -536,3 +536,11 @@ Hallazgos que pasaron la primera auditoría y se corrigieron en esta pasada:
 
 **Resultado:** milestone v1 en producción. Resta exclusivamente **validación visual humana** (§12, §12.3, §37 percepción) y las decisiones de negocio DUDE-01/02/09.
 
+### Continuación 2026-09-19 — novena pasada (contratos + assets en producción)
+
+- [x] **Contrato de iconos JS↔HTML**: las 19 claves de `ICONS` (js/main.js L11-29) cubren los 19 `data-icon` usados en los 4 docs (incl. `shield` del `404.html`); fallback `ICONS.activity` si una clave futura fallara. FUENTE: patrón de extracción doble (quoted + unquoted).
+- [x] **Variantes `-800w` en producción** (SPEC §24, críticas en mobile/LCP): `hero/dashboard/process/monitor/finance/security/usecase-800.webp` → **200**.
+- [x] **Favicons/app icons**: `icon-64/180/192/512.png` → **200**.
+- [x] **Conformidad de `<head>`** (4 docs): `<!doctype html>`, `lang="es"`, `charset=UTF-8`, `viewport` → OK.
+- [x] **Cadena SEO íntegra en vivo**: `robots.txt` → `sitemap.xml` (URL absoluta del dominio final) → 3 `<loc>` reales → 200.
+
