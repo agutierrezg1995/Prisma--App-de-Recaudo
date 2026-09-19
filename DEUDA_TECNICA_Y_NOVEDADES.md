@@ -59,10 +59,10 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** consistencia de marca ↓ mínima.
 - **Plan:** decidir un solo patrón (recomendado: mantener corto en zonas compactas, largo en hero/CTA).
 
-### DUDE-07 · Rama `V.1` desactualizada (5 commits atrás de `main`) — MEDIA (proceso)
-- **Estado:** `main` adelante `5 → 0` vs `V.1`; ambas con tracking en origin.
-- **Impacto:** riesgo de que alguien trabaje sobre estado obsoleto o se conflique al desplegar.
-- **Plan:** decidir: (a) fast-forward `V.1` a `main` y mantener ambas, o (b) eliminar la rama redundante y quedarse con `main`.
+### DUDE-07 · Rama `V.1` desactualizada — CERRADA (2026-09-19)
+- **Estado:** ~~`main` adelante vs `V.1`~~ → **resuelto**: `V.1` fast-forward a `main` (`1f3f23a`), ambas ramas idénticas (`0 → 0`). Sin divergencia.
+- **Impacto:** sin riesgo de trabajo obsoleto; ambas ramas apuntan al mismo commit.
+- **Plan:** mantener `V.1` como etiqueta de hito; si deja de usarse, eliminarla en el deploy.
 
 ### DUDE-08 · Duplicación manual de navbar/footer entre páginas — BAJA (mantenimiento)
 - **Estado:** 3 HTML con header/footer copiados (sin build tooling ni partials).

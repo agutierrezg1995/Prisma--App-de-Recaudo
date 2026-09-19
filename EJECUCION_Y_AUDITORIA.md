@@ -445,7 +445,8 @@ Comportamiento esperado conocido:
 | `7e730db` | main | docs(audit): cierre §6.3/§6.4 (semántica, SEO, slider §7). |
 | `bc5f6a8` | main | docs(audit): §26 componentes, §27 botones, §34 copys, §4 navbar, §36 sticky. |
 | `74db568` | main | docs(audit): matriz §37 mapeada a evidencia (12/15 cerradas). |
-| `e519a27` | main | feat(multipage): páginas legales con design system; footer real. |
+| `1f3f23a` | main | fix(a11y-css-seo): tokens inexistentes en `.legal`, skip-link legal, clearance navbar, robots.txt + sitemap (DUDE-09). |
+| `1f3f23a` (ff) | V.1 | DUDE-07: fast-forward de `V.1` a `main`; ramas idénticas. |
 
 ### Continuación 2026-09-19 — segunda pasada (ejecución efectuada)
 
@@ -464,7 +465,7 @@ Hallazgos que pasaron la primera auditoría y se corrigieron en esta pasada:
 
 **Desviaciones con deuda técnica:** ver `DEUDA_TECNICA_Y_NOVEDADES.md` (10 ítems: DUDE-01..DUDE-10) con severidad, impacto y plan de cierre. Corte de deuda: 2026-09-19.
 
-**Estado de la rama `V.1`:** `main` quedó 5 commits adelante (`5 → 0`). Decidir fast-forward o eliminar la rama (DUDE-07).
+**Estado de la rama `V.1`:** ~~`main` quedó 5 commits adelante (`5 → 0`)~~ → **resuelto (2026-09-19)**: `V.1` fast-forward a `main` (`1f3f23a`); ambas ramas idénticas (`0 → 0`).
 
 **Pendientes (solo validación visual humana):**
 1. Checklist §12 pantalla a pantalla (desktop ≥1200 / mobile ≤767).
