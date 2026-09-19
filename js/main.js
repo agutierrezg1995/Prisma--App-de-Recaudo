@@ -517,4 +517,30 @@
       socialWrap.appendChild(li);
     });
   }
+/* ---------- CARD DETAIL (SPEC 39.6): aria-expanded + Escape cierra ---------- */
+  document.querySelectorAll("[data-card-detail]").forEach(function (detail) {
+    var summary = detail.querySelector("summary");
+    if (!summary) return;
+    summary.setAttribute("role", "button");
+    summary.setAttribute("aria-expanded", "false");
+    summary.addEventListener("click", function () {
+      summary.setAttribute("aria-expanded", detail.open ? "true" : "false");
+    });
+    detail.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && detail.open) {
+        detail.open = false;
+        summary.setAttribute("aria-expanded", "false");
+        summary.focus();
+      }
+    });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    document.querySelectorAll("[data-card-detail][open]").forEach(function (detail) {
+      var summary = detail.querySelector("summary");
+      detail.open = false;
+      if (summary) summary.setAttribute("aria-expanded", "false");
+    });
+  });
+
 })();

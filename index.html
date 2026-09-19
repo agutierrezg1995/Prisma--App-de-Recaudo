@@ -277,7 +277,7 @@
             <span class="card__icon" data-icon="layers" aria-hidden="true"></span>
             <h3 class="card__title">Información dispersa</h3>
             <p class="card__text">Tus cobros y movimientos quedan repartidos entre distintas fuentes.</p>
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> cuando los cobros viven en varias fuentes, el cuadre se complica y se pierde la vista real del recaudo.</p>
@@ -290,7 +290,7 @@
             <span class="card__icon" data-icon="eye-off" aria-hidden="true"></span>
             <h3 class="card__title">Poca visibilidad</h3>
             <p class="card__text">Difícil saber qué pasó con cada movimiento en el momento en que ocurre.</p>
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> sin una vista oportuna de cada movimiento, las decisiones del día a día se toman con retraso.</p>
@@ -303,7 +303,7 @@
             <span class="card__icon" data-icon="clock" aria-hidden="true"></span>
             <h3 class="card__title">Seguimiento manual</h3>
             <p class="card__text">Demasiado tiempo dedicado a revisar y cuadrar registros a mano.</p>
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> cuadrar a mano consume tiempo que se invierte mejor en atender clientes y vender.</p>
@@ -324,11 +324,41 @@
           <p class="section__lead">Una plataforma diseñada para ayudarte a registrar, monitorear y analizar tu operación de recaudo.</p>
 
           <ul class="chip-list" aria-label="Capacidades principales">
-            <li class="chip">Tiempo real</li>
-            <li class="chip">Reportes</li>
-            <li class="chip">Clientes</li>
-            <li class="chip">Movimientos</li>
-            <li class="chip">Alertas</li>
+            <li class="chip"><details class="chip__detail" data-card-detail>
+              <summary>Tiempo real</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> la operación se actualiza al momento para decidir con la información de hoy, no de ayer.</p>
+                <p><strong>Para quién:</strong> quien necesita saber qué pasa en su recaudo mientras el día avanza.</p>
+              </div>
+            </details></li>
+            <li class="chip"><details class="chip__detail" data-card-detail>
+              <summary>Reportes</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> los datos ordenados se convierten en información útil para revisar y decidir.</p>
+                <p><strong>Para quién:</strong> quien cierra el día y quiere un resumen claro de su operación.</p>
+              </div>
+            </details></li>
+            <li class="chip"><details class="chip__detail" data-card-detail>
+              <summary>Clientes</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> ver el estado de cada cliente permite hacer seguimiento y evitar abonos perdidos.</p>
+                <p><strong>Para quién:</strong> negocios que manejan varias cuentas o rutas de cobro.</p>
+              </div>
+            </details></li>
+            <li class="chip"><details class="chip__detail" data-card-detail>
+              <summary>Movimientos</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> registrar cada entrada y salida deja un historial ordenado de tu operación.</p>
+                <p><strong>Para quién:</strong> quien quiere saber exactamente qué entró y qué salió.</p>
+              </div>
+            </details></li>
+            <li class="chip"><details class="chip__detail" data-card-detail>
+              <summary>Alertas</summary>
+              <div class="card__detail-body">
+                <p><strong>Por qué:</strong> los avisos ayudan a no perder de vista pagos pendientes ni movimientos por revisar.</p>
+                <p><strong>Para quién:</strong> quien atiende muchas cuentas y necesita recordatorios oportunos.</p>
+              </div>
+            </details></li>
           </ul>
 
           <a class="btn btn--secondary" href="#como-funciona">Ver cómo funciona</a>
@@ -557,7 +587,7 @@
             <h3 class="card__title">Monitoreo en tiempo real</h3>
             <p class="card__text">Consulta el estado de tu operación cuando lo necesites.</p>
           
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> ver el estado de la operación al momento reduce sorpresas y permite actuar rápido.</p>
@@ -570,7 +600,7 @@
             <h3 class="card__title">Registro de cobros</h3>
             <p class="card__text">Guarda cada abono de forma ordenada.</p>
           
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> cada abono guardado con orden evita duplicados y facilita el cuadre.</p>
@@ -583,7 +613,7 @@
             <h3 class="card__title">Reportes</h3>
             <p class="card__text">Transforma movimientos en información útil.</p>
           
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> la información ordenada se convierte en decisiones y reemplaza el conteo manual.</p>
@@ -596,7 +626,7 @@
             <h3 class="card__title">Control de movimientos</h3>
             <p class="card__text">Ten claridad sobre ingresos y egresos.</p>
           
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> ver ingresos y egresos juntos da claridad para cuadrar la operación.</p>
@@ -609,7 +639,7 @@
             <h3 class="card__title">Información centralizada</h3>
             <p class="card__text">Todo tu recaudo en un solo lugar.</p>
           
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> un solo lugar para cobros, clientes y movimientos elimina la dispersión que complica el control.</p>
@@ -622,7 +652,7 @@
             <h3 class="card__title">Acceso desde cualquier dispositivo</h3>
             <p class="card__text">Lleva el control contigo, donde estés.</p>
           
-            <details class="card__detail">
+            <details class="card__detail" data-card-detail>
               <summary>Por qué y para quién</summary>
               <div class="card__detail-body">
                 <p><strong>Por qué:</strong> el control viaja con la operación y se puede consultar desde smartphone, tablet o computador.</p>
