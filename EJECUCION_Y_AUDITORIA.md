@@ -207,9 +207,9 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 - [x] Meta description exacta del spec (133 caracteres).
 - [x] Open Graph + Twitter Cards.
 - [x] `canonical`.
-- [x] `sitemap.xml` (3 URLs reales, dominio provisional DUDE-03) + `robots.txt` (DUDE-09 · cerrado) — creados 2026-09-19.
+- [x] `sitemap.xml` (4 URLs reales: index + 2 legales + `solicitar-demo`, dominio confirmado DUDE-03) + `robots.txt` (DUDE-09 · creados) — actualizado 2026-09-19.
 - [x] Favicon (usar `ICONO VENTANA.png` → `icon-64/180/192/512.png`).
-- [x] Schema apropiado sin datos inventados: JSON-LD validado `SoftwareApplication` + `Offer` + `FAQPage` (5 preguntas/respuestas reales).
+- [x] Schema apropiado sin datos inventados: JSON-LD validado `SoftwareApplication` + `Offer` + `FAQPage` (**9** preguntas/respuestas reales, sincronizado con la FAQ — actualizado en Fase B v1.2).
 - [x] Un solo H1 y jerarquía H1→H2→H3 (1 H1, 12 H2 en orden §8→§18 + H2 sr-only del slider).
 
 ### 6.5 Checklist performance (SPEC §24)
@@ -624,4 +624,16 @@ Guardas transversales: §19 (nada de cine/casino/hijack), §27 (CTAs coherentes)
 - [x] **Auditoría de integridad re-ejecutada (5 docs)**: `node --check` OK; 0 refs locales rotas; 0 `href="#"`; 1 H1 por doc; 0 ids duplicados; 20 `data-icon` usados vs 25 definidos en `ICONS` (0 faltantes); verificados también en la pasada 14 (subagente QA).
 - [x] **Producción verificada (crawl)**: `index`, 3 páginas, `404.html`, `sitemap.xml`, `robots.txt` → 200; `main.js` sirve con WA + correo reales.
 - [ ] **Pendiente usuario**: ① validación visual §12/§12.3 (desktop/mobile, assets ⚠, slider v2, footer/fab con WA+correo), ② `datos de contacto.md`: entregar sociales (IG/FB/LinkedIn) para activar `CONTACT.social[]`, ③ contenido legal `[REEMPLAZAR]` (DUDE-01), ④ números de soporte 3166540824 / 3041034037 registrados como adicionales pero sin uso en página (decisión: solo WhatsApp principal en contacto; documentado).
+
+### Continuación 2026-09-19 — decimosexta pasada (revisión ciclo plan vs SPEC + cierre de brechas)
+
+Revisión de `DEUDA`/`EJECUCION`/`SPEC` contra el estado real del código:
+
+- [x] **Brecha §39.6 detectada y cerrada**: el SPEC exige `CardDetail` en "Problema (§8), **Solución badges** y Beneficios (§14)"; la Fase B solo lo hizo en 9 cards (Problema+Beneficios). Se añadió a los **5 chips** de Solución (§9) con panel glass flotante (`.chip__detail`, sin romper layout; guarda de overflow ≤520 px) y textos derivados del spec (sin datos ficticios, §35).
+- [x] **Aceptación §39.6 cumplida en JS**: los **14** `data-card-detail` (9 cards + 5 chips) ahora tienen `aria-expanded` sincronizado en `<summary>` (role=button) y `Escape` cierra cualquier detalle abierto y devuelve el foco al `summary`. Antes funciónaban como `<details>` nativo pero sin la gestión explícita que pide el criterio.
+- [x] **Inconsistencias doc corregidas**: DUDE-09 decía "sitemap 3 URLs/dominio provisional" → **4 URLs** y dominio confirmado; EJECUCION §6.4 tenía "3 URLs" y "FAQPage(5)" desactualizados → corregidos (FAQ = 9 sincronizada).
+- [x] **Verificación (todo verde)**: `node --check` OK · CSS `{455}455` · 0 refs locales rotas · 0 `href="#"` · 1 H1 · 0 ids duplicados · 20/20 `data-icon` cubiertos.
+- [x] Commit `ee1b1f3` + push `main`/`V.1` + **deploy disparado**; producción verificada (pasada siguiente confirmará el CDN, mismo patrón A+B/C-D).
+- [ ] **Ruta de integridad §39.1**: el envío del form compone `wa.me/573183366064`; falta QA manual en móvil (validación §12, DUDE-11/02).
+- [ ] **Pendiente estructural (DUDE-04/§12.3)**: confirmar visualmente `security.webp`/`finance.webp`/`usecase.webp`; no automatizable.
 

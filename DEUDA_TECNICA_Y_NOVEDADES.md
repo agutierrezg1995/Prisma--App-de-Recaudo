@@ -32,6 +32,7 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | `4d9f6a2` | deploy | **REBUILD → producción al día con Fase C+D**. Previo a esto, producción quedó detenida en Fase A+B (deploy `e886b7c`); gap detectado y cerrado: push `d1ccbd2` + trigger. Verificado en vivo: slider contador/progreso, tags de panel, contacto+fab presentes; `main.js` sirve WA real. |
 | `1300adc` | feat(contacto) | **Fase D — correo real activado** en `CONTACT`: `davidgrijalba8@gmail.com` (dato de `datos de contacto.md`, 2026-09-19). Empieza a renderizar el enlace mailto del footer. Redes `social[]` siguen vacías (sin handles reales). |
 | `1cb9c90` | deploy | REBUILD con correo real en `CONTACT`; verificado en producción (`davidgrijalba8@gmail.com` + `573183366064` en `js/main.js` 200). `main`=`V.1`=origin (0/0). |
+| `ee1b1f3` | feat(content) | **SPEC §39.6 completado**: CardDetail en **5 badges de Solución** (§9) que faltaban (el §39.6 pide Problema + Solución badges + Beneficios; la Fase B solo cubrió 9 cards). Además `aria-expanded` en `<summary>` y **Escape cierra** gestionado en JS para los **14** `data-card-detail` (9 cards + 5 chips), cumpliendo la aceptación del §39.6 (antes ningún `<details>` de card lo manejaba). CSS: `.chip__detail` con panel glass flotante (no rompe layout) + guardas de overflow ≤520 px. Verificado: `node --check` OK · CSS `{455}455` · refs 0 · H1 1 · ids 0 dup · iconos 20/20. |
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción** (Fase C+D al día, 2026-09-19). WhatsApp y correo reales activos. Restan: **validación visual humana** (§12, §12.3, §37), handles de redes sociales (DUDE-18) y decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics).
 
@@ -84,7 +85,7 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
   Descartado el include por JS/fetch por a11y y no-JS (SPEC §23).
 
 ### DUDE-09 · Analytics y verificación de consola de buscadores — BAJA (opcional)
-- **Estado:** `sitemap.xml` (3 URLs, dominio provisional) y `robots.txt` **creados** (2026-09-19, cierre del plan SEO). Falta solo la etiqueta de analytics/Desde-consola cuando el negocio lo pida.
+- **Estado:** `sitemap.xml` (**4 URLs**: index + 2 legales + `solicitar-demo`, dominio confirmado DUDE-03) y `robots.txt` **creados** (2026-09-19, cierre del plan SEO). Falta solo la etiqueta de analytics/Desde-consola cuando el negocio lo pida.
 - **Impacto:** no se puede medir conversión ni ver indexación hasta añadir analytics.
 - **Plan:** añadir GA/Desde Analytics cuando el negocio lo pida; confirmar dominio final en sitemap (DUDE-03).
 
@@ -114,7 +115,7 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Plan:** 5→9 preguntas (para quién, reportes, experiencia contable, acceso); JSON-LD sincronizado 9/9 (verificado); respuestas ≤60 palabras, tono §34, sin precios ni promesas inventadas.
 
 ### DUDE-16 · CardDetail "por qué / para quién" — CERRADA (2026-09-19)
-- **Plan:** `<details>` accesible en 9 cards (Problema + Beneficios) con `focus-visible`; textos del spec. Decisión: Showcase sin CardDetail (carousel ya descriptivo; se evitaría hinchar).
+- **Plan:** `<details>` accesible en Problema + **Solución badges** + Beneficios con `focus-visible`; textos del spec. **Completado 2026-09-19 (`ee1b1f3`)**: la Fase B solo cubrió 9 cards (Problema 3 + Beneficios 6); la revisión detectó que el SPEC §39.6 también exige **Solución badges** → se añadió a los 5 chips (§9) con panel glass flotante. Total **14 `data-card-detail`** con `aria-expanded` en `<summary>` y cierre con Escape gestionado en JS (aceptación §39.6). Decisión: Showcase sin CardDetail (carousel ya descriptivo; se evitaría hinchar).
 
 ### DUDE-17 · Redundancia visual de paneles — CERRADA (2026-09-19)
 - **Estado:** `dashboard.webp` (19 refs) y `monitor.webp` (13 refs) se repiten; el titular ve "2 paneles de monitoreo".
