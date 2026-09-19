@@ -453,6 +453,8 @@ Comportamiento esperado conocido:
 | `a7fc280` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `aaf1e39` | main | feat(404-seo): 404.html de marca + limpieza 10 assets sin referencias. |
 | `aaf1e39` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `76347a4` | main | style(a11y): bg-decor en legales (consistencia §1/§31). |
+| `76347a4` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
