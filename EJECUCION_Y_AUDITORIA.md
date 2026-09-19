@@ -307,6 +307,10 @@ Alcance: implementación completa de la landing (HTML/CSS/JS estático).
 - [x] Menú mobile §23: focus trap nativo (Tab/Shift+Tab ciclan dentro del menú abierto sin salir al fondo).
 - [x] Auditoría semántica/SEO (§25, 2026-09-19): JSON-LD valida `SoftwareApplication`+`Offer`+`FAQPage(5)`; 1 H1, 12 H2 en orden de SPEC; title/description/OG/Twitter/canonical/favicon ✓.
 - [x] Slider §7 auditado (2026-09-19): autoplay 6 s + barra de progreso (requestAnimationFrame), pausa en hover/focus, flechas/dots/teclado/swipe, `reduceMotion` → sin autoplay; verificado en código.
+- [x] Componentes §26: 14 componentes (Navbar→Footer) + design system (Button/Badge/Icon/Card/Section/Container/Typography) todos presentes en el build.
+- [x] Botones §27 auditados (2026-09-19): primary = gradiente cyan/azul + texto navy; secondary = transparente + borde cyan; ghost minimal. Labels: nav "Solicitar demo" (§4/§36), hero/CTA "Solicitar una demo", "Conocer la plataforma", Solución "Ver cómo funciona" (→#como-funciona).
+- [x] Copys §34: tono directo y breve; "Todo bajo control." usado verbatim del ejemplo; sin párrafos largos ni tecnicismos.
+- [x] Navbar §4: links y orden exactos (Inicio, Solución, Beneficios, Cómo funciona, Seguridad, Preguntas) con scroll-spy; sticky §36 "Solicitar demo" solo tras scroll > 700 px en vista ≤ 767 px.
 
 ### Hallazgos corregidos en esta auditoría
 
