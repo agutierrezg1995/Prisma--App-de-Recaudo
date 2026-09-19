@@ -451,6 +451,8 @@ Comportamiento esperado conocido:
 | `1418ad7` (ff) | V.1 | FF de `V.1` → `main` (0/0); push de ambas. |
 | `a7fc280` | main | polish(seo): og:image dimensions, sitemap lastmod, integridad 0 errores, nota §20. |
 | `a7fc280` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `aaf1e39` | main | feat(404-seo): 404.html de marca + limpieza 10 assets sin referencias. |
+| `aaf1e39` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
