@@ -459,6 +459,8 @@ Comportamiento esperado conocido:
 | `707253e` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 | `c0229b3` | main | deploy: trigger GH Pages rebuild (commit vacío solicitado). |
 | `c0229b3` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
+| `22866fd` | main | docs(golive): octava pasada + DUDE-03/decisión #2 al día. |
+| `22866fd` (ff) | V.1 | FF de `V.1` → `main`; push de ambas. |
 
 ### Continuación 2026-09-19 — tercera pasada (deploy + pulido)
 
