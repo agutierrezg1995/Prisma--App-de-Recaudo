@@ -1979,3 +1979,66 @@ anima `transform`/`opacity`/`background`/`box-shadow`.
   docs existentes (SPEC/DEUDA/EJECUCION) y a los números de § y pasadas.
 
 ---
+
+## 45. FORMULARIO DE DEMO — datos importantes y validaciones generales (I-01…I-06)
+
+El titular reportó que *"al solicitar una demo faltan datos importantes y
+validaciones generales"*. Se amplía la captura de lead (contacto + contexto
+operativo) y se refuerzan las validaciones en español con feedback claro.
+Registrada en `DEUDA` (pasada 26 + DUDE-26) y `EJECUCION` (pasada 26). Los
+datos que pide el formulario son del prospecto (no son datos ficticios §35) y
+ya están contemplados en la política de privacidad ("nombre, correo
+electrónico, teléfono").
+
+### I-01 DATOS DE CONTACTO OBLIGATORIOS
+- Decisión: además de Nombre, son obligatorios **Correo electrónico**
+  (`type=email`, `autocomplete=email`) y **Teléfono de contacto (WhatsApp)**
+  (`type=tel`, `inputmode=tel`, `autocomplete=tel`, patrón
+  `^\+?[0-9()\s-]{7,20}$`). Se añade **Ciudad** (opcional,
+  `autocomplete=address-level2`). Sin datos de contacto no hay seguimiento.
+- Aceptación: el mensaje de WhatsApp incluye correo y teléfono; el requisito
+  no bloquea el envío con solo nombre.
+
+### I-02 CONTEXTO OPERATIVO (calificación del lead)
+- Decisión: dos selectores opcionales que califican la operación:
+  **Puntos de recaudo/vendedores** (1–5 / 6–20 / 21–100 / más de 100 /
+  prefiere no decirlo) y **Volumen mensual aproximado** (rangos en $ con
+  "Prefiero no decirlo"). El primer option de los selects vacíos pasa a ser
+  placeholder (antes el sector asumía "Tienda o comercio" por defecto).
+- Aceptación: rangos orientativos, nunca promesas del producto (§35); el
+  encargado comercial prioriza por volumen y canales.
+
+### I-03 VALIDACIONES GENERALES EN ESPAÑOL
+- Decisión: mensajes personalizados vía `setCustomValidity` en el evento
+  `invalid` (obligatorio, email inválido, teléfono inválido, demasiado corto),
+  limpiados en `input`. `form.checkValidity()` + `form.reportValidity()`
+  siguen siendo la puerta; `:user-invalid` se extiende al `select`.
+- Aceptación: mensajes claros en español independientes del idioma del
+  navegador; el borde rojo aparece después de interactuar (WCAG-friendly).
+
+### I-04 FEEDBACK DE ENVÍO
+- Decisión: si la validación falla, el `status` muestra "Revisa los campos
+  marcados y vuelve a enviar." en rojo
+  (`.form__status--error`, `role=status`). Si es válido, "Abriendo WhatsApp
+  con tu solicitud…" e inmediatamente `showToast`.
+- Aceptación: el estado es `aria-live` (`role=status`), no se pierde al
+  recargar; sin errores silenciosos.
+
+### I-05 ANTI DOBLE ENVÍO
+- Decisión: al abrir WhatsApp, el botón de envío se deshabilita 2 s
+  (`.btn:disabled` con `pointer-events:none`) para evitar spam de ventanas.
+- Aceptación: re-habilita solo; no requiere recarga; no afecta otros botones.
+
+### I-06 BIG TRIPLE — composición del mensaje WhatsApp
+- Decisión: el mensaje a `wa.me/573183366064` incluye ahora: Nombre, Correo,
+  Teléfono, Negocio, Ciudad, Tipo de operación, Puntos de recaudo/vendedores,
+  Volumen mensual, y Necesidad (solo los que aportó el prospecto).
+- Aceptación: el vendedor recibe contexto suficiente en un solo vistazo.
+
+### GUARDAS (§45)
+- Solo captura de datos del prospecto (nada ficticio §35); validación nativa
+  + `reportValidity` (sin JS experimental); `autocomplete`/`inputmode` para
+  móviles; el envío sigue siendo composición WhatsApp sin backend (decisión 7);
+  la política de privacidad ya cubre nombre/correo/teléfono.
+
+---

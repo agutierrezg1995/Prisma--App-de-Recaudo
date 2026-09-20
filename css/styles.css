@@ -1520,6 +1520,7 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
   box-shadow: 0 0 0 3px rgba(0, 216, 255, 0.18);
 }
 .form__input:user-invalid,
+.form__select:user-invalid,
 .form__textarea:user-invalid {
   border-color: var(--danger);
   box-shadow: 0 0 0 3px rgba(255, 77, 103, 0.15);
@@ -1527,6 +1528,8 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
 .form__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .form__hint { font-size: 0.82rem; color: var(--ink-muted); margin: 0; max-width: 320px; line-height: 1.5; }
 .form__status { font-size: 0.9rem; color: var(--prisma-cyan-300); min-height: 1.2em; margin: 0; }
+.form__status--error { color: var(--danger); }
+.btn:disabled { opacity: 0.55; pointer-events: none; }
 
 /* Detalle por card "por qué y para quién" (SPEC 39.6) */
 .card__detail {

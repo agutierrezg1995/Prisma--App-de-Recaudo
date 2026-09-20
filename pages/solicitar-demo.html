@@ -93,24 +93,59 @@
 
         <form class="demo-form" data-demo-form novalidate>
           <h3 class="demo-form__title">Cuéntanos qué necesitas</h3>
-          <p class="demo-form__lead">Campos con * son obligatorios. Al enviar se abre WhatsApp con tu mensaje listo para enviar.</p>
+          <p class="demo-form__lead">Campos con * son obligatorios. Al enviar se abre WhatsApp con tu solicitud lista para enviar.</p>
           <div class="demo-form__grid">
             <div class="form__field">
               <label class="form__label" for="demo-nombre">Nombre *</label>
               <input class="form__input" id="demo-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Tu nombre" />
             </div>
             <div class="form__field">
+              <label class="form__label" for="demo-correo">Correo electrónico *</label>
+              <input class="form__input" id="demo-correo" name="correo" type="email" autocomplete="email" required maxlength="120" placeholder="nombre@empresa.com" />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-telefono">Teléfono de contacto (WhatsApp) *</label>
+              <input class="form__input" id="demo-telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required pattern="^\+?[0-9()\s-]{7,20}$" minlength="7" maxlength="20" placeholder="Ej.: 300 123 4567" />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-ciudad">Ciudad</label>
+              <input class="form__input" id="demo-ciudad" name="ciudad" type="text" autocomplete="address-level2" maxlength="80" placeholder="Tu ciudad" />
+            </div>
+            <div class="form__field">
               <label class="form__label" for="demo-empresa">Negocio o empresa</label>
               <input class="form__input" id="demo-empresa" name="empresa" type="text" autocomplete="organization" maxlength="80" placeholder="Tu negocio" />
             </div>
-            <div class="form__field form__field--full">
+            <div class="form__field">
               <label class="form__label" for="demo-sector">Tipo de operación</label>
               <select class="form__select" id="demo-sector" name="sector">
+                <option value="">Selecciona una opción</option>
                 <option value="Tienda o comercio">Tienda o comercio</option>
                 <option value="Restaurante o servicio">Restaurante o servicio</option>
                 <option value="Venta por catálogo">Venta por catálogo</option>
                 <option value="Empresa en crecimiento">Empresa en crecimiento</option>
                 <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-canales">Puntos de recaudo o vendedores</label>
+              <select class="form__select" id="demo-canales" name="canales">
+                <option value="">Selecciona un rango (opcional)</option>
+                <option value="1 a 5 puntos">1 a 5</option>
+                <option value="6 a 20 puntos">6 a 20</option>
+                <option value="21 a 100 puntos">21 a 100</option>
+                <option value="Más de 100 puntos">Más de 100</option>
+                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+              </select>
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-volumen">Volumen mensual aproximado</label>
+              <select class="form__select" id="demo-volumen" name="volumen">
+                <option value="">Selecciona un rango (opcional)</option>
+                <option value="Menos de $5 millones">Menos de $5 millones</option>
+                <option value="Entre $5 y $50 millones">Entre $5 y $50 millones</option>
+                <option value="Entre $50 y $500 millones">Entre $50 y $500 millones</option>
+                <option value="Más de $500 millones">Más de $500 millones</option>
+                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
               </select>
             </div>
             <div class="form__field form__field--full">

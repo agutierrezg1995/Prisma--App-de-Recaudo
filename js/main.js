@@ -445,10 +445,29 @@
     window.addEventListener("resize", updateTimeline);
   }
 
-  /* ---------- DEMO FORM (SPEC 39.1: compone mensaje de WhatsApp) ---------- */
+  /* ---------- DEMO FORM (SPEC 39.1 + §45: datos de contacto y validaciones) ---------- */
   var WA_NUMBER = "573183366064"; /* WhatsApp principal del negocio (código de país + número, sin "+" ni espacios) */
 
+  function demoFieldMessage(el) {
+    if (el.validity.valueMissing) return "Este campo es obligatorio.";
+    if (el.type === "email" && el.validity.typeMismatch)
+      return "Escribe un correo electrónico válido, por ejemplo nombre@empresa.com.";
+    if (el.name === "telefono" && el.validity.patternMismatch)
+      return "Escribe un teléfono válido: números y, opcionalmente, + ( ) espacios o guiones, desde 7 dígitos.";
+    if (el.validity.tooShort) return "Este campo necesita más caracteres.";
+    return "";
+  }
+
   document.querySelectorAll("[data-demo-form]").forEach(function (form) {
+    var submitBtn = form.querySelector("[type='submit']");
+    form.querySelectorAll("[required], input, select, textarea").forEach(function (el) {
+      el.addEventListener("invalid", function () {
+        var msg = demoFieldMessage(el);
+        if (msg) el.setCustomValidity(msg);
+      });
+      el.addEventListener("input", function () { el.setCustomValidity(""); });
+    });
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (typeof form.checkValidity !== "function" || form.checkValidity()) {
@@ -459,20 +478,37 @@
         var lines = [
           "Hola, me interesa una demo de Prisma$.",
           "Nombre: " + (data.nombre || "-"),
+          "Correo: " + (data.correo || "-"),
+          "Teléfono: " + (data.telefono || "-"),
           "Negocio: " + (data.empresa || "-"),
-          "Tipo de operación: " + (data.sector || "-")
+          "Ciudad: " + (data.ciudad || "-"),
+          "Tipo de operación: " + (data.sector || "-"),
+          "Puntos de recaudo/vendedores: " + (data.canales || "-"),
+          "Volumen mensual: " + (data.volumen || "-")
         ];
         if (data.mensaje) lines.push("Necesidad: " + data.mensaje);
         var url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
         var status = form.querySelector("[data-demo-status]");
-        if (status) status.textContent = "Abriendo WhatsApp con tu solicitud…";
+        if (status) {
+          status.textContent = "Abriendo WhatsApp con tu solicitud…";
+          status.className = "form__status form__field--full";
+        }
         if (WA_NUMBER.indexOf("REEMPLAZAR") === -1) {
           window.open(url, "_blank", "noopener");
           showToast("Solicitud lista.", "Revisa WhatsApp para enviar tu mensaje.");
+          if (submitBtn) {
+            submitBtn.disabled = true;
+            setTimeout(function () { submitBtn.disabled = false; }, 2000);
+          }
         } else if (status) {
           status.textContent = "Aún configuramos nuestro WhatsApp. Puedes volver a intentarlo en unos días o escribir por otro medio.";
         }
       } else {
+        var errStatus = form.querySelector("[data-demo-status]");
+        if (errStatus) {
+          errStatus.textContent = "Revisa los campos marcados y vuelve a enviar.";
+          errStatus.className = "form__status form__field--full form__status--error";
+        }
         form.reportValidity();
       }
     });
