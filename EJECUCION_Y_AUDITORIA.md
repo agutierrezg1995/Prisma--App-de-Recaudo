@@ -728,3 +728,14 @@ Tanda de experto orientada a vender: percepción premium + micro-interacciones. 
 - [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
 - [ ] **Pendiente usuario**: validación visual §12 de F-01…F-10 (ritmo del rotador, intensidad spotlight/glow/preloader, flechas) y de E-01…E-12.
 
+### Continuación 2026-09-19 — vigesimotercera pasada (fix hero + imágenes en Beneficios)
+
+El titular señaló que: (a) en la primera sección bajo el navbar (hero) "hay una parte mal" y (b) las cards de Beneficios deben ser más intuitivas con imágenes.
+
+- [x] **Fix hero (F-02 reescrito)**: el apilado grid de frases rotatorias (grid-area 1/1 + blur + gradiente heredado) producía doble-texto y cortes de línea al transicionar. Se sustituyó por **swap de frase única**: `[data-rotate]` con un solo text node, fade de opacidad 0.35s (`.is-swap`) y `textContent` rotado cada 4.2s (pausa en tab oculta, off en reduced-motion). Altura estable por `min-height:1.25em`; `sr-only` estático intacto; H1 único.
+- [x] **F-11 Card thumbs (Beneficios)**: 6 `card--benefit` con miniatura superior 16:9 (`.card__thumb`, margin −31px sangrado al borde, `object-fit:cover`, overlay inferior, zoom 1.05 hover). Mapeo de assets: monitor/process/dashboard/finance/usecase/hero. Alt descriptivo, `loading="lazy"`, `srcset`+`-800w`.
+- [x] **Guardas**: cero datos ficticios (§35); `transform`/`opacity` únicamente; underscore hover y overlay son decorativos (`aria-hidden` implícito en imgs con alt real); reduced-motion respeta las reglas globales.
+- [x] **Verificación local**: `node --check` OK · CSS `{614}614` · 0 refs rotas/anclas · 1 H1 · ids 0 dup · 23 imgs alt 100% · 7 variantes `-800w` existentes · 20 icons únicos.
+- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [ ] **Pendiente usuario**: validación visual §12 (encaje de cada imagen con su beneficio, ritmo del rotador, densidad E-01…E-12, intensidades F-01…F-10).
+

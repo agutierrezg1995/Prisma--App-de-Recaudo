@@ -675,14 +675,21 @@
   /* ---------- F-02 HERO WORD-ROTATE (§41) ---------- */
   var rotateBox = document.querySelector("[data-rotate]");
   if (rotateBox && !reduceMotion) {
-    var rotateItems = rotateBox.children;
+    var rotatePhrases = [
+      "Toma decisiones en tiempo real.",
+      "Controla rutas y cuadres al día.",
+      "Centraliza tu operación completa."
+    ];
     var rotateIndex = 0;
     setInterval(function () {
       if (document.hidden) return;
-      rotateItems[rotateIndex].classList.remove("is-on");
-      rotateIndex = (rotateIndex + 1) % rotateItems.length;
-      rotateItems[rotateIndex].classList.add("is-on");
-    }, 4000);
+      rotateBox.classList.add("is-swap");
+      setTimeout(function () {
+        rotateIndex = (rotateIndex + 1) % rotatePhrases.length;
+        rotateBox.textContent = rotatePhrases[rotateIndex];
+        rotateBox.classList.remove("is-swap");
+      }, 380);
+    }, 4200);
   }
 
   /* ---------- F-06 HERO DEVICE CON RESPUESTA AL SCROLL (§41) ---------- */

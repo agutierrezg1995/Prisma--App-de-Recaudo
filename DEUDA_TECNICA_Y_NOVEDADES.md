@@ -45,6 +45,12 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | --- | --- | --- |
 | *por commitear* | feat(ux-ui) | **§40 E-01…E-12**: densidad vertical compactada (secciones 48–88px, hero `calc(--announce-offset+84px)`), announcement topbar cierre con `--announce-offset`, scroll-progress, nav-indicator píldora, marquee de capacidades, promo banner con borde cónico, toast de confirmación del form, back-to-top, CTAs magnéticos, tilt 3D showcase, FAQ smooth. Guardas §19/§23/§35 y reduced-motion respetadas. |
 
+### Pasada 23 — Refinamiento F-02 (hero) + imágenes en cards de Beneficios
+
+| Commit | Tipo | Contenido |
+| --- | --- | --- |
+| *por commitear* | fix(ux-ui) | **F-02 reescrito**: swap de frase única (sin apilado que producía doble-texto); **F-11**: 6 cards de beneficios con miniatura 16:9 de asset real (monitor/process/dashboard/finance/usecase/hero) + alt, lazy, `-800w`, overlay y zoom hover. |
+
 ### Pasada 22 — Capa de venta y percepción premium §41 (F-01…F-10)
 
 | Commit | Tipo | Contenido |
@@ -153,6 +159,11 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Estado:** pedido del titular ("más animaciones, más PRO, vender la landing"). Implementado vía SPEC §41 F-01…F-10: spotlight que sigue el puntero, word-rotate de frases de valor, check-lists con draw de ícono (promo + CTA), preloader de marca (≤1.4 s y se elimina del DOM), prisma-partículas ascendentes en CTA, hero device con acercamiento al scroll, shimmer al revelar headings, flecha deslizable en todos los CTAs, scroll-cue, prisma orbital + glow border en cards.
 - **Impacto:** percepción premium y refuerzo del mensaje de valor; todo con guardas §19/§23/§35 (transform/opacity/stroke, ≤1 s salvo ambientes pausables 9–16 s, reduced-motion off, sin datos ficticios, decoración `aria-hidden`).
 - **Pendiente:** validación visual §12 del titular (ritmo del rotador, intensidad del spotlight/glow, preloader).
+
+### DUDE-22 · Cards de Beneficios sin imagen (intuitividad) — CERRADA (2026-09-19, pasada 23)
+- **Estado:** el titular pidió imágenes en las cards de beneficios. Implementado (SPEC §41 F-11): 6 miniaturas 16:9 con assets reales + alt + lazy + `-800w`, overlay inferior y zoom hover. **F-02 del mismo ciclo se refinó** (swap de frase única) al detectar doble-texto/cortes en el apilado grid de gradiente.
+- **Impacto:** mayor intuitividad visual; respeta §35 (assets reales, sin datos inventados) y §39.7 (tratamiento único en miniatura).
+- **Pendiente:** validación visual §12 (encaje de cada asset con su beneficio).
 
 ---
 

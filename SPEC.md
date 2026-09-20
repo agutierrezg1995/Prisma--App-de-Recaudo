@@ -1728,6 +1728,11 @@ de sofisticación, refuerzo del mensaje de valor y micro-interacciones que
   `aria-hidden` en el rotador + `.sr-only` con el texto completo estático
   (sin ruido de SR); pausado con tab oculta y desactivado en reduced-motion
   (queda la primera frase). H1 único intacto (§SEO).
+- **Refinamiento (pasada 23):** el apilado grid de frases producía doble-texto /
+  cortes de línea al transicionar (filtro blur + gradiente heredado). Se
+  sustituyó por **swap de frase única** (`[data-rotate]`, fade de opacidad
+  0.35s, `textContent` rotado cada 4.2s): un solo text node → 0 ghosting,
+  altura estable por `min-height`, texto siempre legible.
 - Aceptación: texto siempre legible durante el swap; sin salto de layout
   (reserva `min-height:1.25em`).
 
@@ -1788,5 +1793,20 @@ de sofisticación, refuerzo del mensaje de valor y micro-interacciones que
   ninguna > 1 s (salvo ambientes pausables 9–16 s como F-05/F-10). `prefers-
   reduced-motion: reduce` las desactiva o deja el estado final. Sin datos,
   métricas ni testimonios ficticios (§35). Decoraciones siempre `aria-hidden`.
+
+### F-11 CARDS DE BENEFICIOS CON MINIATURA (más intuitivo, pasada 23)
+- Contexto: el titular pide que las cards de Beneficios sean más intuitivas
+  ("inserta imágenes").
+- Decisión: cada `card--benefit` gana una miniatura superior 16:9
+  (`.card__thumb`, `object-fit: cover`, margen −31px para sangrar al borde de
+  la card) con un asset real de la sección correspondiente, overlay oscuro
+  inferior y zoom sutil 1.05 en hover. Mapeo §29:
+  Monitoreo→`monitor`, Registro de cobros→`process`, Reportes→`dashboard`,
+  Control de movimientos→`finance`, Centralizada→`usecase`,
+  Multi-dispositivo→`hero`.
+- Aceptación: 6 imágenes con alt descriptivo (§a11y), `loading="lazy"` +
+  `srcset/-800w` (§perf), cero datos ficticios (§35). El reaprovechamiento de
+  assets paneles es **tratamiento único** (miniatura pequeña, enmascarada,
+  con overlay) coherente con §39.7. Validación visual §12.
 
 ---
