@@ -806,3 +806,41 @@ para entender cómo funciona.
 - [ ] **Pendiente usuario**: validación visual §12 (ritmo de H-01/H-02,
   intensidad de pulses/barridos del resto).
 
+### Pasada 26 — §45 Formulario de demo: datos importantes y validaciones (I-01…I-06)
+
+**Motivo:** el titular reportó *"al solicitar una demo faltan datos
+importantes y validaciones generales"*.
+
+**Cambios (SPEC §45):**
+- [x] **I-01 Datos de contacto**: correo electrónico (`type=email`,
+  `autocomplete=email`, obligatorio) + teléfono/WhatsApp (`type=tel`,
+  `inputmode=tel`, `autocomplete=tel`, patrón `^\+?[0-9()\s-]{7,20}$`,
+  obligatorio) + ciudad (opcional, `autocomplete=address-level2`).
+- [x] **I-02 Contexto operativo**: selects opcionales de Puntos de
+  recaudo/vendedores (1–5 / 6–20 / 21–100 / más de 100 / prefiere no decirlo)
+  y Volumen mensual aproximado (rangos en $; primer option = placeholder; el
+  input `sector` ya no asume un valor por defecto).
+- [x] **I-03 Validaciones en español**: mensajes personalizados con
+  `setCustomValidity` en `invalid` (obligatorio, email/teléfono inválidos,
+  demasiado corto), limpieza en `input`, `reportValidity()` como puerta,
+  `:user-invalid` extendido al `select` (`border-color: var(--danger)`).
+- [x] **I-04 Feedback de envío**: fallo → "Revisa los campos marcados…" en
+  `.form__status--error` (`role=status`); éxito → "Abriendo WhatsApp…" +
+  `showToast("Solicitud lista.", …)`.
+- [x] **I-05 Anti doble envío**: botón `disabled` 2 s al abrir WhatsApp
+  (`.btn:disabled` con `opacity:0.55; pointer-events:none`).
+- [x] **I-06 Mensaje WhatsApp ampliado**: Nombre, Correo, Teléfono, Negocio,
+  Ciudad, Tipo de operación, Puntos de recaudo/vendedores, Volumen mensual,
+  Necesidad (solo los aportados).
+- [x] **Guardas §45**: solo datos del prospecto (sin ficticios §35);
+  validación nativa + `reportValidity`; `autocomplete`/`inputmode`; envío
+  sigue componiendo WhatsApp sin backend (decisión 7); privacidad ya cubre
+  nombre/correo/teléfono.
+- [x] **Verificación local**: `node --check` OK · CSS `{721}721` · 1 H1 ·
+  ids 0 dup · 9 campos presentes · 3 required (nombre/correo/teléfono) ·
+  `--danger` definido.
+
+- [ ] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [ ] **Pendiente usuario**: QA manual del formulario en móvil (teclado
+  numérico, burbujas de validación en español) + validación visual §12.
+

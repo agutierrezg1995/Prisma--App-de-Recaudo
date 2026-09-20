@@ -58,6 +58,12 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | *por commitear* | feat(live) | **§43 animaciones constantes H-01…H-09 + pieza original O-01**: feed en vivo en Monitoreo (JS cascada 1.6 s, clase `is-live`), punto viajero en mini-gráfico (`offset-path`, 8 s, `@supports`), barrido de cuadre (7 s), respiro del CTA (9 s), satélite orbital en Seguridad (14 s), pulso en cascada de chips (3 s), stats que respiran (4 s), brillo de la línea del timeline (3 s), deriva del gradiente del footer (18 s) + badges "En vivo" (`eyebrow--live`, ping 2.2 s) en Monitoreo y Dashboard. Guardas §19/§23/§35 y reduced-motion. |
 | *por commitear* | docs(diagrams) | **§44 directorio `diagramas/`** (Mermaid, render nativo en GitHub): arquitectura de archivos, narrativa/navegación por secciones, flujo de conversión a la demo, sistema de animación (guardas) y sistema de diseño/tokens. |
 
+### Pasada 26 — Formulario de demo con datos importantes y validaciones §45 (I-01…I-06)
+
+| Commit | Tipo | Contenido |
+| --- | --- | --- |
+| *por commitear* | feat(form) | **§45 I-01…I-06**: captura ampliada (correo + teléfono obligatorios con `type=email`/`type=tel`+patrón, ciudad opcional) + contexto operativo (puntos de recaudo/vendedores + volumen mensual, selects con placeholder) + validaciones generales en español (`setCustomValidity` en `invalid`, limpieza en `input`, `:user-invalid` extendido al select) + feedback de envío con estado de error (`role=status`) + anti doble envío (botón deshabilitado 2 s) + mensaje WhatsApp con 9 datos (Nombre, Correo, Teléfono, Negocio, Ciudad, Operación, Canales, Volumen, Necesidad). |
+
 ### Pasada 23 — Refinamiento F-02 (hero) + imágenes en cards de Beneficios
 
 | Commit | Tipo | Contenido |
@@ -192,6 +198,11 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Estado:** el titular pidió animaciones constantes en algunas secciones, nuevas cosas originales y un directorio de diagramas. Implementado SPEC §43 H-01…H-09 (movimiento permanente y pausable: **H-01** feed en vivo Monitoreo vía JS `is-live` en cascada 1.6 s/cada una, **H-02** punto viajero sobre el mini-gráfico con `offset-path` 8 s y `@supports` para no romper navegadores antiguos, **H-03** barrido de cuadre en el panel financiero 7 s, **H-04** respiro ambiental del CTA 9 s, **H-05** satélite orbital en Seguridad 14 s, **H-06** pulso en cascada de los chips de Solución 3 s, **H-07** stats del dashboard que respiran 4 s, **H-08** brillo pulsante de la línea del timeline 3 s, **H-09** deriva del gradiente del footer 18 s) + pieza original **O-01** badges "En vivo" (`eyebrow--live`, ping 2.2 s) en Monitoreo y Dashboard/Reportes. Directorio `diagramas/` (SPEC §44) con 5 diagramas Mermaid (arquitectura, secciones/narrativa, flujo de conversión, sistema de animación, tokens/design system).
 - **Impacto:** sensación de producto vivo en todas las secciones clave sin ruido: todo respeta guardas §19/§23/§35 (transform/opacity/background, ≤800 ms salvo ambientes 1.6–18 s pausables, `prefers-reduced-motion` off, decoración `aria-hidden`, cero datos ficticios nuevos).
 - **Pendiente:** validación visual §12 (ritmo de H-01/H-02, intensidad de los pulses/barridos).
+
+### DUDE-26 · "Al solicitar una demo faltan datos importantes y validaciones" — CERRADA (2026-09-19, pasada 26)
+- **Estado:** el formulario solo pedía nombre, negocio opcional, sector y mensaje. Implementado SPEC §45 I-01…I-06: **datos importantes** (correo electrónico y teléfono de contacto/WhatsApp obligatorios con `type=email`/`type=tel`+`inputmode`+`pattern`+`autocomplete`, ciudad opcional, puntos de recaudo/vendedores y volumen mensual para calificar el lead) y **validaciones generales** (mensajes en español vía `setCustomValidity` en `invalid` y limpieza en `input`, `:user-invalid` extendido al `select`, feedback de estado con `role=status` y variante de error `.form__status--error`, anti doble envío con botón deshabilitado 2 s). El mensaje de WhatsApp pasa de 4 a 9 líneas de contexto.
+- **Impacto:** el vendedor recibe contexto suficiente para priorizar y contactar; validación clara y en español sin depender del idioma del navegador.
+- **Pendiente:** QA manual del formulario en móvil (teclado `inputmode=tel`, burbujas de validación) por el titular (§12).
 
 ---
 
