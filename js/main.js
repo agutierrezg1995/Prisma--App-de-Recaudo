@@ -853,6 +853,17 @@
         });
       }, 5200);
     }
+
+    /* H-01 FEED EN VIVO (Monitoreo): cascada de iluminación constante */
+    var liveNotifs = document.querySelectorAll(".monitor__content .notif");
+    if (liveNotifs.length && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      var liveIdx = 0;
+      setInterval(function () {
+        if (document.hidden) return;
+        liveNotifs.forEach(function (n, i) { n.classList.toggle("is-live", i === liveIdx); });
+        liveIdx = (liveIdx + 1) % liveNotifs.length;
+      }, 1600);
+    }
   }
 
 })();

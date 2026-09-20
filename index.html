@@ -503,7 +503,7 @@
     <section class="section monitor" id="monitoreo">
       <div class="container monitor__inner">
         <div class="monitor__content reveal" data-reveal>
-          <span class="eyebrow">Monitoreo</span>
+          <span class="eyebrow eyebrow--live">Monitoreo · En vivo</span>
           <h2 class="section__title">Monitorea cada movimiento<br /><span class="text-gradient">en tiempo real.</span></h2>
           <p class="section__lead">Consulta movimientos, estados y actualizaciones sin perder de vista tu operación.</p>
 
@@ -546,6 +546,7 @@
               </defs>
               <path class="mini-chart__area" d="M0,64 L30,58 L60,62 L90,44 L120,48 L150,30 L180,34 L210,18 L240,22 L240,80 L0,80 Z" fill="url(#chartFill)" />
               <path class="mini-chart__line" d="M0,64 L30,58 L60,62 L90,44 L120,48 L150,30 L180,34 L210,18 L240,22" fill="none" stroke="#00E5FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <circle class="mini-chart__dot" cx="0" cy="0" r="3.5" fill="#E6FBFF" />
             </svg>
             <small>Datos demostrativos</small>
           </div>
@@ -564,6 +565,7 @@
         <div class="finance__inner">
           <figure class="device device--hero reveal" data-reveal>
             <span class="device__tag device__tag--finance" aria-hidden="true">Cuadre general</span>
+            <span class="device__sweep" aria-hidden="true"></span>
             <img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1024px) 1160px, 92vw" alt="Vista de ingresos, egresos y cuadre general" loading="lazy" width="1200" height="720" />
           </figure>
 
@@ -582,7 +584,7 @@
     <section class="section analytics" id="reportes">
       <div class="container">
         <header class="section__header reveal" data-reveal>
-          <span class="eyebrow">Dashboard y reportes</span>
+          <span class="eyebrow eyebrow--live">Dashboard y reportes · En vivo</span>
           <h2 class="section__title">Convierte tus datos<br />en información útil.</h2>
           <p class="section__lead">Visualiza tu operación y explora la información que necesitas. <span class="muted">Cifras demostrativas.</span></p>
         </header>
@@ -763,6 +765,7 @@
         <div class="security__visual reveal" data-reveal>
           <div class="shield" aria-hidden="true">
             <span class="shield__ring"></span>
+            <span class="shield__orbit"><span class="shield__sat"></span></span>
             <span class="shield__core" data-icon="shield"></span>
           </div>
         </div>
@@ -841,6 +844,7 @@
     <!-- ============ CTA PRINCIPAL ============ -->
     <section class="section cta" id="demo">
       <div class="cta__decor" aria-hidden="true">
+        <span class="cta__sweep"></span>
         <span class="prism prism--cta-1"></span>
         <span class="prism prism--cta-2"></span>
       </div>

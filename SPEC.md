@@ -1888,3 +1888,94 @@ compactación. Tanda G-01…G-10 documentada en `DEUDA` (DUDE-23/24) y
   SVG es interno (no web externa).
 
 ---
+
+## 43. EXPERIENCIA VIVA — animaciones constantes y piezas originales (H-01…H-09, O-01)
+
+El titular pidió que la landing tenga *"animaciones constantes en algunas
+secciones"*, *"nuevas cosas originales"* y un directorio `diagramas/` con los
+diagramas clave para entender cómo funciona. Tanda H-01…H-09 (movimiento
+permanente y pausable, CSS/JS) + pieza original O-01 (badge "En vivo").
+Documentada en `DEUDA` (novedades + DUDE-25) y `EJECUCION` (pasada 25).
+Todas las rutinas respetan `prefers-reduced-motion` y tab oculta; solo se
+anima `transform`/`opacity`/`background`/`box-shadow`.
+
+### H-01 FEED EN VIVO (Monitoreo)
+- Decisión: JS rota una clase `is-live` cada 1.6 s por cada una de las 5
+  notificaciones (cascada cíclica de 8 s): la activa realza borde, fondo y
+  resplandor cyan. Da la sensación de flujo de actividad permanente.
+- Aceptación: sin reflow (solo transición de bordes/sombra), off en reduce y
+  tab oculta, contenido 100 % real (las notificaciones ya existían).
+
+### H-02 PUNTO VIAJERO (mini-gráfico)
+- Decisión: un punto-luz recorre la línea del mini-gráfico (8 s, `offset-path`
+  con la misma geometría `M0,64…L240,22`). Hidden en reposo y fuera de
+  `@supports (offset-path)` para no romper navegadores antiguos.
+- Aceptación: decorativo, `aria-hidden` (la gráfica ya es decorativa), off en
+  reduce.
+
+### H-03 BARRIDO DE CUADRE (financial)
+- Decisión: luz cyan que barre sutilmente (7 s, ease-in-out, delay 1.2 s) sobre
+  el screenshot de ingresos/egresos (`device__sweep`), reforzando el panel
+  "Cuadre general" como pantalla viva.
+- Aceptación: `pointer-events:none`, clip por `overflow:hidden` del device,
+  off en reduce.
+
+### H-04 RESPIRO DEL CTA
+- Decisión: barrido ambiental muy tenue (9 s) sobre el CTA principal
+  (`cta__sweep`, skew -12°), añadiendo profundidad sin competir con el
+  contenido. Off en reduce (y global §reduce la congela).
+- Aceptación: no captura eventos, no reflow, sin distraer del botón.
+
+### H-05 SATÉLITE ORBITAL (Seguridad)
+- Decisión: sobre el escudo, un anillo adicional rota a 14 s con un punto-luz
+  satélite (`shield__orbit` + `shield__sat`), evocando cobertura continua.
+- Aceptación: `aria-hidden`, off en reduce (lista explícita §reduce), sin
+  cambio de layout.
+
+### H-06 PULSO EN CASCADA (chips de Solución)
+- Decisión: los 5 chips de capacidades emiten un pulso de resplandor suave en
+  cascada (3 s, delays 0.6 s). CSS-only sobre `::before`, `pointer-events:none`.
+- Aceptación: no tapa el texto ni el detail (`inset:6px`), off en reduce.
+
+### H-07 STATS QUE RESPIRAN (Dashboard)
+- Decisión: los 4 valores del resumen respiran en escalera (magnitud 1→1.04,
+  4 s, delays 0.5 s). Da vida a las cifras demostrativas sin cambiar su texto.
+- Aceptación: transform-origin izquierda (sin desplazamiento), off en reduce,
+  el contador JS de entrada permanece.
+
+### H-08 BRILLO DE LA LÍNEA DEL TIMELINE
+- Decisión: la línea de progreso del proceso mantiene un resplandor pulsante
+  (3 s) además de la transición de ancho por scroll. Refuerza "paso vivo".
+- Aceptación: solo `box-shadow` (no afecta el ancho), off en reduce.
+
+### H-09 DERIVA DEL GRADIENTE DEL FOOTER
+- Decisión: un gradiente horizontal muy tenue deriva 18 s (0%→100%→0%) sobre
+  el footer (::before, `background-size:250%`), cerrando la página con vida
+  constante y pausable.
+- Aceptación: tenue (≤12 % alpha), `pointer-events:none`, off en reduce.
+
+### O-01 BADGE "EN VIVO" (pieza original)
+- Decisión: los eyebrows de Monitoreo y Dashboard/Reportes pasan a
+  `eyebrow--live` con un punto verde que late (2.2 s) y el sufijo "· En vivo".
+  Es una pieza original de lenguaje: distingue secciones con datos vivos.
+- Aceptación: copy real (no inventada), `display:inline-flex` conserva el
+  espaciado del eyebrow, off en reduce (dot estático).
+
+### GUARDAS (§43)
+- JS gated por `!reduceMotion` y `document.hidden` (H-01); animaciones
+  pausables y de baja intensidad (350 ms–18 s); solo
+  `transform`/`opacity`/`background`/`box-shadow`; cero datos ficticios nuevos
+  (§35); las piezas decorativas son `aria-hidden`.
+
+---
+
+## 44. DIAGRAMAS (`diagramas/`)
+- Decisión: directorio `diagramas/` con los diagramas más importantes para
+  entender cómo funciona el proyecto, en **Mermaid** (se renderizan solos en
+  GitHub): arquitectura de archivos, narrativa/navegación por secciones,
+  flujo de conversión a la demo, sistema de animación (guardas §19/§23/§35) y
+  sistema de diseño/tokens.
+- Aceptación: markdown renderizable (sin imágenes externas), acorde a los
+  docs existentes (SPEC/DEUDA/EJECUCION) y a los números de § y pasadas.
+
+---

@@ -1959,7 +1959,7 @@ html:not(.announce) { --announce-offset: 0px; }
   }
   [data-reveal], [data-stagger] { opacity: 1 !important; transform: none !important; }
   .chart__line, .mini-chart__line { stroke-dashoffset: 0 !important; }
-  .prism, .shield__ring { animation: none !important; }
+  .prism, .shield__ring, .shield__orbit, .mini-chart__dot { animation: none !important; }
 }
 
 /* =========================================================
@@ -2338,3 +2338,187 @@ html:not(.announce) { --announce-offset: 0px; }
 
 /* G-10 (base imgs del tour) */
 .hero__img { transition: opacity 1s var(--ease); }
+
+/* =========================================================
+   43. EXPERIENCIA VIVA — ANIMACIONES CONSTANTES Y PIEZAS
+   ORIGINALES (H-01…H-09, O-01)
+   Spec §43 · Guardas §19/§23/§35 (transform/opacity/bg only;
+   reduced-motion desactiva; contenido sin datos ficticios)
+   ========================================================= */
+
+/* ---------- O-01 BADGE "EN VIVO" (eyebrows con datos vivos) ---------- */
+.eyebrow--live { display: inline-flex; align-items: center; gap: 9px; }
+.eyebrow--live::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 0 rgba(23, 199, 132, 0.65);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .eyebrow--live::before { animation: livePing 2.2s ease-out infinite; }
+}
+@keyframes livePing {
+  0% { box-shadow: 0 0 0 0 rgba(23, 199, 132, 0.7); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(23, 199, 132, 0); }
+}
+
+/* ---------- H-01 FEED EN VIVO (Monitoreo, JS en cascada 1.6s) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .js .monitor__content .notif {
+    transition: border-color 0.5s var(--ease), background-color 0.5s var(--ease),
+                box-shadow 0.5s var(--ease);
+  }
+  .js .monitor__content .notif.is-live {
+    border-color: rgba(0, 216, 255, 0.6);
+    background: rgba(0, 216, 255, 0.06);
+    box-shadow: 0 10px 34px -14px rgba(0, 216, 255, 0.7);
+  }
+}
+
+/* ---------- H-02 PUNTO VIAJERO (mini-gráfico de Monitoreo) ---------- */
+.mini-chart__dot { opacity: 0; }
+@supports (offset-path: path("M0 0")) {
+  @media (prefers-reduced-motion: no-preference) {
+    .mini-chart__dot {
+      offset-path: path("M0,64 L30,58 L60,62 L90,44 L120,48 L150,30 L180,34 L210,18 L240,22");
+      offset-distance: 0%;
+      filter: drop-shadow(0 0 5px rgba(0, 229, 255, 0.9));
+      animation: miniDot 8s ease-in-out infinite;
+    }
+  }
+  @keyframes miniDot {
+    0% { offset-distance: 0%; opacity: 0; }
+    8% { opacity: 1; }
+    92% { opacity: 1; }
+    100% { offset-distance: 100%; opacity: 0; }
+  }
+}
+
+/* ---------- H-03 BARRIDO DE CUADRE (panel financiero) ---------- */
+.device__sweep {
+  position: absolute;
+  top: 0; bottom: 0; left: -65%;
+  width: 65%;
+  background: linear-gradient(100deg, transparent, rgba(0, 229, 255, 0.10), transparent);
+  transform: translateX(-100%);
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .device__sweep { animation: deviceSweep 7s ease-in-out infinite 1.2s; }
+  @keyframes deviceSweep {
+    0%, 55% { transform: translateX(-100%); opacity: 0; }
+    70% { opacity: 0.85; }
+    100% { transform: translateX(260%); opacity: 0; }
+  }
+}
+
+/* ---------- H-04 RESPIRO DEL CTA (barrido ambiental) ---------- */
+.cta__sweep {
+  position: absolute;
+  top: -20%; bottom: -20%;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(105deg, transparent, rgba(0, 229, 255, 0.07), transparent);
+  transform: translateX(-100%) skewX(-12deg);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cta__sweep { animation: ctaSweep 9s ease-in-out infinite 2s; }
+  @keyframes ctaSweep {
+    0%, 50% { transform: translateX(-100%) skewX(-12deg); opacity: 0; }
+    68% { opacity: 1; }
+    100% { transform: translateX(480%) skewX(-12deg); opacity: 0; }
+  }
+}
+
+/* ---------- H-05 SATÉLITE ORBITAL (Seguridad) ---------- */
+.shield__orbit {
+  position: absolute;
+  inset: 5%;
+  border: 1px solid rgba(0, 216, 255, 0.35);
+  border-radius: 50%;
+}
+.shield__sat {
+  position: absolute;
+  top: -4px; left: 50%;
+  width: 8px; height: 8px;
+  margin-left: -4px;
+  border-radius: 50%;
+  background: var(--prisma-cyan-300);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.9);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .shield__orbit { animation: shieldOrbit 14s linear infinite; }
+  @keyframes shieldOrbit { to { transform: rotate(360deg); } }
+}
+
+/* ---------- H-06 PULSO EN CASCADA (chips de Solución) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .chip { position: relative; }
+  .chip::before {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: 999px;
+    box-shadow: 0 0 0 0 rgba(0, 216, 255, 0);
+    pointer-events: none;
+    animation: chipLife 3s ease-in-out infinite;
+  }
+  .chip:nth-child(2)::before { animation-delay: 0.6s; }
+  .chip:nth-child(3)::before { animation-delay: 1.2s; }
+  .chip:nth-child(4)::before { animation-delay: 1.8s; }
+  .chip:nth-child(5)::before { animation-delay: 2.4s; }
+  @keyframes chipLife {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 216, 255, 0); }
+    50% { box-shadow: 0 0 0 6px rgba(0, 216, 255, 0.12); }
+  }
+}
+
+/* ---------- H-07 STATS QUE RESPIRAN (Dashboard) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .stat .stat__value {
+    display: inline-block;
+    transform-origin: left bottom;
+    animation: statLife 4s ease-in-out infinite;
+  }
+  .stat:nth-child(2) .stat__value { animation-delay: 0.5s; }
+  .stat:nth-child(3) .stat__value { animation-delay: 1s; }
+  .stat:nth-child(4) .stat__value { animation-delay: 1.5s; }
+  @keyframes statLife {
+    0%, 100% { transform: scale(1); opacity: 0.85; }
+    50% { transform: scale(1.04); opacity: 1; }
+  }
+}
+
+/* ---------- H-08 BRILLO DE LA LÍNEA DEL TIMELINE ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .timeline::after { animation: timelineGlow 3s ease-in-out infinite; }
+  @keyframes timelineGlow {
+    0%, 100% { box-shadow: 0 0 12px rgba(0, 216, 255, 0.7); }
+    50% { box-shadow: 0 0 22px rgba(0, 216, 255, 1); }
+  }
+}
+
+/* ---------- H-09 DERIVA DEL GRADIENTE DEL FOOTER ---------- */
+.footer { position: relative; overflow: hidden; }
+.footer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(0, 104, 255, 0.12), rgba(0, 229, 255, 0.07), transparent);
+  background-size: 250% 100%;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .footer::before { animation: footerDrift 18s ease-in-out infinite; }
+  @keyframes footerDrift {
+    0% { background-position: 0% 0; }
+    50% { background-position: 100% 0; }
+    100% { background-position: 0% 0; }
+  }
+}
