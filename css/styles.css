@@ -126,7 +126,8 @@ h1, h2, h3, h4 { line-height: 1.08; font-weight: 800; letter-spacing: -0.02em; }
 .text-gradient {
   background: var(--grad-cyan);
   -webkit-background-clip: text;
-  background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
 }
 .muted { color: var(--ink-muted); font-size: 0.85em; }
@@ -2230,3 +2231,110 @@ html:not(.announce) { --announce-offset: 0px; }
   z-index: 2;
 }
 .card:hover::after { opacity: 1; transform: none; }
+
+/* =========================================================
+   42. AUTONOMIC UX — MOVIMIENTO VIVO CONSTANTE (G-01…G-10)
+   Spec §42 · Guardas §19/§23/§35 (JS se apaga con
+   reduced-motion / tab oculta; solo transform/opacity)
+   ========================================================= */
+
+/* ---------- G-05 CONTADOR DEL SLIDER CON PULSO ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .slider__counter [data-slider-count] {
+    display: inline-block;
+    transform-origin: left center;
+    animation: countPulse 2.4s ease-in-out infinite;
+  }
+  @keyframes countPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.12); opacity: 1; }
+  }
+}
+
+/* ---------- G-06 PUNTOS "ACTIVIDAD VIVO" EN HERO META ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero__meta .dot { animation: dotLife 2.8s ease-in-out infinite; }
+  .hero__meta li:nth-child(2) .dot { animation-delay: 0.35s; }
+  .hero__meta li:nth-child(3) .dot { animation-delay: 0.7s; }
+  @keyframes dotLife {
+    0%, 100% { opacity: 0.25; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.15); }
+  }
+}
+
+/* ---------- G-07 RIPPLE RINGS EN WhatsApp FAB ---------- */
+.wa-fab::before, .wa-fab::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 216, 255, 0.5);
+  pointer-events: none;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .wa-fab::before { animation: fabRipple 2.8s ease-out infinite; }
+  .wa-fab::after { animation: fabRipple 2.8s ease-out infinite 1.4s; }
+  @keyframes fabRipple {
+    0% { transform: scale(0.7); opacity: 0.7; }
+    100% { transform: scale(1.9); opacity: 0; }
+  }
+}
+@media (prefers-reduced-motion: reduce) { .wa-fab::before, .wa-fab::after { display: none; } }
+
+/* ---------- G-02 SPARKLES (partículas JS) ---------- */
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--prisma-cyan-400);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.9);
+  pointer-events: none;
+  z-index: 1;
+}
+.spark--gold { background: var(--prisma-yellow); box-shadow: 0 0 10px rgba(255, 194, 26, 0.8); }
+.promo__inner .spark { z-index: 3; }
+
+/* ---------- G-08 SCANLINE (barrido de luz, JS rAF) ---------- */
+.scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, rgba(0, 229, 255, 0.09), transparent);
+  pointer-events: none;
+  opacity: 0;
+}
+.scanline.is-on { opacity: 1; }
+
+/* ---------- G-10 HERO PREVIEW CROSSFADE ---------- */
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s var(--ease);
+}
+.hero__slide.is-on { opacity: 1; }
+
+/* ---------- G-10 TOPBAR CÍCLICO ---------- */
+.topbar__msg { display: inline-block; transition: opacity 0.35s var(--ease); }
+.topbar__msg.is-swap { opacity: 0; }
+
+/* ---------- G-09 PASE DE COMPACIDAD (densidad #2) ---------- */
+.card {
+  --card-pad: 26px;
+  padding: var(--card-pad);
+}
+.card__thumb {
+  margin: calc(-1 * var(--card-pad) - 1px) calc(-1 * var(--card-pad) - 1px) 20px;
+}
+.card__icon { margin-bottom: 16px; }
+.benefits__grid { gap: clamp(16px, 2vw, 24px); }
+
+/* G-10 (base imgs del tour) */
+.hero__img { transition: opacity 1s var(--ease); }

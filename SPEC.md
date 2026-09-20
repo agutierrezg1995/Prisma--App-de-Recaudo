@@ -1810,3 +1810,81 @@ de sofisticación, refuerzo del mensaje de valor y micro-interacciones que
   con overlay) coherente con §39.7. Validación visual §12.
 
 ---
+
+## 42. EXPERIENCIA AUTÓNOMA — movimiento vivo constante (G-01…G-10)
+
+El titular pidió *"funciones JavaScript que hagan animaciones que se muevan
+constantemente solas"*, imágenes generadas (SVG de marca) para cards y más
+compactación. Tanda G-01…G-10 documentada en `DEUDA` (DUDE-23/24) y
+`EJECUCION` (pasada 24). Todas las rutinas JS se apagan con
+`prefers-reduced-motion` y con tab oculta; solo usan `transform`/`opacity`.
+
+### G-01 AUTO-PLAY DEL SHOWCASE
+- Decisión: el carrusel de producto avanza solo cada 5.6 s (un paso) y vuelve
+  al inicio al llegar al final. Pausa en hover y en foco (`focusin/focusout`),
+  pausa con tab oculta, off en reduced-motion.
+- Aceptación: no interfiere flechas/teclado existentes; `aria-disabled` intacto.
+
+### G-02 SPARKLES (partículas ascendentes, JS)
+- Decisión: función `spawnSpark()` crea puntos-luz (cyan/ámbar 25%) en hero y
+  promo cada ~850 ms; suben con `Element.animate` (3.5–6 s), se auto-eliminan
+  en `animationend`. `z-index` bajo los CTAs, `pointer-events:none`.
+- Aceptación: sin fake-data (solo luz decorativa), sin bloqueo de interacción,
+  off en reduce y tab oculta.
+
+### G-03 SISTEMA DE ARTE SVG (generado)
+- Decisión: se generaron 6 ilustraciones vectoriales de marca
+  (`assets/art-*.svg`, 800×450, paleta Prisma$): monitoreo (ECG+medidor),
+  registro (checklist), reportes (barras+métrica), movimientos (flechas
+  ingreso/egreso), centralizada (hub radial), dispositivos (celular+tablet+
+  monitor). Usadas en las 6 cards de Beneficios (reemplazan webp) y en el
+  tour del hero (G-10). Vectores: nítidos en cualquier DPI, ~2–2.7 KB cada uno
+  (vs ~15–45 KB de webp) → página más liviana y compacta.
+- Aceptación: 0 librerías externas (SVG autóctono, sin imágenes de la web);
+  `alt` descriptivo en ARTE; animaciones internas suaves (solo con
+  no-preference gracias al CSS global §reduce).
+
+### G-04 AURORA DRIFT (vaivén del foco del hero)
+- Decisión: bucle rAF que deriva lenta y continuamente el foco de luz del hero
+  (`--mx/--my` = 42±26% / 14±8%) cuando el puntero no está activo; al mover el
+  puntero, se apaga el vaivén 9 s (prioridad del usuario). Off bajo reduce.
+- Aceptación: sin jitter, sin cambio de layout.
+
+### G-05 PULSO DEL CONTADOR DEL SLIDER
+- El número activo del contador (01/04) late suavemente (scale 1.12) 2.4 s
+  como afirmación de "vivo". CSS-only, off bajo reduce.
+
+### G-06 PUNTOS DE ACTIVIDAD DEL HERO
+- Los 3 puntos cyan de `hero__meta` pulsan en cascada (delays 0/0.35/0.7s)
+  simulando actividad del sistema. CSS-only, off bajo reduce.
+
+### G-07 RIPPLE RINGS EN WhatsApp FAB
+- Dos anillos graduales se expanden del fab cada 2.8 s (desfasados 1.4 s);
+  `pointer-events:none`, CSS-only, off bajo reduce (base `display:none`).
+
+### G-08 SCANLINE EN EL PROMO
+- Barrido de luz vertical (JS rAF: `translateY` ciclico 5.2 s, altura 120 px)
+  sobre el baner promo, en `--prefers-reduced-motion` off. Pausa over.
+- Aceptación: `aria-hidden`, sin captura de eventos, sin reflow.
+
+### G-09 PASE DE COMPACIDAD #2
+- Densidad: `.card` padding 30→26 px (vía `--card-pad`, miniatura se recálcula)
+  · icono `margin-bottom` 20→16 · `benefits__grid` gap ≤24 px. Con las
+  miniaturas vectoriales la sección se lee **más compacta y nítida**.
+- Aceptación: respirar >24 px (§32), texto legible, ±grid intacto.
+
+### G-10 TOPBAR CÍCLICO + TOUR AUTOPLAY DEL HERO
+- (a) `data-topbar-msg` rota 3 mensajes reales cada 4.6 s (fade 0.35 s);
+- (b) el media del hero hace **auto-tour**: crossfade 5.2 s entre el screenshot
+  real (`hero.webp`) y 3 piezas de arte SVG (monitoreo/reportes/movimientos),
+  con `hero__img` como base — el art es `loading="lazy"`.
+- Aceptación: LS actual sin reflow (opacity/absolutos), LCP conservada (base
+  en HTML), off bajo reduce y tab oculta.
+
+### GUARDAS (§42)
+- JS gated por `!reduceMotion` y `document.hidden`; animaciones · 1 s salvo
+  ambientes (ripple 2.8 s, scan 5.2 s, tour 5.2 s, marquee 32 s) todas
+  pausables; solo `transform`/`opacity`; cero datos ficticios (§35); el arte
+  SVG es interno (no web externa).
+
+---

@@ -45,6 +45,12 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | --- | --- | --- |
 | *por commitear* | feat(ux-ui) | **§40 E-01…E-12**: densidad vertical compactada (secciones 48–88px, hero `calc(--announce-offset+84px)`), announcement topbar cierre con `--announce-offset`, scroll-progress, nav-indicator píldora, marquee de capacidades, promo banner con borde cónico, toast de confirmación del form, back-to-top, CTAs magnéticos, tilt 3D showcase, FAQ smooth. Guardas §19/§23/§35 y reduced-motion respetadas. |
 
+### Pasada 24 — Experiencia autónoma §42 (G-01…G-10) + fix hero + arte SVG
+
+| Commit | Tipo | Contenido |
+| --- | --- | --- |
+| *por commitear* | feat(autonomic) | **§42 G-01…G-10**: autoplay showcase (5.6s, pausa hover/foco), sparkles JS ascendentes, 6 ilustraciones SVG de marca `art-*.svg` en cards (y tour hero), aurora drift rAF, pulso contador, dots cascada, ripple rings fab, scanline promo, densidad #2 (`--card-pad`), topbar cíclico + hero tour crossfade. **Fix hero**: badge sin redundancia ("Centraliza·Monitorea·Decide") + `-webkit-text-fill-color`. Guardas §19/§23/§35 y reduced-motion. |
+
 ### Pasada 23 — Refinamiento F-02 (hero) + imágenes en cards de Beneficios
 
 | Commit | Tipo | Contenido |
@@ -164,6 +170,16 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Estado:** el titular pidió imágenes en las cards de beneficios. Implementado (SPEC §41 F-11): 6 miniaturas 16:9 con assets reales + alt + lazy + `-800w`, overlay inferior y zoom hover. **F-02 del mismo ciclo se refinó** (swap de frase única) al detectar doble-texto/cortes en el apilado grid de gradiente.
 - **Impacto:** mayor intuitividad visual; respeta §35 (assets reales, sin datos inventados) y §39.7 (tratamiento único en miniatura).
 - **Pendiente:** validación visual §12 (encaje de cada asset con su beneficio).
+
+### DUDE-23 · Texto "duplicado" en el hero — CERRADA (2026-09-19, pasada 24)
+- **Estado:** el titular reporta el título del hero duplicado/horroroso. Diagnóstico: redundancia visual (badge "Control de recaudo" + H1 "Controla tu recaudo.") + gradiente del `.text-gradient` dependiente de `background-clip`. Corrección: badge → "Centraliza·Monitorea·Decide" (sin repetición) y hardening del gradiente con `-webkit-text-fill-color: transparent`. El rotador de frase sigue como swap único sin texto fantasma.
+- **Impacto:** hero limpio y sin ambigüedad visual.
+- **Pendiente:** confirmación visual del titular en producción.
+
+### DUDE-24 · "Página aún le falta" → autonomía + imágenes generadas + compactación — CERRADA (2026-09-19, pasada 24)
+- **Estado:** implementado SPEC §42 G-01…G-10 (movimiento vivo constante por JS: autoplay showcase, sparkles, scanline, topbar cíclico, hero tour crossfade, aurora drift) + sistema de arte SVG generado (6 `art-*.svg`, ~2–2.7 KB c/u) para cards y tour + densidad #2. El hero/first section quedan más compactos, vivos y premium.
+- **Impacto:** sensación de producto vivo y página más liviana (SVG < webp).
+- **Pendiente:** validación visual §12 (ritmo/ritmo del tour, intensidad de sparkles/scanline).
 
 ---
 

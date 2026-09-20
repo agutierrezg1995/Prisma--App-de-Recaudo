@@ -739,3 +739,22 @@ El titular señaló que: (a) en la primera sección bajo el navbar (hero) "hay u
 - [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
 - [ ] **Pendiente usuario**: validación visual §12 (encaje de cada imagen con su beneficio, ritmo del rotador, densidad E-01…E-12, intensidades F-01…F-10).
 
+### Continuación 2026-09-19 — vigesimocuarta pasada (Autonomía §42 + fix hero + arte SVG)
+
+El titular pidió: corregir el "texto duplicado" del hero, animar con JS de forma constante y autónoma, generar/imprimir imágenes para las cards y compactar más la página.
+
+- [x] **Fix hero (texto duplicado)**: causa = redundancia visual badge ("Control de recaudo") + H1 ("Controla tu recaudo.") + gradiente frágil. Badge → **"Centraliza·Monitorea·Decide"** y `.text-gradient` con `-webkit-text-fill-color`. No queda texto fantasma (swap único ya en producción).
+- [x] **Arte SVG generado (G-03)**: 6 ilustraciones vectoriales de marca en `assets/art-*.svg` (800×450, paleta Prisma$, animaciones internas suaves supeditadas al CSS §reduce): monitoreo/registro/reportes/movimientos/centralizada/dispositivos. Cards de Beneficios migradas de webp (con alt, lazy; sin srcset → vectorial).
+- [x] **G-01 Autoplay showcase**: avanza solo cada 5.6s, loop al final, pausa hover/foco/tab-oculta/reduce.
+- [x] **G-02 Sparkles JS**: `spawnSpark()` en hero y promo (~850ms), `Element.animate` 3.5–6s, se auto-eliminan; cyan + 25% ámbar.
+- [x] **G-04 Aurora drift (rAF)**: foco del hero deriva (42±26%/14±8%) cuando el puntero inactivo; al moverlo, se pausa 9s.
+- [x] **G-05/G-06**: pulso del contador slider (2.4s) y dots del hero en cascada (delays 0/0.35/0.7s). CSS-only.
+- [x] **G-07 Ripple rings fab**: 2 anillos que se expanden (2.8s, defasados); off en reduce.
+- [x] **G-08 Scanline promo**: barrido vertical de luz por rAF (5.2s), pausa hover.
+- [x] **G-09 Densidad #2**: `--card-pad` 26px (+ miniatura recalculada), icono 16px, grid beneficios gap ≤24px → sección más compacta.
+- [x] **G-10 Topbar cíclico (3 mensajes, 4.6s)** + **hero tour autoplay** (crossfade 5.2s screenshot real ↔ 3 art SVG; `hero__img` base con LCP conservada).
+- [x] **Guardas §42**: todo JS con `!reduceMotion` + `document.hidden`; solo `transform`/`opacity`; sin datos ficticios (§35); arte interno (no web externa).
+- [x] **Verificación local**: `node --check` OK · CSS `{649}649` · 0 refs rotas · 1 H1 · ids 0 dup · 26 imgs alt 100% · 6 art-*.svg OK · 20 icons únicos.
+- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [ ] **Pendiente usuario**: validación visual §12 (ritmo del tour/scanline/sparkles, encaje del arte, densidad).
+

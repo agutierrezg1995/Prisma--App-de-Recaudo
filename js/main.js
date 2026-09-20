@@ -366,6 +366,27 @@
       sTrack.addEventListener("scroll", sSchedule, { passive: true });
       window.addEventListener("resize", sSchedule);
     }
+
+    /* G-01 AUTO-PLAY SHOWCASE (§42): avanza solo, pausa hover/focus */
+    if (sTrack && !reduceMotion) {
+      var sHover = false;
+      var sAutoTimer = null;
+      if (showcase) {
+        showcase.addEventListener("mouseenter", function () { sHover = true; });
+        showcase.addEventListener("mouseleave", function () { sHover = false; });
+      }
+      sTrack.addEventListener("focusin", function () { sHover = true; });
+      sTrack.addEventListener("focusout", function () { sHover = false; });
+      sAutoTimer = setInterval(function () {
+        if (sHover || document.hidden) return;
+        var max = sTrack.scrollWidth - sTrack.clientWidth;
+        if (sTrack.scrollLeft >= max - 1) {
+          sTrack.scrollTo({ left: 0, behavior: reduceMotion ? "auto" : "smooth" });
+          return;
+        }
+        sStep(1);
+      }, 5600);
+    }
     sUpdate();
   }
 
@@ -721,6 +742,117 @@
     };
     onCueScroll();
     window.addEventListener("scroll", onCueScroll, { passive: true });
+  }
+
+  /* =========================================================
+     §42 AUTONOMIC UX — movimiento vivo constante (G-02…G-10)
+     Todo se apaga con reduced-motion o tab oculta.
+     ========================================================= */
+  if (!reduceMotion) {
+
+    /* G-10 TOPBAR CÍCLICO */
+    var tMsg = document.querySelector("[data-topbar-msg]");
+    if (tMsg && !document.querySelector("[data-topbar-close]").hasAttribute("hidden")) {
+      var tPhrases = [
+        "Registra tus cobros y cuadra tu operación desde tu celular.",
+        "Todo tu recaudo en un solo lugar, en tiempo real.",
+        "Centraliza clientes, movimientos y reportes."
+      ];
+      var tIdx = 0;
+      setInterval(function () {
+        if (document.hidden) return;
+        tMsg.classList.add("is-swap");
+        setTimeout(function () {
+          tIdx = (tIdx + 1) % tPhrases.length;
+          tMsg.textContent = tPhrases[tIdx];
+          tMsg.classList.remove("is-swap");
+        }, 350);
+      }, 4600);
+    }
+
+    /* G-02 SPARKLES (partículas ascendentes) */
+    var sparkHosts = document.querySelectorAll(".hero, .promo__inner");
+    if (sparkHosts.length) {
+      function spawnSpark() {
+        var host = sparkHosts[Math.floor(Math.random() * sparkHosts.length)];
+        if (!document.body.contains(host)) return;
+        if (sparkHosts[0].classList && host.closest(".hero") && (window.scrollY || 0) > 600) return;
+        var s = document.createElement("span");
+        s.className = "spark" + (Math.random() > 0.75 ? " spark--gold" : "");
+        s.style.left = (8 + Math.random() * 84) + "%";
+        s.style.top = (92 + Math.random() * 6) + "%";
+        s.style.opacity = 0;
+        var dur = 3500 + Math.random() * 2500;
+        var dx = (Math.random() - 0.5) * 60;
+        s.addEventListener("animationend", function () { s.remove(); });
+        host.appendChild(s);
+        requestAnimationFrame(function () {
+          s.animate(
+            [
+              { transform: "translate3d(0,0,0) scale(0.6)", opacity: 0 },
+              { transform: "translate3d(" + dx / 2 + "px,-40%,0) scale(1)", opacity: 0.9, offset: 0.25 },
+              { transform: "translate3d(" + dx + "px,-90vh,0) scale(0.4)", opacity: 0 }
+            ],
+            { duration: dur, easing: "linear" }
+          );
+        });
+      }
+      setInterval(function () { if (!document.hidden) spawnSpark(); }, 850);
+      spawnSpark();
+    }
+
+    /* G-04 AURORA DRIFT (vaivén suave del foco del hero) + G-08 SCANLINE */
+    var heroFx = document.querySelector(".hero[data-spotlight]");
+    var scan = document.querySelector("[data-scanline]");
+    var scanProgress = 0;
+    var gRaf = null;
+    var gT = performance.now() + 2600;
+    if (heroFx || scan) {
+      (function loop(now) {
+        gRaf = requestAnimationFrame(loop);
+        if (document.hidden) return;
+        if (heroFx && !heroFx._ptActive) {
+          var t = now * 0.00012;
+          heroFx.style.setProperty("--mx", (42 + Math.sin(t) * 26) + "%");
+          heroFx.style.setProperty("--my", (14 + Math.cos(t * 1.3) * 8) + "%");
+        }
+        if (scan && !scan._paused) {
+          scan.classList.add("is-on");
+          scanProgress = ((now + 2600) % 5200) / 5200;
+          scan.style.transform = "translateY(" + (scanProgress * 900 - 100) + "px)";
+        }
+      })(window.performance.now());
+      if (heroFx) {
+        heroFx.addEventListener("pointermove", function () {
+          heroFx._ptActive = true;
+          clearTimeout(heroFx._ptTimer);
+          heroFx._ptTimer = setTimeout(function () { heroFx._ptActive = false; }, 9000);
+        });
+      }
+      if (scan) {
+        scan.closest(".promo__inner").addEventListener("mouseenter", function () { scan._paused = true; });
+        scan.closest(".promo__inner").addEventListener("mouseleave", function () { scan._paused = false; });
+      }
+    }
+
+    /* G-10 HERO PREVIEW CROSSFADE (screenshot real + arte SVG) */
+    var heroSlides = document.querySelectorAll(".hero__slide");
+    var heroImgBase = document.querySelector(".hero__img");
+    if (heroSlides.length) {
+      var hsItems = [heroImgBase].concat(Array.prototype.slice.call(heroSlides));
+      var hsIdx = 0;
+      setInterval(function () {
+        if (document.hidden) return;
+        hsIdx = (hsIdx + 1) % hsItems.length;
+        hsItems.forEach(function (el, i) {
+          if (el === heroImgBase) {
+            el.style.opacity = hsIdx === 0 ? "" : "0";
+          } else {
+            el.classList.toggle("is-on", hsIdx === i);
+          }
+        });
+      }, 5200);
+    }
   }
 
 })();
