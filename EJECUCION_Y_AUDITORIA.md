@@ -678,3 +678,14 @@ Auditoría de los 9 retos de calidad del SPEC contra el código fuente (sin camb
 - [x] **§39.9** CTA a página real: `solicitar-demo.html` referenciada en index. → OK.
 - [ ] **Pendiente usuario (sin cambios)**: ídem pasada 18.
 
+### Continuación 2026-09-19 — vigésima pasada (auditoría SEO/estructura integral)
+
+Auditoría automatizada transversal (sin cambios de código — confirmación de estado):
+
+- [x] **Head SEO 5/5**: `<title>` correcto en las 5 páginas; description, canonical, Open Graph (type/locale/title/description/url/image 1200×630) completos en las 4 páginas indexables. `404.html` sin canonical/OG → **correcto** (es `noindex`, no debe ser referenciado).
+- [x] **JSON-LD 2/2 válidos** (parseados con `json.loads`): `SoftwareApplication` + `Offer` (price 0 COP) y `FAQPage` con **9 preguntas/respuestas**.
+- [x] **Sitemap 4/4** rutas existen como archivos reales (index + 2 legales + solicitar-demo); robots.txt válido con `Allow: /` + referencia al sitemap.
+- [x] **UTF-8 íntegro**: 0 caracteres corruptos (U+FFFD) en las 5 páginas (la mojibake previa era solo la terminal de Windows).
+- [x] **Producción**: re-crawleado 9/9 → 200.
+- [ ] **Pendiente usuario (sin cambios)**: validación visual §12/§12.3 (incl. DUDE-04 assets ⚠ y pertinencia de `alt`), handles sociales (DUDE-18), legales `[REEMPLAZAR]` (DUDE-01), QA WhatsApp móvil (DUDE-11/02), analytics opcional (DUDE-09).
+
