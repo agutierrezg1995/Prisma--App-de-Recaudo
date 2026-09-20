@@ -709,3 +709,22 @@ El titular pidió más experticia UX/UI: menos huecos verticales, más animacion
 - [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
 - [ ] **Pendiente usuario**: validación visual §12 de los E-01…E-12 (en particular la densidad y el marquee); el resto de pendientes intacto (DUDE-04, DUDE-18, DUDE-01, DUDE-11/02, DUDE-09).
 
+### Continuación 2026-09-19 — vigesimosegunda pasada (Capa de venta §41 — F-01…F-10)
+
+Tanda de experto orientada a vender: percepción premium + micro-interacciones. Documentada en SPEC §41 y deuda (DUDE-21, cerrada al commitear):
+
+- [x] **F-01 Hero spotlight**: `::before` del hero con `radial-gradient` guiado por `--mx/--my` (pointer fine + no-preference), reancla en pointerleave.
+- [x] **F-02 Hero word-rotate**: 3 frases de valor del spec giran cada 4 s (grid 1/1, fade+slide+blur), `aria-hidden` + `.sr-only` estático, pausa con `document.hidden`, off en reduce (queda la primera frase). H1 único intacto.
+- [x] **F-03 Check-list con draw**: `.promo__points` y nueva `cta__checks` (cuadre, movimientos e ingresos, reportes) reveladas con stagger 0/90/180 y draw del ícono (stroke-dashoffset). Contenido §35.
+- [x] **F-04 Preloader de marca**: logo + anillo cónico 0.8s, hide en `load`+300ms (tope 1400ms), `remove()` del DOM; `display:none` en reduce.
+- [x] **F-05 Prisma-partículas ascendentes**: 2 puntos-luz (cyan/ámbar) suben 9–11s en `cta__decor` (::before/::after); pointer-events:none, opacity 0 base.
+- [x] **F-06 Hero device scroll-reactive**: `hero__media` se eleva −26px y escala 1.00→1.05 al scrollear 0→700px (rAF, solo transform).
+- [x] **F-07 Heading shimmer**: barrido de luz cyan en cada `h2` al revelarse (translateX −140%→+320%, overflow hidden).
+- [x] **F-08 Flecha deslizable**: `::after →` en `.btn`, 5px en hover (primaria/secundaria/sticky/wa/footer).
+- [x] **F-09 Scroll cue**: cursor-mouse flotante al pie del hero (gota 1.8s), `is-hidden` tras 140px y oculto <560px.
+- [x] **F-10 Prisma orbital (promo 16s) + glow border hover en cards** (máscara border-box, scale 0.985→1).
+- [x] **Guardas §41**: tudo transform/opacity/filter/stroke-dashoffset; ≤1s salvo ambientes 9–16s; reduce desactiva; sin datos ficticios; decoración aria-hidden.
+- [x] **Verificación local**: `node --check` OK · CSS `{611}611` balanceado · 0 refs rotas/anclas · 1 H1 · ids 0 dup · 20 icons únicos · alt 100%.
+- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [ ] **Pendiente usuario**: validación visual §12 de F-01…F-10 (ritmo del rotador, intensidad spotlight/glow/preloader, flechas) y de E-01…E-12.
+

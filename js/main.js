@@ -639,4 +639,81 @@
     toastTimer = setTimeout(function () { toast.classList.remove("is-visible"); }, 6000);
   }
 
+  /* ---------- F-04 PRELOADER DE MARCA (§41) ---------- */
+  var preloader = document.querySelector("[data-preloader]");
+  if (preloader) {
+    if (reduceMotion) {
+      preloader.remove();
+    } else {
+      var hidePreloader = function () {
+        if (!document.body.contains(preloader)) return;
+        preloader.classList.add("is-hidden");
+        setTimeout(function () { if (document.body.contains(preloader)) preloader.remove(); }, 600);
+      };
+      if (document.readyState === "complete") { setTimeout(hidePreloader, 300); }
+      else { window.addEventListener("load", function () { setTimeout(hidePreloader, 300); }, { once: true }); }
+      setTimeout(hidePreloader, 1400);
+    }
+  }
+
+  /* ---------- F-01 HERO SPOTLIGHT (luz que sigue el puntero) ---------- */
+  var heroNode = document.querySelector(".hero[data-spotlight]");
+  if (heroNode && !reduceMotion && finePoint.matches) {
+    heroNode.style.setProperty("--mx", "70%");
+    heroNode.style.setProperty("--my", "16%");
+    heroNode.addEventListener("pointermove", function (e) {
+      var r = heroNode.getBoundingClientRect();
+      heroNode.style.setProperty("--mx", ((e.clientX - r.left) / r.width) * 100 + "%");
+      heroNode.style.setProperty("--my", ((e.clientY - r.top) / r.height) * 100 + "%");
+    });
+    heroNode.addEventListener("pointerleave", function () {
+      heroNode.style.setProperty("--mx", "70%");
+      heroNode.style.setProperty("--my", "16%");
+    });
+  }
+
+  /* ---------- F-02 HERO WORD-ROTATE (§41) ---------- */
+  var rotateBox = document.querySelector("[data-rotate]");
+  if (rotateBox && !reduceMotion) {
+    var rotateItems = rotateBox.children;
+    var rotateIndex = 0;
+    setInterval(function () {
+      if (document.hidden) return;
+      rotateItems[rotateIndex].classList.remove("is-on");
+      rotateIndex = (rotateIndex + 1) % rotateItems.length;
+      rotateItems[rotateIndex].classList.add("is-on");
+    }, 4000);
+  }
+
+  /* ---------- F-06 HERO DEVICE CON RESPUESTA AL SCROLL (§41) ---------- */
+  var heroMedia = heroNode ? heroNode.querySelector(".hero__media") : null;
+  if (heroMedia && !reduceMotion) {
+    var heroFxRaf = null;
+    var runHeroFx = function () {
+      heroFxRaf = null;
+      var top = window.scrollY || 0;
+      if (top > (heroNode.offsetHeight + 200)) return;
+      var p = Math.min(top / 700, 1);
+      heroMedia.style.setProperty("--hero-y", "-" + (p * 26).toFixed(1) + "px");
+      heroMedia.style.setProperty("--hero-s", (1 + p * 0.05).toFixed(4));
+    };
+    var onHeroScroll = function () {
+      if (heroFxRaf) return;
+      heroFxRaf = requestAnimationFrame(runHeroFx);
+    };
+    window.addEventListener("scroll", onHeroScroll, { passive: true });
+    runHeroFx();
+  }
+
+  /* ---------- F-09 SCROLL CUE (§41) ---------- */
+  var heroCue = document.querySelector("[data-hero-cue]");
+  if (heroCue) {
+    var onCueScroll = function () {
+      var show = (window.scrollY || 0) < 140;
+      heroCue.classList.toggle("is-hidden", !show);
+    };
+    onCueScroll();
+    window.addEventListener("scroll", onCueScroll, { passive: true });
+  }
+
 })();

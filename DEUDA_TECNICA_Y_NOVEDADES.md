@@ -45,6 +45,12 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | --- | --- | --- |
 | *por commitear* | feat(ux-ui) | **§40 E-01…E-12**: densidad vertical compactada (secciones 48–88px, hero `calc(--announce-offset+84px)`), announcement topbar cierre con `--announce-offset`, scroll-progress, nav-indicator píldora, marquee de capacidades, promo banner con borde cónico, toast de confirmación del form, back-to-top, CTAs magnéticos, tilt 3D showcase, FAQ smooth. Guardas §19/§23/§35 y reduced-motion respetadas. |
 
+### Pasada 22 — Capa de venta y percepción premium §41 (F-01…F-10)
+
+| Commit | Tipo | Contenido |
+| --- | --- | --- |
+| *por commitear* | feat(ux-ui) | **§41 F-01…F-10**: hero spotlight (luz que sigue el puntero), hero word-rotate (3 frases de valor), check-list con dibujo de ícono (promo + CTA), preloader de marca, prisma-partículas ascendentes en CTA, hero device con respuesta al scroll, heading shimmer al revelar, flecha deslizable en CTAs, scroll cue en hero, prisma orbital en promo + glow border hover en cards. Guardas §19/§23/§35 y reduced-motion respetadas. |
+
 ---
 
 ## 2. Deuda técnica — desviaciones activas
@@ -142,6 +148,11 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Estado:** reseñado por el titular como "espacios demasiado notables entre navbar/hero y entre secciones". Implementado vía SPEC §40 E-01 (densidad) + E-02…E-12 (topbar anuncio, scroll-progress, nav-indicator, marquee, promo banner, toast, back-to-top, CTAs magnéticos, tilt showcase, FAQ smooth).
 - **Impacto:** recorrido más continuo y profesional; mayor sensación de vida sin romper guardas §19/§23/§35 (motion ≤800 ms salvo ambientes pausables; `transform`/`opacity`; reduced-motion desactiva; contenido sin datos ficticios).
 - **Pendiente:** validación visual §12 del titular (ajustes finos de espaciado/animación si los percibe).
+
+### DUDE-21 · Capa de venta y percepción premium §41 — CERRADA (2026-09-19, pasada 22)
+- **Estado:** pedido del titular ("más animaciones, más PRO, vender la landing"). Implementado vía SPEC §41 F-01…F-10: spotlight que sigue el puntero, word-rotate de frases de valor, check-lists con draw de ícono (promo + CTA), preloader de marca (≤1.4 s y se elimina del DOM), prisma-partículas ascendentes en CTA, hero device con acercamiento al scroll, shimmer al revelar headings, flecha deslizable en todos los CTAs, scroll-cue, prisma orbital + glow border en cards.
+- **Impacto:** percepción premium y refuerzo del mensaje de valor; todo con guardas §19/§23/§35 (transform/opacity/stroke, ≤1 s salvo ambientes pausables 9–16 s, reduced-motion off, sin datos ficticios, decoración `aria-hidden`).
+- **Pendiente:** validación visual §12 del titular (ritmo del rotador, intensidad del spotlight/glow, preloader).
 
 ---
 

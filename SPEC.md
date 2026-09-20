@@ -1706,3 +1706,87 @@ como **E-01…E-12** y se registran en `DEUDA`/`EJECUCION` (pasada 21).
   iconos nuevos (los 5 puntos reutilizan set existente).
 
 ---
+
+## 41. Experticia UX/UI del titular — capa de venta y percepción premium (F-01…F-10)
+
+Continuación del §40. Nueva tanda orientada a **vender la landing**: percepción
+de sofisticación, refuerzo del mensaje de valor y micro-interacciones que
+“resuelven” la navegación. Se ejecutan como **F-01…F-10** y se registran en
+`DEUDA` (DUDE-21) y `EJECUCION` (pasada 22).
+
+### F-01 HERO SPOTLIGHT (luz que sigue el puntero)
+- Contexto: el hero es la vitrina; un acento de luz en vivo eleva la percepción.
+- Decisión: radial-gradient en `::before` del hero gobernado por CSS vars
+  `--mx/--my` que actualiza el puntero (fine pointer, no-preference). Solo en
+  hover real; `pointerleave` reancla al 70%/16%.
+- Aceptación: sin jitter (no reflow), sin captura de eventos (pointer-events:none),
+  debajo del contenido (z-index 0/1), iconos no afectados.
+
+### F-02 HERO WORD-ROTATE (frases de valor rotando)
+- Decisión: la 2ª línea del H1 rota 3 mensajes de valor reales del spec
+  (`.rotate__item`, grid 1/1, swap `is-on` cada 4 s con fade+slide+blur).
+  `aria-hidden` en el rotador + `.sr-only` con el texto completo estático
+  (sin ruido de SR); pausado con tab oculta y desactivado en reduced-motion
+  (queda la primera frase). H1 único intacto (§SEO).
+- Aceptación: texto siempre legible durante el swap; sin salto de layout
+  (reserva `min-height:1.25em`).
+
+### F-03 CHECK-LIST CON DIBUJO DE ÍCONO (evidence de valor)
+- Decisión: listas `.check-list` (promo points + nueva `cta__checks` en el CTA)
+  se revelan con stagger (`data-delay` 0/90/180) y el ícono se “dibuja”
+  (stroke-dashoffset → 0). Contenido 100% del spec: cuadre, movimientos e
+  ingresos, reportes.
+- Aceptación: animación una sola vez; bajo reduced-motion el stagger CSS queda
+  visible sin dibujo (opacity inmediata §reduce).
+
+### F-04 PRELOADER DE MARCA
+- Decisión: overlay fijo (z 300) con logo + anillo cónico girando ~0.8 s;
+  se oculta en `load`+300 ms (tope 1400 ms) y se elimina del DOM (no bloquea
+  interacción posterior). `display:none` bajo reduced-motion.
+- Aceptación: <1.5 s máximo, no afecta LCP (opacity/visibility, sin repaint
+  costoso), no interfiere skip-link tras el hide.
+
+### F-05 PRISMA-PARTÍCULAS ASCENDENTES EN CTA
+- Decisión: dos puntos-luz (cyan/ámbar) suben en loop 9–11 s sobre el decor del
+  CTA (`::before/::after`), ambiente §19 sutil.
+- Aceptación: `pointer-events:none`, opacity 0 base (invisible en reduce), sin
+  reflow (transform/opacity).
+
+### F-06 HERO DEVICE CON RESPUESTA AL SCROLL
+- Decisión: al bajar 0→700px el `hero__media` se eleva (−26px) y escala 1→1.05
+  (rAF+`--hero-y/--hero-s`), efecto “cine” de acercamiento tipo showcase premium.
+- Aceptación: solo scroll pasivo, solo transform (no reflow), tope claro, off
+  bajo reduce; no compite con el reveal del hero (aplica al child `__media`).
+
+### F-07 HEADING SHIMMER (una pasada al revelar cada sección)
+- Decisión: al entrar en viewport, cada `h2` de sección recibe un barrido de
+  luz cyan (traslación `-140%→+320%`, 0.95s) — coherencia con §23.
+- Aceptación: una sola pasada por sección, `overflow:hidden` en el título evita
+  desbordes, off bajo reduce.
+
+### F-08 FLECHA DESLIZABLE EN CTAs
+- Decisión: `::after →` en `.btn` que se desliza 5px en hover. Consistencia de
+  “acción” en toda la interfaz (primary/secondary/sticky/wa/footer).
+- Aceptación: sin cambio estructural (pseudo), no rompe `two-lines` de botones
+  móviles (width 100%), off bajo reduce.
+
+### F-09 SCROLL CUE EN HERO
+- Decisión: indicador de “hay más abajo”: cursor-mouse flotante al pie del hero
+  (`hero__cue`), animación de gota 1.8s, se esconde al hacer scroll (class
+  `is-hidden`) y en pantallas <560px.
+- Aceptación: `aria-hidden`, no compite con CTAs (bottom:22px), of en reduce.
+
+### F-10 PRISMA EN ÓRBITA (promo) + GLOW BORDER EN CARDS
+- Decisión: (a) un prisma extra gira/orbita 16s en el baner promo (branding de
+  identidad §1-5); (b) las cards (beneficios/problema) reciben un borde
+  degradado que aparece sutil en hover (máscara border-box, scale 0.985→1)
+  reforzando el estado activo ya existente (translateY+borde cyan).
+- Aceptación: hover claro e intencional, sin cambio de layout, off bajo reduce.
+
+### GUARDAS TRANSVERSALES (§41)
+- Todas las animaciones son `transform`/`opacity`/`filter` o `stroke-dashoffset`;
+  ninguna > 1 s (salvo ambientes pausables 9–16 s como F-05/F-10). `prefers-
+  reduced-motion: reduce` las desactiva o deja el estado final. Sin datos,
+  métricas ni testimonios ficticios (§35). Decoraciones siempre `aria-hidden`.
+
+---

@@ -106,6 +106,14 @@
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
+  <!-- ============ PRELOADER DE MARCA (F-04 §41) ============ -->
+  <div class="preloader" data-preloader aria-hidden="true">
+    <div class="preloader__inner">
+      <img src="assets/logo.webp" alt="" width="56" height="56" />
+      <span class="preloader__ring" aria-hidden="true"></span>
+    </div>
+  </div>
+
   <!-- ============ ANNOUNCEMENT (banner de promoción) ============ -->
   <div class="topbar" data-topbar>
     <div class="container topbar__inner">
@@ -168,13 +176,20 @@
 
   <main id="main">
     <!-- ============ HERO ============ -->
-    <section class="hero section" id="inicio">
+    <section class="hero section" id="inicio" data-spotlight>
       <div class="container hero__inner">
         <div class="hero__content">
           <span class="badge reveal" data-reveal>Control de recaudo</span>
           <h1 class="hero__title">
             <span class="hero__line" data-stagger>Controla tu recaudo.</span>
-            <span class="hero__line text-gradient" data-stagger>Toma decisiones en tiempo real.</span>
+            <span class="hero__line text-gradient" data-stagger>
+              <span class="rotate" data-rotate aria-hidden="true">
+                <span class="rotate__item is-on">Toma decisiones en tiempo real.</span>
+                <span class="rotate__item">Controla rutas y cuadres al día.</span>
+                <span class="rotate__item">Centraliza tu operación completa.</span>
+              </span>
+              <span class="sr-only">Toma decisiones en tiempo real, controla rutas y cuadres al día y centraliza tu operación completa.</span>
+            </span>
           </h1>
           <p class="hero__text reveal" data-reveal data-delay="100">
             Centraliza tus cobros, movimientos, clientes y reportes en una sola plataforma.
@@ -221,6 +236,10 @@
           </div>
         </div>
       </div>
+
+      <span class="hero__cue" aria-hidden="true" data-hero-cue>
+        <span></span>
+      </span>
     </section>
 
     <!-- ============ HERO SLIDER ============ -->
@@ -784,6 +803,7 @@
       <div class="container">
         <div class="promo__inner">
           <div class="promo__frame" aria-hidden="true"></div>
+          <span class="prism prism--orbit" aria-hidden="true"></span>
           <span class="promo__flag">Novedad</span>
           <h2 id="promo-title" class="promo__title">Cuadra tu operación <br /><span class="text-gradient">con un solo vistazo.</span></h2>
           <p class="promo__text">Ingresos, egresos y saldo consolidado en tiempo real. Así de simple.</p>
@@ -791,10 +811,10 @@
             <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html" data-magnetic>Quiero verlo en vivo</a>
             <a class="btn btn--secondary btn--lg" href="#reportes" data-magnetic>Ver reportes</a>
           </div>
-          <ul class="promo__points">
-            <li><span data-icon="activity" aria-hidden="true"></span> Tiempo real</li>
-            <li><span data-icon="receipt" aria-hidden="true"></span> Ingresos y egresos</li>
-            <li><span data-icon="bar-chart" aria-hidden="true"></span> Reportes listos</li>
+          <ul class="promo__points check-list">
+            <li data-reveal data-delay="0"><span data-icon="activity" aria-hidden="true"></span> Tiempo real</li>
+            <li data-reveal data-delay="90"><span data-icon="receipt" aria-hidden="true"></span> Ingresos y egresos</li>
+            <li data-reveal data-delay="180"><span data-icon="bar-chart" aria-hidden="true"></span> Reportes listos</li>
           </ul>
         </div>
       </div>
@@ -814,6 +834,12 @@
           <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html" data-magnetic>Solicitar una demo</a>
           <a class="btn btn--secondary btn--lg" href="#solucion" data-magnetic>Conocer más</a>
         </div>
+
+        <ul class="cta__checks check-list" aria-label="Qué verás en la demo">
+          <li data-reveal data-delay="0"><span data-icon="check" aria-hidden="true"></span> Cuadre de tu operación</li>
+          <li data-reveal data-delay="90"><span data-icon="check" aria-hidden="true"></span> Movimientos e ingresos</li>
+          <li data-reveal data-delay="180"><span data-icon="check" aria-hidden="true"></span> Reportes para decidir</li>
+        </ul>
 
         <form class="demo-form" data-demo-form novalidate>
           <h3 class="demo-form__title">Solicita una demo</h3>

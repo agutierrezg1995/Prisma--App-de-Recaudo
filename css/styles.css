@@ -1960,3 +1960,250 @@ html:not(.announce) { --announce-offset: 0px; }
   .chart__line, .mini-chart__line { stroke-dashoffset: 0 !important; }
   .prism, .shield__ring { animation: none !important; }
 }
+
+/* =========================================================
+   41. EXPERTO UX/UI — VENTA Y PERCEPCIÓN (F-01…F-10)
+   Spec §41 · Guardas §19/§23/§35 (todo transform/opacity;
+   reduced-motion desactiva; contenido sin datos ficticios)
+   ========================================================= */
+
+/* ---------- F-01 HERO SPOTLIGHT (luz que sigue el puntero) ---------- */
+.js .hero[data-spotlight]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(560px circle at var(--mx, 70%) var(--my, 16%),
+              rgba(0, 229, 255, 0.10), transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+.js .hero[data-spotlight] > .container { position: relative; z-index: 1; }
+
+/* ---------- F-02 HERO WORD-ROTATE (frases de valor) ---------- */
+.hero__line { min-height: 1.25em; display: inline-block; }
+.rotate { position: relative; display: grid; }
+.rotate__item {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(45%) scale(0.98);
+  filter: blur(6px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease), filter 0.6s var(--ease);
+  will-change: transform, opacity;
+}
+.rotate__item.is-on { opacity: 1; transform: none; filter: none; }
+
+/* ---------- F-03 CHECK-LIST CON DIBUJO DE ÍCONO ---------- */
+.check-list { list-style: none; }
+.js .check-list li[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.js .check-list li[data-reveal].is-visible { opacity: 1; transform: none; }
+.check-list [data-icon] { color: var(--prisma-cyan-400); }
+.check-list li svg path,
+.check-list li svg polyline,
+.check-list li svg line {
+  stroke-dasharray: 44;
+  stroke-dashoffset: 44;
+}
+.js .check-list li[data-reveal].is-visible svg path,
+.js .check-list li[data-reveal].is-visible svg polyline,
+.js .check-list li[data-reveal].is-visible svg line {
+  animation: checkDraw 0.7s var(--ease) 0.2s forwards;
+}
+@keyframes checkDraw { to { stroke-dashoffset: 0; } }
+
+/* ---------- CTA CHECKS (listado de demostración) ---------- */
+.cta__checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  justify-content: center;
+  margin-top: 24px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.cta__checks li { display: inline-flex; align-items: center; gap: 9px; }
+.cta__checks [data-icon] { font-size: 1.05rem; }
+
+/* ---------- F-04 PRELOADER DE MARCA ---------- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  place-items: center;
+  background: #00102E;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease 0.05s, visibility 0.4s ease 0.05s;
+}
+.preloader.is-hidden { opacity: 0; visibility: hidden; }
+.preloader__inner { position: relative; display: grid; place-items: center; }
+.preloader__ring {
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--prisma-cyan-400);
+  border-right-color: rgba(0, 229, 255, 0.4);
+}
+.preloader img { border-radius: 14px; }
+@media (prefers-reduced-motion: no-preference) {
+  .preloader__ring { animation: preloaderSpin 0.8s linear infinite; }
+  .preloader img { animation: preloaderPulse 1.6s ease-in-out infinite; }
+  @keyframes preloaderSpin { to { transform: rotate(360deg); } }
+  @keyframes preloaderPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+}
+@media (prefers-reduced-motion: reduce) { .preloader { display: none; } }
+
+/* ---------- F-05 PRISMA-PARTÍCULAS ASCENDENTES EN CTA ---------- */
+.cta__decor::before,
+.cta__decor::after {
+  content: "";
+  position: absolute;
+  bottom: -12%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--prisma-cyan-400);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.8);
+  opacity: 0;
+  pointer-events: none;
+}
+.cta__decor::before { left: 10%; }
+.cta__decor::after { right: 14%; width: 4px; height: 4px; background: var(--prisma-yellow); }
+@media (prefers-reduced-motion: no-preference) {
+  .cta__decor::before { animation: ctaRiseA 9s linear infinite; }
+  .cta__decor::after { animation: ctaRiseB 11s linear infinite; }
+  @keyframes ctaRiseA {
+    0% { transform: translate3d(0, 55vh, 0) scale(0.6); opacity: 0; }
+    12% { opacity: 0.9; }
+    100% { transform: translate3d(2vw, -8vh, 0) scale(1); opacity: 0; }
+  }
+  @keyframes ctaRiseB {
+    0% { transform: translate3d(0, 45vh, 0) scale(0.8); opacity: 0; }
+    12% { opacity: 0.7; }
+    100% { transform: translate3d(-6vw, -4vh, 0) scale(1.2); opacity: 0; }
+  }
+}
+
+/* ---------- F-06 HERO DEVICE CON RESPUESTA AL SCROLL ---------- */
+.js .hero__media {
+  transform: translate3d(0, var(--hero-y, 0px), 0) scale(var(--hero-s, 1));
+  transition: transform 0.18s linear;
+  will-change: transform;
+}
+
+/* ---------- F-07 HEADING SHIMMER (una pasada al revelar) ---------- */
+.js .section__title { position: relative; overflow: hidden; }
+.section__title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 45%;
+  background: linear-gradient(100deg, transparent, rgba(0, 229, 255, 0.22), transparent);
+  transform: translateX(-140%) skewX(-14deg);
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .section__header[data-reveal].is-visible .section__title::after {
+    animation: headingShine 0.95s var(--ease) 0.12s both;
+  }
+  @keyframes headingShine {
+    to { transform: translateX(320%) skewX(-14deg); }
+  }
+}
+
+/* ---------- F-08 FLECHA DESLIZABLE EN CTAs ---------- */
+.btn::after {
+  content: "\2192";
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.3s var(--ease);
+  will-change: transform;
+}
+.btn:hover::after { transform: translateX(5px); }
+
+/* ---------- F-09 SCROLL CUE EN HERO ---------- */
+.hero__cue {
+  position: absolute;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.js .hero--ready .hero__cue { opacity: 1; }
+.hero__cue.is-hidden { opacity: 0 !important; }
+.hero__cue span {
+  display: block;
+  width: 24px;
+  height: 38px;
+  border: 2px solid rgba(0, 216, 255, 0.5);
+  border-radius: 999px;
+  position: relative;
+}
+.hero__cue span::after {
+  content: "";
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin-left: -2.5px;
+  border-radius: 50%;
+  background: var(--prisma-cyan-400);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__cue span::after { animation: cueDrop 1.8s ease-in-out infinite; }
+  @keyframes cueDrop {
+    0% { transform: translateY(0); opacity: 0; }
+    25% { opacity: 1; }
+    70% { transform: translateY(14px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 0; }
+  }
+}
+@media (max-width: 560px) { .hero__cue { display: none; } }
+
+/* ---------- F-10 PRISMA EN ÓRBITA (promo) ---------- */
+.prism--orbit {
+  top: 10%;
+  right: 8%;
+  width: 84px;
+  height: 84px;
+  opacity: 0.38;
+  z-index: 1;
+  animation-delay: 0s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .prism--orbit { animation: prismOrbit 16s linear infinite; }
+  @keyframes prismOrbit {
+    0% { transform: rotate(0deg) translateY(0); }
+    50% { transform: rotate(180deg) translateY(-10px); }
+    100% { transform: rotate(360deg) translateY(0); }
+  }
+}
+
+/* ---------- F-10b GLOW BORDER EN CARDS (hover) ---------- */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.75), rgba(0, 229, 255, 0) 45%, rgba(255, 194, 26, 0.25) 85%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transform: scale(0.985);
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  pointer-events: none;
+  z-index: 2;
+}
+.card:hover::after { opacity: 1; transform: none; }
