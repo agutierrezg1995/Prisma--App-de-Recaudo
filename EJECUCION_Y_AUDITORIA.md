@@ -663,3 +663,18 @@ Re-ejecución de la auditoría completa para depurar `[ ]` que ya no reflejaban 
 - [x] **§6.7 inputs corregido**: estaba `[ ]` "no hay formulario → N/A" (decisión CTA `#demo` era de 2026-09-18, **obsoleta**) → `[x]` con los formularios reales de la Fase A (`#demo` + `pages/solicitar-demo.html`): `:valid`/`:user-invalid`, `aria-invalid` + `aria-describedby`, `role=status` (§39.1).
 - [ ] **Pendiente usuario (sin cambios)**: validación visual §12/§12.3 (incl. DUDE-04 assets ⚠ y pertinencia de `alt`), handles sociales (DUDE-18), legales `[REEMPLAZAR]` (DUDE-01), QA WhatsApp móvil (DUDE-11/02), analytics opcional (DUDE-09).
 
+### Continuación 2026-09-19 — decimonovena pasada (verificación SPEC §39 ↔ implementación)
+
+Auditoría de los 9 retos de calidad del SPEC contra el código fuente (sin cambios — confirmación de alineación):
+
+- [x] **§39.1** formulario demo: `id="demo"` en index + `role="status"` + composición `wa.me` (ruta integridad). → OK.
+- [x] **§39.2** slider v2: contador `data-slider-count` (JS) + `cubic-bezier(.22,1,.36,1)` en CSS + guarda `no-preference`. → OK.
+- [x] **§39.3** CTA end-to-end: 0 `href="#demo"` como ancla muerta (todos derivados a `pages/solicitar-demo.html` o anclas con sección que responde). → OK.
+- [x] **§39.4** motion pulido: `shimmer` (CSS) + easing `1 - Math.pow(1 - p, 3)` (easeOutCubic, JS:386). → OK.
+- [x] **§39.5** FAQ 9: **23 `<details>` − 14 `data-card-detail` = 9 FAQ** (consistencia aritmética verificada). → OK.
+- [x] **§39.6** CardDetail: **14** `data-card-detail` (9 cards + 5 chips) con `aria-expanded`/Escape. → OK.
+- [x] **§39.7** tratamientos de panel: `device--*` + `device__tag`. → OK.
+- [x] **§39.8** contactos: `data-contact-block` + `wa-fab` + `data-social` presentes en index; WA/correo reales en `CONTACT`. → OK.
+- [x] **§39.9** CTA a página real: `solicitar-demo.html` referenciada en index. → OK.
+- [ ] **Pendiente usuario (sin cambios)**: ídem pasada 18.
+
