@@ -198,7 +198,7 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 - [x] HTML semántico y jerarquía de headings correcta (H1 único).
 - [x] Navegación completa por teclado; orden de foco lógico (verificado en §12.2).
 - [x] `:focus-visible` claro en todos los interactivos.
-- [ ] `alt` text en todas las imágenes (decorativas con `alt=""`) — revisadas en §12.3; pendiente confirmación visual humana.
+- [x] `alt` text en todas las imágenes (decorativas con `alt=""`) — **verificado 2026-09-19**: 24 `<img>` entre las 5 páginas (16 index + 2 por página), **0 sin `alt`**; la pertinencia semántica del texto queda en §12.3 (humano).
 - [x] `aria-label`/`aria-*` en slider, menú, tabs y controles.
 - [x] Contraste mínimo AA (texto normal 4.5:1, grande 3:1).
 - [x] No depender solo del color para comunicar estado (badges in/out con texto e icono; dots usan `aria-current`).
@@ -221,7 +221,7 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 - [x] WebP/AVIF + responsive images (`srcset`/`sizes` con variantes `-800w`).
 - [x] `lazy loading` en imágenes fuera del hero.
 - [x] Preload solo del hero (con `imagesrcset` para que mobile descargue la variante 800w).
-- [ ] Sin videos pesados (no hay videos en la página → N/A).
+- [x] Sin videos pesados (N/A confirmado 2026-09-19: 0 elementos `<video>` en las 5 páginas; animación con CSS/JS ligeros).
 - [x] Blur controlado (evitar múltiples simultáneos costosos).
 - [x] Sin CLS (reservar dimensiones).
 - [x] Primera pantalla rápida (LCP objetivo: hero ~45 KB en mobile vía variante 800w).
@@ -240,7 +240,7 @@ Para cada sección verificar: **copy exacto del spec · asset correcto · layout
 - [x] Botón sticky "Solicitar demo" solo tras avanzar en la página (SPEC §36).
 - [x] Sin scroll hijacking ni sobrecarga cognitiva (sin manipulación de scroll, motion < 800ms).
 - [x] Espacio negativo suficiente (SPEC §32).
-- [ ] Inputs con estado visual claro: no hay formulario → N/A (decisión CTA `#demo`).
+- [x] Inputs con estado visual claro — **actualizado 2026-09-19**: sí hay formularios (`#demo` en index + `pages/solicitar-demo.html`, Fase A): estados `:valid`/`:user-invalid` con tokens de color + texto de error, `aria-invalid`/`aria-describedby` y `role=status` en el envío (§39.1). Confirmación visual queda en §12 (DUDE-11).
 
 ---
 
@@ -651,4 +651,15 @@ Revisión de `EJECUCION`/`DEUDA`/`SPEC` — plan v1.2 ya implementado de punta a
 - [x] **DUDE-04 re-evaluado**: no es posible automatizar la confirmación de `security.webp`/`finance.webp`/`usecase.webp` (validación visual humana); se mantiene pendiente y se dejó constancia explícita en §12.3.
 - [x] **Penalizaciones formales de bono auditadas**: sin cambios — slider pausable, motion ≤800 ms, reduced-motion, contraste AA, `data-card-detail` para los 14 detalles (duplicado de espec en §39.6 no aplica).
 - [ ] **Pendiente usuario (sin cambios)**: validación visual §12/§12.3 (incluye los 3 assets ⚠ de DUDE-04), handles sociales para `CONTACT.social[]`, contenido legal `[REEMPLAZAR]` (DUDE-01), QA manual WhatsApp en móvil (DUDE-11/02); analitics DUDE-09 opcional.
+
+### Continuación 2026-09-19 — decimoctava pasada (depuración de chequeos obsoletos + re-verificación)
+
+Re-ejecución de la auditoría completa para depurar `[ ]` que ya no reflejaban el estado real:
+
+- [x] **Integridad re-verificada**: `node --check` OK · CSS `{455}455` · 24/24 `<img>` con `alt` (index 16 + 2 por página de soporte) · 0 `<video>` · 0 refs locales rotas reales (las 59 "broken" del script preliminar eran anclas cross-page `../index.html#x`; verificadas: **10 id objetivo presentes** en index → 0 falsos positivos).
+- [x] **Producción re-crawleada (16 recursos → 200)**: index, 404, 3 páginas, css, js, 8 assets webp (incl. `process.webp`), sitemap, robots.
+- [x] **§6.3 alt corregido**: estaba `[ ]` → `[x]` con conteo real (24 `<img>`, 0 sin `alt`); la pertinencia semántica queda en §12.3 (humano).
+- [x] **§6.5 videos corregido**: estaba `[ ]` N/A → `[x]` con confirmación 0 `<video>` en las 5 páginas.
+- [x] **§6.7 inputs corregido**: estaba `[ ]` "no hay formulario → N/A" (decisión CTA `#demo` era de 2026-09-18, **obsoleta**) → `[x]` con los formularios reales de la Fase A (`#demo` + `pages/solicitar-demo.html`): `:valid`/`:user-invalid`, `aria-invalid` + `aria-describedby`, `role=status` (§39.1).
+- [ ] **Pendiente usuario (sin cambios)**: validación visual §12/§12.3 (incl. DUDE-04 assets ⚠ y pertinencia de `alt`), handles sociales (DUDE-18), legales `[REEMPLAZAR]` (DUDE-01), QA WhatsApp móvil (DUDE-11/02), analytics opcional (DUDE-09).
 
