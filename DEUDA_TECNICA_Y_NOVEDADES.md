@@ -39,6 +39,12 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 
 **Resultado del ciclo v1:** todo lo verificable sin pantalla está cubierto, commiteado y **desplegado en producción** (Fase C+D + §39.6 al día, 2026-09-19). WhatsApp y correo reales activos; plan §4 (F0–F7) reflejado como implementado. Restan: **validación visual humana** (§12, §12.3 incl. DUDE-04 assets, §37), handles de redes sociales (DUDE-18), decisiones de negocio DUDE-01 (legales) y DUDE-09 (analytics) y QA manual WhatsApp móvil (DUDE-11/02).
 
+### Pasada 21 — Experticia UX/UI §40 (E-01…E-12)
+
+| Commit | Tipo | Contenido |
+| --- | --- | --- |
+| *por commitear* | feat(ux-ui) | **§40 E-01…E-12**: densidad vertical compactada (secciones 48–88px, hero `calc(--announce-offset+84px)`), announcement topbar cierre con `--announce-offset`, scroll-progress, nav-indicator píldora, marquee de capacidades, promo banner con borde cónico, toast de confirmación del form, back-to-top, CTAs magnéticos, tilt 3D showcase, FAQ smooth. Guardas §19/§23/§35 y reduced-motion respetadas. |
+
 ---
 
 ## 2. Deuda técnica — desviaciones activas
@@ -131,6 +137,11 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 
 ### DUDE-19 · Página/solicitar-demo real — CERRADA (2026-09-19)
 - **Plan:** `pages/solicitar-demo.html` creada con form (DUDE-11), marca, nav, footer, canonical/OG/Twitter, breadcrumb, skip-link, `<noscript>` honorable y sitemap con 4ª URL (priority 0.9). CTA primarios apuntan a ella. Sin paginación por diseño (one-page + páginas de soporte).
+
+### DUDE-20 · Espacios y densidad vertical + novedades UX/UI §40 — CERRADA (2026-09-19, pasada 21)
+- **Estado:** reseñado por el titular como "espacios demasiado notables entre navbar/hero y entre secciones". Implementado vía SPEC §40 E-01 (densidad) + E-02…E-12 (topbar anuncio, scroll-progress, nav-indicator, marquee, promo banner, toast, back-to-top, CTAs magnéticos, tilt showcase, FAQ smooth).
+- **Impacto:** recorrido más continuo y profesional; mayor sensación de vida sin romper guardas §19/§23/§35 (motion ≤800 ms salvo ambientes pausables; `transform`/`opacity`; reduced-motion desactiva; contenido sin datos ficticios).
+- **Pendiente:** validación visual §12 del titular (ajustes finos de espaciado/animación si los percibe).
 
 ---
 

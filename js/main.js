@@ -447,6 +447,7 @@
         if (status) status.textContent = "Abriendo WhatsApp con tu solicitud…";
         if (WA_NUMBER.indexOf("REEMPLAZAR") === -1) {
           window.open(url, "_blank", "noopener");
+          showToast("Solicitud lista.", "Revisa WhatsApp para enviar tu mensaje.");
         } else if (status) {
           status.textContent = "Aún configuramos nuestro WhatsApp. Puedes volver a intentarlo en unos días o escribir por otro medio.";
         }
@@ -542,5 +543,100 @@
       if (summary) summary.setAttribute("aria-expanded", "false");
     });
   });
+
+/* ---------- TOPBAR (announcement, §40) ---------- */
+  var topbarClose = document.querySelector("[data-topbar-close]");
+  if (topbarClose) {
+    topbarClose.addEventListener("click", function () {
+      document.documentElement.classList.add("announce-closed");
+      topbarClose.setAttribute("aria-hidden", "true");
+    });
+  }
+
+  /* ---------- SCROLL PROGRESS (§40) ---------- */
+  var scrollBar = document.querySelector("[data-scroll-bar]");
+  if (scrollBar && "IntersectionObserver" in window) {
+    var onScrollProgress = function () {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var p = max > 0 ? (window.scrollY || 0) / max : 0;
+      scrollBar.style.setProperty("--progress", p.toFixed(4));
+    };
+    onScrollProgress();
+    window.addEventListener("scroll", onScrollProgress, { passive: true });
+    window.addEventListener("resize", onScrollProgress);
+  }
+
+  /* ---------- NAV INDICATOR (píldora activa, §40) ---------- */
+  var navIndicator = document.querySelector("[data-nav-indicator]");
+  var navList = document.querySelector(".navbar__list");
+  function moveIndicator() {
+    if (!navIndicator || !navList) return;
+    var active = navList.querySelector(".navbar__link.is-active");
+    if (!active) return;
+    navIndicator.style.setProperty("--nav-x", active.offsetLeft + "px");
+    navIndicator.style.setProperty("--nav-w", active.offsetWidth + "px");
+  }
+  if (navIndicator) {
+    moveIndicator();
+    window.addEventListener("resize", moveIndicator);
+    if ("MutationObserver" in window) {
+      new MutationObserver(moveIndicator).observe(navList, { attributes: true, subtree: true, attributeFilter: ["class"] });
+    }
+  }
+
+  /* ---------- MAGNETIC BUTTONS (§40) ---------- */
+  var finePoint = window.matchMedia("(hover: hover) and (pointer: fine)");
+  if (!reduceMotion && finePoint.matches) {
+    document.querySelectorAll("[data-magnetic]").forEach(function (btn) {
+      btn.style.transition = "transform 0.25s var(--ease)";
+      btn.addEventListener("pointermove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var dx = e.clientX - (r.left + r.width / 2);
+        var dy = e.clientY - (r.top + r.height / 2);
+        btn.style.transform = "translate(" + (dx * 0.16) + "px, " + (dy * 0.28) + "px)";
+      });
+      btn.addEventListener("pointerleave", function () { btn.style.transform = ""; });
+    });
+  }
+
+  /* ---------- TILT 3D en showcase (§40) ---------- */
+  if (!reduceMotion && finePoint.matches) {
+    document.querySelectorAll("[data-tilt]").forEach(function (card) {
+      card.style.transition = "transform 0.35s var(--ease)";
+      card.addEventListener("pointermove", function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = "perspective(820px) rotateX(" + (py * -5) + "deg) rotateY(" + (px * 5) + "deg) translateY(-4px)";
+      });
+      card.addEventListener("pointerleave", function () { card.style.transform = ""; });
+    });
+  }
+
+  /* ---------- BACK TO TOP (§40) ---------- */
+  var toTop = document.querySelector("[data-to-top]");
+  if (toTop) {
+    var onScrollBack = function () {
+      toTop.classList.toggle("is-visible", (window.scrollY || 0) > 1400);
+    };
+    onScrollBack();
+    window.addEventListener("scroll", onScrollBack, { passive: true });
+    toTop.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  }
+
+  /* ---------- TOAST (§40) ---------- */
+  var toast = document.querySelector("[data-toast]");
+  var toastTimer = null;
+  function showToast(title, text) {
+    if (!toast) return;
+    toast.innerHTML = iconSVG("check") +
+      "<span><strong>" + title + "</strong> " + text + "</span>";
+    toast.classList.add("is-visible");
+    toast.removeAttribute("hidden");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove("is-visible"); }, 6000);
+  }
 
 })();

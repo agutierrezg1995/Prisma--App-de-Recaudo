@@ -689,3 +689,23 @@ Auditoría automatizada transversal (sin cambios de código — confirmación de
 - [x] **Producción**: re-crawleado 9/9 → 200.
 - [ ] **Pendiente usuario (sin cambios)**: validación visual §12/§12.3 (incl. DUDE-04 assets ⚠ y pertinencia de `alt`), handles sociales (DUDE-18), legales `[REEMPLAZAR]` (DUDE-01), QA WhatsApp móvil (DUDE-11/02), analytics opcional (DUDE-09).
 
+### Continuación 2026-09-19 — vigesimoprimera pasada (Experticia UX/UI §40 — densidad + banners + motion)
+
+El titular pidió más experticia UX/UI: menos huecos verticales, más animaciones y banners. Se documentó en SPEC §40 (E-01…E-12) y deuda (DUDE-20):
+
+- [x] **E-01 Densidad vertical**: `.section` `padding-block` 72–140px → **48–88px**; `.section + .section` top extra 28–52px; `.section__header` margin-bottom → 24–40px; `.hero` `padding-top` = `calc(var(--announce-offset,0) + 84px)` (antes 130–190px). Elimina el hueco notable bajo el navbar y entre secciones.
+- [x] **E-02 Announcement topbar**: `data-topbar` fija (44/54px), CTA real a `solicitar-demo.html`, cierre accesible → `html.announce-closed { --announce-offset:0 }` (navbar/menú/scroll-padding dependen de `--announce-offset`). `html:not(.announce)` = 0 en legales/404 (sin topbar no hay hueco).
+- [x] **E-03 Scroll progress**: barra 3px `scaleX(var(--progress))`, rAF en scroll.
+- [x] **E-04 Nav indicator**: píldora deslizante sobre el enlace activo (≥1024px, aria-hidden, MutationObserver + resize).
+- [x] **E-05 Marquee**: cinta de 6 capacidades reales (§35), loop `translateX(-50%)`, 2º grupo `aria-hidden`, pausa hover/focus, off en reduced-motion.
+- [x] **E-06 Promo banner**: marco con borde cónico giratorio (`@property --angle`), flag "Novedad" pulsante, 2 CTAs magnéticos, 3 micro-puntos con iconos ya existentes.
+- [x] **E-07 Toast**: `role=status`+`aria-live` al enviar el form ("Solicitud lista. Revisa WhatsApp…"), auto-hide 6s, complementa `data-demo-status`.
+- [x] **E-08 Back-to-top**: botón circular ≥1400px, scroll suave, offsets anti-colisón (wa-fab/sticky-cta).
+- [x] **E-09 Magnetic**: 6 CTAs (`data-magnetic`), solo `hover:hover+pointer:fine` + no-preference, retorno 0.25s.
+- [x] **E-10 Tilt 3D**: 5 cards showcase `data-tilt` (perspectiva 820px, ±5°, reset en leave).
+- [x] **E-11 FAQ smooth**: `max-height` 0→340px + opacidad (0.4–0.5s `--ease`), teclado intacto.
+- [x] **E-12 Guardas**: reduced-motion desactiva topbar-glow/marquee/spin/pulse/tilt/magnetic/progress; todo transform/opacity/`--angle`; sin datos ficticios (§35).
+- [x] **Verificación local**: `node --check` OK · CSS `{533}533` balanceado · 0 refs rotas/anclas · 1 H1 · ids 0 dup · 20 icons únicos (25 definidos) · alt 100%. `index.html` = 976 líneas (con anuncio+marquee+promo+toast+to-top).
+- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [ ] **Pendiente usuario**: validación visual §12 de los E-01…E-12 (en particular la densidad y el marquee); el resto de pendientes intacto (DUDE-04, DUDE-18, DUDE-01, DUDE-11/02, DUDE-09).
+

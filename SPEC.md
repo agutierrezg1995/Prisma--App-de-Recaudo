@@ -1618,3 +1618,91 @@ datos ficticios presentados como reales (§35), motion discreto y accesible
 Orden de ejecución propuesto (ver EJECUCION §15): Fase A conversión (39.1→39.3→39.9),
 Fase B contenido (39.5→39.6), Fase C percepción (39.7→39.2→39.4), Fase D contacto
 (39.8, requiere datos reales del negocio).
+
+---
+
+## 40. Experticia UX/UI del titular — densidad vertical, banners y motion (2026-09-19)
+
+Retos de calidad adicionales solicitados por el titular tras la Fase D. Se ejecutan
+como **E-01…E-12** y se registran en `DEUDA`/`EJECUCION` (pasada 21).
+
+### E-01 DENSIDAD VERTICAL (gaps entre secciones)
+- Contexto: el usuario percibe "huecos notables" entre el navbar y el hero, y
+  entre secciones (se sentían vacíos y distanciados).
+- Decisión (referencia del sistema de diseño): compactar la escala vertical sin
+  sacrificar respiración:
+  · Secciones: `padding-block` de `clamp(72px,10vw,140px)` → `clamp(48px,6.5vw,88px)`.
+  · Sección consecutiva: top reducido adicional `clamp(28px,4vw,52px)` (regla
+    `.section + .section`) para no duplicar el doble padding entre bloques.
+  · Encabezado de sección: `margin-bottom` de `clamp(40px,6vw,72px)` → `clamp(24px,3.5vw,40px)`.
+  · Hero: `padding-top` fijado a `calc(var(--announce-offset,0) + 84px)` (antes
+    `clamp(130px,16vw,190px)`), alineando el arranque del contenido justo bajo el
+    navbar, sin franja navy vacía perceptible.
+- Aceptación: en desktop y mobile el recorrido se siente continuo; los "huecos"
+  no superan ≈90 px entre bloques; validación visual §12.
+- Guarda: no llegar a saturación (§32 espacio negativo se mantiene >24 px).
+
+### E-02 ANNOUNCEMENT BAR / BANNER SUPERIOR ("Novedad Prisma$")
+- Contexto: el titular pide más banners publicitarios.
+- Decisión: barra fija superior (`data-topbar`) con copys reales (§35), CTA a la
+  página de demo y botón de cierre persistente (`localStorage` no usado; clase
+  `announce-closed` en `<html>` que colapsa `--announce-offset` a 0 y desliza la
+  barra). Navbar y menú móvil dependen de `--announce-offset` (44px / 54px).
+- Aceptación: no tapa el navbar (lo desplaza), cierre accesible (aria-label),
+  no se muestra en páginas sin `.announce` (legales/404).
+
+### E-03 SCROLL PROGRESS
+- Barra de progreso de 3px fija bajo el navbar (`data-scroll-progress`), gradiente
+  cyan, `transform: scaleX` gobernada por `--progress` (aria-hidden). Aceptación:
+  sincronizada con el scroll, sin reflow (transform).
+
+### E-04 NAV INDICATOR (píldora activa en navbar)
+- Píldora glass que se desliza (transform+width) sobre el enlace activo del
+  scroll-spy. Solo ≥1024px. Aceptación: coincide con `is-active`; 0 impacto
+  accesible (aria-hidden); no rota en foco.
+
+### E-05 MARQUEE / CINTA DE CAPACIDADES
+- Banda publicitaria entre "Cómo funciona" y "Monitoreo": características
+  reales del producto separadas por glifos de prisma, loop infinito CSS
+  (`translateX(-50%)`, 2 grupos, segundo aria-hidden), pausa en hover/focus,
+  desactivada bajo reduced-motion (flex-wrap estático).
+- Guarda §19: no es casino — velocidad lenta (32 s), pausa por interacción.
+
+### E-06 PROMO BANNER (campaña central)
+- Módulo `promo` antes del CTA principal: marco con borde cónico giratorio
+  (regla `@property --angle`, degrada sin ella), flag "Novedad" con punto
+  pulsante, título + CTA magnéticos + micro-puntos con iconos. Contenido 100%
+  del spec (§35, sin métricas inventadas).
+
+### E-07 TOAST DE CONFIRMACIÓN (form demo)
+- Notificación flotante (`role=status`, aria-live) al enviar el formulario:
+  "Solicitud lista. Revisa WhatsApp…". Se auto-oculta a los 6 s. Complementa
+  `data-demo-status` (que queda como sr-text).
+
+### E-08 BACK TO TOP CON PROGRESO
+- Botón circular flotante que aparece tras 1400 px, desplaza suave al inicio,
+  `aria-label="Volver arriba"`. No compite con wa-fab ni sticky-cta (offsets
+  por breakpoint).
+
+### E-09 MOTION MAGNÉTICO EN CTA
+- `data-magnetic`: los CTAs principales atraen sutilmente el puntero
+  (translate 0.16/0.28, máximo ~8px). Solo `(hover:hover) and (pointer:fine)`
+  y `no-preference`. Aceptación: sin jitter, transición de retorno 0.25s.
+
+### E-10 TILT 3D EN SHOWCASE
+- `data-tilt` en las 5 cards del carousel de producto: perspectiva 820px,
+  rotación ±5° según cursor, translateY(-4px) en hover; reset en pointerleave.
+  Solo fine pointer alineado con reduced-motion.
+
+### E-11 FAQ SMOOTH
+- Apertura/cierre animada del acordeón (`max-height` 0→340px + opacidad),
+  0.4–0.5s con `--ease`. Aceptación: sin salto de layout, teclado intacto.
+
+### E-12 GUARDAS TRANSVERSALES
+- Todas las animaciones nuevas respetan `prefers-reduced-motion: reduce`
+  (desactivadas o instantáneas), `transform`/`opacity`/`--angle` (me Jank),
+  ≤800 ms salvo ambientes (marquee 32s / spin 7s / pulse 2.2s, pausables).
+- Sin URLs, métricas ni testimonios inventados (§35). Nuevo markup sin añadir
+  iconos nuevos (los 5 puntos reutilizan set existente).
+
+---

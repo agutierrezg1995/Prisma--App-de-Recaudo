@@ -6,6 +6,12 @@ Landing page premium para **Prisma$ Control de Recaudo**, una plataforma fintech
 
 ---
 
+## Ver en vivo
+
+**[Prisma$ — Control de Recaudo (producción)](https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/)**
+
+---
+
 ## Descripción
 
 Este proyecto implementa la experiencia web completa descrita en `SPEC.md`: una landing orientada a conversión que comunica **control, visibilidad, tecnología, seguridad y simplicidad operativa**.

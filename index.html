@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="announce">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -106,6 +106,28 @@
 <body>
   <a class="skip-link" href="#main">Saltar al contenido</a>
 
+  <!-- ============ ANNOUNCEMENT (banner de promoción) ============ -->
+  <div class="topbar" data-topbar>
+    <div class="container topbar__inner">
+      <p class="topbar__text">
+        <strong>Novedad Prisma$.</strong>
+        <span class="topbar__sep" aria-hidden="true"></span>
+        Registra tus cobros y cuadra tu operación desde tu celular.
+        <a class="topbar__link" href="pages/solicitar-demo.html">
+          Solicita tu demo hoy <span aria-hidden="true">&rarr;</span>
+        </a>
+      </p>
+      <button class="topbar__close" type="button" aria-label="Cerrar aviso" data-topbar-close>
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ SCROLL PROGRESS ============ -->
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress>
+    <span data-scroll-bar></span>
+  </div>
+
   <div class="bg-decor" aria-hidden="true">
     <span class="prism prism--1"></span>
     <span class="prism prism--2"></span>
@@ -124,6 +146,7 @@
 
       <nav class="navbar__nav" id="nav-menu" aria-label="Navegación principal">
         <ul class="navbar__list">
+          <span class="nav-indicator" aria-hidden="true" data-nav-indicator></span>
           <li><a class="navbar__link is-active" href="#inicio" data-spy>Inicio</a></li>
           <li><a class="navbar__link" href="#solucion" data-spy>Solución</a></li>
           <li><a class="navbar__link" href="#beneficios" data-spy>Beneficios</a></li>
@@ -157,8 +180,8 @@
             Centraliza tus cobros, movimientos, clientes y reportes en una sola plataforma.
           </p>
           <div class="hero__actions reveal" data-reveal data-delay="150">
-            <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html">Solicitar una demo</a>
-            <a class="btn btn--secondary btn--lg" href="#solucion">Conocer la plataforma</a>
+            <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html" data-magnetic>Solicitar una demo</a>
+            <a class="btn btn--secondary btn--lg" href="#solucion" data-magnetic>Conocer la plataforma</a>
           </div>
           <ul class="hero__meta reveal" data-reveal data-delay="220">
             <li><span class="dot dot--cyan"></span> Tiempo real</li>
@@ -421,6 +444,40 @@
             <p>Convierte tus registros en información para decidir.</p>
           </li>
         </ol>
+      </div>
+    </section>
+
+    <!-- ============ MARQUEE (cinta de características) ============ -->
+    <section class="marquee" aria-label="Capacidades de Prisma$">
+      <div class="marquee__track" data-marquee>
+        <ul class="marquee__group">
+          <li>Registro de cobros</li>
+          <li class="marquee__glyph" aria-hidden="true">&#10022;</li>
+          <li>Monitoreo en tiempo real</li>
+          <li class="marquee__glyph" aria-hidden="true">&#10022;</li>
+          <li>Ingresos y egresos</li>
+          <li class="marquee__glyph" aria-hidden="true">&#10022;</li>
+          <li>Recibos de pago</li>
+          <li class="marquee__glyph" aria-hidden="true">&#10022;</li>
+          <li>Reportes y cuadre</li>
+          <li class="marquee__glyph" aria-hidden="true">&#10022;</li>
+          <li>Multi-dispositivo</li>
+          <li class="marquee__glyph" aria-hidden="true">&#10022;</li>
+        </ul>
+        <ul class="marquee__group" aria-hidden="true">
+          <li>Registro de cobros</li>
+          <li class="marquee__glyph">&#10022;</li>
+          <li>Monitoreo en tiempo real</li>
+          <li class="marquee__glyph">&#10022;</li>
+          <li>Ingresos y egresos</li>
+          <li class="marquee__glyph">&#10022;</li>
+          <li>Recibos de pago</li>
+          <li class="marquee__glyph">&#10022;</li>
+          <li>Reportes y cuadre</li>
+          <li class="marquee__glyph">&#10022;</li>
+          <li>Multi-dispositivo</li>
+          <li class="marquee__glyph">&#10022;</li>
+        </ul>
       </div>
     </section>
 
@@ -697,28 +754,49 @@
       <div class="showcase__carousel reveal" data-reveal data-showcase aria-roledescription="carrusel" aria-label="Explora la plataforma">
         <button class="showcase__arrow showcase__arrow--prev" type="button" aria-label="Anterior" aria-controls="showcase-track" data-showcase-prev></button>
         <div class="showcase__track" id="showcase-track" data-showcase-track tabindex="0" aria-label="Desliza para ver las vistas de la plataforma">
-          <article class="showcase__card">
+          <article class="showcase__card" data-tilt>
             <figure><img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Monitoreo en tiempo real en Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Monitoreo</h3><p>Tu operación, actualizada al instante.</p>
           </article>
-          <article class="showcase__card">
+          <article class="showcase__card" data-tilt>
             <figure><img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Dashboard de escritorio de Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Dashboard</h3><p>Una vista completa de tu operación.</p>
           </article>
-          <article class="showcase__card">
+          <article class="showcase__card" data-tilt>
             <figure><img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Reportes y movimientos" loading="lazy" width="640" height="400" /></figure>
             <h3>Movimientos</h3><p>Ingresos y egresos claros.</p>
           </article>
-          <article class="showcase__card">
+          <article class="showcase__card" data-tilt>
             <figure><img src="assets/usecase.webp" srcset="assets/usecase-800.webp 800w, assets/usecase.webp 1024w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Clientes y seguimiento en Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Clientes</h3><p>Seguimiento ordenado de cada cliente.</p>
           </article>
-          <article class="showcase__card">
+          <article class="showcase__card" data-tilt>
             <figure><img src="assets/process.webp" srcset="assets/process-800.webp 800w, assets/process.webp 1536w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Registro de cobros en Prisma$" loading="lazy" width="640" height="400" /></figure>
             <h3>Reportes</h3><p>Información lista para decidir.</p>
           </article>
         </div>
         <button class="showcase__arrow showcase__arrow--next" type="button" aria-label="Siguiente" aria-controls="showcase-track" data-showcase-next></button>
+      </div>
+    </section>
+
+    <!-- ============ PROMO BANNER (campaña) ============ -->
+    <section class="promo section" aria-labelledby="promo-title">
+      <div class="container">
+        <div class="promo__inner">
+          <div class="promo__frame" aria-hidden="true"></div>
+          <span class="promo__flag">Novedad</span>
+          <h2 id="promo-title" class="promo__title">Cuadra tu operación <br /><span class="text-gradient">con un solo vistazo.</span></h2>
+          <p class="promo__text">Ingresos, egresos y saldo consolidado en tiempo real. Así de simple.</p>
+          <div class="promo__actions">
+            <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html" data-magnetic>Quiero verlo en vivo</a>
+            <a class="btn btn--secondary btn--lg" href="#reportes" data-magnetic>Ver reportes</a>
+          </div>
+          <ul class="promo__points">
+            <li><span data-icon="activity" aria-hidden="true"></span> Tiempo real</li>
+            <li><span data-icon="receipt" aria-hidden="true"></span> Ingresos y egresos</li>
+            <li><span data-icon="bar-chart" aria-hidden="true"></span> Reportes listos</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -733,8 +811,8 @@
         <h2 class="cta__title">Lleva tu recaudo<br />al siguiente nivel.</h2>
         <p class="cta__text">Conoce Prisma$ y descubre una forma más clara de controlar tu operación.</p>
         <div class="cta__actions">
-          <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html">Solicitar una demo</a>
-          <a class="btn btn--secondary btn--lg" href="#solucion">Conocer más</a>
+          <a class="btn btn--primary btn--lg" href="pages/solicitar-demo.html" data-magnetic>Solicitar una demo</a>
+          <a class="btn btn--secondary btn--lg" href="#solucion" data-magnetic>Conocer más</a>
         </div>
 
         <form class="demo-form" data-demo-form novalidate>
@@ -892,6 +970,12 @@
   </a>
 
   <a class="sticky-cta" href="pages/solicitar-demo.html" data-sticky-cta>Solicitar demo</a>
+
+  <button class="to-top" type="button" data-to-top aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg>
+  </button>
+
+  <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
 
   <script src="js/main.js" defer></script>
 </body>
