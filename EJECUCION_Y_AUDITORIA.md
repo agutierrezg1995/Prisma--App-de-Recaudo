@@ -758,3 +758,51 @@ El titular pidió: corregir el "texto duplicado" del hero, animar con JS de form
 - [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
 - [ ] **Pendiente usuario**: validación visual §12 (ritmo del tour/scanline/sparkles, encaje del arte, densidad).
 
+### Pasada 25 — §43 Experiencia viva (H-01…H-09, O-01) + §44 diagramas
+
+**Motivo:** el titular pidió *"animaciones constantes en algunas secciones"*,
+*nuevas cosas originales* y una carpeta `diagramas` con los diagramas clave
+para entender cómo funciona.
+
+**Cambios (SPEC §43):**
+- [x] **H-01 Feed en vivo (Monitoreo)**: JS rota `is-live` cada 1.6 s sobre las
+  5 notificaciones (cascada 8 s) → realce de borde/fondo/sombra cyan. Off en
+  reduce y tab oculta; solo transiciones de borde/fondo/sombra.
+- [x] **H-02 Punto viajero (mini-gráfico)**: `offset-path` con la misma
+  geometría de la línea (`M0,64…L240,22`), ciclo 8 s; oculto en reposo y
+  gated por `@supports (offset-path)` (sin romper navegadores antiguos).
+- [x] **H-03 Barrido de cuadre**: `device__sweep` barre luz cyan 7 s
+  (ease-in-out, delay 1.2 s) sobre el panel de Ingresos/Egresos.
+- [x] **H-04 Respiro del CTA**: `cta__sweep` barrido ambiental 9 s (skew -12°).
+- [x] **H-05 Satélite orbital (Seguridad)**: `shield__orbit` rota 14 s con
+  punto-luz `shield__sat`; off explícito en §reduce.
+- [x] **H-06 Pulso en cascada (chips)**: 5 chips de Solución pulsan 3 s
+  (delays 0.6 s) vía `::before` (inset 6px, `pointer-events:none`).
+- [x] **H-07 Stats que respiran**: 4 valores respiran 4 s en escalera
+  (delays 0.5 s, transform-origin izquierda).
+- [x] **H-08 Brillo de la línea del timeline**: pulso de `box-shadow` 3 s sin
+  afectar el ancho progresivo.
+- [x] **H-09 Deriva del gradiente del footer**: `::before` con
+  `background-size:250%` deriva 18 s (≤12 % alpha, `pointer-events:none`).
+- [x] **O-01 Badge "En vivo" (original)**: `eyebrow--live` con punto verde que
+  late 2.2 s + sufijo "· En vivo" en Monitoreo y Dashboard/Reportes.
+- [x] **Guardas §43**: H-01 gated por `!reduceMotion` + `document.hidden`;
+  resto CSS-only bajo `prefers-reduced-motion: no-preference`; solo
+  `transform`/`opacity`/`background`/`box-shadow`; piezas decorativas
+  `aria-hidden`; cero datos ficticios nuevos (§35).
+- [x] **Verificación local**: `node --check` OK · CSS `{719}719` · 1 H1 ·
+  ids 0 dup · H-01..H-09/O-01 clases presentes (1–2 instancias c/u).
+
+**§44 Diagramas (`diagramas/`):**
+- [x] `diagramas/README.md` — índice y cómo leer cada diagrama.
+- [x] `diagramas/01-arquitectura.md` — archivos, rutas y flujo de carga.
+- [x] `diagramas/02-secciones-y-narrativa.md` — navegación y narrativa §7/§9.
+- [x] `diagramas/03-flujo-de-conversion.md` — CTAs → demo → WhatsApp.
+- [x] `diagramas/04-sistema-de-animacion.md` — guardas §19/§23/§35 y rutinas.
+- [x] `diagramas/05-tokens-y-design-system.md` — paleta y componentes.
+- [x] Formato Mermaid (render nativo en GitHub), sin imágenes externas.
+
+- [ ] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [ ] **Pendiente usuario**: validación visual §12 (ritmo de H-01/H-02,
+  intensidad de pulses/barridos del resto).
+

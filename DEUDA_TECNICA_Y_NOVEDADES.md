@@ -51,6 +51,13 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | --- | --- | --- |
 | *por commitear* | feat(autonomic) | **§42 G-01…G-10**: autoplay showcase (5.6s, pausa hover/foco), sparkles JS ascendentes, 6 ilustraciones SVG de marca `art-*.svg` en cards (y tour hero), aurora drift rAF, pulso contador, dots cascada, ripple rings fab, scanline promo, densidad #2 (`--card-pad`), topbar cíclico + hero tour crossfade. **Fix hero**: badge sin redundancia ("Centraliza·Monitorea·Decide") + `-webkit-text-fill-color`. Guardas §19/§23/§35 y reduced-motion. |
 
+### Pasada 25 — Experiencia viva §43 (H-01…H-09, O-01) + diagramas §44
+
+| Commit | Tipo | Contenido |
+| --- | --- | --- |
+| *por commitear* | feat(live) | **§43 animaciones constantes H-01…H-09 + pieza original O-01**: feed en vivo en Monitoreo (JS cascada 1.6 s, clase `is-live`), punto viajero en mini-gráfico (`offset-path`, 8 s, `@supports`), barrido de cuadre (7 s), respiro del CTA (9 s), satélite orbital en Seguridad (14 s), pulso en cascada de chips (3 s), stats que respiran (4 s), brillo de la línea del timeline (3 s), deriva del gradiente del footer (18 s) + badges "En vivo" (`eyebrow--live`, ping 2.2 s) en Monitoreo y Dashboard. Guardas §19/§23/§35 y reduced-motion. |
+| *por commitear* | docs(diagrams) | **§44 directorio `diagramas/`** (Mermaid, render nativo en GitHub): arquitectura de archivos, narrativa/navegación por secciones, flujo de conversión a la demo, sistema de animación (guardas) y sistema de diseño/tokens. |
+
 ### Pasada 23 — Refinamiento F-02 (hero) + imágenes en cards de Beneficios
 
 | Commit | Tipo | Contenido |
@@ -181,6 +188,11 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - **Impacto:** sensación de producto vivo y página más liviana (SVG < webp).
 - **Pendiente:** validación visual §12 (ritmo/ritmo del tour, intensidad de sparkles/scanline).
 
+### DUDE-25 · "Animaciones constantes" + cosas originales + diagramas — CERRADA (2026-09-19, pasada 25)
+- **Estado:** el titular pidió animaciones constantes en algunas secciones, nuevas cosas originales y un directorio de diagramas. Implementado SPEC §43 H-01…H-09 (movimiento permanente y pausable: **H-01** feed en vivo Monitoreo vía JS `is-live` en cascada 1.6 s/cada una, **H-02** punto viajero sobre el mini-gráfico con `offset-path` 8 s y `@supports` para no romper navegadores antiguos, **H-03** barrido de cuadre en el panel financiero 7 s, **H-04** respiro ambiental del CTA 9 s, **H-05** satélite orbital en Seguridad 14 s, **H-06** pulso en cascada de los chips de Solución 3 s, **H-07** stats del dashboard que respiran 4 s, **H-08** brillo pulsante de la línea del timeline 3 s, **H-09** deriva del gradiente del footer 18 s) + pieza original **O-01** badges "En vivo" (`eyebrow--live`, ping 2.2 s) en Monitoreo y Dashboard/Reportes. Directorio `diagramas/` (SPEC §44) con 5 diagramas Mermaid (arquitectura, secciones/narrativa, flujo de conversión, sistema de animación, tokens/design system).
+- **Impacto:** sensación de producto vivo en todas las secciones clave sin ruido: todo respeta guardas §19/§23/§35 (transform/opacity/background, ≤800 ms salvo ambientes 1.6–18 s pausables, `prefers-reduced-motion` off, decoración `aria-hidden`, cero datos ficticios nuevos).
+- **Pendiente:** validación visual §12 (ritmo de H-01/H-02, intensidad de los pulses/barridos).
+
 ---
 
 ## 3. Decisiones registradas (para no reinterpretar dos veces)
@@ -194,6 +206,7 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 7. Formulario de demo **estático** (composición WhatsApp, sin backend) hasta que exista endpoint real (2026-09-19).
 8. WhatsApp fab y redes: solo con datos reales `[REEMPLAZAR]`; nunca una URL inventada (§35) (2026-09-19).
 9. **Datos de contacto reales aplicados** (2026-09-19): WhatsApp principal `573183366064` y correo `davidgrijalba8@gmail.com` (fuente `datos de contacto.md`). Redes sociales siguen vacías hasta recibir handles reales. Números de soporte (3166540824, 3041034037) registrados como adicionales, no publicados.
+10. **Diagramas en Mermaid dentro del repo** (2026-09-19): la carpeta `diagramas/` usa ficheros `.md` con Mermaid (se renderizan solos en GitHub), sin imágenes externas ni tooling de build, coherente con la decisión 5 (multipágina sin build).
 
 ---
 

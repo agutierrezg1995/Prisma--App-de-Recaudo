@@ -107,9 +107,21 @@ Sans-serif moderna (**Inter** o **Manrope**, o equivalente), con jerarquía flui
 ```
 Prisma-Landing Page/
 ├── README.md
-├── SPEC.md
-└── Imagenes para landing/     # Assets gráficos y de marca
+├── SPEC.md                       # Especificación (fuente de verdad)
+├── DEUDA_TECNICA_Y_NOVEDADES.md  # Novedades y deuda técnica por pasada
+├── EJECUCION_Y_AUDITORIA.md      # Plan de ejecución + auditoría
+├── diagramas/                    # Diagramas Mermaid clave (cómo funciona)
+├── index.html                    # Landing page
+├── 404.html                      # Página 404 de marca
+├── pages/                        # Legales + solicitar demo
+├── assets/                       # Imágenes responsive + arte SVG generado
+├── css/styles.css                # Design system + animaciones
+├── js/main.js
+├── Imagenes para landing/        # Assets gráficos y de marca
+└── scripts/                      # Herramientas (optimización de imágenes)
 ```
+
+Los diagramas clave del proyecto viven en [`diagramas/`](diagramas/README.md) (se renderizan solos en GitHub).
 
 ---
 
@@ -124,7 +136,7 @@ Prisma-Landing Page/
 
 ## Estado del proyecto
 
-Definición de diseño y especificación completas (`SPEC.md`). Implementación de la experiencia visual en curso.
+Definición de diseño y especificación completas (`SPEC.md`). Implementación **en producción (GO-LIVE)** con 25 pasadas de auditoría documentadas: experiencias autónomas (§42), animaciones constantes y piezas originales (§43) y diagramas del sistema (§44) entregados 2026-09-19. Se mantiene un registro de novedades y deuda técnica en `DEUDA_TECNICA_Y_NOVEDADES.md`.
 
 ---
 
