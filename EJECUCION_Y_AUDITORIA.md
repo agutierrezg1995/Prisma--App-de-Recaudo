@@ -706,7 +706,7 @@ El titular pidió más experticia UX/UI: menos huecos verticales, más animacion
 - [x] **E-11 FAQ smooth**: `max-height` 0→340px + opacidad (0.4–0.5s `--ease`), teclado intacto.
 - [x] **E-12 Guardas**: reduced-motion desactiva topbar-glow/marquee/spin/pulse/tilt/magnetic/progress; todo transform/opacity/`--angle`; sin datos ficticios (§35).
 - [x] **Verificación local**: `node --check` OK · CSS `{533}533` balanceado · 0 refs rotas/anclas · 1 H1 · ids 0 dup · 20 icons únicos (25 definidos) · alt 100%. `index.html` = 976 líneas (con anuncio+marquee+promo+toast+to-top).
-- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [x] Deploy ya: pendía commit+push+trigger → hecho en iteración 01 (commit 11b9163).
 - [ ] **Pendiente usuario**: validación visual §12 de los E-01…E-12 (en particular la densidad y el marquee); el resto de pendientes intacto (DUDE-04, DUDE-18, DUDE-01, DUDE-11/02, DUDE-09).
 
 ### Continuación 2026-09-19 — vigesimosegunda pasada (Capa de venta §41 — F-01…F-10)
@@ -725,7 +725,7 @@ Tanda de experto orientada a vender: percepción premium + micro-interacciones. 
 - [x] **F-10 Prisma orbital (promo 16s) + glow border hover en cards** (máscara border-box, scale 0.985→1).
 - [x] **Guardas §41**: tudo transform/opacity/filter/stroke-dashoffset; ≤1s salvo ambientes 9–16s; reduce desactiva; sin datos ficticios; decoración aria-hidden.
 - [x] **Verificación local**: `node --check` OK · CSS `{611}611` balanceado · 0 refs rotas/anclas · 1 H1 · ids 0 dup · 20 icons únicos · alt 100%.
-- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [x] Deploy ya: pendía commit+push+trigger → hecho en iteración 01 (commit 11b9163).
 - [ ] **Pendiente usuario**: validación visual §12 de F-01…F-10 (ritmo del rotador, intensidad spotlight/glow/preloader, flechas) y de E-01…E-12.
 
 ### Continuación 2026-09-19 — vigesimotercera pasada (fix hero + imágenes en Beneficios)
@@ -736,7 +736,7 @@ El titular señaló que: (a) en la primera sección bajo el navbar (hero) "hay u
 - [x] **F-11 Card thumbs (Beneficios)**: 6 `card--benefit` con miniatura superior 16:9 (`.card__thumb`, margin −31px sangrado al borde, `object-fit:cover`, overlay inferior, zoom 1.05 hover). Mapeo de assets: monitor/process/dashboard/finance/usecase/hero. Alt descriptivo, `loading="lazy"`, `srcset`+`-800w`.
 - [x] **Guardas**: cero datos ficticios (§35); `transform`/`opacity` únicamente; underscore hover y overlay son decorativos (`aria-hidden` implícito en imgs con alt real); reduced-motion respeta las reglas globales.
 - [x] **Verificación local**: `node --check` OK · CSS `{614}614` · 0 refs rotas/anclas · 1 H1 · ids 0 dup · 23 imgs alt 100% · 7 variantes `-800w` existentes · 20 icons únicos.
-- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [x] Deploy ya: pendía commit+push+trigger → hecho en iteración 01 (commit 11b9163).
 - [ ] **Pendiente usuario**: validación visual §12 (encaje de cada imagen con su beneficio, ritmo del rotador, densidad E-01…E-12, intensidades F-01…F-10).
 
 ### Continuación 2026-09-19 — vigesimocuarta pasada (Autonomía §42 + fix hero + arte SVG)
@@ -755,7 +755,7 @@ El titular pidió: corregir el "texto duplicado" del hero, animar con JS de form
 - [x] **G-10 Topbar cíclico (3 mensajes, 4.6s)** + **hero tour autoplay** (crossfade 5.2s screenshot real ↔ 3 art SVG; `hero__img` base con LCP conservada).
 - [x] **Guardas §42**: todo JS con `!reduceMotion` + `document.hidden`; solo `transform`/`opacity`; sin datos ficticios (§35); arte interno (no web externa).
 - [x] **Verificación local**: `node --check` OK · CSS `{649}649` · 0 refs rotas · 1 H1 · ids 0 dup · 26 imgs alt 100% · 6 art-*.svg OK · 20 icons únicos.
-- [x] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [x] Deploy ya: pendía commit+push+trigger → hecho en iteración 01 (commit 11b9163).
 - [ ] **Pendiente usuario**: validación visual §12 (ritmo del tour/scanline/sparkles, encaje del arte, densidad).
 
 ### Pasada 25 — §43 Experiencia viva (H-01…H-09, O-01) + §44 diagramas
@@ -802,7 +802,7 @@ para entender cómo funciona.
 - [x] `diagramas/05-tokens-y-design-system.md` — paleta y componentes.
 - [x] Formato Mermaid (render nativo en GitHub), sin imágenes externas.
 
-- [ ] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [x] Deploy ya: pendía commit+push+trigger → hecho en iteración 01 (commit 11b9163).
 - [ ] **Pendiente usuario**: validación visual §12 (ritmo de H-01/H-02,
   intensidad de pulses/barridos del resto).
 
@@ -840,7 +840,7 @@ importantes y validaciones generales"*.
   ids 0 dup · 9 campos presentes · 3 required (nombre/correo/teléfono) ·
   `--danger` definido.
 
-- [ ] **Sin deploy aún**: pendiente commit+push+trigger (pasada siguiente).
+- [x] Deploy ya: pendía commit+push+trigger → hecho en iteración 01 (commit 11b9163).
 - [ ] **Pendiente usuario**: QA manual del formulario en móvil (teclado
   numérico, burbujas de validación en español) + validación visual §12.
 
