@@ -228,3 +228,29 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 - Verificar páginas: `curl -s -o /dev/null -w "%{http_code}\n" http://127.0.0.1:5500/{index.html,pages/politica-de-privacidad.html}`
 - Dif entre ramas: `git rev-list --left-right --count main...V.1`
 - Datos de contacto (DUDE-18): editar `CONTACT` en `js/main.js` (`wa`, `email`, `social[]`). Estado 2026-09-19: `wa` y `email` reales activos; `social[]` pendiente de handles reales.
+
+---
+
+## 5. Iteración UEX Cliente 1 — novedades y deuda (2026-09-21)
+
+> Trazabilidad: `Novedades por Corregir UEX Cliente.md` — 18 puntos, iteración 1.
+
+### Novedades introducidas
+- **Tema claro** (P8): capa `html[data-theme="light"]` (~40 vars/overrides) +
+  toggle persistido en `localStorage`. Deuda: verificar contraste de `notif`/
+  float-cards y simplificar lista de overrides si crece.
+- **Carrusel de Beneficios** (P18) y **showcase** (P11/P12): motor común
+  `initPager` (transform + autoplay + dots). Deuda: sin swipe táctil; en móvil
+  los dots conviven con arrows más pequeños.
+- **Icono `whatsapp`** añadido a `ICONS` en `js/main.js` (trazo propio).
+- **`assets/art-*.svg`** (G-03) quedaron sin referencias en `index.html` tras
+  P6/P10 → candidatas a purgar o reutilizar.
+
+### Deuda técnica nueva
+1. `initPager` usa `setInterval` (no rAF) — aceptable, retoma al salir de hover.
+2. Secciones eliminadas en `index.html` mientras su CSS huérfano se limpió:
+   queda la referencia `data-wa-fab` + `data-wa-email` en páginas (sin impacto).
+3. **P5 (imágenes alineadas)** RESUELTO 2026-09-21: UEX confirmó que "cuadrar
+   reseñas" = alinear imágenes; verificado en todos los bloques de la landing.
+   Deuda residual: `hero.webp` reutilizado como miniatura de "Información
+   centralizada" (posible duplicidad visual).

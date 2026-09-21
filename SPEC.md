@@ -2042,3 +2042,42 @@ electrónico, teléfono").
   la política de privacidad ya cubre nombre/correo/teléfono.
 
 ---
+
+## 46. Revisión UEX Cliente — 18 puntos (2026-09-21)
+
+> Iteración **01** de `Novedades por Corregir UEX Cliente.md`. Archivos:
+> `index.html`, `pages/*.html`, `404.html`, `css/styles.css`, `js/main.js`.
+
+### §46.1 Estructura de secciones (cambios de comportamiento/ubicación)
+- Eliminadas: `#financiero` (Control financiero), `#reportes` (Dashboard/reportes)
+  y la sección `.promo`.
+- Nueva: `#planes` (tras FAQ, antes del footer) con el plan/precios
+  (`precios.webp` → "Comprar ahora" vía WhatsApp), noticia de app
+  (`playstore.webp`) y CTA de compra (`compra.webp`).
+- `#beneficios` ahora es un carrusel (`benefits__track` con flechas + dots +
+  autoplay 5 s). `#experiencia` (Product Experience) pasa a carrusel por páginas
+  sin scroll lateral (autoplay 4 s).
+
+### §46.2 Decisiones de diseño documentadas
+- Botones primarios: **sólidos cian**, sin gradiente ni brillo/sheen (P1).
+- CTAs del sitio (P3/P15/P16/P13/P14): hero "Probar ahora" → `#planes`;
+  navbar/topbar/sticky "Ver planes" → `#planes`; CTA `#demo` "Quiero verlo en
+  vivo" → WhatsApp con mensaje fijo; `#planes` "Comprar ahora" → WhatsApp.
+- WhatsApp oficial **verde `#25D366`** en fab, footer y CTA en vivo (P7).
+- Iconos genéricos eliminados u ocultos por CSS (P6); decorativos del hero
+  reemplazados por las fotos reales de la carpeta (P10).
+
+### §46.3 Formulario demo (P4)
+- Eliminados: "Tipo de operación", "Puntos de recaudo/vendedores" y "Volumen
+  mensual" (index y `pages/solicitar-demo.html`). El mensaje WhatsApp ya no los
+  incluye → se actualiza la composición I-06 del §45.
+
+### §46.4 Tema claro/oscuro (P8)
+- Nuevo estado `data-theme="light"` con persistencia (`localStorage`) y respeto a
+  `prefers-color-scheme`. Por defecto oscuro. Toggle en navbar (index + demo).
+
+### §46.5 Pendiente (P5)
+- No existe bloque de reseñas en el código actual; "cuadrar reseñas" queda a la
+  espera de definición/contenido por parte de UEX.
+
+---

@@ -69,6 +69,9 @@
 
       <div class="navbar__actions">
         <a class="btn btn--primary btn--sm navbar__cta" href="#solicitar">Solicitar demo</a>
+        <button class="theme-toggle" type="button" aria-label="Activar tema claro" aria-pressed="false" data-theme-toggle>
+          <span class="theme-toggle__label" data-theme-label>Tema claro</span>
+        </button>
         <button class="navbar__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" data-menu-toggle>
           <span></span><span></span><span></span>
         </button>
@@ -115,39 +118,6 @@
               <label class="form__label" for="demo-empresa">Negocio o empresa</label>
               <input class="form__input" id="demo-empresa" name="empresa" type="text" autocomplete="organization" maxlength="80" placeholder="Tu negocio" />
             </div>
-            <div class="form__field">
-              <label class="form__label" for="demo-sector">Tipo de operación</label>
-              <select class="form__select" id="demo-sector" name="sector">
-                <option value="">Selecciona una opción</option>
-                <option value="Tienda o comercio">Tienda o comercio</option>
-                <option value="Restaurante o servicio">Restaurante o servicio</option>
-                <option value="Venta por catálogo">Venta por catálogo</option>
-                <option value="Empresa en crecimiento">Empresa en crecimiento</option>
-                <option value="Otro">Otro</option>
-              </select>
-            </div>
-            <div class="form__field">
-              <label class="form__label" for="demo-canales">Puntos de recaudo o vendedores</label>
-              <select class="form__select" id="demo-canales" name="canales">
-                <option value="">Selecciona un rango (opcional)</option>
-                <option value="1 a 5 puntos">1 a 5</option>
-                <option value="6 a 20 puntos">6 a 20</option>
-                <option value="21 a 100 puntos">21 a 100</option>
-                <option value="Más de 100 puntos">Más de 100</option>
-                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
-              </select>
-            </div>
-            <div class="form__field">
-              <label class="form__label" for="demo-volumen">Volumen mensual aproximado</label>
-              <select class="form__select" id="demo-volumen" name="volumen">
-                <option value="">Selecciona un rango (opcional)</option>
-                <option value="Menos de $5 millones">Menos de $5 millones</option>
-                <option value="Entre $5 y $50 millones">Entre $5 y $50 millones</option>
-                <option value="Entre $50 y $500 millones">Entre $50 y $500 millones</option>
-                <option value="Más de $500 millones">Más de $500 millones</option>
-                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
-              </select>
-            </div>
             <div class="form__field form__field--full">
               <label class="form__label" for="demo-mensaje">Tu necesidad (opcional)</label>
               <textarea class="form__textarea" id="demo-mensaje" name="mensaje" maxlength="500" placeholder="Ej.: quiero controlar los abonos de mis clientes en varias rutas."></textarea>
@@ -174,7 +144,7 @@
         <div class="footer__contact" data-contact-block hidden>
           <h3 class="footer__contact-title">Contacto</h3>
           <a class="btn btn--secondary btn--sm footer__wa" href="solicitar-demo.html" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
-            <span data-icon="message-circle" aria-hidden="true"></span>
+            <span data-icon="whatsapp" aria-hidden="true"></span>
             Escríbenos por WhatsApp
           </a>
           <a class="footer__email" data-wa-email hidden>Correo de contacto</a>
@@ -194,9 +164,9 @@
         <div class="footer__col">
           <h3>Soluciones</h3>
           <ul>
-            <li><a href="../index.html#financiero">Ingresos y egresos</a></li>
-            <li><a href="../index.html#reportes">Reportes</a></li>
             <li><a href="../index.html#monitoreo">Monitoreo</a></li>
+            <li><a href="../index.html#planes">Planes</a></li>
+            <li><a href="../index.html#como-funciona">Cómo funciona</a></li>
           </ul>
         </div>
         <div class="footer__col">
@@ -229,7 +199,7 @@
   </footer>
 
   <a class="wa-fab" href="solicitar-demo.html" aria-label="Escríbenos por WhatsApp" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
-    <span data-icon="message-circle" aria-hidden="true"></span>
+    <span data-icon="whatsapp" aria-hidden="true"></span>
   </a>
 
   <script src="../js/main.js"></script>

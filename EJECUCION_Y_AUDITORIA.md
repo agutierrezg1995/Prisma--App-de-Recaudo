@@ -844,3 +844,62 @@ importantes y validaciones generales"*.
 - [ ] **Pendiente usuario**: QA manual del formulario en móvil (teclado
   numérico, burbujas de validación en español) + validación visual §12.
 
+---
+
+## 16. Milestone v1.3 — Revisión UEX Cliente (2026-09-21)
+
+> **Iteración 1** de `Novedades por Corregir UEX Cliente.md` (18 puntos).
+> Archivos tocados: `index.html`, `pages/solicitar-demo.html`, `pages/terminos.html`,
+> `pages/politica-de-privacidad.html`, `404.html`, `css/styles.css`, `js/main.js`.
+
+### Ejecutado
+- [x] **P1 Botones sólidos**: `.btn--primary` plano sólido (`--prisma-cyan-400`);
+  eliminado `::before` sheen y `prismBtnSheen` (§39.4).
+- [x] **P2/P10/P16 Planes**: nueva sección `#planes` ante `</main>` con
+  `precios.webp` (+800) y badge "Pago único", CTA "Comprar ahora" → WhatsApp,
+  `playstore.webp` y `compra.webp`.
+- [x] **P3 Hero**: CTA primario "Probar ahora" → `#planes`; secundario "Conocer
+  la plataforma".
+- [x] **P4 Form demo**: eliminados `demo-sector`, `demo-canales`, `demo-volumen`
+  (index + `pages/solicitar-demo.html`); mensaje WhatsApp sin esas 3 líneas
+  (`js/main.js` I-06).
+- [x] **P6 Sin iconos IA**: marquee `&#10022;`→`&#183;`; topbar "Cerrar" sin
+  `&times;`/`&rarr;`; shield → `logo.webp`; CSS oculta
+  `.card__icon/.float-card__icon/.notif__icon/.timeline__icon/.security__list
+  [data-icon]`; `check-dot`; `[data-icon]` en `.btn/.wa-fab/.footer__wa`→`currentColor`.
+- [x] **P7 WhatsApp oficial**: `wa-fab` + `.footer__wa` + nuevo `.btn--wa` en
+  `#25D366`; icono `whatsapp` nuevo en ICONS (index, solicitar-demo, 404,
+  terminos, politica).
+- [x] **P8 Tema claro/oscuro**: toggle `[data-theme-toggle]` en navbar (index +
+  solicitar-demo); `html[data-theme="light"]` reasigna tokens + overrides;
+  persistencia `localStorage` + `prefers-color-scheme` + `aria-pressed`.
+- [x] **P9 Quitar financiero/reportes**: eliminadas `#financiero` y `#reportes`;
+  footer "Soluciones" re-ligado a `#monitoreo`/`#planes`/`#como-funciona` en
+  los 5 HTML.
+- [x] **P11/P12 Product Experience**: showcase con autoplay 4 s + flechas +
+  `transform` por página, sin scroll lateral (`.showcase__track overflow:hidden`);
+  motor común `initPager`.
+- [x] **P13 Eliminar promo**: sección `.promo` + CSS huérfano removido.
+- [x] **P14 Quiero verlo en vivo**: reubicado en CTA `#demo` → WhatsApp
+  `573183366064` con "Buenas tardes me gustaria saber como funciona".
+- [x] **P15 Navbar**: navbar desktop + móvil + sticky CTA + topbar → "Ver planes"
+  → `#planes`.
+- [x] **P17 Responsive**: cuerpos justificados (`.slide__text/.card__text/
+  .section__lead/.cta__text/.faq__item p/.security__list li/.planes__figcaption`);
+  títulos centrados en `≤767px`.
+- [x] **P18 Beneficios**: grid → carrusel `.benefits__carousel` (6 cards con
+  fotos reales monitor/process/dashboard/finance/hero/usecase), flechas + dots +
+  autoplay 5 s, pausa hover/focus, respeta `prefers-reduced-motion`.
+
+### Evidencia
+- `node --check js/main.js` OK · balance de etiquetas OK en los 5 HTML (solo SVG
+  autocerrados) · assets verificados (`precios/compra/playstore` + `-800`).
+
+### Estado
+- [x] **P5 Reseñas** RESUELTO (2026-09-21): UEX confirmó "imágenes alineadas
+  correcto" → la alineación se verifica en hero (`object-fit:cover`, 3/2),
+  `.card__thumb` (16/9, `object-fit:cover`), `.showcase__card figure` (16/10,
+  `contain`), `.device img` (`contain`) y `.planes__img`/`.stores__link img`.
+- [ ] **Conflictos** P3 vs P16 y P13 vs P14 resueltos según decisión documentada
+  en `Novedades…md` §"Decisiones pendientes".
+

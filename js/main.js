@@ -19,6 +19,7 @@
     receipt: '<path d="M4 2v20l2.5-1.5L9 22l3-1.5 3 1.5 2.5-1.5L20 22V2l-2.5 1.5L15 2l-3 1.5L9 2 6.5 3.5 4 2Z"/><path d="M8 8h8M8 12h8M8 16h5"/>',
     "file-text": '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/>',
     activity: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+    whatsapp: '<path d="M12 2a10 10 0 0 0-8.5 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/><path d="M17.7 14.5c-.35-.2-2.05-1-2.4-1.15-.35-.15-.6-.2-.85.2s-1 1.2-1.2 1.45-.4.25-.8.05a9.6 9.6 0 0 1-3.3-2.03 9.8 9.8 0 0 1-1.3-2.35c-.25-.35 0-.55.15-.75s.5-.6.7-.95a3.8 3.8 0 0 0 .4-1c0-.15 0-.35-.2-.65s-1-2.4-1.15-3.05-.6-.7-.9-.7h-.75a1.75 1.75 0 0 0-1.25.55 5.2 5.2 0 0 0-1.55 3.8 9 9 0 0 0 1.75 5.25c.25.3 3 4.6 7.4 6.3 2.15.85 2.6.7 3.4.65a3.4 3.4 0 0 0 2-1.35 3.3 3.3 0 0 0 .4-2c-.15-.2-.5-.3-.85-.45Z"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
     "arrow-up-right": '<path d="M7 17 17 7"/><path d="M8 7h9v9"/>',
     "arrow-down": '<path d="M12 5v14"/><path d="m6 13 6 6 6-6"/>',
@@ -326,68 +327,124 @@
     });
   }
 
-  /* ---------- PRODUCT SHOWCASE (carousel) ---------- */
-  var showcase = document.querySelector("[data-showcase]");
-  if (showcase) {
-    var sTrack = showcase.querySelector("[data-showcase-track]");
-    var sPrev = showcase.querySelector("[data-showcase-prev]");
-    var sNext = showcase.querySelector("[data-showcase-next]");
-    var sRaf = null;
+  /* ---------- CAROUSELES SIN SCROLL LATERAL (showcase + beneficios) ---------- */
+  function initPager(rootSel, trackSel, prevSel, nextSel, cfg) {
+    var opts = cfg || {};
+    var root = document.querySelector(rootSel);
+    if (!root) return null;
+    var track = root.querySelector(trackSel);
+    var prev = root.querySelector(prevSel);
+    var next = root.querySelector(nextSel);
+    var cards = track ? Array.prototype.slice.call(track.children) : [];
+    if (!track || cards.length < 2) return null;
 
-    function sCardWidth() {
-      var card = sTrack.querySelector(".showcase__card");
-      if (!card) return 320;
-      var gap = parseFloat(window.getComputedStyle(sTrack).columnGap) || 24;
-      return card.getBoundingClientRect().width + gap;
+    var idx = 0;
+    var hover = false;
+    var timer = null;
+    var resizeT = null;
+
+    function step() {
+      var first = cards[0];
+      var gap = parseFloat(window.getComputedStyle(track).columnGap) || 24;
+      return first.getBoundingClientRect().width + gap;
     }
-    function sStep(dir) {
-      if (!sTrack) return;
-      var max = sTrack.scrollWidth - sTrack.clientWidth;
-      if ((dir < 0 && sTrack.scrollLeft <= 1) || (dir > 0 && sTrack.scrollLeft >= max - 1)) return;
-      sTrack.scrollBy({ left: dir * sCardWidth(), behavior: reduceMotion ? "auto" : "smooth" });
+    function go(i) {
+      idx = (i + cards.length) % cards.length;
+      track.style.transform = "translateX(" + (-idx * step()) + "px)";
+      if (prev) prev.setAttribute("aria-disabled", idx === 0 ? "true" : "false");
+      if (next) next.setAttribute("aria-disabled", idx === cards.length - 1 ? "true" : "false");
+      if (opts.onChange) opts.onChange(idx);
     }
-    function sUpdate() {
-      if (!sTrack) return;
-      var max = sTrack.scrollWidth - sTrack.clientWidth;
-      if (sPrev) sPrev.setAttribute("aria-disabled", sTrack.scrollLeft <= 1 ? "true" : "false");
-      if (sNext) sNext.setAttribute("aria-disabled", sTrack.scrollLeft >= max - 1 ? "true" : "false");
+    function restart() {
+      if (timer) clearInterval(timer);
+      if (opts.autoplay === false || reduceMotion) return;
+      timer = setInterval(function () {
+        if (hover || document.hidden) return;
+        go(idx + 1);
+      }, opts.autoplay || 4000);
     }
-    function sSchedule() {
-      if (sRaf) return;
-      sRaf = requestAnimationFrame(function () { sUpdate(); sRaf = null; });
-    }
-    if (sPrev) sPrev.addEventListener("click", function () { sStep(-1); });
-    if (sNext) sNext.addEventListener("click", function () { sStep(1); });
-    if (sTrack) {
-      sTrack.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowLeft") { e.preventDefault(); sStep(-1); }
-        if (e.key === "ArrowRight") { e.preventDefault(); sStep(1); }
-      });
-      sTrack.addEventListener("scroll", sSchedule, { passive: true });
-      window.addEventListener("resize", sSchedule);
+    function onResize() {
+      if (resizeT) clearTimeout(resizeT);
+      resizeT = setTimeout(function () {
+        track.style.transform = "translateX(" + (-idx * step()) + "px)";
+      }, 150);
     }
 
-    /* G-01 AUTO-PLAY SHOWCASE (§42): avanza solo, pausa hover/focus */
-    if (sTrack && !reduceMotion) {
-      var sHover = false;
-      var sAutoTimer = null;
-      if (showcase) {
-        showcase.addEventListener("mouseenter", function () { sHover = true; });
-        showcase.addEventListener("mouseleave", function () { sHover = false; });
+    if (prev) prev.addEventListener("click", function () { go(idx - 1); restart(); });
+    if (next) next.addEventListener("click", function () { go(idx + 1); restart(); });
+    track.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { e.preventDefault(); go(idx - 1); restart(); }
+      if (e.key === "ArrowRight") { e.preventDefault(); go(idx + 1); restart(); }
+    });
+    root.addEventListener("mouseenter", function () { hover = true; });
+    root.addEventListener("mouseleave", function () { hover = false; });
+    track.addEventListener("focusin", function () { hover = true; });
+    track.addEventListener("focusout", function () { hover = false; });
+    window.addEventListener("resize", onResize);
+
+    go(0);
+    if (opts.autoplay !== false) restart();
+    return {
+      go: go,
+      restart: restart
+    };
+  }
+
+  initPager(
+    "[data-showcase]", "[data-showcase-track]",
+    "[data-showcase-prev]", "[data-showcase-next]",
+    { autoplay: 4000 }
+  );
+
+  var benefitsPager = initPager(
+    "[data-benefits]", "[data-benefits-track]",
+    "[data-benefits-prev]", "[data-benefits-next]",
+    {
+      autoplay: 5000,
+      onChange: function (i) {
+        var dots = document.querySelector("[data-benefits-dots]");
+        if (!dots) return;
+        Array.prototype.forEach.call(dots.children, function (b, j) {
+          b.classList.toggle("is-active", j === i);
+        });
       }
-      sTrack.addEventListener("focusin", function () { sHover = true; });
-      sTrack.addEventListener("focusout", function () { sHover = false; });
-      sAutoTimer = setInterval(function () {
-        if (sHover || document.hidden) return;
-        var max = sTrack.scrollWidth - sTrack.clientWidth;
-        if (sTrack.scrollLeft >= max - 1) {
-          sTrack.scrollTo({ left: 0, behavior: reduceMotion ? "auto" : "smooth" });
-          return;
-        }
-        sStep(1);
-      }, 5600);
     }
-    sUpdate();
+  );
+
+  var benefitsDots = document.querySelector("[data-benefits-dots]");
+  if (benefitsDots && benefitsPager) {
+    var bTrack = document.querySelector("[data-benefits-track]");
+    Array.prototype.forEach.call((bTrack ? bTrack.children : []), function (card, i) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Ver beneficio " + (i + 1));
+      dot.addEventListener("click", function () { benefitsPager.go(i); benefitsPager.restart(); });
+      benefitsDots.appendChild(dot);
+    });
+    benefitsDots.children[0] && benefitsDots.children[0].classList.add("is-active");
+  }
+
+  /* ---------- TEMA CLARO / OSCURO (P8) ---------- */
+  var themeToggle = document.querySelector("[data-theme-toggle]");
+  var themeLabel = document.querySelector("[data-theme-label]");
+  function applyTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    if (themeLabel) themeLabel.textContent = t === "light" ? "Tema oscuro" : "Tema claro";
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-label", t === "light" ? "Activar tema oscuro" : "Activar tema claro");
+      themeToggle.setAttribute("aria-pressed", t === "light" ? "true" : "false");
+    }
+    try { localStorage.setItem("prisma-theme", t); } catch (e) { /* almacenamiento no disponible */ }
+  }
+  var savedTheme = null;
+  try { savedTheme = localStorage.getItem("prisma-theme"); } catch (e) { /* ignorar */ }
+  var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var nextTheme = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+      applyTheme(nextTheme);
+    });
   }
 
   /* ---------- COUNTERS (demostrativos) ---------- */
@@ -481,10 +538,7 @@
           "Correo: " + (data.correo || "-"),
           "Teléfono: " + (data.telefono || "-"),
           "Negocio: " + (data.empresa || "-"),
-          "Ciudad: " + (data.ciudad || "-"),
-          "Tipo de operación: " + (data.sector || "-"),
-          "Puntos de recaudo/vendedores: " + (data.canales || "-"),
-          "Volumen mensual: " + (data.volumen || "-")
+          "Ciudad: " + (data.ciudad || "-")
         ];
         if (data.mensaje) lines.push("Necesidad: " + data.mensaje);
         var url = "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(lines.join("\n"));
