@@ -8,6 +8,13 @@ producción
 
 Marca cada caso con `[x]` cuando pase. Apunta hallazgos en la sección final.
 
+> **Nota de rutas (2026-09-26).** Las carpetas y archivos se renombraron al español.
+> Este documento es un registro histórico: las rutas que aparecen abajo son las **anteriores**.
+> Mapa vigente: `assets/` → `recursos/imagenes/` · `css/styles.css` → `estilos/estilos.css` ·
+> `js/main.js` → `scripts/principal.js` · `pages/` → `paginas/` ·
+> `Imagenes para landing/` → `material-de-trabajo/` · `diagramas/` → `documentacion/diagramas/`.
+> Ver la estructura actual en `README.md`.
+
 ---
 
 ## 1. Campos presentes (¿falta algo? I-01/I-02)

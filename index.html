@@ -9,8 +9,8 @@
   <meta name="theme-color" content="#00123C" />
   <meta name="author" content="Prisma$" />
 
-  <link rel="icon" type="image/png" sizes="64x64" href="assets/icon-64.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/icon-180.png" />
+  <link rel="icon" type="image/png" sizes="64x64" href="recursos/imagenes/icon-64.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="recursos/imagenes/icon-180.png" />
 
   <!-- Canonical: ajustar al dominio final de despliegue -->
   <link rel="canonical" href="https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/" />
@@ -21,21 +21,21 @@
   <meta property="og:title" content="Prisma$ | Control de Recaudo" />
   <meta property="og:description" content="Registra, monitorea y consulta tu operación de recaudo desde una sola plataforma." />
   <meta property="og:url" content="https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/" />
-  <meta property="og:image" content="https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/assets/og-image.png" />
+  <meta property="og:image" content="https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/recursos/imagenes/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Prisma$ | Control de Recaudo" />
   <meta name="twitter:description" content="Registra, monitorea y consulta tu operación de recaudo desde una sola plataforma." />
-  <meta name="twitter:image" content="https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/assets/og-image.png" />
+  <meta name="twitter:image" content="https://agutierrezg1995.github.io/Prisma--App-de-Recaudo/recursos/imagenes/og-image.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <link rel="preload" as="image" href="assets/hero.webp" imagesrcset="assets/hero-800.webp 800w, assets/hero.webp 1536w" imagesizes="(min-width: 1024px) 600px, 92vw" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preload" as="image" href="recursos/imagenes/hero.webp" imagesrcset="recursos/imagenes/hero-800.webp 800w, recursos/imagenes/hero.webp 1536w" imagesizes="(min-width: 1024px) 600px, 92vw" />
+  <link rel="stylesheet" href="estilos/estilos.css" />
   <script>document.documentElement.classList.add("js");</script>
 
   <script type="application/ld+json">
@@ -109,7 +109,7 @@
   <!-- ============ PRELOADER DE MARCA (F-04 §41) ============ -->
   <div class="preloader" data-preloader aria-hidden="true">
     <div class="preloader__inner">
-      <img src="assets/logo.webp" alt="" width="56" height="56" />
+      <img src="recursos/imagenes/logo.webp" alt="" width="56" height="56" />
       <span class="preloader__ring" aria-hidden="true"></span>
     </div>
   </div>
@@ -149,18 +149,18 @@
   <header class="navbar" id="navbar" data-navbar>
     <div class="container navbar__inner">
       <a class="navbar__brand" href="#inicio" aria-label="Prisma$, inicio">
-        <img src="assets/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="navbar__logo" width="42" height="42" />
+        <img src="recursos/imagenes/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="navbar__logo" width="42" height="42" />
       </a>
 
       <nav class="navbar__nav" id="nav-menu" aria-label="Navegación principal">
         <ul class="navbar__list">
           <span class="nav-indicator" aria-hidden="true" data-nav-indicator></span>
           <li><a class="navbar__link is-active" href="#inicio" data-spy>Inicio</a></li>
-          <li><a class="navbar__link" href="#solucion" data-spy>Solución</a></li>
+          <li><a class="navbar__link" href="#problema" data-spy>El problema</a></li>
+          <li><a class="navbar__link" href="#experiencia" data-spy>La plataforma</a></li>
           <li><a class="navbar__link" href="#beneficios" data-spy>Beneficios</a></li>
-          <li><a class="navbar__link" href="#como-funciona" data-spy>Cómo funciona</a></li>
           <li><a class="navbar__link" href="#seguridad" data-spy>Seguridad</a></li>
-          <li><a class="navbar__link" href="#preguntas" data-spy>Preguntas</a></li>
+          <li><a class="navbar__link" href="#demo" data-spy>Contacto</a></li>
           <li class="navbar__mobile-cta"><a class="btn btn--primary" href="#planes">Ver planes</a></li>
         </ul>
       </nav>
@@ -168,7 +168,8 @@
       <div class="navbar__actions">
         <a class="btn btn--primary btn--sm navbar__cta" href="#planes">Ver planes</a>
         <button class="theme-toggle" type="button" aria-label="Activar tema claro" aria-pressed="false" data-theme-toggle>
-          <span class="theme-toggle__label" data-theme-label>Tema claro</span>
+          <svg class="theme-toggle__icon theme-toggle__icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.2v2.2M12 19.6v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.2 12h2.2M19.6 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g></svg>
+          <svg class="theme-toggle__icon theme-toggle__icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M20.5 13.6A8.6 8.6 0 1 1 10.4 3.5a6.9 6.9 0 0 0 10.1 10.1Z" fill="currentColor"/></svg>
         </button>
         <button class="navbar__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" data-menu-toggle>
           <span></span><span></span><span></span>
@@ -206,10 +207,10 @@
 
         <div class="hero__visual" data-reveal data-delay="120">
           <div class="hero__media">
-            <img src="assets/hero.webp" srcset="assets/hero-800.webp 800w, assets/hero.webp 1536w" sizes="(min-width: 1024px) 600px, 92vw" alt="Prisma$ mostrando el control de recaudo en un dashboard" class="hero__img" width="900" height="700" fetchpriority="high" />
-            <img class="hero__slide" src="assets/monitor.webp" alt="" aria-hidden="true" loading="lazy" width="800" height="450" />
-            <img class="hero__slide" src="assets/finance.webp" alt="" aria-hidden="true" loading="lazy" width="800" height="450" />
-            <img class="hero__slide" src="assets/process.webp" alt="" aria-hidden="true" loading="lazy" width="800" height="450" />
+            <img src="recursos/imagenes/hero.webp" srcset="recursos/imagenes/hero-800.webp 800w, recursos/imagenes/hero.webp 1536w" sizes="(min-width: 1024px) 600px, 92vw" alt="Prisma$ mostrando el control de recaudo en un dashboard" class="hero__img" width="900" height="700" fetchpriority="high" />
+            <img class="hero__slide" src="recursos/imagenes/monitor.webp" alt="" aria-hidden="true" loading="lazy" width="800" height="450" />
+            <img class="hero__slide" src="recursos/imagenes/finance.webp" alt="" aria-hidden="true" loading="lazy" width="800" height="450" />
+            <img class="hero__slide" src="recursos/imagenes/process.webp" alt="" aria-hidden="true" loading="lazy" width="800" height="450" />
             <span class="hero__media-overlay" aria-hidden="true"></span>
           </div>
 
@@ -244,65 +245,52 @@
       </span>
     </section>
 
-    <!-- ============ HERO SLIDER ============ -->
-    <section class="slider section" id="plataforma" aria-roledescription="carrusel" aria-label="Conoce Prisma$ en cuatro pasos">
+    <!-- ============ DESCARGA Y PAGO (post-hero) ============ -->
+    <section class="section pf" id="descarga">
       <div class="container">
-        <h2 class="sr-only">Conoce Prisma$ en cuatro pasos</h2>
-        <div class="slider__viewport" data-slider>
-          <div class="slider__track" data-slider-track>
-            <article class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 de 4">
-              <div class="slide__content">
-                <span class="eyebrow">Seguridad</span>
-                <h3 class="slide__title">Tu aliado en la seguridad de tu recaudo</h3>
-                <p class="slide__text">Controla cada movimiento y obtén una visión más clara de tu operación.</p>
-              </div>
-              <div class="slide__media">
-                <img src="assets/security.webp" srcset="assets/security-800.webp 800w, assets/security.webp 1494w" sizes="(min-width: 1024px) 640px, 92vw" alt="Pieza de seguridad de Prisma$" loading="lazy" width="900" height="560" />
-              </div>
-            </article>
+        <header class="section__header reveal" data-reveal>
+          <span class="eyebrow">Descarga y pago</span>
+          <h2 class="section__title">Llévate Prisma$<br /><span class="text-gradient">a donde vas.</span></h2>
+          <p class="section__lead">Instala la app en tu celular y paga tu implementación o tu servicio de forma fácil y segura.</p>
+        </header>
 
-            <article class="slide" role="group" aria-roledescription="slide" aria-label="2 de 4">
-              <div class="slide__content">
-                <span class="eyebrow">Monitoreo</span>
-                <h3 class="slide__title">Tu recaudo en tiempo real</h3>
-                <p class="slide__text">Consulta movimientos, pagos y estados desde cualquier lugar.</p>
-              </div>
-              <div class="slide__media">
-                <img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1024px) 640px, 92vw" alt="Pieza de monitoreo en tiempo real de Prisma$" loading="lazy" width="900" height="560" />
-              </div>
-            </article>
+        <div class="pf__grid">
+          <article class="pf__card pf__card--store reveal" data-reveal data-delay="0">
+            <span class="pf__pulse" aria-hidden="true"></span>
+            <figure class="pf__media">
+              <a class="pf__media-link" href="https://wa.me/573183366064?text=Quiero%20descargar%20la%20app%20de%20Prisma%24" target="_blank" rel="noopener" data-wa-cta="Quiero descargar la app de Prisma$">
+                <img src="recursos/imagenes/playstore.webp" srcset="recursos/imagenes/playstore-800.webp 800w, recursos/imagenes/playstore.webp 1600w" sizes="(min-width: 1024px) 560px, 92vw" alt="Prisma$ disponible en Google Play y App Store" loading="lazy" width="1600" height="893" />
+              </a>
+            </figure>
+            <div class="pf__body">
+              <span class="pf__tag">Disponible en Google Play y App Store</span>
+              <h3 class="pf__title">Prisma$ en tu bolsillo</h3>
+              <p class="pf__text">Registra cada abono desde el celular, en la ruta o en el local. La misma operación, estés donde estés.</p>
+              <a class="btn btn--primary" href="https://wa.me/573183366064?text=Quiero%20descargar%20la%20app%20de%20Prisma%24" target="_blank" rel="noopener" data-magnetic data-wa-cta="Quiero descargar la app de Prisma$">
+                <span data-icon="whatsapp" aria-hidden="true"></span> Quiero la app
+              </a>
+            </div>
+          </article>
 
-            <article class="slide" role="group" aria-roledescription="slide" aria-label="3 de 4">
-              <div class="slide__content">
-                <span class="eyebrow">Decisiones</span>
-                <h3 class="slide__title">Datos que generan decisiones</h3>
-                <p class="slide__text">Transforma tus movimientos en información útil para tu operación.</p>
-              </div>
-              <div class="slide__media">
-                <img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1024px) 640px, 92vw" alt="Dashboard y analítica de Prisma$" loading="lazy" width="900" height="560" />
-              </div>
-            </article>
-
-            <article class="slide" role="group" aria-roledescription="slide" aria-label="4 de 4">
-              <div class="slide__content">
-                <span class="eyebrow">Operación</span>
-                <h3 class="slide__title">Toda tu operación en un solo lugar</h3>
-                <p class="slide__text">Registra, consulta y controla tus movimientos de forma sencilla.</p>
-              </div>
-              <div class="slide__media">
-                <img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1024px) 640px, 92vw" alt="Ingresos y egresos de la operación de recaudo" loading="lazy" width="900" height="560" />
-              </div>
-            </article>
-          </div>
-
-          <button class="slider__arrow slider__arrow--prev" type="button" aria-label="Slide anterior" data-slider-prev></button>
-          <button class="slider__arrow slider__arrow--next" type="button" aria-label="Slide siguiente" data-slider-next></button>
-
-          <div class="slider__footer">
-            <div class="slider__dots" aria-label="Seleccionar slide" data-slider-dots></div>
-            <div class="slider__progress" aria-hidden="true"><span data-slider-progress></span></div>
-            <div class="slider__counter" aria-hidden="true"><span data-slider-count>01</span><span class="slider__counter-total">/ 04</span></div>
-          </div>
+          <article class="pf__card pf__card--pay reveal" data-reveal data-delay="120">
+            <figure class="pf__media">
+              <img src="recursos/imagenes/compra.webp" srcset="recursos/imagenes/compra-800.webp 800w, recursos/imagenes/compra.webp 1600w" sizes="(min-width: 1024px) 560px, 92vw" alt="Cómo pagar Prisma$ con tarjeta, Nequi, Daviplata, PSE, Efecty y SuperGIROS" loading="lazy" width="1600" height="545" />
+            </figure>
+            <div class="pf__body">
+              <span class="pf__tag">Paga tu implementación o servicio</span>
+              <h3 class="pf__title">Paga como prefieras</h3>
+              <p class="pf__text">Tarjetas de crédito o débito, billeteras digitales y medios de pago virtuales, en un solo lugar.</p>
+              <ul class="pf__methods" aria-label="Métodos de pago aceptados">
+                <li class="pf__method">Visa</li>
+                <li class="pf__method">Daviplata</li>
+                <li class="pf__method">Nequi</li>
+                <li class="pf__method">PSE</li>
+                <li class="pf__method">Efecty</li>
+                <li class="pf__method">SuperGIROS</li>
+              </ul>
+              <a class="btn btn--secondary" href="#planes" data-magnetic>Ver precios</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -359,6 +347,43 @@
       </div>
     </section>
 
+    <!-- ============ PRODUCT EXPERIENCE ============ -->
+    <section class="section showcase" id="experiencia">
+      <div class="container">
+        <header class="section__header reveal" data-reveal>
+          <span class="eyebrow">Product experience</span>
+          <h2 class="section__title">Todo lo que necesitas,<br />desde una sola plataforma.</h2>
+        </header>
+      </div>
+
+      <div class="showcase__carousel reveal" data-reveal data-showcase aria-roledescription="carrusel" aria-label="Explora la plataforma">
+        <button class="showcase__arrow showcase__arrow--prev" type="button" aria-label="Anterior" aria-controls="showcase-track" data-showcase-prev></button>
+        <div class="showcase__track" id="showcase-track" data-showcase-track tabindex="0" aria-label="Desliza para ver las vistas de la plataforma">
+          <article class="showcase__card" data-tilt>
+            <figure><img src="recursos/imagenes/monitor.webp" srcset="recursos/imagenes/monitor-800.webp 800w, recursos/imagenes/monitor.webp 1600w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Monitoreo en tiempo real en Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <h3>Monitoreo</h3><p>Tu operación, actualizada al instante.</p>
+          </article>
+          <article class="showcase__card" data-tilt>
+            <figure><img src="recursos/imagenes/dashboard.webp" srcset="recursos/imagenes/dashboard-800.webp 800w, recursos/imagenes/dashboard.webp 1354w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Dashboard de escritorio de Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <h3>Dashboard</h3><p>Una vista completa de tu operación.</p>
+          </article>
+          <article class="showcase__card" data-tilt>
+            <figure><img src="recursos/imagenes/finance.webp" srcset="recursos/imagenes/finance-800.webp 800w, recursos/imagenes/finance.webp 1311w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Reportes y movimientos" loading="lazy" width="640" height="400" /></figure>
+            <h3>Movimientos</h3><p>Ingresos y egresos claros.</p>
+          </article>
+          <article class="showcase__card" data-tilt>
+            <figure><img src="recursos/imagenes/usecase.webp" srcset="recursos/imagenes/usecase-800.webp 800w, recursos/imagenes/usecase.webp 1024w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Clientes y seguimiento en Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <h3>Clientes</h3><p>Seguimiento ordenado de cada cliente.</p>
+          </article>
+          <article class="showcase__card" data-tilt>
+            <figure><img src="recursos/imagenes/process.webp" srcset="recursos/imagenes/process-800.webp 800w, recursos/imagenes/process.webp 1536w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Registro de cobros en Prisma$" loading="lazy" width="640" height="400" /></figure>
+            <h3>Reportes</h3><p>Información lista para decidir.</p>
+          </article>
+        </div>
+        <button class="showcase__arrow showcase__arrow--next" type="button" aria-label="Siguiente" aria-controls="showcase-track" data-showcase-next></button>
+      </div>
+    </section>
+
     <!-- ============ SOLUCIÓN ============ -->
     <section class="section solution" id="solucion">
       <div class="container solution__inner">
@@ -404,14 +429,12 @@
               </div>
             </details></li>
           </ul>
-
-          <a class="btn btn--secondary" href="#como-funciona">Ver cómo funciona</a>
         </div>
 
         <div class="solution__visual reveal" data-reveal data-delay="120">
           <figure class="device device--dashboard">
             <span class="device__tag" aria-hidden="true">Panel de control</span>
-            <img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1024px) 540px, 92vw" alt="Panel de control de recaudo en Prisma$" loading="lazy" width="900" height="620" />
+            <img src="recursos/imagenes/dashboard.webp" srcset="recursos/imagenes/dashboard-800.webp 800w, recursos/imagenes/dashboard.webp 1354w" sizes="(min-width: 1024px) 540px, 92vw" alt="Panel de control de recaudo en Prisma$" loading="lazy" width="900" height="620" />
           </figure>
           <span class="solution__glow" aria-hidden="true"></span>
         </div>
@@ -429,7 +452,7 @@
 
         <div class="process__visual reveal" data-reveal>
           <figure class="device device--wide">
-            <img src="assets/process.webp" srcset="assets/process-800.webp 800w, assets/process.webp 1536w" sizes="(min-width: 1024px) 1160px, 92vw" alt="Registro de cobros en Prisma$" loading="lazy" width="1200" height="620" />
+            <img src="recursos/imagenes/process.webp" srcset="recursos/imagenes/process-800.webp 800w, recursos/imagenes/process.webp 1536w" sizes="(min-width: 1024px) 1160px, 92vw" alt="Registro de cobros en Prisma$" loading="lazy" width="1200" height="620" />
           </figure>
         </div>
 
@@ -468,40 +491,6 @@
       </div>
     </section>
 
-    <!-- ============ MARQUEE (cinta de características) ============ -->
-    <section class="marquee" aria-label="Capacidades de Prisma$">
-      <div class="marquee__track" data-marquee>
-        <ul class="marquee__group">
-          <li>Registro de cobros</li>
-          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
-          <li>Monitoreo en tiempo real</li>
-          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
-          <li>Ingresos y egresos</li>
-          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
-          <li>Recibos de pago</li>
-          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
-          <li>Reportes y cuadre</li>
-          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
-          <li>Multi-dispositivo</li>
-          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
-        </ul>
-        <ul class="marquee__group" aria-hidden="true">
-          <li>Registro de cobros</li>
-          <li class="marquee__glyph">&#183;</li>
-          <li>Monitoreo en tiempo real</li>
-          <li class="marquee__glyph">&#183;</li>
-          <li>Ingresos y egresos</li>
-          <li class="marquee__glyph">&#183;</li>
-          <li>Recibos de pago</li>
-          <li class="marquee__glyph">&#183;</li>
-          <li>Reportes y cuadre</li>
-          <li class="marquee__glyph">&#183;</li>
-          <li>Multi-dispositivo</li>
-          <li class="marquee__glyph">&#183;</li>
-        </ul>
-      </div>
-    </section>
-
     <!-- ============ MONITOREO EN TIEMPO REAL ============ -->
     <section class="section monitor" id="monitoreo">
       <div class="container monitor__inner">
@@ -537,7 +526,7 @@
         <div class="monitor__visual reveal" data-reveal data-delay="120">
           <figure class="device device--monitor">
             <span class="device__tag" aria-hidden="true">Tiempo real</span>
-            <img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1024px) 540px, 92vw" alt="Aplicación Prisma$ monitoreando movimientos en tiempo real" loading="lazy" width="720" height="405" />
+            <img src="recursos/imagenes/monitor.webp" srcset="recursos/imagenes/monitor-800.webp 800w, recursos/imagenes/monitor.webp 1600w" sizes="(min-width: 1024px) 540px, 92vw" alt="Aplicación Prisma$ monitoreando movimientos en tiempo real" loading="lazy" width="720" height="405" />
           </figure>
           <div class="mini-chart" aria-hidden="true">
             <svg viewBox="0 0 240 80" preserveAspectRatio="none">
@@ -557,6 +546,40 @@
       </div>
     </section>
 
+    <!-- ============ MARQUEE (cinta de características) ============ -->
+    <section class="marquee" aria-label="Capacidades de Prisma$">
+      <div class="marquee__track" data-marquee>
+        <ul class="marquee__group">
+          <li>Registro de cobros</li>
+          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
+          <li>Monitoreo en tiempo real</li>
+          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
+          <li>Ingresos y egresos</li>
+          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
+          <li>Recibos de pago</li>
+          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
+          <li>Reportes y cuadre</li>
+          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
+          <li>Multi-dispositivo</li>
+          <li class="marquee__glyph" aria-hidden="true">&#183;</li>
+        </ul>
+        <ul class="marquee__group" aria-hidden="true">
+          <li>Registro de cobros</li>
+          <li class="marquee__glyph">&#183;</li>
+          <li>Monitoreo en tiempo real</li>
+          <li class="marquee__glyph">&#183;</li>
+          <li>Ingresos y egresos</li>
+          <li class="marquee__glyph">&#183;</li>
+          <li>Recibos de pago</li>
+          <li class="marquee__glyph">&#183;</li>
+          <li>Reportes y cuadre</li>
+          <li class="marquee__glyph">&#183;</li>
+          <li>Multi-dispositivo</li>
+          <li class="marquee__glyph">&#183;</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- ============ BENEFICIOS ============ -->
     <section class="section benefits" id="beneficios">
       <div class="container">
@@ -570,7 +593,7 @@
           <div class="benefits__track" data-benefits-track>
           <article class="card card--benefit">
             <span class="card__thumb">
-              <img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Monitoreo en tiempo real de Prisma$" loading="lazy" width="800" height="450" />
+              <img src="recursos/imagenes/monitor.webp" srcset="recursos/imagenes/monitor-800.webp 800w, recursos/imagenes/monitor.webp 1600w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Monitoreo en tiempo real de Prisma$" loading="lazy" width="800" height="450" />
             </span>
             <h3 class="card__title">Monitoreo en tiempo real</h3>
             <p class="card__text">Consulta el estado de tu operación cuando lo necesites.</p>
@@ -585,7 +608,7 @@
 </article>
           <article class="card card--benefit">
             <span class="card__thumb">
-              <img src="assets/process.webp" srcset="assets/process-800.webp 800w, assets/process.webp 1536w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Registro ordenado de cobros en Prisma$" loading="lazy" width="800" height="450" />
+              <img src="recursos/imagenes/process.webp" srcset="recursos/imagenes/process-800.webp 800w, recursos/imagenes/process.webp 1536w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Registro ordenado de cobros en Prisma$" loading="lazy" width="800" height="450" />
             </span>
             <h3 class="card__title">Registro de cobros</h3>
             <p class="card__text">Guarda cada abono de forma ordenada.</p>
@@ -600,22 +623,7 @@
 </article>
           <article class="card card--benefit">
             <span class="card__thumb">
-              <img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Reportes consolidados en el dashboard de Prisma$" loading="lazy" width="800" height="450" />
-            </span>
-            <h3 class="card__title">Reportes</h3>
-            <p class="card__text">Transforma movimientos en información útil.</p>
-
-            <details class="card__detail" data-card-detail>
-              <summary>Por qué y para quién</summary>
-              <div class="card__detail-body">
-                <p><strong>Por qué:</strong> la información ordenada se convierte en decisiones y reemplaza el conteo manual.</p>
-                <p><strong>Para quién:</strong> quien debe resumir la operación sin hacer cálculos a mano.</p>
-              </div>
-            </details>
-</article>
-          <article class="card card--benefit">
-            <span class="card__thumb">
-              <img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Ingresos y egresos de tu operación en Prisma$" loading="lazy" width="800" height="450" />
+              <img src="recursos/imagenes/finance.webp" srcset="recursos/imagenes/finance-800.webp 800w, recursos/imagenes/finance.webp 1311w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Ingresos y egresos de tu operación en Prisma$" loading="lazy" width="800" height="450" />
             </span>
             <h3 class="card__title">Control de movimientos</h3>
             <p class="card__text">Ten claridad sobre ingresos y egresos.</p>
@@ -627,37 +635,7 @@
                 <p><strong>Para quién:</strong> quienes cierran el día y quieren saber si todo cuadra.</p>
               </div>
             </details>
-</article>
-          <article class="card card--benefit">
-            <span class="card__thumb">
-              <img src="assets/hero.webp" srcset="assets/hero-800.webp 800w, assets/hero.webp 1536w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Toda tu operación centralizada en Prisma$" loading="lazy" width="800" height="450" />
-            </span>
-            <h3 class="card__title">Información centralizada</h3>
-            <p class="card__text">Todo tu recaudo en un solo lugar.</p>
-
-            <details class="card__detail" data-card-detail>
-              <summary>Por qué y para quién</summary>
-              <div class="card__detail-body">
-                <p><strong>Por qué:</strong> un solo lugar para cobros, clientes y movimientos elimina la dispersión que complica el control.</p>
-                <p><strong>Para quién:</strong> negocios con operación repartida en varias personas o puntos.</p>
-              </div>
-            </details>
-</article>
-          <article class="card card--benefit">
-            <span class="card__thumb">
-              <img src="assets/usecase.webp" srcset="assets/usecase-800.webp 800w, assets/usecase.webp 1024w" sizes="(min-width: 1200px) 360px, (min-width: 768px) 46vw, 92vw" alt="Acceso a Prisma$ desde cualquier dispositivo" loading="lazy" width="800" height="450" />
-            </span>
-            <h3 class="card__title">Acceso desde cualquier dispositivo</h3>
-            <p class="card__text">Lleva el control contigo, donde estés.</p>
-
-            <details class="card__detail" data-card-detail>
-              <summary>Por qué y para quién</summary>
-              <div class="card__detail-body">
-                <p><strong>Por qué:</strong> el control viaja con la operación y se puede consultar desde smartphone, tablet o computador.</p>
-                <p><strong>Para quién:</strong> dueños y equipos que atienden fuera del local y necesitan estar al día.</p>
-              </div>
-            </details>
-</article>
+          </article>
           </div>
           <button class="benefits__arrow benefits__arrow--next" type="button" aria-label="Siguiente" data-benefits-next></button>
           <div class="benefits__dots" aria-label="Seleccionar beneficio" data-benefits-dots></div>
@@ -672,7 +650,7 @@
           <div class="shield" aria-hidden="true">
             <span class="shield__ring"></span>
             <span class="shield__orbit"><span class="shield__sat"></span></span>
-            <img class="shield__core shield__core--img" src="assets/logo.webp" alt="" width="140" height="140" />
+            <img class="shield__core shield__core--img" src="recursos/imagenes/logo.webp" alt="" width="140" height="140" />
           </div>
         </div>
         <div class="security__content reveal" data-reveal data-delay="100">
@@ -687,91 +665,155 @@
       </div>
     </section>
 
-    <!-- ============ PRODUCT EXPERIENCE ============ -->
-    <section class="section showcase" id="experiencia">
+    <!-- ============ HERO SLIDER ============ -->
+    <section class="slider section" id="plataforma" aria-roledescription="carrusel" aria-label="Conoce Prisma$ en cuatro pasos">
+      <div class="container">
+        <h2 class="sr-only">Conoce Prisma$ en cuatro pasos</h2>
+        <div class="slider__viewport" data-slider>
+          <div class="slider__track" data-slider-track>
+            <article class="slide is-active" role="group" aria-roledescription="slide" aria-label="1 de 4">
+              <div class="slide__content">
+                <span class="eyebrow">Seguridad</span>
+                <h3 class="slide__title">Tu aliado en la seguridad de tu recaudo</h3>
+                <p class="slide__text">Controla cada movimiento y obtén una visión más clara de tu operación.</p>
+              </div>
+              <div class="slide__media">
+                <img src="recursos/imagenes/security.webp" srcset="recursos/imagenes/security-800.webp 800w, recursos/imagenes/security.webp 1494w" sizes="(min-width: 1024px) 640px, 92vw" alt="Pieza de seguridad de Prisma$" loading="lazy" width="900" height="560" />
+              </div>
+            </article>
+
+            <article class="slide" role="group" aria-roledescription="slide" aria-label="2 de 4">
+              <div class="slide__content">
+                <span class="eyebrow">Monitoreo</span>
+                <h3 class="slide__title">Tu recaudo en tiempo real</h3>
+                <p class="slide__text">Consulta movimientos, pagos y estados desde cualquier lugar.</p>
+              </div>
+              <div class="slide__media">
+                <img src="recursos/imagenes/monitor.webp" srcset="recursos/imagenes/monitor-800.webp 800w, recursos/imagenes/monitor.webp 1600w" sizes="(min-width: 1024px) 640px, 92vw" alt="Pieza de monitoreo en tiempo real de Prisma$" loading="lazy" width="900" height="560" />
+              </div>
+            </article>
+
+            <article class="slide" role="group" aria-roledescription="slide" aria-label="3 de 4">
+              <div class="slide__content">
+                <span class="eyebrow">Decisiones</span>
+                <h3 class="slide__title">Datos que generan decisiones</h3>
+                <p class="slide__text">Transforma tus movimientos en información útil para tu operación.</p>
+              </div>
+              <div class="slide__media">
+                <img src="recursos/imagenes/dashboard.webp" srcset="recursos/imagenes/dashboard-800.webp 800w, recursos/imagenes/dashboard.webp 1354w" sizes="(min-width: 1024px) 640px, 92vw" alt="Dashboard y analítica de Prisma$" loading="lazy" width="900" height="560" />
+              </div>
+            </article>
+
+            <article class="slide" role="group" aria-roledescription="slide" aria-label="4 de 4">
+              <div class="slide__content">
+                <span class="eyebrow">Operación</span>
+                <h3 class="slide__title">Toda tu operación en un solo lugar</h3>
+                <p class="slide__text">Registra, consulta y controla tus movimientos de forma sencilla.</p>
+              </div>
+              <div class="slide__media">
+                <img src="recursos/imagenes/finance.webp" srcset="recursos/imagenes/finance-800.webp 800w, recursos/imagenes/finance.webp 1311w" sizes="(min-width: 1024px) 640px, 92vw" alt="Ingresos y egresos de la operación de recaudo" loading="lazy" width="900" height="560" />
+              </div>
+            </article>
+          </div>
+
+          <button class="slider__arrow slider__arrow--prev" type="button" aria-label="Slide anterior" data-slider-prev></button>
+          <button class="slider__arrow slider__arrow--next" type="button" aria-label="Slide siguiente" data-slider-next></button>
+
+          <div class="slider__footer">
+            <div class="slider__dots" aria-label="Seleccionar slide" data-slider-dots></div>
+            <div class="slider__progress" aria-hidden="true"><span data-slider-progress></span></div>
+            <div class="slider__counter" aria-hidden="true"><span data-slider-count>01</span><span class="slider__counter-total">/ 04</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PLANES ============ -->
+    <section class="section planes" id="planes">
       <div class="container">
         <header class="section__header reveal" data-reveal>
-          <span class="eyebrow">Product experience</span>
-          <h2 class="section__title">Todo lo que necesitas,<br />desde una sola plataforma.</h2>
+          <span class="eyebrow">Planes</span>
+          <h2 class="section__title">Elige el plan<br /><span class="text-gradient">que encaje con tu operación.</span></h2>
+          <p class="section__lead">Pago mensual según el número de rutas activas. Mientras más rutas manejes, menor es el precio por ruta. Pregunta por nuestra promoción de lanzamiento.</p>
         </header>
-      </div>
 
-      <div class="showcase__carousel reveal" data-reveal data-showcase aria-roledescription="carrusel" aria-label="Explora la plataforma">
-        <button class="showcase__arrow showcase__arrow--prev" type="button" aria-label="Anterior" aria-controls="showcase-track" data-showcase-prev></button>
-        <div class="showcase__track" id="showcase-track" data-showcase-track tabindex="0" aria-label="Desliza para ver las vistas de la plataforma">
-          <article class="showcase__card" data-tilt>
-            <figure><img src="assets/monitor.webp" srcset="assets/monitor-800.webp 800w, assets/monitor.webp 1600w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Monitoreo en tiempo real en Prisma$" loading="lazy" width="640" height="400" /></figure>
-            <h3>Monitoreo</h3><p>Tu operación, actualizada al instante.</p>
-          </article>
-          <article class="showcase__card" data-tilt>
-            <figure><img src="assets/dashboard.webp" srcset="assets/dashboard-800.webp 800w, assets/dashboard.webp 1354w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Dashboard de escritorio de Prisma$" loading="lazy" width="640" height="400" /></figure>
-            <h3>Dashboard</h3><p>Una vista completa de tu operación.</p>
-          </article>
-          <article class="showcase__card" data-tilt>
-            <figure><img src="assets/finance.webp" srcset="assets/finance-800.webp 800w, assets/finance.webp 1311w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Reportes y movimientos" loading="lazy" width="640" height="400" /></figure>
-            <h3>Movimientos</h3><p>Ingresos y egresos claros.</p>
-          </article>
-          <article class="showcase__card" data-tilt>
-            <figure><img src="assets/usecase.webp" srcset="assets/usecase-800.webp 800w, assets/usecase.webp 1024w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Clientes y seguimiento en Prisma$" loading="lazy" width="640" height="400" /></figure>
-            <h3>Clientes</h3><p>Seguimiento ordenado de cada cliente.</p>
-          </article>
-          <article class="showcase__card" data-tilt>
-            <figure><img src="assets/process.webp" srcset="assets/process-800.webp 800w, assets/process.webp 1536w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Registro de cobros en Prisma$" loading="lazy" width="640" height="400" /></figure>
-            <h3>Reportes</h3><p>Información lista para decidir.</p>
-          </article>
-        </div>
-        <button class="showcase__arrow showcase__arrow--next" type="button" aria-label="Siguiente" aria-controls="showcase-track" data-showcase-next></button>
-      </div>
-    </section>
+        <ul class="planes__grid" role="list">
+          <li class="plan reveal" data-reveal data-delay="0">
+            <span class="plan__tag">Para empezar</span>
+            <h3 class="plan__name">1 Ruta</h3>
+            <p class="plan__lead">¿Estás organizando tu primer recaudo? Registra, cobra y cuadra tu ruta con todo el control de Prisma$ desde el primer día.</p>
+            <p class="plan__spec"><span data-icon="map-pin" aria-hidden="true"></span> Hasta 1 ruta activa</p>
+            <ul class="plan__features" role="list">
+              <li><span class="check-dot" aria-hidden="true"></span> Registro de cobros y recibos</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Monitoreo en tiempo real</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Reportes y cuadre de la operación</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Acceso desde celular y computador</li>
+            </ul>
+            <div class="plan__foot">
+              <p class="plan__price"><strong>$60.000</strong><span>/ mes</span></p>
+              <a class="btn btn--secondary plan__cta" href="https://wa.me/573183366064?text=Hola%2C%20quiero%20el%20plan%20de%201%20Ruta%20de%20Prisma%24" target="_blank" rel="noopener" data-magnetic data-wa-cta="Hola, quiero el plan de 1 Ruta de Prisma$">Elegir 1 Ruta</a>
+            </div>
+          </li>
 
-    <!-- ============ CTA PRINCIPAL ============ -->
-    <section class="section cta" id="demo">
-      <div class="cta__decor" aria-hidden="true">
-        <span class="cta__sweep"></span>
-        <span class="prism prism--cta-1"></span>
-        <span class="prism prism--cta-2"></span>
-      </div>
-      <div class="container cta__inner reveal" data-reveal>
-        <span class="eyebrow eyebrow--light">Prisma$</span>
-        <h2 class="cta__title">Lleva tu recaudo<br />al siguiente nivel.</h2>
-        <p class="cta__text">Conoce Prisma$ y descubre una forma más clara de controlar tu operación.</p>
-<div class="cta__actions">
-          <a class="btn btn--primary btn--lg" href="#planes" data-magnetic>Probar ahora</a>
-          <a class="btn btn--wa btn--lg" href="https://wa.me/573183366064?text=Buenas%20tardes%20me%20gustaria%20saber%20como%20funciona" target="_blank" rel="noopener" data-magnetic>Quiero verlo en vivo</a>
-        </div>
-        <ul class="cta__checks check-list" aria-label="Qué verás en la demo">
-          <li data-reveal data-delay="0"><span class="check-dot" aria-hidden="true"></span> Cuadre de tu operación</li>
-          <li data-reveal data-delay="90"><span class="check-dot" aria-hidden="true"></span> Movimientos e ingresos</li>
-          <li data-reveal data-delay="180"><span class="check-dot" aria-hidden="true"></span> Reportes para decidir</li>
+          <li class="plan reveal" data-reveal data-delay="80">
+            <span class="plan__tag">Para crecer</span>
+            <h3 class="plan__name">2-3 Rutas</h3>
+            <p class="plan__lead">¿Ya tienes más de una ruta? Todo el equipo trabaja sobre la misma operación, sin archivos repartidos ni cuadres perdidos.</p>
+            <p class="plan__spec"><span data-icon="map-pin" aria-hidden="true"></span> De 2 a 3 rutas activas</p>
+            <ul class="plan__features" role="list">
+              <li><span class="check-dot" aria-hidden="true"></span> Todo lo del plan 1 Ruta</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Varias rutas en una sola cuenta</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Control de clientes y abonos pendientes</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Reportes consolidados de tu operación</li>
+            </ul>
+            <div class="plan__foot">
+              <p class="plan__price"><strong>$50.000</strong><span>/ mes</span></p>
+              <a class="btn btn--secondary plan__cta" href="https://wa.me/573183366064?text=Hola%2C%20quiero%20el%20plan%20de%202-3%20Rutas%20de%20Prisma%24" target="_blank" rel="noopener" data-magnetic data-wa-cta="Hola, quiero el plan de 2-3 Rutas de Prisma$">Elegir 2-3 Rutas</a>
+            </div>
+          </li>
+
+          <li class="plan reveal" data-reveal data-delay="160">
+            <span class="plan__tag">Para equipos</span>
+            <h3 class="plan__name">4-10 Rutas</h3>
+            <p class="plan__lead">Varias rutas operando al mismo tiempo y supervisores que necesitan ver el estado de cada una sin pedir reportes uno por uno.</p>
+            <p class="plan__spec"><span data-icon="map-pin" aria-hidden="true"></span> De 4 a 10 rutas activas</p>
+            <ul class="plan__features" role="list">
+              <li><span class="check-dot" aria-hidden="true"></span> Todo lo del plan 2-3 Rutas</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Vista consolidada de todas las rutas</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Alertas de pagos pendientes</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Cuadre por ruta y por total</li>
+            </ul>
+            <div class="plan__foot">
+              <p class="plan__price"><strong>$40.000</strong><span>/ mes</span></p>
+              <a class="btn btn--secondary plan__cta" href="https://wa.me/573183366064?text=Hola%2C%20quiero%20el%20plan%20de%204-10%20Rutas%20de%20Prisma%24" target="_blank" rel="noopener" data-magnetic data-wa-cta="Hola, quiero el plan de 4-10 Rutas de Prisma$">Elegir 4-10 Rutas</a>
+            </div>
+          </li>
+
+          <li class="plan plan--best reveal" data-reveal data-delay="240">
+            <span class="plan__tag plan__tag--best">Mejor precio por ruta</span>
+            <h3 class="plan__name">11-25 Rutas</h3>
+            <p class="plan__lead">Operación grande que quiere escalar sin que el costo por ruta la detenga. Aquí tu ruta sale más barata.</p>
+            <p class="plan__spec"><span data-icon="map-pin" aria-hidden="true"></span> De 11 a 25 rutas activas</p>
+            <ul class="plan__features" role="list">
+              <li><span class="check-dot" aria-hidden="true"></span> Todo lo del plan 4-10 Rutas</li>
+              <li><span class="check-dot" aria-hidden="true"></span> El menor precio por ruta activa</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Control de toda la operación en un panel</li>
+              <li><span class="check-dot" aria-hidden="true"></span> Acompañamiento en la implementación</li>
+            </ul>
+            <div class="plan__foot">
+              <p class="plan__price"><strong>$30.000</strong><span>/ mes</span></p>
+              <a class="btn btn--primary plan__cta" href="https://wa.me/573183366064?text=Hola%2C%20quiero%20el%20plan%20de%2011-25%20Rutas%20de%20Prisma%24" target="_blank" rel="noopener" data-magnetic data-wa-cta="Hola, quiero el plan de 11-25 Rutas de Prisma$">Elegir 11-25 Rutas</a>
+            </div>
+          </li>
         </ul>
 
-        <form class="demo-form" data-demo-form novalidate>
-          <h3 class="demo-form__title">Solicita una demo</h3>
-          <p class="demo-form__lead">Cuéntanos sobre tu operación y coordinamos una demostración sin compromiso.</p>
-          <div class="demo-form__grid">
-            <div class="form__field">
-              <label class="form__label" for="demo-nombre">Nombre</label>
-              <input class="form__input" id="demo-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Tu nombre" />
-            </div>
-            <div class="form__field">
-              <label class="form__label" for="demo-empresa">Negocio o empresa</label>
-              <input class="form__input" id="demo-empresa" name="empresa" type="text" autocomplete="organization" maxlength="80" placeholder="Tu negocio" />
-            </div>
-            <div class="form__field form__field--full">
-              <label class="form__label" for="demo-mensaje">Tu necesidad (opcional)</label>
-              <textarea class="form__textarea" id="demo-mensaje" name="mensaje" maxlength="500" placeholder="Ej.: quiero controlar los abonos de mis clientes en varias rutas."></textarea>
-            </div>
-            <div class="form__actions form__field--full">
-              <button class="btn btn--primary btn--lg" type="submit">Solicitar una demo</button>
-              <p class="form__hint">Al enviar se abrirá WhatsApp con tu solicitud lista para enviar.</p>
-            </div>
-            <p class="form__status form__field--full" role="status" aria-live="polite" data-demo-status></p>
-          </div>
-        </form>
+        <p class="planes__note reveal" data-reveal>
+          <span data-icon="whatsapp" aria-hidden="true"></span>
+          ¿Tienes más de 25 rutas? Escríbenos y armamos un plan a tu medida.
+        </p>
       </div>
     </section>
-
-    <!-- ============ PREGUNTAS FRECUENTES ============ -->
+  <!-- ============ PREGUNTAS FRECUENTES ============ -->
     <section class="section faq" id="preguntas">
       <div class="container">
         <header class="section__header reveal" data-reveal>
@@ -819,50 +861,65 @@
         </div>
       </div>
     </section>
-  <!-- ============ PLANES ============ -->
-    <section class="section planes" id="planes">
-      <div class="container">
-        <header class="section__header reveal" data-reveal>
-          <span class="eyebrow">Planes</span>
-          <h2 class="section__title">Elige el plan<br /><span class="text-gradient">que encaje con tu operación.</span></h2>
-          <p class="section__lead">Un único costo claro, con todos los beneficios de Prisma$. Pregunta por nuestra promoción de lanzamiento.</p>
-        </header>
-
-        <figure class="planes__banner reveal" data-reveal>
-          <span class="planes__pay-badge" aria-hidden="true">Pago único</span>
-          <img class="planes__img" src="assets/precios.webp" srcset="assets/precios-800.webp 800w, assets/precios.webp 1200w" sizes="(min-width: 1024px) 860px, 92vw" alt="Planes y precios de Prisma$" loading="lazy" width="1200" height="760" />
-          <figcaption class="planes__figcaption">Planes de Prisma$ — un solo pago, sin mensualidades ocultas.</figcaption>
-        </figure>
-
-        <div class="planes__actions reveal" data-reveal data-delay="120">
-          <a class="btn btn--primary btn--lg" href="https://wa.me/573183366064?text=Hola,%20quiero%20saber%20los%20precios%20de%20Prisma$" target="_blank" rel="noopener" data-magnetic>
-            <span class="btn__bg"></span><span data-icon="whatsapp" aria-hidden="true"></span> Comprar ahora
-          </a>
-          <a class="btn btn--secondary btn--lg" href="#demo" data-magnetic>Solicitar una demo</a>
+  <!-- ============ CTA PRINCIPAL ============ -->
+    <section class="section cta" id="demo">
+      <div class="cta__decor" aria-hidden="true">
+        <span class="cta__sweep"></span>
+        <span class="prism prism--cta-1"></span>
+        <span class="prism prism--cta-2"></span>
+      </div>
+      <div class="container cta__inner reveal" data-reveal>
+        <span class="eyebrow eyebrow--light">Prisma$</span>
+        <h2 class="cta__title">Lleva tu recaudo<br />al siguiente nivel.</h2>
+        <p class="cta__text">Conoce Prisma$ y descubre una forma más clara de controlar tu operación.</p>
+<div class="cta__actions">
+          <a class="btn btn--primary btn--lg" href="#planes" data-magnetic>Probar ahora</a>
+          <a class="btn btn--wa btn--lg" href="https://wa.me/573183366064?text=Buenas%20tardes%20me%20gustaria%20saber%20como%20funciona" target="_blank" rel="noopener" data-magnetic>Quiero verlo en vivo</a>
         </div>
+        <ul class="cta__checks check-list" aria-label="Qué verás en la demo">
+          <li data-reveal data-delay="0"><span class="check-dot" aria-hidden="true"></span> Cuadre de tu operación</li>
+          <li data-reveal data-delay="90"><span class="check-dot" aria-hidden="true"></span> Movimientos e ingresos</li>
+          <li data-reveal data-delay="180"><span class="check-dot" aria-hidden="true"></span> Reportes para decidir</li>
+        </ul>
 
-        <div class="planes__stores reveal" data-reveal>
-          <a class="stores__link" href="https://wa.me/573183366064?text=Quiero%20descargar%20la%20app%20de%20Prisma$" target="_blank" rel="noopener">
-            <img src="assets/playstore.webp" srcset="assets/playstore-800.webp 800w, assets/playstore.webp 1200w" sizes="(min-width: 1024px) 420px, 72vw" alt="Disponible en Google Play" loading="lazy" width="1200" height="400" />
-          </a>
-          <a class="stores__link" href="https://wa.me/573183366064?text=Quiero%20descargar%20la%20app%20de%20Prisma$" target="_blank" rel="noopener">
-            <img src="assets/compra.webp" srcset="assets/compra-800.webp 800w, assets/compra.webp 1200w" sizes="(min-width: 1024px) 420px, 72vw" alt="Compra Prisma$ por WhatsApp" loading="lazy" width="1200" height="400" />
-          </a>
-        </div>
+        <form class="demo-form" data-demo-form novalidate>
+          <h3 class="demo-form__title">Solicita una demo</h3>
+          <p class="demo-form__lead">Cuéntanos sobre tu operación y coordinamos una demostración sin compromiso.</p>
+          <div class="demo-form__grid">
+            <div class="form__field">
+              <label class="form__label" for="demo-nombre">Nombre</label>
+              <input class="form__input" id="demo-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Tu nombre" />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-empresa">Negocio o empresa</label>
+              <input class="form__input" id="demo-empresa" name="empresa" type="text" autocomplete="organization" maxlength="80" placeholder="Tu negocio" />
+            </div>
+            <div class="form__field form__field--full">
+              <label class="form__label" for="demo-mensaje">Tu necesidad (opcional)</label>
+              <textarea class="form__textarea" id="demo-mensaje" name="mensaje" maxlength="500" placeholder="Ej.: quiero controlar los abonos de mis clientes en varias rutas."></textarea>
+            </div>
+            <div class="form__actions form__field--full">
+              <button class="btn btn--primary btn--lg" type="submit">Solicitar una demo</button>
+              <p class="form__hint">Al enviar se abrirá WhatsApp con tu solicitud lista para enviar.</p>
+            </div>
+            <p class="form__status form__field--full" role="status" aria-live="polite" data-demo-status></p>
+          </div>
+        </form>
       </div>
     </section>
-  </main>
+
+    </main>
 
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container footer__inner">
       <div class="footer__brand">
-        <img src="assets/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="footer__logo" width="40" height="40" loading="lazy" />
+        <img src="recursos/imagenes/logo.webp" alt="Logo Prisma$ Control de Recaudo" class="footer__logo" width="40" height="40" loading="lazy" />
         <p>Registra. Monitorea. Decide.</p>
 
         <div class="footer__contact" data-contact-block hidden>
           <h3 class="footer__contact-title">Contacto</h3>
-          <a class="btn btn--secondary btn--sm footer__wa" href="pages/solicitar-demo.html" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
+          <a class="btn btn--secondary btn--sm footer__wa" href="paginas/solicitar-demo.html" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
             <span data-icon="whatsapp" aria-hidden="true"></span>
             Escríbenos por WhatsApp
           </a>
@@ -876,32 +933,35 @@
           <h3>Producto</h3>
           <ul>
             <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#experiencia">La plataforma</a></li>
             <li><a href="#solucion">Funciones</a></li>
             <li><a href="#como-funciona">Cómo funciona</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Soluciones</h3>
+          <h3>Tu operación</h3>
           <ul>
+            <li><a href="#problema">El problema</a></li>
             <li><a href="#monitoreo">Monitoreo</a></li>
-            <li><a href="#planes">Planes</a></li>
-            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#seguridad">Seguridad</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Recursos</h3>
+          <h3>Precios</h3>
           <ul>
+            <li><a href="#planes">Planes y precios</a></li>
+            <li><a href="#descarga">Descargar la app</a></li>
+            <li><a href="#descarga">Métodos de pago</a></li>
             <li><a href="#preguntas">Preguntas frecuentes</a></li>
-            <li><a href="#seguridad">Seguridad</a></li>
-            <li><a href="#experiencia">Experiencia</a></li>
           </ul>
         </div>
         <div class="footer__col">
           <h3>Empresa</h3>
           <ul>
-            <li><a href="pages/solicitar-demo.html">Contacto</a></li>
-            <li><a href="pages/politica-de-privacidad.html">Política de privacidad</a></li>
-            <li><a href="pages/terminos.html">Términos</a></li>
+            <li><a href="#demo">Contacto</a></li>
+            <li><a href="paginas/politica-de-privacidad.html">Política de privacidad</a></li>
+            <li><a href="paginas/terminos.html">Términos</a></li>
           </ul>
         </div>
       </nav>
@@ -910,14 +970,14 @@
     <div class="container footer__bottom">
       <p>&copy; <span data-year>2026</span> Prisma$. Todos los derechos reservados.</p>
       <ul>
-        <li><a href="pages/politica-de-privacidad.html">Política de privacidad</a></li>
-        <li><a href="pages/terminos.html">Términos</a></li>
-        <li><a href="pages/solicitar-demo.html">Contacto</a></li>
+        <li><a href="paginas/politica-de-privacidad.html">Política de privacidad</a></li>
+        <li><a href="paginas/terminos.html">Términos</a></li>
+        <li><a href="paginas/solicitar-demo.html">Contacto</a></li>
       </ul>
     </div>
   </footer>
 
-  <a class="wa-fab" href="pages/solicitar-demo.html" aria-label="Escríbenos por WhatsApp" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
+  <a class="wa-fab" href="paginas/solicitar-demo.html" aria-label="Escríbenos por WhatsApp" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
     <span data-icon="whatsapp" aria-hidden="true"></span>
   </a>
 
@@ -929,6 +989,6 @@
 
   <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
 
-  <script src="js/main.js" defer></script>
+  <script src="scripts/principal.js" defer></script>
 </body>
 </html>

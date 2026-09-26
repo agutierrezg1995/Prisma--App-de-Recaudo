@@ -3,6 +3,13 @@
 > Documento de trabajo de la rama **`V.1`**.
 > Rol asumido: **Senior Product Designer (UX/UI) + Senior Frontend Engineer + Art Director fintech + Especialista en conversión, responsive, accesibilidad y motion design.**
 
+> **Nota de rutas (2026-09-26).** Las carpetas y archivos se renombraron al español.
+> Este documento es un registro histórico: las rutas que aparecen abajo son las **anteriores**.
+> Mapa vigente: `assets/` → `recursos/imagenes/` · `css/styles.css` → `estilos/estilos.css` ·
+> `js/main.js` → `scripts/principal.js` · `pages/` → `paginas/` ·
+> `Imagenes para landing/` → `material-de-trabajo/` · `diagramas/` → `documentacion/diagramas/`.
+> Ver la estructura actual en `README.md`.
+
 ---
 
 ## 0. Objetivo del documento
@@ -903,3 +910,66 @@ importantes y validaciones generales"*.
 - [ ] **Conflictos** P3 vs P16 y P13 vs P14 resueltos según decisión documentada
   en `Novedades…md` §"Decisiones pendientes".
 
+
+---
+
+## Iteración 2026-09-26 — Ajustes del cliente
+
+Fuente: `Observaciones del 26 de septiembre.md`. Toda reorganización de rutas
+de esta iteración está registrada en `README.md` §"Rutas actuales".
+
+### Ejecutado
+- [x] **Beneficios en bucle (1, 2, 3, 1, 2, 3)**: el cliente pidió 3 tarjetas.
+  Se conservan las 3 sin solaparse — *Registro de cobros* (la acción),
+  *Monitoreo en tiempo real* (la visibilidad) y *Control de movimientos* (el
+  resultado). Se retiran *Reportes*, *Información centralizada* y *Acceso desde
+  cualquier dispositivo* por solaparse con las anteriores.
+  `initBucleInfinito()` clona las 3 tarjetas y reinicia sin transición al llegar
+  a la primera: 3 originales + 3 clones + 3 dots.
+- [x] **Product Experience sin imágenes vacías**: mismo motor de clonación;
+  5 originales + 5 clones. Las "4 imágenes" que pedía la observación se
+  revisaron con el cliente y se decidió **mantener las 5**.
+- [x] **Botón "Ver cómo funciona"** eliminado de `#solucion`.
+- [x] **Planes**: 4 cards por número de rutas activas, con precio mensual y
+  CTA propio por plan. Sin botón "Solicitar demo" en la sección.
+- [x] **Sección `#descarga` post-hero**: las 2 imágenes que estaban antes del
+  footer, ahora ampliadas en una sección nueva, con animación de disponibilidad
+  y los 6 métodos de pago de la imagen fuente. La imagen de Play Store es
+  clicable y lleva al mismo WhatsApp que su botón (no existe URL pública de la
+  tienda en el proyecto, así que no se inventó ninguna).
+- [x] **Reorden narrativo**: `inicio → descarga → problema → experiencia →
+  solucion → como-funciona → monitoreo → beneficios → seguridad → plataforma →
+  planes → preguntas → demo`. Navbar y footer alineados.
+- [x] **Toggle sol/luna** completado en navbar, footer y páginas internas.
+- [x] **Organización en español y limpieza**: renombradas carpetas/archivos,
+  actualizadas rutas en código, canonical, OG y sitemap, y eliminados scripts y
+  assets sin uso tras verificarlos.
+
+### Evidencia
+- Bucle sin huecos en 1440 / 1280 / 1024 / 768 / 390 px: en cada paso el borde
+  derecho de la pista cae siempre sobre una tarjeta, en ambos carruseles.
+- Todas las tarjetas visibles pintan su imagen en cada paso, incluidos los
+  clones (los clones comparten `src` con el original y se sirven de caché).
+- Autoplay advancing solo en ambos carruseles; 0 errores JS y 0 respuestas 4xx
+  en `/`, `paginas/solicitar-demo.html`, `paginas/terminos.html`,
+  `paginas/politica-de-privacidad.html` y `404.html` a 1440 y 390 px.
+- 0 referencias locales, `srcset` o anclas rotas; 0 assets huérfanos
+  (`og-image.png` se usa por URL absoluta en `og:image`).
+- `node --check scripts/principal.js` OK.
+
+### Pendiente
+- [x] **Desborde horizontal en móvil** (era 26 px a 768 px y 8 px a 390 px):
+  lo causaban `.glow--1` y `.solution__glow`, que sangran fuera del viewport a
+  propósito. El `overflow-x` estaba en `body`, y eso convertía a `body` en
+  contenedor de scroll. Se movió a `html` con `clip`, que recorta sin crear
+  contenedor y por tanto no afecta al navbar `position: fixed`/`sticky`;
+  `hidden` queda como respaldo vía `@supports`. Verificado: no hay scroll
+  horizontal, `body` queda en `visible`, los brillos se siguen pintando y las
+  anclas siguen cayendo a 132 px (88 navbar + 44 anuncio), igual que en `HEAD`.
+- [x] `sitemap.xml` actualizado a `lastmod` `2026-09-26`.
+- [x] `README.md` de raíz restaurado como portada del repo, apuntando a
+  `documentacion/`.
+- [x] `material-de-trabajo/` versionado: los 13 originales que estaban en
+  `Imagenes para landing/` se detectan como **renombrados**, así que el
+  historial y el espacio del repo no cambian. El PDF departial se añadió como
+  archivo nuevo (240 KB). No se pierde ningún material del cliente.

@@ -327,109 +327,179 @@
     });
   }
 
-  /* ---------- CAROUSELES SIN SCROLL LATERAL (showcase + beneficios) ---------- */
-  function initPager(rootSel, trackSel, prevSel, nextSel, cfg) {
+  /* ---------- CARRUSELES EN BUCLE INFINITO (beneficios + product experience) ----------
+     Problema que resuelve: el carrusel anterior scrolleaba hasta el último elemento real
+     y dejaba huecos vacíos a la derecha (translateX máximo = última tarjeta, sin relleno).
+     Solución: se clona el juego original al final de la pista y se recorre 0..N; al llegar
+     al clon de la primera tarjeta se salta a 0 sin transición. Resultado: 1,2,3,1,2,3…
+     sin cortes ni espacios vacíos, y sin scroll lateral.                            */
+  function initBucleInfinito(rootSel, trackSel, prevSel, nextSel, cfg) {
     var opts = cfg || {};
     var root = document.querySelector(rootSel);
     if (!root) return null;
     var track = root.querySelector(trackSel);
+    if (!track) return null;
+
+    var originales = Array.prototype.slice.call(track.children);
+    if (originales.length < 2) return null;
+
     var prev = root.querySelector(prevSel);
     var next = root.querySelector(nextSel);
-    var cards = track ? Array.prototype.slice.call(track.children) : [];
-    if (!track || cards.length < 2) return null;
-
+    var total = originales.length;
     var idx = 0;
     var hover = false;
     var timer = null;
     var resizeT = null;
+    var overflow = true;
 
-    function step() {
-      var first = cards[0];
-      var gap = parseFloat(window.getComputedStyle(track).columnGap) || 24;
-      return first.getBoundingClientRect().width + gap;
+    /* Clon del set original: rellena la pista para que nunca haya huecos.
+       aria-hidden + inert para que los clones no se lean ni reciban el foco. */
+    originales.forEach(function (card) {
+      var clon = card.cloneNode(true);
+      clon.setAttribute("aria-hidden", "true");
+      clon.setAttribute("inert", "");
+      clon.classList.add("is-clone");
+      Array.prototype.forEach.call(
+        clon.querySelectorAll("a, button, summary, input, select, textarea"),
+        function (el) { el.setAttribute("tabindex", "-1"); }
+      );
+      track.appendChild(clon);
+    });
+
+    function gap() {
+      return parseFloat(window.getComputedStyle(track).columnGap) || 24;
     }
-    function go(i) {
-      idx = (i + cards.length) % cards.length;
-      track.style.transform = "translateX(" + (-idx * step()) + "px)";
-      if (prev) prev.setAttribute("aria-disabled", idx === 0 ? "true" : "false");
-      if (next) next.setAttribute("aria-disabled", idx === cards.length - 1 ? "true" : "false");
-      if (opts.onChange) opts.onChange(idx);
+    function paso() {
+      var ancho = originales[0].getBoundingClientRect().width;
+      return ancho > 0 ? ancho + gap() : 0;
     }
-    function restart() {
-      if (timer) clearInterval(timer);
-      if (opts.autoplay === false || reduceMotion) return;
+    function mide() {
+      overflow = track.scrollWidth > root.clientWidth + 2;
+      root.classList.toggle("is-overflowing", overflow);
+      if (!overflow) {
+       detener();
+        idx = 0;
+        track.style.transition = "none";
+        track.style.transform = "translateX(0)";
+        void track.offsetWidth;
+        track.style.transition = "";
+        if (opts.onChange) opts.onChange(0);
+      }
+    }
+    function detener() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function saltaA(i) {
+      /* Reinicio invisible del bucle: quita la transición, salta y la restituye. */
+      idx = i;
+      track.style.transition = "none";
+      track.style.transform = "translateX(" + (-i * paso()) + "px)";
+      void track.offsetWidth;
+      track.style.transition = "";
+    }
+    function go(i, sinTransicion) {
+      if (!overflow) return;
+      if (sinTransicion) saltaA(i);
+      else {
+        idx = i;
+        track.style.transform = "translateX(" + (-i * paso()) + "px)";
+      }
+      if (opts.onChange) opts.onChange(idx % total);
+    }
+    function avanza() {
+      /* Avanza una tarjeta; al llegar al set clonado (idx === total) salta a 0 sin transición. */
+      if (idx >= total) saltaA(0);
+      else go(idx + 1);
+      if (opts.onChange) opts.onChange(idx % total);
+    }
+    function reinicia() {
+      detener();
+      if (opts.autoplay === false || reduceMotion || !overflow) return;
       timer = setInterval(function () {
         if (hover || document.hidden) return;
-        go(idx + 1);
+        avanza();
       }, opts.autoplay || 4000);
     }
-    function onResize() {
+    function alRedimensionar() {
       if (resizeT) clearTimeout(resizeT);
       resizeT = setTimeout(function () {
-        track.style.transform = "translateX(" + (-idx * step()) + "px)";
+        mide();
+        if (overflow) saltaA(idx % total);
+        reinicia();
       }, 150);
     }
 
-    if (prev) prev.addEventListener("click", function () { go(idx - 1); restart(); });
-    if (next) next.addEventListener("click", function () { go(idx + 1); restart(); });
+    if (prev) prev.addEventListener("click", function () {
+      if (idx <= 0) { saltaA(total); go(total - 1); }
+      else go(idx - 1);
+      reinicia();
+    });
+    if (next) next.addEventListener("click", function () { avanza(); reinicia(); });
     track.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowLeft") { e.preventDefault(); go(idx - 1); restart(); }
-      if (e.key === "ArrowRight") { e.preventDefault(); go(idx + 1); restart(); }
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        if (idx <= 0) { saltaA(total); go(total - 1); }
+        else go(idx - 1);
+        reinicia();
+      }
+      if (e.key === "ArrowRight") { e.preventDefault(); avanza(); reinicia(); }
     });
     root.addEventListener("mouseenter", function () { hover = true; });
     root.addEventListener("mouseleave", function () { hover = false; });
     track.addEventListener("focusin", function () { hover = true; });
     track.addEventListener("focusout", function () { hover = false; });
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", alRedimensionar);
 
-    go(0);
-    if (opts.autoplay !== false) restart();
-    return {
-      go: go,
-      restart: restart
-    };
+    mide();
+    if (overflow) { go(0, true); reinicia(); }
+    return { go: go, reinicia: reinicia, total: total };
   }
 
-  initPager(
-    "[data-showcase]", "[data-showcase-track]",
-    "[data-showcase-prev]", "[data-showcase-next]",
-    { autoplay: 4000 }
-  );
+  /* Los dots se crean ANTES del carrusel: si se crearan después, contarían también
+     las tarjetas clonadas y quedarían el doble de indicadores. */
+  var benefitsDots = document.querySelector("[data-benefits-dots]");
+  var benefitsLoop = null;
+  if (benefitsDots) {
+    var bTrack = document.querySelector("[data-benefits-track]");
+    var bCards = bTrack ? Array.prototype.slice.call(bTrack.children) : [];
+    bCards.forEach(function (card, i) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.setAttribute("aria-label", "Ir al beneficio " + (i + 1) + " de " + bCards.length);
+      dot.addEventListener("click", function () {
+        if (benefitsLoop) { benefitsLoop.go(i); benefitsLoop.reinicia(); }
+      });
+      benefitsDots.appendChild(dot);
+    });
+    benefitsDots.children[0] && benefitsDots.children[0].classList.add("is-active");
+  }
 
-  var benefitsPager = initPager(
+  benefitsLoop = initBucleInfinito(
     "[data-benefits]", "[data-benefits-track]",
     "[data-benefits-prev]", "[data-benefits-next]",
     {
-      autoplay: 5000,
+      autoplay: 4500,
       onChange: function (i) {
-        var dots = document.querySelector("[data-benefits-dots]");
-        if (!dots) return;
-        Array.prototype.forEach.call(dots.children, function (b, j) {
+        if (!benefitsDots) return;
+        Array.prototype.forEach.call(benefitsDots.children, function (b, j) {
           b.classList.toggle("is-active", j === i);
         });
       }
     }
   );
 
-  var benefitsDots = document.querySelector("[data-benefits-dots]");
-  if (benefitsDots && benefitsPager) {
-    var bTrack = document.querySelector("[data-benefits-track]");
-    Array.prototype.forEach.call((bTrack ? bTrack.children : []), function (card, i) {
-      var dot = document.createElement("button");
-      dot.type = "button";
-      dot.setAttribute("aria-label", "Ver beneficio " + (i + 1));
-      dot.addEventListener("click", function () { benefitsPager.go(i); benefitsPager.restart(); });
-      benefitsDots.appendChild(dot);
-    });
-    benefitsDots.children[0] && benefitsDots.children[0].classList.add("is-active");
-  }
+  initBucleInfinito(
+    "[data-showcase]", "[data-showcase-track]",
+    "[data-showcase-prev]", "[data-showcase-next]",
+    { autoplay: 4000 }
+  );
 
-  /* ---------- TEMA CLARO / OSCURO (P8) ---------- */
+  /* ---------- TEMA CLARO / OSCURO (P8) ----------
+     El botón muestra sol/luna superpuestos y CSS decide cuál se ve según
+     html[data-theme]; aquí solo se sincroniza el estado accesible. */
   var themeToggle = document.querySelector("[data-theme-toggle]");
-  var themeLabel = document.querySelector("[data-theme-label]");
   function applyTheme(t) {
     document.documentElement.setAttribute("data-theme", t);
-    if (themeLabel) themeLabel.textContent = t === "light" ? "Tema oscuro" : "Tema claro";
     if (themeToggle) {
       themeToggle.setAttribute("aria-label", t === "light" ? "Activar tema oscuro" : "Activar tema claro");
       themeToggle.setAttribute("aria-pressed", t === "light" ? "true" : "false");
@@ -602,6 +672,18 @@
     el.setAttribute("target", "_blank");
     el.setAttribute("rel", "noopener");
     el.removeAttribute("hidden");
+  });
+
+  /* Enlaces de WhatsApp con mensaje propio (data-wa-cta="…").
+     Centraliza el número: el HTML trae un href de respaldo para sin JS y
+     aquí se reconstruye con el número real, igual que el fab. */
+  document.querySelectorAll("[data-wa-cta]").forEach(function (el) {
+    if (!contactReady()) return;
+    var msg = (el.getAttribute("data-wa-cta") || "").trim();
+    if (!msg) return;
+    el.setAttribute("href", "https://wa.me/" + CONTACT.wa + "?text=" + encodeURIComponent(msg));
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
   });
 
   /* Enlaces de correo del footer */
@@ -861,7 +943,7 @@
     }
 
     /* G-02 SPARKLES (partículas ascendentes) */
-    var sparkHosts = document.querySelectorAll(".hero, .promo__inner");
+    var sparkHosts = document.querySelectorAll(".hero");
     if (sparkHosts.length) {
       function spawnSpark() {
         var host = sparkHosts[Math.floor(Math.random() * sparkHosts.length)];
@@ -891,38 +973,23 @@
       spawnSpark();
     }
 
-    /* G-04 AURORA DRIFT (vaivén suave del foco del hero) + G-08 SCANLINE */
+    /* G-04 AURORA DRIFT (vaivén suave del foco del hero) */
     var heroFx = document.querySelector(".hero[data-spotlight]");
-    var scan = document.querySelector("[data-scanline]");
-    var scanProgress = 0;
-    var gRaf = null;
-    var gT = performance.now() + 2600;
-    if (heroFx || scan) {
+    if (heroFx) {
       (function loop(now) {
-        gRaf = requestAnimationFrame(loop);
+        requestAnimationFrame(loop);
         if (document.hidden) return;
-        if (heroFx && !heroFx._ptActive) {
+        if (!heroFx._ptActive) {
           var t = now * 0.00012;
           heroFx.style.setProperty("--mx", (42 + Math.sin(t) * 26) + "%");
           heroFx.style.setProperty("--my", (14 + Math.cos(t * 1.3) * 8) + "%");
         }
-        if (scan && !scan._paused) {
-          scan.classList.add("is-on");
-          scanProgress = ((now + 2600) % 5200) / 5200;
-          scan.style.transform = "translateY(" + (scanProgress * 900 - 100) + "px)";
-        }
       })(window.performance.now());
-      if (heroFx) {
-        heroFx.addEventListener("pointermove", function () {
-          heroFx._ptActive = true;
-          clearTimeout(heroFx._ptTimer);
-          heroFx._ptTimer = setTimeout(function () { heroFx._ptActive = false; }, 9000);
-        });
-      }
-      if (scan) {
-        scan.closest(".promo__inner").addEventListener("mouseenter", function () { scan._paused = true; });
-        scan.closest(".promo__inner").addEventListener("mouseleave", function () { scan._paused = false; });
-      }
+      heroFx.addEventListener("pointermove", function () {
+        heroFx._ptActive = true;
+        clearTimeout(heroFx._ptTimer);
+        heroFx._ptTimer = setTimeout(function () { heroFx._ptActive = false; }, 9000);
+      });
     }
 
     /* G-10 HERO PREVIEW CROSSFADE (screenshot real + arte SVG) */

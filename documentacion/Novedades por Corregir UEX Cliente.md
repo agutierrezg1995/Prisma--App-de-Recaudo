@@ -4,6 +4,13 @@
 **Fecha:** 2026-09-21
 **Estado:** Registro técnico de peticiones (pendiente de ejecución)
 
+> **Nota de rutas (2026-09-26).** Las carpetas y archivos se renombraron al español.
+> Este documento es un registro histórico: las rutas que aparecen abajo son las **anteriores**.
+> Mapa vigente: `assets/` → `recursos/imagenes/` · `css/styles.css` → `estilos/estilos.css` ·
+> `js/main.js` → `scripts/principal.js` · `pages/` → `paginas/` ·
+> `Imagenes para landing/` → `material-de-trabajo/` · `diagramas/` → `documentacion/diagramas/`.
+> Ver la estructura actual en `README.md`.
+
 ---
 
 ## Resumen ejecutivo
@@ -216,6 +223,38 @@ Aplicada el 2026-09-21. Registro detallado en `EJECUCION_Y_AUDITORIA.md §16`,
   - Imágenes reales de `Imagenes para landing/` en el `card__thumb`,
   - Pausa en hover/focus, respeto `prefers-reduced-motion` (guardas ya presentes en `js/main.js:7`).
 - **CSS:** nuevo `.benefits__carousel` manteniendo `.card--benefit`; breakpoints (1882/1918) se reajustan al carrusel.
+
+---
+
+## Iteración 02 — nuevas peticiones (2026-09-21, reunión Griajlba)
+
+| # | Petición del cliente | Ámbito técnico | Impacto |
+|---|----------------------|----------------|---------|
+| 19 | Planes en **cards horizontales** con marketing profesional (NO la imagen de precios como bloque; sino cards) | HTML (`#planes`) + CSS + JS | Contenido / CTA |
+| 20 | Mejorar **tema claro** y **optimizar el botón de toggle de tema** | CSS tokens + HTML navbar + JS | Sistema de diseño |
+
+### 19. Planes → cards horizontales con marketing profesional
+
+- **Archivo:** `index.html`, sección `#planes` (iteración 01).
+- **Objetivo:** dejar de mostrar la imagen `precios.webp` como bloque/visual principal y convertirlo en **cards horizontales** tipo SaaS moderno:
+  - **3 o 4 cards máximo**, estilizadas, sin sobrecarga.
+  - Cada card con **precios reales** (mantener los de `precios.webp`/planes) + Copy de marketing.
+  - **Promoción/publicidad** integrada en las cards (p. ej. CTA, badge, garantía).
+  - **Coherencia y animación** con la paleta actual (tokens `:root`, tema claro/oscuro).
+  - Como se ve en la mayoría de plataformas modernas (layout horizontal, jerarquía de plan destacado).
+- **CTA por card → WhatsApp con plan seleccionado:**
+  - Cada card tendrá su botón que arma el mensaje de WhatsApp según el **plan en el que se hizo clic**.
+  - Texto esperado (a definir con UEX), p. ej. `Hola, quiero: el plan [Nombre del plan]`.
+  - Reusar `CONTACT.wa` + patrón de `openWhatsApp(…)` en `js/main.js` (líneas 449, 544–551).
+- **Nota de conflicto:** la imagen `precios.webp` (y `compra.webp`, `playstore.webp`) puede pasar a **support/ilustrativa** dentro de las cards o reubicarse; verificar que no queden huérfanas (punto 10) al eliminarse como bloque.
+
+### 20. Mejorar tema claro + optimizar botón de toggle de tema
+
+- **Archivo:** `css/styles.css` tokens `:root[data-theme="light"]` (iteración 01, P8) + navbar `[data-theme-toggle]` + `js/main.js` (`applyTheme`).
+- **Qué mejorar (feedback UEX):**
+  - El **tema claro actual no convence** a UEX: revisar contraste, superficies, sombras y bordes en modo claro (evitar que se vea "lavado"/con poco contraste).
+  - **Optimizar el botón de toggle**: estado visual claro (sol/luna), hover/activo, placement, `aria-pressed`, y coherente con la nueva estética sin gradientes (botón sólido).
+- **Deuda asociada ya registrada en `DEUDA_TECNICA…md` §5:** verificar contraste de `notif`/float-cards y simplificar lista de overrides si crece.
 
 ---
 

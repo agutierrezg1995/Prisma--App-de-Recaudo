@@ -1619,6 +1619,13 @@ Orden de ejecución propuesto (ver EJECUCION §15): Fase A conversión (39.1→3
 Fase B contenido (39.5→39.6), Fase C percepción (39.7→39.2→39.4), Fase D contacto
 (39.8, requiere datos reales del negocio).
 
+> **Nota de rutas (2026-09-26).** Las carpetas y archivos se renombraron al español.
+> Este documento es un registro histórico: las rutas que aparecen abajo son las **anteriores**.
+> Mapa vigente: `assets/` → `recursos/imagenes/` · `css/styles.css` → `estilos/estilos.css` ·
+> `js/main.js` → `scripts/principal.js` · `pages/` → `paginas/` ·
+> `Imagenes para landing/` → `material-de-trabajo/` · `diagramas/` → `documentacion/diagramas/`.
+> Ver la estructura actual en `README.md`.
+
 ---
 
 ## 40. Experticia UX/UI del titular — densidad vertical, banners y motion (2026-09-19)

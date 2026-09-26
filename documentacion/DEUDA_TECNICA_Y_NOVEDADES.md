@@ -6,6 +6,13 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 > **desviaciones detectadas que generan deuda técnica** (cosas diferidas, pendientes de decisión o de validación
 > visual humana). Nada aquí se presenta como información real del producto (SPEC §35).
 
+> **Nota de rutas (2026-09-26).** Las carpetas y archivos se renombraron al español.
+> Este documento es un registro histórico: las rutas que aparecen abajo son las **anteriores**.
+> Mapa vigente: `assets/` → `recursos/imagenes/` · `css/styles.css` → `estilos/estilos.css` ·
+> `js/main.js` → `scripts/principal.js` · `pages/` → `paginas/` ·
+> `Imagenes para landing/` → `material-de-trabajo/` · `diagramas/` → `documentacion/diagramas/`.
+> Ver la estructura actual en `README.md`.
+
 ---
 
 ## 1. Novedades — qué se avanzó en esta sesión
