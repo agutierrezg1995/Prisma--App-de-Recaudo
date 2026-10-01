@@ -973,3 +973,93 @@ de esta iteración está registrada en `README.md` §"Rutas actuales".
   `Imagenes para landing/` se detectan como **renombrados**, así que el
   historial y el espacio del repo no cambian. El PDF departial se añadió como
   archivo nuevo (240 KB). No se pierde ningún material del cliente.
+
+---
+
+## Iteración 2026-09-29 — UEX/UI, ciclo 3 (O-01…O-06 + S-01…S-08)
+
+Fuente: `Observaciones 29-9-2026.md`. Observaciones del titular normalizadas a
+especificación ejecutable, con 8 hallazgos de auditoría añadidos.
+
+### Ejecutado
+
+- [x] **O-01 · Tema claro/oscuro.** Control rediseñado como conmutador segmentado
+  sol/luna (`aria-pressed` estable por opción + `sr-only`, sin doble señal de
+  estado como el `aria-pressed` + etiqueta cambiante anterior). El tema claro
+  deja de ser una capa de parches: las superficies navy fijas pasan a tokens
+  derivados (`--media-bg`, `--media-veil`, `--chip-bg`, `--float-bg`,
+  `--band-bg`, `--device-chrome`) con sus overrides en `data-theme`. Arranque
+  **siempre oscuro** (el sistema operativo deja de decidir), script en línea de
+  3 líneas en `<head>` para evitar el destello, y `theme-color` sincronizado con
+  el tema activo. Todo ello propagado a `solicitar-demo.html`, `terminos.html` y
+  `politica-de-privacidad.html`.
+- [x] **O-02 · Capa tablet 768–1199.** Bloque explícito con escala tipográfica
+  propia (`clamp(38px, 4.4vw, 56px)`), `gap` de hero y `section__lead` con
+  densidad de desktop. Las `float-card` dejan de salirse del gutter en
+  768–1023 y la tercera se oculta en esa banda (antes solo por debajo de 768).
+- [x] **O-03 · Product Experience.** `flex-basis` anclado al ancho real de la
+  pista (`calc((100% - 48px)/3)`) en lugar de derivarse de `--container`: con
+  el carrusel dentro de `.container` desaparecen a la vez la franja vacía de
+  `viewport − 1240` px y la desalineación del encabezado. Las 5 cards pasan a
+  `object-fit: cover` con encuadre anclado arriba (`object-position: center top`
+  en las verticales), de modo que ninguna banda de fondo supere el ~8 % de la
+  altura y el `aspect-ratio` del marco sea 3:2 sin recorte de texto.
+- [x] **O-04 · Hero en responsive (variante B, recomendada).** Por debajo de
+  1024 px el producto pasa a protagonista: visual a ancho completo con
+  proporción nativa 3:2 y las `float-card` como fila de chips compactos **bajo**
+  el visual, no superpuestas encima. Titular a `clamp(38px, 8.4vw, 52px)` con
+  máximo 2 líneas. Se conservan el `h1` único (§25), el CTA primario en el
+  primer pantallazo (§36) y el autoplay del visual (G-10). Por debajo de 768 px
+  queda 1 solo chip para que el texto no se parta.
+- [x] **O-05 · Beneficios.** Eliminado el doble gutter (`padding-inline` propio
+  sobre un contenedor que ya lo aporta) y `flex-basis` anclado a la pista, con
+  el mismo criterio que Showcase: ambos carruseles quedan alineados y sin
+  recorte en ningún ancho.
+- [x] **O-06 · Redundancia.** Recuento de "tiempo real" de **19 a 6**
+  apariciones, concentradas en su sección propietaria (Monitoreo). Legales
+  fuera de la columna del footer (ahora "Secciones" con enlaces de sección) y
+  solo en la barra inferior. Adjetivos de relleno eliminados: "muy fácil",
+  "más clara", "sencilla", "simple" y "pasos sencillos" → hechos verificables.
+  `alt` de las imágenes repetidas reescritos para no repetir el titular de la
+  sección.
+- [x] **S-01/S-02 · Topbar.** `visibility: hidden` + `inert` al cerrarlo, así
+  sale también del orden de foco (§23). Flag `announceClosed` compartido: el
+  ciclo G-10 ahora limpia su `setInterval` al cerrarse (antes solo se excluía
+  con `document.hidden` y seguía corriendo de por vida).
+- [x] **S-03 · `onChange` duplicado.** La notificación queda en un solo nivel
+  (`go()`); inocuo hasta ahora, pero sería bug en cuanto se conectara a
+  analítica.
+- [x] **S-04 · Páginas legales.** Conmutador de tema añadido a `terminos.html` y
+  `politica-de-privacidad.html` (antes el tema quedaba forzado sin salida) y
+  `defer` en los tres scripts de `paginas/`.
+- [x] **S-05 · Atributos del hero.** `width`/`height` corregidos a `1536×1024`
+  (declaraban `900×700`), más los 5 assets de Product Experience a su
+  proporción nativa. Cero CLS.
+- [x] **S-06 · Aurora del hero.** El `requestAnimationFrame` ahora corta por
+  `IntersectionObserver` cuando el hero sale de vista; era el único bucle del
+  proyecto sin condición de parada.
+
+### Evidencia
+
+- Anchos de verificación 1440 / 1280 / 1200 / 1024 / 900 / 768 / 430 / 360 px:
+  sin franja vacía en los carruseles, tarjetas completas y alineadas con su
+  encabezado; `flex-basis` en porcentaje del ancho real de la pista, así que
+  coincide en cualquier viewport y tras `1440 → 900 → 1440`.
+- `mide()` mide ahora el set original, no la pista clonada: el fallback a grid
+  estático sin flechas (`is-overflowing`) vuelve a ser funcional en lugar de
+  quedar siempre activo.
+- Un solo `h1`; jerarquía `h1→h2→h3` intacta; roles ARIA de los carruseles y
+  `aria-label` conservados; los clones siguen `aria-hidden` + `inert`.
+- 5 destinos de conversión intactos (`#planes`, WhatsApp de planes, WhatsApp
+  "quiero verlo en vivo", WhatsApp de la app, formulario de demo).
+- `node --check scripts/principal.js` OK.
+- Sin URLs, métricas, precios ni testimonios nuevos (§35): todas las
+  reformulaciones de copy salen de texto ya existente.
+
+### Pendiente
+
+- [ ] QA visual del titular sobre los 8 anchos (§12), en particular la
+  composición de tablet del hero y el reparto de `float-card` por franja.
+- [ ] Confirmación explícita de **O-01.b** (completar el tema claro frente a
+  retirarlo y fijar oscuro) y de **O-04** (variante B frente a la lectura A
+  "solo imagen"), tal como reserva el documento de entrada.

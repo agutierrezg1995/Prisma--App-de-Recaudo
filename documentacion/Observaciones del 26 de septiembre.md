@@ -19,3 +19,5 @@ ORDEN DE LAS CARPETAS Y ARCHIVOS
 En cuanto al orden de las carpetas y archivos quiero que me Organices los archivos por carpetas de manera profesional y organizada  y tratar en lo posible que el lenguaje por defecto sea español 
 
 Elimina lo que definitivamente consideres que no se usa y validalidalo antes de hacerlo , la idea es que el proyecto quede cimpecable usando practicas de clean code y evitando desorden 
+
+

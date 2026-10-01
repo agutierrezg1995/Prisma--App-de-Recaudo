@@ -71,6 +71,21 @@ Fecha de corte: **2026-09-19** · Rama: `main` · Servidor local: `http://127.0.
 | --- | --- | --- |
 | *por commitear* | feat(form) | **§45 I-01…I-06**: captura ampliada (correo + teléfono obligatorios con `type=email`/`type=tel`+patrón, ciudad opcional) + contexto operativo (puntos de recaudo/vendedores + volumen mensual, selects con placeholder) + validaciones generales en español (`setCustomValidity` en `invalid`, limpieza en `input`, `:user-invalid` extendido al select) + feedback de envío con estado de error (`role=status`) + anti doble envío (botón deshabilitado 2 s) + mensaje WhatsApp con 9 datos (Nombre, Correo, Teléfono, Negocio, Ciudad, Operación, Canales, Volumen, Necesidad). |
 
+### Pasada 27 — UEX/UI ciclo 3 del 29-09-2026 (O-01…O-06 + S-01…S-08)
+
+Fuente: `Observaciones 29-9-2026.md`. Continuidad de la iteración del 26-09: los
+dos carruseles que el titular reportaba como "vacíos" fallaban por **geometría de
+contenedor**, no por el motor de bucle (que ya funcionaba).
+
+| Commit | Tipo | Contenido |
+| --- | --- | --- |
+| *por commitear* | feat(theme) | **O-01**: conmutador segmentado sol/luna con `aria-pressed` estable por opción (fin de la doble señal de estado), tema claro completado con tokens derivados `--media-bg`/`--media-veil`/`--chip-bg`/`--float-bg`/`--band-bg`/`--device-chrome` + overrides, arranque siempre oscuro, script en línea anti-FOUC y `theme-color` dinámico. Propagado a las 3 páginas de `paginas/`. |
+| *por commitear* | fix(ux-ui) | **O-02**: capa tablet explícita 768–1199 (escala tipográfica propia, gap y `section__lead` con densidad de desktop, `float-card` dentro del gutter y tercera oculta en 768–1023). |
+| *por commitear* | fix(carousel) | **O-03/O-05**: causa raíz de las "flechas vacías" — `flex-basis` pasa a derivarse del ancho real de la pista en lugar de `--container`, se elimina el doble gutter de Beneficios, Showcase entra en `.container` (fin de la franja de `viewport − 1240` px y de la desalineación del encabezado) y las 5 cards usan `cover` con encuadre por asset, sin bandas vacías. |
+| *por commitear* | feat(hero) | **O-04** (variante B): en <1024 px el visual ocupa el ancho completo a 3:2 y las `float-card` pasan a fila de chips bajo el producto en vez de taparlo; titular a 2 líneas, CTA primario y `h1` único conservados. |
+| *por commitear* | docs(copy) | **O-06**: "tiempo real" de 19 a 6 apariciones concentradas en su sección propietaria, legales solo en la barra inferior, columna "Empresa" → "Secciones", y eliminación de adjetivos de relleno ("muy fácil", "más clara", "sencilla", "simple"). |
+| *por commitear* | fix(a11y) | **S-01…S-06**: topbar fuera del orden de foco al cerrarse (`visibility` + `inert`) y su ciclo detiene el `setInterval`; `onChange` en un solo nivel; conmutador de tema en las páginas legales; `width`/`height` de hero y assets corregidos (cero CLS); aurora del hero cortada por `IntersectionObserver`; `mide()` midiendo el set original para que el fallback de `is-overflowing` vuelva a funcionar. |
+
 ### Pasada 23 — Refinamiento F-02 (hero) + imágenes en cards de Beneficios
 
 | Commit | Tipo | Contenido |
@@ -261,3 +276,34 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
    reseñas" = alinear imágenes; verificado en todos los bloques de la landing.
    Deuda residual: `hero.webp` reutilizado como miniatura de "Información
    centralizada" (posible duplicidad visual).
+
+---
+
+## 6. Iteración UEX Cliente 2 — ciclo del 29-09-2026
+
+> Trazabilidad: `Observaciones 29-9-2026.md` — O-01…O-06 (titular) y S-01…S-08
+> (auditoría). Detalle de ejecución en `EJECUCION_Y_AUDITORIA.md` §"Iteración
+> 2026-09-29".
+
+### Novedades introducidas
+- **Tema claro pasa de parche a sistema**: los seis tokens de superficie sobre
+  contenido (`--media-bg`, `--media-veil`, `--chip-bg`, `--float-bg`,
+  `--band-bg`, `--device-chrome`) sustituyen a los rgba navy fijos que la capa
+  `data-theme="light"` no cubría. Es deuda a vigilar: si se añaden superficies
+  nuevas, deben usar esos tokens y no rgba sueltos.
+- **Capa tablet explícita 768–1199** en `estilos/estilos.css`. Antes las bandas
+  1024–1199 y 768–1023 heredaban comportamientos incompatibles; ahora la
+  composición intermedia está declarada y no depende de herencias.
+- **`flex-basis` en porcentaje del ancho de pista** en los dos carruseles.
+  Invariante nueva a no romper: el ancho de tarjeta se ancla al 100 % real de
+  la pista, nunca a `--container`.
+- **`is-overflowing` medido sobre `originales`**, no sobre la pista clonada.
+  Sin esto el fallback a grid estático sin flechas queda muerto.
+
+### Deuda que queda
+1. **Decisiones del titular pendientes**: O-01.b (completar el tema claro frente
+   a retirarlo y fijar oscuro) y O-04 (variante B frente a "solo imagen") se
+   implementaron por recomendación del documento de entrada y necesitan
+   confirmación explícita.
+2. Sin swipe táctil en los carruseles: sigue fuera de alcance de esta ronda.
+3. `art-*.svg` y la miniatura residual de `hero.webp`: sin tocar en esta ronda.

@@ -374,7 +374,13 @@
       return ancho > 0 ? ancho + gap() : 0;
     }
     function mide() {
-      overflow = track.scrollWidth > root.clientWidth + 2;
+      /* Se mide el set ORIGINAL, no la pista: la pista ya contiene los clones,
+         así que `track.scrollWidth` siempre desbordaba y `is-overflowing` nunca
+         se quitaba (el fallback a grid estático quedaba muerto). */
+      var anchoOriginales = originales.reduce(function (suma, card) {
+        return suma + card.getBoundingClientRect().width;
+      }, 0) + gap() * (originales.length - 1);
+      overflow = anchoOriginales > root.clientWidth + 2;
       root.classList.toggle("is-overflowing", overflow);
       if (!overflow) {
        detener();
@@ -407,10 +413,12 @@
       if (opts.onChange) opts.onChange(idx % total);
     }
     function avanza() {
-      /* Avanza una tarjeta; al llegar al set clonado (idx === total) salta a 0 sin transición. */
-      if (idx >= total) saltaA(0);
-      else go(idx + 1);
-      if (opts.onChange) opts.onChange(idx % total);
+      /* Avanza una tarjeta; al llegar al set clonado (idx === total) salta a 0 sin transición.
+         `go()` ya notifica el cambio: aquí no se vuelve a llamar (se disparaba dos veces). */
+      if (idx >= total) {
+        saltaA(0);
+        if (opts.onChange) opts.onChange(0);
+      } else go(idx + 1);
     }
     function reinicia() {
       detener();
@@ -495,25 +503,44 @@
   );
 
   /* ---------- TEMA CLARO / OSCURO (P8) ----------
-     El botón muestra sol/luna superpuestos y CSS decide cuál se ve según
-     html[data-theme]; aquí solo se sincroniza el estado accesible. */
-  var themeToggle = document.querySelector("[data-theme-toggle]");
+     Conmutador segmentado: dos botones con etiqueta estable y `aria-pressed`
+     propio, más un indicador deslizante. El atributo `data-theme` ya lo fija un
+     script en línea del <head> antes del primer pintado (sin destello); aquí solo
+     se sincroniza el control y se persiste la elección.
+     El valor por defecto de marca es oscuro: el sistema operativo no decide
+     (§2 "el azul oscuro debe dominar", §46.4 "por defecto oscuro"). */
+  var themeSwitch = document.querySelector("[data-theme-switch]");
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  var THEME_COLORS = { dark: "#00123C", light: "#F4F9FF" };
+
   function applyTheme(t) {
     document.documentElement.setAttribute("data-theme", t);
-    if (themeToggle) {
-      themeToggle.setAttribute("aria-label", t === "light" ? "Activar tema oscuro" : "Activar tema claro");
-      themeToggle.setAttribute("aria-pressed", t === "light" ? "true" : "false");
+    if (themeMeta) themeMeta.setAttribute("content", THEME_COLORS[t] || THEME_COLORS.dark);
+    if (themeSwitch) {
+      var opts = themeSwitch.querySelectorAll("[data-theme-set]");
+      Array.prototype.forEach.call(opts, function (btn) {
+        var on = btn.getAttribute("data-theme-set") === t;
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+        if (on) {
+          /* Mueve el indicador bajo la opción activa (34px + 2px de separación). */
+          themeSwitch.style.setProperty("--theme-x", btn.offsetLeft - themeSwitch.offsetLeft - 3 + "px");
+        }
+      });
     }
     try { localStorage.setItem("prisma-theme", t); } catch (e) { /* almacenamiento no disponible */ }
   }
-  var savedTheme = null;
-  try { savedTheme = localStorage.getItem("prisma-theme"); } catch (e) { /* ignorar */ }
-  var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyTheme(savedTheme || (prefersDark ? "dark" : "light"));
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      var nextTheme = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
-      applyTheme(nextTheme);
+
+  applyTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
+
+  if (themeSwitch) {
+    themeSwitch.querySelectorAll("[data-theme-set]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        applyTheme(btn.getAttribute("data-theme-set"));
+      });
+    });
+    window.addEventListener("resize", function () {
+      var active = themeSwitch.querySelector('[data-theme-set][aria-pressed="true"]');
+      if (active) themeSwitch.style.setProperty("--theme-x", active.offsetLeft - themeSwitch.offsetLeft - 3 + "px");
     });
   }
 
@@ -738,11 +765,18 @@
   });
 
 /* ---------- TOPBAR (announcement, §40) ---------- */
+  /* `announceClosed` es el estado compartido: el cierre lo marca y el ciclo G-10
+     lo consulta para parar su `setInterval` (antes comparaba un atributo
+     `hidden` que el cierre nunca establecía, así que la barra seguía rotando). */
+  var announceClosed = false;
   var topbarClose = document.querySelector("[data-topbar-close]");
   if (topbarClose) {
     topbarClose.addEventListener("click", function () {
+      announceClosed = true;
       document.documentElement.classList.add("announce-closed");
       topbarClose.setAttribute("aria-hidden", "true");
+      var bar = document.querySelector("[data-topbar]");
+      if (bar) bar.setAttribute("inert", "");
     });
   }
 
@@ -924,15 +958,19 @@
 
     /* G-10 TOPBAR CÍCLICO */
     var tMsg = document.querySelector("[data-topbar-msg]");
-    if (tMsg && !document.querySelector("[data-topbar-close]").hasAttribute("hidden")) {
+    if (tMsg && document.querySelector("[data-topbar-close]")) {
       var tPhrases = [
         "Registra tus cobros y cuadra tu operación desde tu celular.",
         "Todo tu recaudo en un solo lugar, en tiempo real.",
         "Centraliza clientes, movimientos y reportes."
       ];
       var tIdx = 0;
-      setInterval(function () {
-        if (document.hidden) return;
+      var tTimer = setInterval(function () {
+        if (document.hidden || announceClosed) {
+          clearInterval(tTimer);
+          tTimer = null;
+          return;
+        }
         tMsg.classList.add("is-swap");
         setTimeout(function () {
           tIdx = (tIdx + 1) % tPhrases.length;
@@ -976,9 +1014,17 @@
     /* G-04 AURORA DRIFT (vaivén suave del foco del hero) */
     var heroFx = document.querySelector(".hero[data-spotlight]");
     if (heroFx) {
+      /* El bucle solo corre con el hero en vista (mismo patrón que el slider):
+         `requestAnimationFrame` sin corte seguía activo con la sección fuera. */
+      var heroVisible = true;
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) {
+          heroVisible = entries[0].isIntersecting;
+        }, { threshold: 0 }).observe(heroFx);
+      }
       (function loop(now) {
         requestAnimationFrame(loop);
-        if (document.hidden) return;
+        if (document.hidden || !heroVisible) return;
         if (!heroFx._ptActive) {
           var t = now * 0.00012;
           heroFx.style.setProperty("--mx", (42 + Math.sin(t) * 26) + "%");

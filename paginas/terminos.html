@@ -37,6 +37,16 @@
 
   <link rel="stylesheet" href="../estilos/estilos.css" />
   <script>document.documentElement.classList.add("js");</script>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("prisma-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
 </head>
 
 <body id="inicio">
@@ -70,6 +80,17 @@
 
       <div class="navbar__actions">
         <a class="btn btn--primary btn--sm navbar__cta" href="solicitar-demo.html">Solicitar demo</a>
+        <div class="theme-switch" role="group" aria-label="Tema de la página" data-theme-switch>
+          <span class="theme-switch__ind" aria-hidden="true"></span>
+          <button class="theme-switch__opt" type="button" data-theme-set="light" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.2v2.2M12 19.6v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.2 12h2.2M19.6 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g></svg>
+            <span class="sr-only">Tema claro</span>
+          </button>
+          <button class="theme-switch__opt" type="button" data-theme-set="dark" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M20.5 13.6A8.6 8.6 0 1 1 10.4 3.5a6.9 6.9 0 0 0 10.1 10.1Z" fill="currentColor"/></svg>
+            <span class="sr-only">Tema oscuro</span>
+          </button>
+        </div>
         <button class="navbar__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" data-menu-toggle>
           <span></span><span></span><span></span>
         </button>
@@ -205,6 +226,6 @@
     <span data-icon="whatsapp" aria-hidden="true"></span>
   </a>
 
-  <script src="../scripts/principal.js"></script>
+  <script src="../scripts/principal.js" defer></script>
 </body>
 </html>
