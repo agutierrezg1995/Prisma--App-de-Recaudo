@@ -21,13 +21,12 @@
     activity: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
     whatsapp: '<path d="M12 2a10 10 0 0 0-8.5 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/><path d="M17.7 14.5c-.35-.2-2.05-1-2.4-1.15-.35-.15-.6-.2-.85.2s-1 1.2-1.2 1.45-.4.25-.8.05a9.6 9.6 0 0 1-3.3-2.03 9.8 9.8 0 0 1-1.3-2.35c-.25-.35 0-.55.15-.75s.5-.6.7-.95a3.8 3.8 0 0 0 .4-1c0-.15 0-.35-.2-.65s-1-2.4-1.15-3.05-.6-.7-.9-.7h-.75a1.75 1.75 0 0 0-1.25.55 5.2 5.2 0 0 0-1.55 3.8 9 9 0 0 0 1.75 5.25c.25.3 3 4.6 7.4 6.3 2.15.85 2.6.7 3.4.65a3.4 3.4 0 0 0 2-1.35 3.3 3.3 0 0 0 .4-2c-.15-.2-.5-.3-.85-.45Z"/>',
     check: '<path d="M20 6 9 17l-5-5"/>',
-    "arrow-up-right": '<path d="M7 17 17 7"/><path d="M8 7h9v9"/>',
-    "arrow-down": '<path d="M12 5v14"/><path d="m6 13 6 6 6-6"/>',
-    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/>',
-    smartphone: '<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',
     shield: '<path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/>',
     lock: '<rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/>',
     eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+    /* Los siguientes los usa el bloque de redes del footer cuando el negocio
+       entregue sus handles (DUDE-18); message-circle, phone, mail, instagram,
+       linkedin y facebook quedan reservados a propósito. */
     "message-circle": '<path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5h-5l-4 3 1.4-4.2A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01"/>',
     phone: '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.4 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
@@ -92,7 +91,9 @@
       a.addEventListener("click", function () { closeMenu(false); });
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMenu(true);
+      /* Solo si el menú está abierto: antes `Escape` llamaba a `closeMenu(true)`
+         en cualquier página y devolvía el foco al botón hamburguesa. */
+      if (e.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") closeMenu(true);
     });
     navMenu.addEventListener("keydown", function (e) {
       if (e.key !== "Tab") return;
@@ -161,16 +162,19 @@
   /* ---------- PARALLAX (prismas / glows) ---------- */
   var parallaxEls = document.querySelectorAll(".bg-decor .glow");
   if (!reduceMotion && parallaxEls.length) {
-    var rafId = null;
+    /* `parallaxRaf` es propio del bloque: antes compartía `rafId` con el slider
+       (mismo ámbito de función por `var`), así que mientras el slider reproducía
+       con autoplay el parallax no se agendaba nunca. */
+    var parallaxRaf = null;
     window.addEventListener("scroll", function () {
-      if (rafId) return;
-      rafId = requestAnimationFrame(function () {
+      if (parallaxRaf) return;
+      parallaxRaf = requestAnimationFrame(function () {
         var y = window.scrollY || 0;
         parallaxEls.forEach(function (el, i) {
           var speed = (i % 2 === 0 ? 0.04 : 0.07);
           el.style.transform = "translateY(" + (y * speed) + "px)";
         });
-        rafId = null;
+        parallaxRaf = null;
       });
     }, { passive: true });
   }
@@ -188,7 +192,7 @@
     var running = false;
     var startTs = 0;
     var elapsed = 0;
-    var rafId = null;
+    var sliderRaf = null;
     var hovered = false;
 
     slides.forEach(function (_, i) {
@@ -236,7 +240,7 @@
       if (pct >= 1) {
         goTo(index + 1, "next");
       }
-      rafId = requestAnimationFrame(tick);
+      sliderRaf = requestAnimationFrame(tick);
     }
 
     function play() {
@@ -244,12 +248,12 @@
       if (running) return;
       running = true;
       startTs = 0;
-      rafId = requestAnimationFrame(tick);
+      sliderRaf = requestAnimationFrame(tick);
     }
     function pause() {
       running = false;
-      if (rafId) cancelAnimationFrame(rafId);
-      rafId = null;
+      if (sliderRaf) cancelAnimationFrame(sliderRaf);
+      sliderRaf = null;
     }
 
     slider.querySelector("[data-slider-prev]").addEventListener("click", function () { goTo(index - 1, "prev"); });
@@ -293,40 +297,6 @@
     }
   }
 
-  /* ---------- TABS ---------- */
-  var tablist = document.querySelector(".tabs");
-  if (tablist) {
-    var tabs = Array.prototype.slice.call(tablist.querySelectorAll("[data-tab]"));
-    var panels = Array.prototype.slice.call(document.querySelectorAll("[data-panel]"));
-
-    function activateTab(tab) {
-      var name = tab.getAttribute("data-tab");
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.classList.toggle("is-active", on);
-        t.setAttribute("aria-selected", on ? "true" : "false");
-        t.tabIndex = on ? 0 : -1;
-      });
-      panels.forEach(function (p) {
-        var on = p.getAttribute("data-panel") === name;
-        p.classList.toggle("is-active", on);
-        if (on) { p.removeAttribute("hidden"); } else { p.setAttribute("hidden", ""); }
-      });
-    }
-
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener("click", function () { activateTab(tab); });
-      tab.addEventListener("keydown", function (e) {
-        var next = null;
-        if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
-        if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
-        if (e.key === "Home") next = tabs[0];
-        if (e.key === "End") next = tabs[tabs.length - 1];
-        if (next) { e.preventDefault(); next.focus(); activateTab(next); }
-      });
-    });
-  }
-
   /* ---------- CARRUSELES EN BUCLE INFINITO (beneficios + product experience) ----------
      Problema que resuelve: el carrusel anterior scrolleaba hasta el último elemento real
      y dejaba huecos vacíos a la derecha (translateX máximo = última tarjeta, sin relleno).
@@ -348,6 +318,7 @@
     var total = originales.length;
     var idx = 0;
     var hover = false;
+    var visible = true;
     var timer = null;
     var resizeT = null;
     var overflow = true;
@@ -383,7 +354,7 @@
       overflow = anchoOriginales > root.clientWidth + 2;
       root.classList.toggle("is-overflowing", overflow);
       if (!overflow) {
-       detener();
+        detener();
         idx = 0;
         track.style.transition = "none";
         track.style.transform = "translateX(0)";
@@ -424,7 +395,7 @@
       detener();
       if (opts.autoplay === false || reduceMotion || !overflow) return;
       timer = setInterval(function () {
-        if (hover || document.hidden) return;
+        if (hover || !visible || document.hidden) return;
         avanza();
       }, opts.autoplay || 4000);
     }
@@ -457,6 +428,15 @@
     track.addEventListener("focusin", function () { hover = true; });
     track.addEventListener("focusout", function () { hover = false; });
     window.addEventListener("resize", alRedimensionar);
+
+    /* Autoplay solo con el carrusel en pantalla (mismo criterio que el slider):
+       antes los dos bucles seguían corriendo durante toda la sesión. */
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) reinicia(); else detener();
+      }, { threshold: 0.15 }).observe(root);
+    }
 
     mide();
     if (overflow) { go(0, true); reinicia(); }
@@ -513,7 +493,7 @@
   var themeMeta = document.querySelector('meta[name="theme-color"]');
   var THEME_COLORS = { dark: "#00123C", light: "#F4F9FF" };
 
-  function applyTheme(t) {
+  function applyTheme(t, persist) {
     document.documentElement.setAttribute("data-theme", t);
     if (themeMeta) themeMeta.setAttribute("content", THEME_COLORS[t] || THEME_COLORS.dark);
     if (themeSwitch) {
@@ -527,57 +507,23 @@
         }
       });
     }
-    try { localStorage.setItem("prisma-theme", t); } catch (e) { /* almacenamiento no disponible */ }
+    /* Solo se persiste la elección del usuario: al arrancar en una página sin el
+       script en línea (404) el tema por defecto no debe borrar la preferencia. */
+    if (persist) { try { localStorage.setItem("prisma-theme", t); } catch (e) { /* almacenamiento no disponible */ } }
   }
 
-  applyTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
+  applyTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark", false);
 
   if (themeSwitch) {
     themeSwitch.querySelectorAll("[data-theme-set]").forEach(function (btn) {
       btn.addEventListener("click", function () {
-        applyTheme(btn.getAttribute("data-theme-set"));
+        applyTheme(btn.getAttribute("data-theme-set"), true);
       });
     });
     window.addEventListener("resize", function () {
       var active = themeSwitch.querySelector('[data-theme-set][aria-pressed="true"]');
       if (active) themeSwitch.style.setProperty("--theme-x", active.offsetLeft - themeSwitch.offsetLeft - 3 + "px");
     });
-  }
-
-  /* ---------- COUNTERS (demostrativos) ---------- */
-  var analyticsPanel = document.querySelector(".analytics__panel");
-  function formatNumber(n) {
-    return new Intl.NumberFormat("es-CO").format(Math.round(n));
-  }
-  function runCounters() {
-    document.querySelectorAll("[data-count]").forEach(function (el) {
-      var target = parseFloat(el.getAttribute("data-count"));
-      var prefix = el.getAttribute("data-prefix") || "";
-      if (reduceMotion) { el.textContent = prefix + formatNumber(target); return; }
-      var start = performance.now();
-      var dur = 1500;
-      function step(now) {
-        var p = Math.min((now - start) / dur, 1);
-        var eased = 1 - Math.pow(1 - p, 3);
-        el.textContent = prefix + formatNumber(target * eased);
-        if (p < 1) requestAnimationFrame(step);
-      }
-      requestAnimationFrame(step);
-    });
-  }
-  if (analyticsPanel && "IntersectionObserver" in window) {
-    var counted = false;
-    new IntersectionObserver(function (entries, obs) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting && !counted) {
-          counted = true;
-          runCounters();
-          obs.disconnect();
-        }
-      });
-    }, { threshold: 0.05 }).observe(analyticsPanel);
-  } else {
-    runCounters();
   }
 
   /* ---------- TIMELINE PROGRESS ---------- */

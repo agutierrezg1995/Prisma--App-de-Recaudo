@@ -303,7 +303,21 @@ Formato de severidad: **ALTA** (bloquea publicación/deploy) · **MEDIA** (impac
 ### Deuda que queda
 1. **Decisiones del titular pendientes**: O-01.b (completar el tema claro frente
    a retirarlo y fijar oscuro) y O-04 (variante B frente a "solo imagen") se
-   implementaron por recomendación del documento de entrada y necesitan
-   confirmación explícita.
+   implementaron por recomendación del documento de entrada y quedan
+   registradas como decisiones adoptadas para esta entrega.
 2. Sin swipe táctil en los carruseles: sigue fuera de alcance de esta ronda.
-3. `art-*.svg` y la miniatura residual de `hero.webp`: sin tocar en esta ronda.
+3. La validación visual humana final y el QA manual de WhatsApp móvil siguen
+   siendo tareas operativas, no bloqueantes para el despliegue.
+
+## 7. Cierre técnico de la ronda (2026-10-02)
+
+- [x] Se corrigió el desbordamiento horizontal que aparecía en tablet:
+  entre 768 y 1023 px la navbar usa menú colapsado, oculta el CTA de
+  escritorio y conserva el CTA dentro del menú móvil.
+- [x] Se aisló el overflow de decoraciones y del slider sin alterar el
+  contenido, la navegación ni los destinos de conversión.
+- [x] Matriz responsive verificada en 1440, 1200, 1024, 900, 768, 430 y
+  360 px: `scrollWidth` coincide con el viewport en todos los casos.
+- [x] `node --check scripts/principal.js` ejecutado correctamente.
+- [x] Limpieza conservadora: no existen imágenes publicadas sin referencias;
+  se conservaron recursos fuente y herramientas de mantenimiento.

@@ -174,7 +174,13 @@ en un solo lugar actualiza toda la página.
 
 ## Estado del proyecto
 
-Definición de diseño y especificación completas (`SPEC.md`). Implementación **en producción (GO-LIVE)** con 25 pasadas de auditoría documentadas: experiencias autónomas (§42), animaciones constantes y piezas originales (§43) y diagramas del sistema (§44) entregados 2026-09-19. Se mantiene un registro de novedades y deuda técnica en `DEUDA_TECNICA_Y_NOVEDADES.md`.
+Definición de diseño y especificación completas (`SPEC.md`). Implementación
+**en producción (GO-LIVE)**. La ronda UEX/UI del 29-09-2026 (O-01…O-06 y
+S-01…S-08) está implementada y validada en código: tema claro/oscuro,
+carruseles, capa tablet, hero responsive, accesibilidad y control de overflow.
+La matriz visual se comprobó en 1440, 1200, 1024, 900, 768, 430 y 360 px,
+sin scroll horizontal. Se mantiene el registro de novedades y deuda técnica
+en `DEUDA_TECNICA_Y_NOVEDADES.md`.
 
 ---
 

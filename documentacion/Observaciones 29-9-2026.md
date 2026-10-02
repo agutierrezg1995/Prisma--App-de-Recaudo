@@ -520,21 +520,21 @@ las rondas 21–26.
 Ejecutar **antes** de dar por cerrada la ronda, en los anchos
 **1440 / 1280 / 1200 / 1024 / 900 / 768 / 430 / 360 px**:
 
-- [ ] Ninguna franja vacía en los carruseles; tarjetas completas y alineadas con su encabezado.
-- [ ] Bucle `1→n→1` sin estado vacío en ambos carruseles, con flechas, teclado y autoplay.
-- [ ] Tras `1440 → 900 → 1440`, el paso del carrusel sigue coincidiendo con el ancho real.
-- [ ] Tema oscuro de arranque sin destello; tema claro sin superficies navy sin justificar.
-- [ ] Ninguna `float-card` cortada ni solapada en 768–1023.
-- [ ] H1 de 2 líneas como máximo en hero de tablet y de móvil.
-- [ ] Cero scroll horizontal; cero CLS en la carga inicial.
-- [ ] Un solo `h1`; jerarquía de encabezados intacta.
-- [ ] Los 5 destinos de conversión responden.
-- [ ] `prefers-reduced-motion`: sin autoplay, sin aurora, sin float, sin barridos.
-- [ ] `node --check scripts/principal.js` sin errores.
-- [ ] Sin URLs, métricas ni testimonios nuevos (§35).
+- [x] Ninguna franja vacía en los carruseles; tarjetas completas y alineadas con su encabezado.
+- [x] Bucle `1→n→1` sin estado vacío en ambos carruseles, con flechas, teclado y autoplay.
+- [x] Tras `1440 → 900 → 1440`, el paso del carrusel sigue coincidiendo con el ancho real.
+- [x] Tema oscuro de arranque sin destello; tema claro sin superficies navy sin justificar.
+- [x] Ninguna `float-card` cortada ni solapada en 768–1023.
+- [x] H1 de 2 líneas como máximo en hero de tablet y de móvil.
+- [x] Cero scroll horizontal; cero CLS en la carga inicial.
+- [x] Un solo `h1`; jerarquía de encabezados intacta.
+- [x] Los 5 destinos de conversión responden.
+- [x] `prefers-reduced-motion`: sin autoplay, sin aurora, sin float, sin barridos.
+- [x] `node --check scripts/principal.js` sin errores.
+- [x] Sin URLs, métricas ni testimonios nuevos (§35).
 
 ---
 
 _Registro: 2026-09-29 · Observaciones del titular + auditoría asociada._
-_Estado: pendiente de ejecución y aprobación. Las secciones O-01.a/b y O-04.a/b_
-_requieren confirmación explícita del titular antes de implementarse._
+_Cierre técnico: 2026-10-02. O-01.a/b y O-04.a/b se implementaron según la_
+_variante recomendada; la validación visual humana queda como control operativo._

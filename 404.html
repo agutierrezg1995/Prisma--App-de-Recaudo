@@ -19,6 +19,19 @@
 
   <link rel="stylesheet" href="estilos/estilos.css" />
   <script>document.documentElement.classList.add("js");</script>
+  <!-- Mismo arranque de tema que index y paginas/: sin esto, una recarga con el
+       tema claro ya elegido caía siempre en oscuro (y el script principal tampoco
+       lo arreglaba: solo lee el atributo data-theme). -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("prisma-theme");
+        document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+      } catch (e) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
 </head>
 
 <body id="inicio">
@@ -52,6 +65,17 @@
 
       <div class="navbar__actions">
         <a class="btn btn--primary btn--sm navbar__cta" href="paginas/solicitar-demo.html">Solicitar demo</a>
+        <div class="theme-switch" role="group" aria-label="Tema de la página" data-theme-switch>
+          <span class="theme-switch__ind" aria-hidden="true"></span>
+          <button class="theme-switch__opt" type="button" data-theme-set="light" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.2v2.2M12 19.6v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.2 12h2.2M19.6 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></g></svg>
+            <span class="sr-only">Tema claro</span>
+          </button>
+          <button class="theme-switch__opt" type="button" data-theme-set="dark" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false"><path d="M20.5 13.6A8.6 8.6 0 1 1 10.4 3.5a6.9 6.9 0 0 0 10.1 10.1Z" fill="currentColor"/></svg>
+            <span class="sr-only">Tema oscuro</span>
+          </button>
+        </div>
         <button class="navbar__toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu" data-menu-toggle>
           <span></span><span></span><span></span>
         </button>
@@ -84,7 +108,7 @@
         <p>Registra. Monitorea. Decide.</p>
 
         <div class="footer__contact" data-contact-block hidden>
-          <h3 class="footer__contact-title">Contacto</h3>
+          <h2 class="footer__contact-title">Contacto</h2>
           <a class="btn btn--secondary btn--sm footer__wa" href="paginas/solicitar-demo.html" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
             <span data-icon="whatsapp" aria-hidden="true"></span>
             Escríbenos por WhatsApp
@@ -96,35 +120,37 @@
 
       <nav class="footer__cols" aria-label="Enlaces del sitio">
         <div class="footer__col">
-          <h3>Producto</h3>
+          <h2>Producto</h2>
           <ul>
             <li><a href="index.html#inicio">Inicio</a></li>
+            <li><a href="index.html#experiencia">La plataforma</a></li>
             <li><a href="index.html#solucion">Funciones</a></li>
-            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#descarga">Descargar la app</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Soluciones</h3>
+          <h2>Tu operación</h2>
           <ul>
+            <li><a href="index.html#problema">El problema</a></li>
             <li><a href="index.html#monitoreo">Monitoreo</a></li>
-            <li><a href="index.html#planes">Planes</a></li>
-            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h3>Recursos</h3>
-          <ul>
-            <li><a href="index.html#preguntas">Preguntas frecuentes</a></li>
+            <li><a href="index.html#beneficios">Beneficios</a></li>
             <li><a href="index.html#seguridad">Seguridad</a></li>
-            <li><a href="index.html#experiencia">Experiencia</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Empresa</h3>
+          <h2>Precios</h2>
           <ul>
-            <li><a href="paginas/solicitar-demo.html">Contacto</a></li>
-            <li><a href="paginas/politica-de-privacidad.html">Política de privacidad</a></li>
-            <li><a href="paginas/terminos.html">Términos</a></li>
+            <li><a href="index.html#planes">Planes y precios</a></li>
+            <li><a href="index.html#como-funciona">Cómo funciona</a></li>
+            <li><a href="index.html#preguntas">Preguntas frecuentes</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h2>Empresa</h2>
+          <ul>
+            <li><a href="solicitar-demo.html">Solicitar demo</a></li>
+            <li><a href="politica-de-privacidad.html">Política de privacidad</a></li>
+            <li><a href="terminos.html">Términos</a></li>
           </ul>
         </div>
       </nav>
@@ -132,11 +158,7 @@
 
     <div class="container footer__bottom">
       <p>&copy; <span data-year>2026</span> Prisma$. Todos los derechos reservados.</p>
-      <ul>
-        <li><a href="paginas/politica-de-privacidad.html">Política de privacidad</a></li>
-        <li><a href="paginas/terminos.html">Términos</a></li>
-        <li><a href="paginas/solicitar-demo.html">Contacto</a></li>
-      </ul>
+
     </div>
   </footer>
 

@@ -167,7 +167,7 @@
 
       <nav class="navbar__nav" id="nav-menu" aria-label="Navegación principal">
         <ul class="navbar__list">
-          <span class="nav-indicator" aria-hidden="true" data-nav-indicator></span>
+          <li class="nav-indicator" aria-hidden="true" data-nav-indicator></li>
           <li><a class="navbar__link is-active" href="#inicio" data-spy>Inicio</a></li>
           <li><a class="navbar__link" href="#problema" data-spy>El problema</a></li>
           <li><a class="navbar__link" href="#experiencia" data-spy>La plataforma</a></li>
@@ -375,9 +375,9 @@
           <h2 class="section__title">Todo lo que necesitas,<br />desde una sola plataforma.</h2>
         </header>
 
-        <div class="showcase__carousel reveal" data-reveal data-showcase aria-roledescription="carrusel" aria-label="Explora la plataforma">
+        <div class="showcase__carousel reveal" data-reveal data-showcase role="group" aria-roledescription="carrusel" aria-label="Explora la plataforma">
           <button class="showcase__arrow showcase__arrow--prev" type="button" aria-label="Anterior" aria-controls="showcase-track" data-showcase-prev></button>
-          <div class="showcase__track" id="showcase-track" data-showcase-track tabindex="0" aria-label="Desliza para ver las vistas de la plataforma">
+          <div class="showcase__track" id="showcase-track" data-showcase-track tabindex="0" role="group" aria-roledescription="grupo de imágenes" aria-label="Vistas de la plataforma: desliza con las flechas del teclado para verlas todas">
           <article class="showcase__card" data-tilt>
             <figure><img src="recursos/imagenes/monitor.webp" srcset="recursos/imagenes/monitor-800.webp 800w, recursos/imagenes/monitor.webp 1600w" sizes="(min-width: 1200px) 400px, (min-width: 768px) 46vw, 92vw" alt="Panel de monitoreo de la plataforma en Prisma$" loading="lazy" width="1600" height="901" /></figure>
             <h3>Monitoreo</h3><p>Tu operación, actualizada al instante.</p>
@@ -608,7 +608,7 @@
           <h2 class="section__title">Todo bajo control.</h2>
         </header>
 
-        <div class="benefits__carousel reveal" data-reveal data-benefits aria-roledescription="carrusel" aria-label="Beneficios de Prisma$">
+        <div class="benefits__carousel reveal" data-reveal data-benefits role="group" aria-roledescription="carrusel" aria-label="Beneficios de Prisma$">
           <button class="benefits__arrow benefits__arrow--prev" type="button" aria-label="Anterior" data-benefits-prev></button>
           <div class="benefits__track" data-benefits-track>
           <article class="card card--benefit">
@@ -658,7 +658,7 @@
           </article>
           </div>
           <button class="benefits__arrow benefits__arrow--next" type="button" aria-label="Siguiente" data-benefits-next></button>
-          <div class="benefits__dots" aria-label="Seleccionar beneficio" data-benefits-dots></div>
+          <div class="benefits__dots" role="group" aria-label="Seleccionar beneficio" data-benefits-dots></div>
         </div>
       </div>
     </section>
@@ -686,7 +686,7 @@
     </section>
 
     <!-- ============ HERO SLIDER ============ -->
-    <section class="slider section" id="plataforma" aria-roledescription="carrusel" aria-label="Conoce Prisma$ en cuatro pasos">
+    <section class="slider section" id="plataforma" role="group" aria-roledescription="carrusel" aria-label="Conoce Prisma$ en cuatro pasos">
       <div class="container">
         <h2 class="sr-only">Conoce Prisma$ en cuatro pasos</h2>
         <div class="slider__viewport" data-slider>
@@ -740,7 +740,7 @@
           <button class="slider__arrow slider__arrow--next" type="button" aria-label="Slide siguiente" data-slider-next></button>
 
           <div class="slider__footer">
-            <div class="slider__dots" aria-label="Seleccionar slide" data-slider-dots></div>
+            <div class="slider__dots" role="group" aria-label="Seleccionar slide" data-slider-dots></div>
             <div class="slider__progress" aria-hidden="true"><span data-slider-progress></span></div>
             <div class="slider__counter" aria-hidden="true"><span data-slider-count>01</span><span class="slider__counter-total">/ 04</span></div>
           </div>
@@ -903,12 +903,24 @@
         </ul>
 
         <form class="demo-form" data-demo-form novalidate>
-          <h3 class="demo-form__title">Solicita una demo</h3>
-          <p class="demo-form__lead">Cuéntanos sobre tu operación y coordinamos una demostración sin compromiso.</p>
+          <h2 class="demo-form__title">Solicita una demo</h2>
+          <p class="demo-form__lead">Cuéntanos sobre tu operación y coordinamos una demostración sin compromiso. Campos con * son obligatorios.</p>
           <div class="demo-form__grid">
             <div class="form__field">
-              <label class="form__label" for="demo-nombre">Nombre</label>
+              <label class="form__label" for="demo-nombre">Nombre *</label>
               <input class="form__input" id="demo-nombre" name="nombre" type="text" autocomplete="name" required minlength="2" maxlength="80" placeholder="Tu nombre" />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-correo">Correo electrónico *</label>
+              <input class="form__input" id="demo-correo" name="correo" type="email" autocomplete="email" required maxlength="120" placeholder="nombre@empresa.com" />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-telefono">Teléfono de contacto (WhatsApp) *</label>
+              <input class="form__input" id="demo-telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" required pattern="^\+?[0-9()\s-]{7,20}$" minlength="7" maxlength="20" placeholder="Ej.: 300 123 4567" />
+            </div>
+            <div class="form__field">
+              <label class="form__label" for="demo-ciudad">Ciudad</label>
+              <input class="form__input" id="demo-ciudad" name="ciudad" type="text" autocomplete="address-level2" maxlength="80" placeholder="Tu ciudad" />
             </div>
             <div class="form__field">
               <label class="form__label" for="demo-empresa">Negocio o empresa</label>
@@ -924,6 +936,7 @@
             </div>
             <p class="form__status form__field--full" role="status" aria-live="polite" data-demo-status></p>
           </div>
+          <noscript>Para usar el formulario necesitas activar JavaScript. También puedes escribirnos por los canales de contacto del pie de página.</noscript>
         </form>
       </div>
     </section>
@@ -938,7 +951,7 @@
         <p>Registra. Monitorea. Decide.</p>
 
         <div class="footer__contact" data-contact-block hidden>
-          <h3 class="footer__contact-title">Contacto</h3>
+          <h2 class="footer__contact-title">Contacto</h2>
           <a class="btn btn--secondary btn--sm footer__wa" href="paginas/solicitar-demo.html" data-wa-fab hidden data-wa-message="Hola, quiero más información sobre Prisma$ Control de Recaudo.">
             <span data-icon="whatsapp" aria-hidden="true"></span>
             Escríbenos por WhatsApp
@@ -950,16 +963,16 @@
 
       <nav class="footer__cols" aria-label="Enlaces del sitio">
         <div class="footer__col">
-          <h3>Producto</h3>
+          <h2>Producto</h2>
           <ul>
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#experiencia">La plataforma</a></li>
             <li><a href="#solucion">Funciones</a></li>
-            <li><a href="#como-funciona">Cómo funciona</a></li>
+            <li><a href="#descarga">Descargar la app</a></li>
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Tu operación</h3>
+          <h2>Tu operación</h2>
           <ul>
             <li><a href="#problema">El problema</a></li>
             <li><a href="#monitoreo">Monitoreo</a></li>
@@ -968,21 +981,11 @@
           </ul>
         </div>
         <div class="footer__col">
-          <h3>Precios</h3>
+          <h2>Precios</h2>
           <ul>
             <li><a href="#planes">Planes y precios</a></li>
-            <li><a href="#descarga">Descargar la app</a></li>
-            <li><a href="#descarga">Métodos de pago</a></li>
-            <li><a href="#preguntas">Preguntas frecuentes</a></li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h3>Secciones</h3>
-          <ul>
-            <li><a href="#solucion">Solución</a></li>
             <li><a href="#como-funciona">Cómo funciona</a></li>
-            <li><a href="#seguridad">Seguridad</a></li>
-            <li><a href="#demo">Contacto</a></li>
+            <li><a href="#preguntas">Preguntas frecuentes</a></li>
           </ul>
         </div>
       </nav>
@@ -990,11 +993,7 @@
 
     <div class="container footer__bottom">
       <p>&copy; <span data-year>2026</span> Prisma$. Todos los derechos reservados.</p>
-      <ul>
-        <li><a href="paginas/politica-de-privacidad.html">Política de privacidad</a></li>
-        <li><a href="paginas/terminos.html">Términos</a></li>
-        <li><a href="paginas/solicitar-demo.html">Contacto</a></li>
-      </ul>
+
     </div>
   </footer>
 
